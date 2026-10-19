@@ -1,0 +1,28 @@
+{
+  "name": "sockspecs-cn/parameter-commerce",
+  "description": "Independent domestic SockSpecs store: product specifications and local development scaffold.",
+  "type": "project",
+  "license": "GPL-2.0-or-later",
+  "require-dev": {
+    "wp-coding-standards/wpcs": "^3.0"
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    },
+    "sort-packages": true
+  },
+  "scripts": {
+    "lint": "@php tools/lint.php",
+    "test": [
+      "@php tests/run.php",
+      "@php tests/cn-boundaries.php"
+    ],
+    "standards": "phpcs --standard=phpcs.xml.dist",
+    "check": [
+      "@lint",
+      "@standards",
+      "@test"
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "demo": true,
+  "name": "DEMO ONLY — SockSpecs scaffold sock",
+  "sku": "DEMO-M0-001",
+  "status": "draft",
+  "description": "Synthetic development fixture. Not a real product or test report.",
+  "claims": []
+}

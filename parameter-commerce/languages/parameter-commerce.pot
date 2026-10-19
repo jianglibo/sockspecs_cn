@@ -1,0 +1,2092 @@
+# Copyright (C) 2026
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Parameter Commerce 0.5.6\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/parameter-commerce\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-16T02:38:30+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: parameter-commerce\n"
+
+#. Plugin Name of the plugin
+#: parameter-commerce.php
+msgid "Parameter Commerce"
+msgstr ""
+
+#. Description of the plugin
+#: parameter-commerce.php
+msgid "Evidence-led product specifications and staff claim management for SockSpecs."
+msgstr ""
+
+#: includes/class-account-notices.php:47
+msgid "If the email is not in your inbox, please check your spam or junk folder."
+msgstr ""
+
+#: includes/class-admin.php:30
+#: includes/class-admin.php:33
+#: includes/class-admin.php:99
+#: templates/admin-page.php:15
+msgid "Parameter Specs"
+msgstr ""
+
+#: includes/class-admin.php:48
+msgid "Use POST for changes."
+msgstr ""
+
+#: includes/class-admin.php:58
+msgid "Evidence fields are required, even for incomplete drafts."
+msgstr ""
+
+#: includes/class-admin.php:65
+msgid "Confirm the status change after reviewing this claim."
+msgstr ""
+
+#: includes/class-admin.php:74
+msgid "Unknown operation."
+msgstr ""
+
+#: includes/class-admin.php:169
+#: includes/class-repository.php:120
+msgid "Invalid record ID or revision."
+msgstr ""
+
+#: includes/class-admin.php:182
+msgid "Draft"
+msgstr ""
+
+#: includes/class-admin.php:183
+msgid "Reviewed"
+msgstr ""
+
+#: includes/class-admin.php:184
+msgid "Published"
+msgstr ""
+
+#: includes/class-admin.php:185
+msgid "Retracted"
+msgstr ""
+
+#: includes/class-admin.php:198
+msgid "Return to draft"
+msgstr ""
+
+#: includes/class-admin.php:199
+msgid "Mark reviewed"
+msgstr ""
+
+#: includes/class-admin.php:200
+msgid "Publish"
+msgstr ""
+
+#: includes/class-admin.php:201
+msgid "Retract"
+msgstr ""
+
+#: includes/class-brand-pages.php:27
+msgid "Returns & Refunds"
+msgstr ""
+
+#: includes/class-brand-pages.php:42
+msgid "Quality, Not Hype."
+msgstr ""
+
+#: includes/class-brand-pages.php:43
+msgid "Know your socks. See the specifications."
+msgstr ""
+
+#: includes/class-brand-pages.php:44
+msgid "Discover what goes into every pair—and what makes it worth the price."
+msgstr ""
+
+#: includes/class-brand-pages.php:49
+msgid "Explore the socks"
+msgstr ""
+
+#: includes/class-brand-pages.php:54
+msgid "Our philosophy"
+msgstr ""
+
+#: includes/class-brand-pages.php:57
+msgid "What goes into a pair"
+msgstr ""
+
+#: includes/class-brand-pages.php:57
+msgid "Examine material composition, construction, and measurements where records are available."
+msgstr ""
+
+#: includes/class-brand-pages.php:58
+msgid "Where the evidence comes from"
+msgstr ""
+
+#: includes/class-brand-pages.php:58
+msgid "Manufacturer declarations, our measurements, and third-party tests are clearly distinguished."
+msgstr ""
+
+#: includes/class-brand-pages.php:59
+msgid "What we do not know yet"
+msgstr ""
+
+#: includes/class-brand-pages.php:59
+msgid "Missing results say Not yet measured. We do not fill the gaps with promises."
+msgstr ""
+
+#: includes/class-brand-pages.php:71
+msgid "Our Philosophy"
+msgstr ""
+
+#: includes/class-brand-pages.php:72
+msgid "Products should compete on quality, not marketing budgets."
+msgstr ""
+
+#: includes/class-brand-pages.php:73
+msgid "At SockSpecs, we believe the value of a product should come from its materials, construction, performance, and durability—not simply the name printed on its packaging."
+msgstr ""
+
+#: includes/class-brand-pages.php:74
+msgid "That’s why we make product specifications and available quality evidence easy to examine and compare."
+msgstr ""
+
+#: includes/class-brand-pages.php:74
+msgid "That’s why we make product specifications and available quality evidence easy to examine."
+msgstr ""
+
+#: includes/class-brand-pages.php:75
+msgid "Our goal is simple: better-informed choices, better value, and fair prices."
+msgstr ""
+
+#: includes/class-brand-pages.php:76
+msgid "Evidence before promises"
+msgstr ""
+
+#: includes/class-brand-pages.php:77
+msgid "Each published measurement identifies its source and method. A manufacturer declaration is labelled as a declaration. Where measurements are unavailable, we say Not yet measured."
+msgstr ""
+
+#: includes/class-brand-pages.php:78
+msgid "We do not claim equivalent quality, a longer lifetime, or a particular saving without evidence that supports the claim."
+msgstr ""
+
+#: includes/class-brand-pages.php:81
+msgid "Who operates SockSpecs?"
+msgstr ""
+
+#: includes/class-brand-pages.php:82
+msgid "SockSpecs is operated by:"
+msgstr ""
+
+#: includes/class-brand-pages.php:83
+msgid "English translation of the company name:"
+msgstr ""
+
+#: includes/class-brand-pages.php:84
+msgid "We are based in China. Orders ship from Zhejiang, China."
+msgstr ""
+
+#: includes/class-brand-pages.php:85
+msgid "For questions about our products, specifications or orders, contact:"
+msgstr ""
+
+#: includes/class-catalog.php:92
+#: includes/class-catalog.php:105
+msgid "Invalid catalog filter."
+msgstr ""
+
+#: includes/class-catalog.php:98
+msgid "Enter a nonnegative number; cotton percentage cannot exceed 100."
+msgstr ""
+
+#: includes/class-catalog.php:102
+msgid "Minimum price cannot exceed maximum price."
+msgstr ""
+
+#: includes/class-catalog.php:131
+msgid "This measurement filter is currently disabled."
+msgstr ""
+
+#: includes/class-catalog.php:150
+msgid "Catalog evidence is temporarily unavailable."
+msgstr ""
+
+#: includes/class-catalog.php:207
+msgid "The catalog is temporarily unavailable."
+msgstr ""
+
+#: includes/class-catalog.php:238
+#: includes/class-catalog.php:264
+msgid "Please narrow your category or intended use to browse this catalog."
+msgstr ""
+
+#: includes/class-comparison.php:52
+msgid "Select up to four products or sizes for comparison."
+msgstr ""
+
+#: includes/class-comparison.php:57
+msgid "Invalid comparison selection."
+msgstr ""
+
+#: includes/class-comparison.php:79
+msgid "Comparison is temporarily unavailable."
+msgstr ""
+
+#: includes/class-comparison.php:88
+msgid "A selected product or size is no longer available for comparison. Clear the selection and choose from the catalog."
+msgstr ""
+
+#: includes/class-comparison.php:145
+msgid "Four selected. Remove an item before adding another."
+msgstr ""
+
+#: includes/class-comparison.php:149
+#: includes/class-comparison.php:176
+msgid "Remove from comparison"
+msgstr ""
+
+#: includes/class-comparison.php:149
+msgid "Add to comparison"
+msgstr ""
+
+#: includes/class-comparison.php:152
+#: includes/class-comparison.php:182
+msgid "Clear comparison"
+msgstr ""
+
+#: includes/class-comparison.php:166
+msgid "Comparison selection"
+msgstr ""
+
+#. translators: %d: number of selected products or variations, at most four.
+#: includes/class-comparison.php:171
+#, php-format
+msgid "%d of 4 comparison items selected"
+msgstr ""
+
+#: includes/class-comparison.php:176
+msgid "Remove"
+msgstr ""
+
+#: includes/class-comparison.php:178
+msgid "Compare selections"
+msgstr ""
+
+#: includes/class-comparison.php:210
+msgid "Not enough measurements to compare."
+msgstr ""
+
+#: includes/class-comparison.php:215
+msgid "Not comparable: different units. Original values are shown without conversion."
+msgstr ""
+
+#: includes/class-comparison.php:218
+msgid "Not comparable: different product or specimen scopes."
+msgstr ""
+
+#: includes/class-comparison.php:221
+msgid "Not comparable: different evidence source categories."
+msgstr ""
+
+#: includes/class-comparison.php:229
+msgid "Comparability not established: method, version, conditions or specimen scope is incomplete."
+msgstr ""
+
+#: includes/class-comparison.php:232
+msgid "Not comparable: different methods, versions or test conditions."
+msgstr ""
+
+#: includes/class-comparison.php:236
+msgid "Incomplete comparison: one or more measurements are unavailable."
+msgstr ""
+
+#: includes/class-comparison.php:238
+msgid "Declared values only; these are not independently verified test results."
+msgstr ""
+
+#: includes/class-comparison.php:238
+msgid "Recorded units, source category, method and specimen conditions match. Review the evidence; this does not establish equivalent quality."
+msgstr ""
+
+#: includes/class-comparison.php:251
+#: includes/class-comparison.php:275
+msgid "Choose two to four products or sizes from the catalog to compare."
+msgstr ""
+
+#: includes/class-comparison.php:267
+msgid "Compare socks"
+msgstr ""
+
+#: includes/class-comparison.php:270
+msgid "Choose products from the catalog"
+msgstr ""
+
+#: includes/class-demo-catalog.php:27
+#: includes/class-product-drafts.php:226
+msgid "You cannot edit this product."
+msgstr ""
+
+#: includes/class-demo-catalog.php:34
+msgid "A demo SKU already belongs to an independently managed product. Nothing was overwritten."
+msgstr ""
+
+#: includes/class-metrics.php:25
+msgid "Cotton"
+msgstr ""
+
+#: includes/class-metrics.php:26
+msgid "Wool"
+msgstr ""
+
+#: includes/class-metrics.php:27
+msgid "Merino wool (part of total wool)"
+msgstr ""
+
+#: includes/class-metrics.php:28
+msgid "Nylon"
+msgstr ""
+
+#: includes/class-metrics.php:29
+msgid "Polyester"
+msgstr ""
+
+#: includes/class-metrics.php:30
+msgid "Elastane"
+msgstr ""
+
+#: includes/class-metrics.php:31
+msgid "Other / unknown fiber"
+msgstr ""
+
+#: includes/class-metrics.php:45
+msgid "Pair weight"
+msgstr ""
+
+#: includes/class-metrics.php:50
+#: templates/size-shape.php:33
+#: templates/size-shape.php:43
+msgid "Foot length"
+msgstr ""
+
+#: includes/class-metrics.php:55
+msgid "Leg height"
+msgstr ""
+
+#: includes/class-metrics.php:60
+msgid "Fabric thickness"
+msgstr ""
+
+#: includes/class-metrics.php:65
+msgid "Needle count"
+msgstr ""
+
+#: includes/class-metrics.php:72
+msgid "Toe seam"
+msgstr ""
+
+#: includes/class-metrics.php:79
+msgid "Cushioning"
+msgstr ""
+
+#: includes/class-metrics.php:86
+msgid "Abrasion result"
+msgstr ""
+
+#: includes/class-metrics.php:92
+msgid "Wash dimensional change"
+msgstr ""
+
+#: includes/class-metrics.php:97
+msgid "Air permeability"
+msgstr ""
+
+#: includes/class-metrics.php:105
+msgid "Heel reinforcement"
+msgstr ""
+
+#: includes/class-metrics.php:112
+msgid "Sock height style"
+msgstr ""
+
+#: includes/class-metrics.php:119
+msgid "Cuff circumference"
+msgstr ""
+
+#: includes/class-metrics.php:124
+msgid "Cuff height"
+msgstr ""
+
+#: includes/class-metrics.php:129
+msgid "Pilling resistance result"
+msgstr ""
+
+#: includes/class-metrics.php:134
+msgid "Elastic recovery"
+msgstr ""
+
+#: includes/class-metrics.php:141
+msgid "Moisture management result"
+msgstr ""
+
+#: includes/class-pack-builder.php:67
+#: templates/pack-builder.php:18
+msgid "Build Your Pack"
+msgstr ""
+
+#: includes/class-pack-builder.php:68
+msgid "Sell 6 or 12 pairs with a quantity per color. Enable only when every variation price, weight and stock quantity represents ONE PAIR. Use explicit Color and Size attributes, variation-level stock and no backorders. Existing prepacked stock must not be reused."
+msgstr ""
+
+#: includes/class-pack-builder.php:97
+msgid "Build Your Pack requires an existing variable product."
+msgstr ""
+
+#: includes/class-pack-builder.php:100
+msgid "Build Your Pack is not enabled for this product."
+msgstr ""
+
+#: includes/class-pack-builder.php:103
+msgid "Only authorized store staff can preview this pack."
+msgstr ""
+
+#: includes/class-pack-builder.php:106
+msgid "This pack cannot be purchased while the store is in coming-soon mode."
+msgstr ""
+
+#: includes/class-pack-builder.php:109
+msgid "Demonstration products cannot be purchased as packs."
+msgstr ""
+
+#: includes/class-pack-builder.php:112
+msgid "This product must be published before its pack builder is available."
+msgstr ""
+
+#: includes/class-pack-builder.php:115
+msgid "This product is not publicly accessible. Check its catalog visibility and password protection."
+msgstr ""
+
+#: includes/class-pack-builder.php:120
+msgid "WooCommerce global stock management is disabled. Enable Manage stock in Products > Inventory."
+msgstr ""
+
+#: includes/class-pack-builder.php:123
+msgid "WooCommerce Hold stock must be a positive number of minutes in Products > Inventory."
+msgstr ""
+
+#: includes/class-pack-builder.php:126
+msgid "Checkout stock reservations are disabled by the woocommerce_hold_stock_for_checkout filter. Review the plugin or customization supplying this filter."
+msgstr ""
+
+#: includes/class-pack-builder.php:132
+msgid "Pack setup requires one Color attribute, single-pair variations and at most 100 variations."
+msgstr ""
+
+#: includes/class-pack-builder.php:142
+msgid "All colors and sizes in a priced pack must share the parent product tax settings."
+msgstr ""
+
+#: includes/class-pack-builder.php:146
+msgid "Each pack variation needs explicit attributes, its own pair stock, physical shipping and no backorders."
+msgstr ""
+
+#: includes/class-pack-builder.php:153
+msgid "Duplicate color variations must be resolved before selling packs."
+msgstr ""
+
+#: includes/class-pack-builder.php:159
+msgid "One size"
+msgstr ""
+
+#: includes/class-pack-builder.php:176
+msgid "Choose a 6-pair or 12-pair pack."
+msgstr ""
+
+#: includes/class-pack-builder.php:181
+msgid "Color quantities must be whole numbers between zero and the pack size."
+msgstr ""
+
+#: includes/class-pack-builder.php:188
+msgid "The selected color quantities must equal the pack size."
+msgstr ""
+
+#: includes/class-pack-builder.php:196
+msgid "Choose available colors from the same sock model and size."
+msgstr ""
+
+#: includes/class-pack-builder.php:216
+msgid "Not enough stock for the selected colors. Please adjust your pack."
+msgstr ""
+
+#: includes/class-pack-builder.php:233
+#: includes/class-pack-builder.php:237
+msgid "This pack could not be added. Please check availability."
+msgstr ""
+
+#: includes/class-pack-builder.php:292
+msgid "No colors are currently available for this pack."
+msgstr ""
+
+#: includes/class-pack-builder.php:315
+msgid "Please reload the product page and try again."
+msgstr ""
+
+#: includes/class-pack-builder.php:319
+msgid "Your pack was added. Quantities are pairs; removing a color removes the entire pack. To change colors, remove the pack and build it again."
+msgstr ""
+
+#: includes/class-pack-builder.php:339
+#: includes/class-pack-builder.php:357
+#: includes/class-pack-builder.php:359
+msgid "Please use Build Your Pack on the product page."
+msgstr ""
+
+#: includes/class-pack-builder.php:400
+msgid "A pack is incomplete or no longer available. Remove that pack and build it again before checkout."
+msgstr ""
+
+#: includes/class-pack-builder.php:437
+msgid "To change colors or pack size, remove the pack and build it again."
+msgstr ""
+
+#: includes/class-pack-builder.php:523
+msgid "Pack reference"
+msgstr ""
+
+#: includes/class-pack-builder.php:527
+msgid "Pairs in pack"
+msgstr ""
+
+#: includes/class-pack-builder.php:531
+msgid "Pack contents"
+msgstr ""
+
+#: includes/class-pack-pricing.php:37
+#: includes/class-pack-pricing.php:42
+msgid "Pack prices need review before this product can be purchased."
+msgstr ""
+
+#. translators: 1: number of pairs, 2: store currency.
+#: includes/class-pack-pricing.php:61
+#, php-format
+msgid "%1$d-pair pack price (%2$s)"
+msgstr ""
+
+#: includes/class-pack-pricing.php:64
+msgid "Optional: enter both pack totals, using the same tax basis as regular prices. Leave both blank to sum pair prices. Variation stock and weight still represent one pair."
+msgstr ""
+
+#. translators: 1: number of pairs, 2: formatted price.
+#: includes/class-pack-pricing.php:146
+#, php-format
+msgid "%1$d pairs: %2$s"
+msgstr ""
+
+#: includes/class-pack-pricing.php:149
+msgid "Free US shipping"
+msgstr ""
+
+#: includes/class-plugin.php:90
+msgid "Parameter Commerce requires an active WooCommerce installation for commerce features. The plugin remains inactive for commerce until WooCommerce is available."
+msgstr ""
+
+#: includes/class-product-drafts.php:41
+msgid "SockSpecs sourcing and readiness"
+msgstr ""
+
+#: includes/class-product-drafts.php:59
+msgid "Ankle profile"
+msgstr ""
+
+#: includes/class-product-drafts.php:60
+msgid "Crew profile"
+msgstr ""
+
+#: includes/class-product-drafts.php:61
+msgid "Cushioned sole"
+msgstr ""
+
+#: includes/class-product-drafts.php:62
+msgid "Ribbed cuff"
+msgstr ""
+
+#: includes/class-product-drafts.php:63
+#: includes/class-public-specifications.php:230
+msgid "Reinforced heel"
+msgstr ""
+
+#: includes/class-product-drafts.php:64
+msgid "Low profile"
+msgstr ""
+
+#: includes/class-product-drafts.php:152
+msgid "Use WooCommerce for categories, product tags (intended use), Size, Color and Pack quantity attributes, images and variations. Sourcing fields below are private."
+msgstr ""
+
+#: includes/class-product-drafts.php:153
+msgid "Supplier (private)"
+msgstr ""
+
+#: includes/class-product-drafts.php:153
+msgid "Not assigned"
+msgstr ""
+
+#: includes/class-product-drafts.php:169
+#: includes/class-suppliers.php:35
+msgid "Add private supplier"
+msgstr ""
+
+#: includes/class-product-drafts.php:170
+msgid "Supplier product URL (private, HTTPS)"
+msgstr ""
+
+#: includes/class-product-drafts.php:171
+msgid "Proposed design features (not verified specifications)"
+msgstr ""
+
+#: includes/class-product-drafts.php:175
+msgid "Save draft and generate description suggestion"
+msgstr ""
+
+#: includes/class-product-drafts.php:176
+msgid "Draft products only. Review the suggestion and copy accepted wording into the native description fields; generation never publishes or replaces your description."
+msgstr ""
+
+#: includes/class-product-drafts.php:180
+msgid "Draft description suggestion"
+msgstr ""
+
+#: includes/class-product-drafts.php:185
+msgid "Publication review"
+msgstr ""
+
+#: includes/class-product-drafts.php:187
+msgid "Fictional demonstration product: publication is blocked."
+msgstr ""
+
+#: includes/class-product-drafts.php:190
+msgid "SKU"
+msgstr ""
+
+#: includes/class-product-drafts.php:191
+msgid "Description"
+msgstr ""
+
+#: includes/class-product-drafts.php:192
+msgid "Product image"
+msgstr ""
+
+#: includes/class-product-drafts.php:193
+msgid "Supplier reference"
+msgstr ""
+
+#: includes/class-product-drafts.php:195
+msgid "Present — review required"
+msgstr ""
+
+#: includes/class-product-drafts.php:195
+msgid "Missing"
+msgstr ""
+
+#: includes/class-product-drafts.php:197
+msgid "Metrics without published evidence (not all are applicable):"
+msgstr ""
+
+#: includes/class-product-drafts.php:199
+msgid "This summary covers parent records only. Review each size/SKU in Parameter Specs; no child inherits parent measurements."
+msgstr ""
+
+#: includes/class-product-drafts.php:212
+msgid "Review declarations, measurements and evidence"
+msgstr ""
+
+#: includes/class-product-drafts.php:230
+#: includes/class-suppliers.php:123
+msgid "Choose an existing private supplier."
+msgstr ""
+
+#: includes/class-product-drafts.php:235
+msgid "Choose supported design features."
+msgstr ""
+
+#: includes/class-product-drafts.php:238
+msgid "Description generation is available only for saved draft products."
+msgstr ""
+
+#: includes/class-product-picker.php:44
+msgid "Search products by name, SKU, or ID"
+msgstr ""
+
+#: includes/class-product-picker.php:45
+#: includes/class-product-picker.php:172
+msgid "Whole product (no variation)"
+msgstr ""
+
+#: includes/class-product-picker.php:46
+msgid "No matching products or variations."
+msgstr ""
+
+#: includes/class-product-picker.php:47
+msgid "Could not load choices. Try again."
+msgstr ""
+
+#: includes/class-product-picker.php:48
+msgid "Searching…"
+msgstr ""
+
+#: includes/class-product-picker.php:49
+msgid "Loading more choices…"
+msgstr ""
+
+#: includes/class-product-picker.php:50
+msgid "Showing the first 20 matches. Refine your search if needed."
+msgstr ""
+
+#: includes/class-product-picker.php:51
+msgid "Choose a product first."
+msgstr ""
+
+#: includes/class-product-picker.php:198
+msgid "Enter an ID if JavaScript is unavailable."
+msgstr ""
+
+#: includes/class-public-specifications.php:86
+#: includes/class-public-specifications.php:123
+msgid "Specifications & evidence"
+msgstr ""
+
+#: includes/class-public-specifications.php:106
+msgid "Loading specifications for this selection…"
+msgstr ""
+
+#: includes/class-public-specifications.php:107
+msgid "Specifications could not be loaded. Please retry."
+msgstr ""
+
+#: includes/class-public-specifications.php:108
+msgid "Retry"
+msgstr ""
+
+#: includes/class-public-specifications.php:109
+msgid "Choose an available size or SKU to see its measurements."
+msgstr ""
+
+#: includes/class-public-specifications.php:145
+#: templates/comparison.php:24
+msgid "Specification scope"
+msgstr ""
+
+#: includes/class-public-specifications.php:145
+#: templates/comparison.php:28
+#: templates/specifications.php:15
+msgid "Product-level records"
+msgstr ""
+
+#: includes/class-public-specifications.php:151
+msgid "Show specifications"
+msgstr ""
+
+#: includes/class-public-specifications.php:153
+msgid "For further sizes, use the product options above."
+msgstr ""
+
+#: includes/class-public-specifications.php:231
+msgid "No-show"
+msgstr ""
+
+#: includes/class-public-specifications.php:232
+msgid "Ankle"
+msgstr ""
+
+#: includes/class-public-specifications.php:233
+msgid "Crew"
+msgstr ""
+
+#: includes/class-public-specifications.php:234
+msgid "Knee-high"
+msgstr ""
+
+#: includes/class-public-specifications.php:235
+msgid "Flat seam"
+msgstr ""
+
+#: includes/class-public-specifications.php:236
+msgid "Linked toe"
+msgstr ""
+
+#: includes/class-public-specifications.php:237
+msgid "Standard seam"
+msgstr ""
+
+#: includes/class-public-specifications.php:238
+msgid "Unknown"
+msgstr ""
+
+#: includes/class-public-specifications.php:239
+msgid "No cushioning"
+msgstr ""
+
+#: includes/class-public-specifications.php:240
+msgid "Light cushioning"
+msgstr ""
+
+#: includes/class-public-specifications.php:241
+msgid "Medium cushioning"
+msgstr ""
+
+#: includes/class-public-specifications.php:242
+msgid "Heavy cushioning"
+msgstr ""
+
+#: includes/class-public-specifications.php:245
+msgid "None declared"
+msgstr ""
+
+#: includes/class-referral-store.php:87
+msgid "Rewards are busy. Please try again."
+msgstr ""
+
+#: includes/class-referral-store.php:110
+msgid "Unable to update shopping credit. Please try again."
+msgstr ""
+
+#: includes/class-referral-store.php:233
+msgid "Sign in to use your USD shopping credit."
+msgstr ""
+
+#: includes/class-referral-store.php:236
+msgid "This order has already been paid."
+msgstr ""
+
+#: includes/class-referral-store.php:239
+msgid "This order already has a reward reservation. Cancel it before changing the order."
+msgstr ""
+
+#: includes/class-referral-store.php:243
+msgid "Your credit is reserved or has changed. Pay or cancel any unpaid order, then refresh your cart."
+msgstr ""
+
+#: includes/class-referral-store.php:248
+msgid "The referral discount is only for a new customer’s first order and cannot be used for self-referrals."
+msgstr ""
+
+#: includes/class-referral-ui.php:66
+#: includes/class-referral-ui.php:149
+msgid "Give friends $2 off. Earn $2 in shopping credit."
+msgstr ""
+
+#: includes/class-referral-ui.php:66
+msgid "Refer & Earn"
+msgstr ""
+
+#: includes/class-referral-ui.php:112
+#: includes/class-referrals.php:349
+msgid "The referral program is currently paused. Your recorded credit is preserved."
+msgstr ""
+
+#: includes/class-referral-ui.php:114
+msgid "Happy with your socks? Share with friends."
+msgstr ""
+
+#: includes/class-referral-ui.php:114
+msgid "If you’re happy with the quality and value of your SockSpecs socks, share your referral link with friends or on your social profiles. Each new customer gets $2 off their first order, and you earn $2 in shopping credit when their order is completed. Your rewards add up with no earning cap."
+msgstr ""
+
+#: includes/class-referral-ui.php:116
+msgid "Sign in or create an account to get your referral link."
+msgstr ""
+
+#: includes/class-referral-ui.php:122
+#: includes/class-referrals.php:318
+msgid "Available shopping credit:"
+msgstr ""
+
+#: includes/class-referral-ui.php:123
+#: includes/class-referrals.php:347
+msgid "Your referral link"
+msgstr ""
+
+#: includes/class-referral-ui.php:124
+msgid "Link copied"
+msgstr ""
+
+#: includes/class-referral-ui.php:124
+msgid "Select and copy the link above."
+msgstr ""
+
+#: includes/class-referral-ui.php:124
+msgid "Copy link"
+msgstr ""
+
+#. translators: %s: the signed-in customer's personal referral URL.
+#: includes/class-referral-ui.php:126
+#, php-format
+msgid "Shopping for socks? Use my link for $2 off your first SockSpecs order. I’ll also receive $2 in shopping credit when your order is completed: %s"
+msgstr ""
+
+#: includes/class-referral-ui.php:127
+msgid "A message you can share"
+msgstr ""
+
+#: includes/class-referral-ui.php:128
+msgid "Message copied"
+msgstr ""
+
+#: includes/class-referral-ui.php:128
+msgid "Select and copy the message above."
+msgstr ""
+
+#: includes/class-referral-ui.php:128
+msgid "Copy message"
+msgstr ""
+
+#: includes/class-referral-ui.php:129
+msgid "View your credit and activity"
+msgstr ""
+
+#: includes/class-referral-ui.php:149
+msgid "Share your link with a friend. They get $2 off their first order, and you earn $2 in shopping credit when that order is completed."
+msgstr ""
+
+#: includes/class-referral-ui.php:153
+msgid "How Refer & Earn works"
+msgstr ""
+
+#: includes/class-referrals.php:86
+msgid "Referrals & credit"
+msgstr ""
+
+#: includes/class-referrals.php:215
+msgid "Sign in with an available USD shopping credit balance to use this reward."
+msgstr ""
+
+#: includes/class-referrals.php:225
+msgid "This referral offer is for a new customer’s first order only. Self-referrals are not eligible."
+msgstr ""
+
+#: includes/class-referrals.php:229
+msgid "Only one referral can be used for your first order."
+msgstr ""
+
+#: includes/class-referrals.php:243
+msgid "Shopping credit"
+msgstr ""
+
+#: includes/class-referrals.php:243
+msgid "First-order referral discount"
+msgstr ""
+
+#: includes/class-referrals.php:275
+msgid "Please enter a valid referral code."
+msgstr ""
+
+#: includes/class-referrals.php:315
+msgid "Referrals and shopping credit"
+msgstr ""
+
+#: includes/class-referrals.php:323
+msgid "Remove shopping credit"
+msgstr ""
+
+#: includes/class-referrals.php:323
+msgid "Apply shopping credit"
+msgstr ""
+
+#: includes/class-referrals.php:326
+msgid "Sign in to use shopping credit"
+msgstr ""
+
+#: includes/class-referrals.php:328
+msgid "Have a referral code? Get $2 off your first order."
+msgstr ""
+
+#: includes/class-referrals.php:330
+msgid "Referral code"
+msgstr ""
+
+#: includes/class-referrals.php:330
+msgid "Apply referral"
+msgstr ""
+
+#: includes/class-referrals.php:342
+msgid "Referrals & shopping credit"
+msgstr ""
+
+#: includes/class-referrals.php:342
+msgid "Available credit:"
+msgstr ""
+
+#: includes/class-referrals.php:343
+msgid "Give a friend $2 off their first order. Earn $2 in shopping credit when that order is completed. Credit accumulates, has no expiry and can cover the full product total on any SockSpecs products. It cannot be withdrawn or exchanged for cash."
+msgstr ""
+
+#: includes/class-referrals.php:344
+msgid "One reward per new customer. Self-referrals do not qualify. Cancelled or fully refunded orders reverse the reward. Partial refunds keep the referral reward while a purchase remains. Credit used on refunded purchases is returned proportionally as credit. If a reversed reward has already been spent, future rewards first cover the adjustment."
+msgstr ""
+
+#: includes/class-referrals.php:347
+msgid "Your referral code:"
+msgstr ""
+
+#: includes/class-referrals.php:352
+msgid "A reversed reward is being offset against future credit."
+msgstr ""
+
+#: includes/class-referrals.php:354
+msgid "Recent activity"
+msgstr ""
+
+#: includes/class-referrals.php:354
+msgid "Date (UTC)"
+msgstr ""
+
+#: includes/class-referrals.php:354
+msgid "Activity"
+msgstr ""
+
+#: includes/class-referrals.php:354
+msgid "Amount"
+msgstr ""
+
+#: includes/class-referrals.php:356
+msgid "Credit applied to an order"
+msgstr ""
+
+#: includes/class-referrals.php:357
+msgid "Credit returned"
+msgstr ""
+
+#: includes/class-referrals.php:358
+msgid "Order credit adjustment"
+msgstr ""
+
+#: includes/class-referrals.php:359
+msgid "Referral reward"
+msgstr ""
+
+#: includes/class-referrals.php:360
+msgid "Referral reward reversed"
+msgstr ""
+
+#: includes/class-referrals.php:363
+msgid "Credit adjustment"
+msgstr ""
+
+#: includes/class-referrals.php:389
+msgid "Invalid referral discount. Please rebuild your cart."
+msgstr ""
+
+#: includes/class-referrals.php:395
+msgid "Cancel the previous reward order before changing its discounts."
+msgstr ""
+
+#: includes/class-referrals.php:400
+msgid "This reward cannot be used for this order. Please sign in and refresh your cart."
+msgstr ""
+
+#: includes/class-referrals.php:440
+msgid "Shopping credit requires review: a reversal or late payment left a credit adjustment. Future credit offsets it; no cash is charged automatically."
+msgstr ""
+
+#: includes/class-referrals.php:456
+msgid "Every five minutes (referral reconciliation)"
+msgstr ""
+
+#: includes/class-referrals.php:478
+#: includes/class-referrals.php:487
+msgid "Referral credit"
+msgstr ""
+
+#: includes/class-referrals.php:487
+msgid "USD: $2 off a referred first order; $2 credit after completion. No expiry or cash withdrawal. Mark an order Completed after delivery to release its reward. Balances include pending checkout reservations. Negative balances offset future rewards."
+msgstr ""
+
+#: includes/class-referrals.php:490
+msgid "Customer"
+msgstr ""
+
+#: includes/class-referrals.php:490
+msgid "Balance (USD)"
+msgstr ""
+
+#: includes/class-repository.php:28
+msgid "You are not allowed to perform this operation."
+msgstr ""
+
+#: includes/class-repository.php:31
+msgid "WooCommerce and the current Parameter Commerce schema are required."
+msgstr ""
+
+#: includes/class-repository.php:101
+msgid "Specifications are temporarily unavailable. Please try again."
+msgstr ""
+
+#: includes/class-repository.php:104
+msgid "Specifications are not available for this selection."
+msgstr ""
+
+#: includes/class-repository.php:127
+#: includes/class-validator.php:102
+msgid "Choose an existing WooCommerce parent or simple product."
+msgstr ""
+
+#: includes/class-repository.php:133
+#: includes/class-validator.php:107
+msgid "The variation must belong to the selected product."
+msgstr ""
+
+#: includes/class-repository.php:148
+msgid "Specifications could not be loaded."
+msgstr ""
+
+#: includes/class-repository.php:160
+msgid "Material composition"
+msgstr ""
+
+#: includes/class-repository.php:161
+msgid "Construction"
+msgstr ""
+
+#: includes/class-repository.php:162
+msgid "Physical measurements"
+msgstr ""
+
+#: includes/class-repository.php:163
+msgid "Performance metrics"
+msgstr ""
+
+#: includes/class-repository.php:171
+#: templates/admin-page.php:117
+#: templates/admin-page.php:178
+msgid "Manufacturer-declared"
+msgstr ""
+
+#: includes/class-repository.php:172
+msgid "Platform-measured"
+msgstr ""
+
+#: includes/class-repository.php:173
+msgid "Third-party-tested"
+msgstr ""
+
+#: includes/class-repository.php:187
+msgid "Not yet measured"
+msgstr ""
+
+#: includes/class-repository.php:225
+msgid "Only drafts can be edited. Return a reviewed claim to draft, or create a revision of a published claim."
+msgstr ""
+
+#: includes/class-repository.php:229
+msgid "A saved claim’s product, variation, and metric cannot be changed. Create a new claim."
+msgstr ""
+
+#: includes/class-repository.php:285
+msgid "Create revisions only from published or retracted claims."
+msgstr ""
+
+#: includes/class-repository.php:337
+msgid "Invalid transition. Save draft → mark reviewed → publish. Published claims can only be retracted or revised."
+msgstr ""
+
+#: includes/class-repository.php:375
+msgid "A current published claim already exists. Create a revision of that claim instead."
+msgstr ""
+
+#: includes/class-repository.php:413
+msgid "Only administrators may configure metrics."
+msgstr ""
+
+#: includes/class-repository.php:416
+msgid "Invalid metric or label length."
+msgstr ""
+
+#: includes/class-repository.php:447
+#: templates/admin-page.php:53
+msgid "Not tested"
+msgstr ""
+
+#: includes/class-repository.php:505
+msgid "Claim not found."
+msgstr ""
+
+#: includes/class-repository.php:509
+msgid "Evidence snapshot is missing; restore data before editing."
+msgstr ""
+
+#: includes/class-repository.php:538
+msgid "Composition tolerance must be a finite number between 0 and 100 percentage points."
+msgstr ""
+
+#: includes/class-repository.php:623
+msgid "This record changed or is busy. Reload and review the latest version before retrying."
+msgstr ""
+
+#: includes/class-repository.php:638
+msgid "The change could not be saved. No partial changes were committed; retry or contact an administrator."
+msgstr ""
+
+#: includes/class-schema.php:29
+msgid "Network activation is not supported. Activate Parameter Commerce per site."
+msgstr ""
+
+#: includes/class-schema.php:52
+msgid "Parameter Commerce installation failed. No claim editing is available. Check the database configuration and retry activation."
+msgstr ""
+
+#: includes/class-schema.php:78
+msgid "A newer schema exists. Restore matching plugin code; do not downgrade the database."
+msgstr ""
+
+#: includes/class-schema.php:82
+msgid "Installation is busy. Retry shortly."
+msgstr ""
+
+#: includes/class-schema.php:165
+msgid "Required columns are missing. Installation remains incomplete and can be retried."
+msgstr ""
+
+#: includes/class-schema.php:172
+msgid "All Parameter Commerce tables require InnoDB. Installation can be retried without deleting data."
+msgstr ""
+
+#: includes/class-schema.php:188
+msgid "Metric seeding failed. Retry installation."
+msgstr ""
+
+#: includes/class-schema.php:193
+msgid "The publication uniqueness index is missing."
+msgstr ""
+
+#: includes/class-size-shape.php:113
+msgid "Supplier catalog"
+msgstr ""
+
+#: includes/class-size-shape.php:162
+#: includes/class-size-shape.php:168
+msgid "EU size"
+msgstr ""
+
+#: includes/class-size-shape.php:162
+#: templates/catalog.php:92
+#: templates/size-shape.php:33
+msgid "Size"
+msgstr ""
+
+#: includes/class-size-shape.php:169
+msgid "To be confirmed"
+msgstr ""
+
+#: includes/class-size-shape.php:250
+#: includes/class-size-shape.php:269
+#: templates/size-shape.php:14
+msgid "Size & Shape"
+msgstr ""
+
+#: includes/class-size-shape.php:253
+#: includes/class-size-shape.php:271
+msgid "Leg length (cm)"
+msgstr ""
+
+#: includes/class-size-shape.php:254
+#: includes/class-size-shape.php:272
+msgid "Foot length (cm)"
+msgstr ""
+
+#: includes/class-size-shape.php:273
+msgid "Dimension source"
+msgstr ""
+
+#: includes/class-size-shape.php:280
+msgid "Shown to shoppers. Use a public source label, not a private URL. These are model dimensions; manage shoe sizes under Attributes."
+msgstr ""
+
+#: includes/class-size-shape.php:284
+msgid "Enter both dimensions and their source to show the guide. Clear both dimensions to hide it."
+msgstr ""
+
+#: includes/class-size-shape.php:307
+msgid "Size & Shape was not changed. Enter valid lengths for every size."
+msgstr ""
+
+#: includes/class-size-shape.php:331
+msgid "Size & Shape was not changed. Enter both lengths between 0 and 100 cm (up to two decimal places) and a short public source label."
+msgstr ""
+
+#: includes/class-suppliers.php:33
+msgid "Suppliers (private)"
+msgstr ""
+
+#: includes/class-suppliers.php:34
+msgid "Supplier"
+msgstr ""
+
+#: includes/class-suppliers.php:69
+msgid "Supplier location"
+msgstr ""
+
+#: includes/class-suppliers.php:70
+msgid "Supplier website (HTTPS)"
+msgstr ""
+
+#: includes/class-suppliers.php:71
+msgid "Original product URL (HTTPS)"
+msgstr ""
+
+#: includes/class-suppliers.php:72
+msgid "Contact information (private)"
+msgstr ""
+
+#: includes/class-suppliers.php:73
+msgid "Verification notes (private)"
+msgstr ""
+
+#: includes/class-suppliers.php:74
+msgid "Internal remarks"
+msgstr ""
+
+#: includes/class-suppliers.php:80
+msgid "Private sourcing details"
+msgstr ""
+
+#: includes/class-suppliers.php:94
+msgid "Always private. Record supplier declarations in Parameter Specs; supplier notes never become verified measurements."
+msgstr ""
+
+#: includes/class-suppliers.php:98
+msgid "Product references"
+msgstr ""
+
+#: includes/class-suppliers.php:129
+msgid "Use text of at most 4000 characters."
+msgstr ""
+
+#: includes/class-suppliers.php:151
+#: includes/class-suppliers.php:156
+msgid "Use a valid HTTPS URL without credentials."
+msgstr ""
+
+#: includes/class-validator.php:31
+msgid "Use a nonnegative whole number within the supported ID/count range."
+msgstr ""
+
+#: includes/class-validator.php:51
+msgid "Choose a registered sock metric."
+msgstr ""
+
+#: includes/class-validator.php:54
+msgid "Choose a valid evidence source tier."
+msgstr ""
+
+#: includes/class-validator.php:61
+msgid "Use the metric dictionary unit exactly; values are never silently converted."
+msgstr ""
+
+#: includes/class-validator.php:66
+msgid "Choose one of the metric dictionary values."
+msgstr ""
+
+#: includes/class-validator.php:71
+msgid "Use a plain number with at most 14 integer and 6 decimal digits; integer metrics require whole numbers."
+msgstr ""
+
+#: includes/class-validator.php:73
+msgid "The value is outside this metric’s allowed range."
+msgstr ""
+
+#: includes/class-validator.php:83
+msgid "Enter a valid, nonfuture source or measurement date (YYYY-MM-DD)."
+msgstr ""
+
+#: includes/class-validator.php:94
+msgid "Test conditions must be a JSON object, such as {\"conditioning\":\"documented procedure\"}."
+msgstr ""
+
+#: includes/class-validator.php:98
+msgid "WooCommerce must be active to edit claims."
+msgstr ""
+
+#: includes/class-validator.php:139
+msgid "Choose public or private evidence visibility."
+msgstr ""
+
+#: includes/class-validator.php:144
+msgid "Use an HTTPS URL without embedded credentials."
+msgstr ""
+
+#: includes/class-validator.php:149
+msgid "Use a valid Media Library attachment ID."
+msgstr ""
+
+#: includes/class-validator.php:153
+msgid "Private evidence cannot expose a public URL or Media Library attachment. Use an access-controlled source URL; ordinary WordPress uploads are public."
+msgstr ""
+
+#: includes/class-validator.php:158
+msgid "Choose an accessible PDF, JPEG, PNG, or WebP attachment intended for public access."
+msgstr ""
+
+#: includes/class-validator.php:179
+msgid "A missing value cannot be published. Keep it as a draft / Not tested."
+msgstr ""
+
+#: includes/class-validator.php:182
+msgid "An explicit measurement unit is required."
+msgstr ""
+
+#: includes/class-validator.php:185
+msgid "A source or measurement date is required."
+msgstr ""
+
+#: includes/class-validator.php:188
+msgid "Attach evidence or provide a documented source URL."
+msgstr ""
+
+#: includes/class-validator.php:192
+msgid "An evidence title and source organization are required."
+msgstr ""
+
+#: includes/class-validator.php:199
+msgid "Tested claims require a method, version, and sample batch."
+msgstr ""
+
+#: includes/class-validator.php:203
+msgid "Enter the actual positive sample count; no count is assumed."
+msgstr ""
+
+#: includes/class-validator.php:206
+msgid "Document the actual test conditions, including the procedure and endpoint where applicable."
+msgstr ""
+
+#: includes/class-validator.php:210
+msgid "Dimensions and weight require an explicit specimen size or size scope."
+msgstr ""
+
+#: includes/class-validator.php:229
+msgid "Merino wool is a subset of total wool and cannot exceed it."
+msgstr ""
+
+#: includes/class-validator.php:235
+msgid "Composition exceeds 100% or a complete six-fiber mix is outside the configured tolerance. Unknown fractions are not normalized."
+msgstr ""
+
+#: includes/class-validator.php:252
+msgid "Expected a scalar value."
+msgstr ""
+
+#: includes/class-validator.php:257
+msgid "This field is too long."
+msgstr ""
+
+#: templates/admin-page.php:16
+msgid "Record evidence, review provenance, and intentionally publish claims. Missing values remain Not tested. Prices and stock stay in WooCommerce."
+msgstr ""
+
+#: templates/admin-page.php:18
+msgid "Nothing was saved. Correct these fields or reload after a conflict:"
+msgstr ""
+
+#: templates/admin-page.php:24
+msgid "New claim / reload list"
+msgstr ""
+
+#: templates/admin-page.php:27
+msgid "Filter by product"
+msgstr ""
+
+#: templates/admin-page.php:28
+msgid "Filter"
+msgstr ""
+
+#: templates/admin-page.php:31
+msgid "Claims, newest first; 20 per page"
+msgstr ""
+
+#: templates/admin-page.php:33
+msgid "Claim"
+msgstr ""
+
+#: templates/admin-page.php:33
+msgid "Product / variation"
+msgstr ""
+
+#: templates/admin-page.php:33
+#: templates/admin-page.php:107
+#: templates/admin-page.php:158
+#: templates/admin-page.php:272
+msgid "Metric"
+msgstr ""
+
+#: templates/admin-page.php:33
+#: templates/admin-page.php:159
+msgid "Value"
+msgstr ""
+
+#: templates/admin-page.php:33
+msgid "Status / revision"
+msgstr ""
+
+#: templates/admin-page.php:59
+msgid "No claims yet."
+msgstr ""
+
+#: templates/admin-page.php:77
+#: templates/catalog.php:167
+msgid "Previous page"
+msgstr ""
+
+#: templates/admin-page.php:93
+#: templates/catalog.php:168
+msgid "Next page"
+msgstr ""
+
+#: templates/admin-page.php:96
+msgid "Saved claim"
+msgstr ""
+
+#: templates/admin-page.php:96
+msgid "New draft"
+msgstr ""
+
+#: templates/admin-page.php:103
+#: templates/comparison.php:20
+msgid "Product"
+msgstr ""
+
+#: templates/admin-page.php:104
+msgid "Variation"
+msgstr ""
+
+#: templates/admin-page.php:105
+msgid "Use a variation for size-specific measurements. Product-scope measurements must not imply they apply to every size. Product, variation, and metric are fixed once a draft is saved."
+msgstr ""
+
+#: templates/admin-page.php:106
+#: templates/admin-page.php:165
+#: templates/evidence-details.php:20
+msgid "Specimen size / scope"
+msgstr ""
+
+#: templates/admin-page.php:112
+msgid "Value (blank means Not tested)"
+msgstr ""
+
+#: templates/admin-page.php:113
+msgid "Unit (use the dictionary below)"
+msgstr ""
+
+#: templates/admin-page.php:114
+#: templates/admin-page.php:162
+msgid "Evidence source tier"
+msgstr ""
+
+#: templates/admin-page.php:118
+#: templates/admin-page.php:179
+msgid "Measured by us"
+msgstr ""
+
+#: templates/admin-page.php:119
+#: templates/admin-page.php:180
+msgid "Third-party laboratory"
+msgstr ""
+
+#: templates/admin-page.php:126
+#: templates/admin-page.php:166
+msgid "Documented method code"
+msgstr ""
+
+#: templates/admin-page.php:127
+#: templates/admin-page.php:167
+msgid "Method version"
+msgstr ""
+
+#: templates/admin-page.php:128
+#: templates/admin-page.php:168
+msgid "Test conditions (JSON object)"
+msgstr ""
+
+#: templates/admin-page.php:129
+#: templates/admin-page.php:169
+#: templates/evidence-details.php:21
+msgid "Actual sample count"
+msgstr ""
+
+#: templates/admin-page.php:130
+#: templates/admin-page.php:170
+#: templates/evidence-details.php:22
+msgid "Sample batch"
+msgstr ""
+
+#: templates/admin-page.php:131
+#: templates/admin-page.php:171
+#: templates/evidence-details.php:19
+msgid "Source / measurement date"
+msgstr ""
+
+#: templates/admin-page.php:132
+#: templates/admin-page.php:172
+msgid "Public limitations and notes"
+msgstr ""
+
+#: templates/admin-page.php:135
+msgid "Evidence snapshot"
+msgstr ""
+
+#: templates/admin-page.php:136
+msgid "Each save creates a new evidence snapshot. Private source URLs and internal notes remain staff-only. Private files must be hosted behind access controls; ordinary WordPress media is public."
+msgstr ""
+
+#: templates/admin-page.php:138
+#: templates/admin-page.php:173
+msgid "Public evidence title"
+msgstr ""
+
+#: templates/admin-page.php:139
+msgid "Source organization (staff-only)"
+msgstr ""
+
+#: templates/admin-page.php:140
+msgid "Source URL (staff-only HTTPS)"
+msgstr ""
+
+#: templates/admin-page.php:141
+#: templates/admin-page.php:174
+msgid "Public excerpt URL (explicit HTTPS disclosure)"
+msgstr ""
+
+#: templates/admin-page.php:142
+msgid "Public Media Library attachment ID (PDF or image)"
+msgstr ""
+
+#: templates/admin-page.php:143
+msgid "Internal evidence notes (staff-only)"
+msgstr ""
+
+#: templates/admin-page.php:145
+msgid "Evidence visibility"
+msgstr ""
+
+#: templates/admin-page.php:146
+msgid "Private"
+msgstr ""
+
+#: templates/admin-page.php:147
+msgid "Public excerpt / attachment"
+msgstr ""
+
+#: templates/admin-page.php:150
+msgid "Save draft"
+msgstr ""
+
+#: templates/admin-page.php:154
+msgid "Saved preview (staff-only; no storefront panel yet)"
+msgstr ""
+
+#: templates/admin-page.php:155
+msgid "This preview shows the saved revision, not unsaved form input. Draft and reviewed claims are not public. Review all provenance before changing status."
+msgstr ""
+
+#: templates/admin-page.php:160
+msgid "Unit"
+msgstr ""
+
+#: templates/admin-page.php:161
+#: templates/evidence-details.php:18
+msgid "Status"
+msgstr ""
+
+#: templates/admin-page.php:163
+msgid "WooCommerce product ID"
+msgstr ""
+
+#: templates/admin-page.php:164
+msgid "Variation ID (0 for product scope)"
+msgstr ""
+
+#: templates/admin-page.php:175
+msgid "Public attachment URL"
+msgstr ""
+
+#: templates/admin-page.php:194
+msgid "Not tested / not supplied"
+msgstr ""
+
+#: templates/admin-page.php:214
+msgid "I reviewed the saved claim and confirm this status change."
+msgstr ""
+
+#: templates/admin-page.php:223
+msgid "Create a new draft revision"
+msgstr ""
+
+#: templates/admin-page.php:226
+msgid "Audit history (staff-only)"
+msgstr ""
+
+#: templates/admin-page.php:229
+msgid "Before"
+msgstr ""
+
+#: templates/admin-page.php:230
+msgid "After"
+msgstr ""
+
+#: templates/admin-page.php:250
+msgid "Newer audit entries"
+msgstr ""
+
+#: templates/admin-page.php:267
+msgid "Older audit entries"
+msgstr ""
+
+#: templates/admin-page.php:270
+msgid "Metric dictionary"
+msgstr ""
+
+#: templates/admin-page.php:271
+msgid "Units, types, and validation rules are versioned in code. Administrators may change labels and filterability. Composition tolerance defaults to zero percentage points; an operator may configure the documented pc_composition_tolerance filter. Partial mixes stay incomplete."
+msgstr ""
+
+#: templates/admin-page.php:272
+msgid "Type / unit / enum values"
+msgstr ""
+
+#: templates/admin-page.php:272
+msgid "Configuration"
+msgstr ""
+
+#: templates/admin-page.php:274
+msgid "Explicit test unit required"
+msgstr ""
+
+#: templates/admin-page.php:282
+msgid "Label override (blank uses translation)"
+msgstr ""
+
+#: templates/admin-page.php:283
+msgid "Filterable"
+msgstr ""
+
+#: templates/admin-page.php:284
+msgid "Save metric configuration"
+msgstr ""
+
+#: templates/admin-page.php:289
+msgid "Administrator access required."
+msgstr ""
+
+#: templates/catalog.php:35
+msgid "Shop"
+msgstr ""
+
+#: templates/catalog.php:38
+msgid "Staff preview — sales closed"
+msgstr ""
+
+#: templates/catalog.php:39
+msgid "Staff catalog preview. Coming-soon mode is still enabled; public sales remain closed."
+msgstr ""
+
+#: templates/catalog.php:55
+msgid "Filters"
+msgstr ""
+
+#: templates/catalog.php:70
+msgid "Category"
+msgstr ""
+
+#: templates/catalog.php:70
+msgid "All categories"
+msgstr ""
+
+#: templates/catalog.php:81
+msgid "Intended use"
+msgstr ""
+
+#: templates/catalog.php:81
+msgid "All uses"
+msgstr ""
+
+#: templates/catalog.php:84
+msgid "Everyday"
+msgstr ""
+
+#: templates/catalog.php:85
+msgid "Running"
+msgstr ""
+
+#: templates/catalog.php:86
+msgid "Hiking"
+msgstr ""
+
+#: templates/catalog.php:87
+msgid "Cold weather"
+msgstr ""
+
+#: templates/catalog.php:95
+msgid "Minimum price"
+msgstr ""
+
+#: templates/catalog.php:96
+msgid "Maximum price"
+msgstr ""
+
+#: templates/catalog.php:97
+msgid "Declared cotton, at least (%)"
+msgstr ""
+
+#: templates/catalog.php:98
+msgid "Pair weight, at most (g)"
+msgstr ""
+
+#: templates/catalog.php:108
+msgid "Sort"
+msgstr ""
+
+#: templates/catalog.php:111
+msgid "Editorial order"
+msgstr ""
+
+#: templates/catalog.php:112
+msgid "Price: low to high"
+msgstr ""
+
+#: templates/catalog.php:113
+msgid "Price: high to low"
+msgstr ""
+
+#: templates/catalog.php:118
+msgid "Apply filters"
+msgstr ""
+
+#: templates/catalog.php:118
+msgid "Clear all filters"
+msgstr ""
+
+#. translators: %d: result count.
+#: templates/catalog.php:123
+#, php-format
+msgid "%d matching catalog entries"
+msgstr ""
+
+#: templates/catalog.php:125
+msgid "About filters and prices"
+msgstr ""
+
+#: templates/catalog.php:127
+msgid "Browse socks by intended use and documented specifications."
+msgstr ""
+
+#: templates/catalog.php:128
+msgid "Measurement filters show only products with matching published data. For products with multiple options, all selected filters must match the same option. Visit each product page for material details, measurement methods, and supporting evidence."
+msgstr ""
+
+#: templates/catalog.php:129
+msgid "Prices vary by product option. Price sorting uses the lowest displayed price unless filters select a specific option."
+msgstr ""
+
+#: templates/catalog.php:136
+msgid "No published products match these filters. Draft demonstration products are not shown."
+msgstr ""
+
+#: templates/catalog.php:151
+msgid "View specifications and options"
+msgstr ""
+
+#: templates/catalog.php:159
+msgid "Catalog pages"
+msgstr ""
+
+#: templates/comparison.php:15
+#: templates/specifications.php:19
+msgid "Only staff-approved, published records appear here. Approval is not independent certification. Each source is identified; missing results are not a zero or a failing grade."
+msgstr ""
+
+#: templates/comparison.php:16
+msgid "Scroll each table horizontally to see all selections. Keyboard users can focus the table region and use the arrow keys."
+msgstr ""
+
+#: templates/comparison.php:17
+#: templates/comparison.php:19
+msgid "Products, prices and availability"
+msgstr ""
+
+#: templates/comparison.php:30
+#: templates/specifications.php:17
+msgid "These records describe product-level samples, not every size. Choose a size or SKU for its own measurements. Missing variation data is never filled from another size or the parent product."
+msgstr ""
+
+#: templates/comparison.php:32
+msgid "Current price"
+msgstr ""
+
+#: templates/comparison.php:36
+msgid "Price not available"
+msgstr ""
+
+#: templates/comparison.php:37
+msgid "Availability"
+msgstr ""
+
+#: templates/comparison.php:41
+msgid "Choose a size on the product page to check availability."
+msgstr ""
+
+#: templates/comparison.php:41
+msgid "In stock"
+msgstr ""
+
+#: templates/comparison.php:43
+msgid "Prices and availability come from WooCommerce. Pack quantities and product options may differ; these are product prices, not a calculated price per pair."
+msgstr ""
+
+#: templates/comparison.php:47
+#: templates/specifications.php:24
+msgid "Parameter"
+msgstr ""
+
+#: templates/comparison.php:78
+#: templates/specifications.php:50
+msgid "Results apply to the documented samples and conditions. Different test methods are not interchangeable, and a single measurement does not establish overall quality or predict product lifetime."
+msgstr ""
+
+#: templates/evidence-details.php:14
+msgid "No test method declared"
+msgstr ""
+
+#: templates/evidence-details.php:15
+msgid "View evidence details"
+msgstr ""
+
+#: templates/evidence-details.php:18
+msgid "Published; staff-approved"
+msgstr ""
+
+#: templates/evidence-details.php:20
+#: templates/evidence-details.php:21
+#: templates/evidence-details.php:22
+msgid "Not specified"
+msgstr ""
+
+#: templates/evidence-details.php:23
+msgid "Evidence"
+msgstr ""
+
+#: templates/evidence-details.php:30
+msgid "Test conditions"
+msgstr ""
+
+#: templates/evidence-details.php:39
+msgid "Public evidence excerpt"
+msgstr ""
+
+#: templates/evidence-details.php:43
+msgid "Public evidence attachment"
+msgstr ""
+
+#: templates/evidence-details.php:47
+msgid "Source document is not public."
+msgstr ""
+
+#: templates/pack-builder.php:20
+msgid "Choose 6 or 12 pairs of this model and mix your colors within one size. The price below is for the whole pack."
+msgstr ""
+
+#: templates/pack-builder.php:23
+msgid "Choose 6 or 12 pairs of this model. Prices and quantities below are per pair; the pack price is their sum. Each color has its own specifications."
+msgstr ""
+
+#: templates/pack-builder.php:29
+msgid "Size / options"
+msgstr ""
+
+#: templates/pack-builder.php:35
+msgid "Show colors"
+msgstr ""
+
+#: templates/pack-builder.php:38
+msgid "Staff preview only: the store is in coming-soon mode. Adding packs to the cart is disabled. Public specifications remain unavailable until launch."
+msgstr ""
+
+#: templates/pack-builder.php:43
+msgid "Pack size"
+msgstr ""
+
+#: templates/pack-builder.php:44
+msgid "6 pairs"
+msgstr ""
+
+#: templates/pack-builder.php:44
+msgid "12 pairs"
+msgstr ""
+
+#: templates/pack-builder.php:65
+msgid "Specifications for this color / size"
+msgstr ""
+
+#: templates/pack-builder.php:70
+msgid "Select exactly the chosen number of pairs before adding your pack."
+msgstr ""
+
+#: templates/pack-builder.php:71
+msgid "Pack subtotal"
+msgstr ""
+
+#: templates/pack-builder.php:73
+msgid "Free shipping to the United States. No minimum order. To change a pack in the cart, remove it and build it again."
+msgstr ""
+
+#: templates/pack-builder.php:75
+msgid "Shipping and any applicable taxes are calculated at checkout. To change a pack in the cart, remove it and build it again."
+msgstr ""
+
+#: templates/pack-builder.php:77
+msgid "pairs selected"
+msgstr ""
+
+#: templates/pack-builder.php:77
+msgid "Add pack to cart"
+msgstr ""
+
+#: templates/size-shape.php:19
+msgid "Sock shape and dimensions"
+msgstr ""
+
+#: templates/size-shape.php:20
+msgid "Schematic side view. A indicates the sock leg; B indicates the foot. Values are listed beside the illustration."
+msgstr ""
+
+#: templates/size-shape.php:33
+#: templates/size-shape.php:42
+msgid "Leg length"
+msgstr ""
+
+#: templates/size-shape.php:42
+#: templates/size-shape.php:43
+msgid "cm"
+msgstr ""
+
+#: templates/size-shape.php:47
+msgid "Model dimensions · Schematic illustration"
+msgstr ""
+
+#: templates/size-shape.php:48
+msgid "About these dimensions"
+msgstr ""
+
+#: templates/size-shape.php:48
+msgid "These dimensions describe the sock’s shape. Use the shoe-size option for fit. The illustration is not a measurement method or a size-specific test record."
+msgstr ""
+
+#: templates/specifications.php:24
+msgid "Value / unit"
+msgstr ""
+
+#: templates/specifications.php:24
+msgid "Source"
+msgstr ""
+
+#: templates/specifications.php:24
+msgid "Method & evidence"
+msgstr ""

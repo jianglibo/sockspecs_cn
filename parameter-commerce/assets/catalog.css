@@ -1,0 +1,54 @@
+/* Only the catalog page overrides the theme's generous editorial spacing. */
+.pc-catalog-page main.wp-block-group{margin-block-start:1.25rem!important}
+.pc-catalog-page main>.wp-block-group{padding-block:0!important}
+.pc-catalog-page main .wp-block-post-title{display:none}
+.pc-catalog-page .wp-block-post-content{margin-block-start:0!important}
+.pc-catalog-page .wp-block-post-content>.pc-catalog{max-width:var(--wp--style--global--wide-size,1280px)!important}
+.pc-catalog{max-width:1280px;margin:auto;color:#213e32}
+.pc-catalog-heading{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1.25rem}
+.pc-catalog-heading h1{font-size:clamp(1.8rem,3vw,2.5rem);line-height:1.15;margin:0}
+.pc-catalog summary{cursor:pointer;min-height:24px;padding:.35rem 0}
+.pc-catalog-preview{font-size:.8rem;color:#4b5d53;max-width:30rem}
+.pc-catalog-preview p{margin:.35rem 0 0}
+.pc-catalog-layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:2rem;align-items:start}
+.pc-catalog-filter-panel{background:#f4f2eb;border:1px solid #d6ddd8;border-radius:6px;padding:1rem}
+.pc-catalog-filter-panel>summary{font-weight:600}
+.pc-catalog-filters{display:grid;grid-template-columns:minmax(0,1fr);gap:.9rem;margin-top:.75rem}
+.pc-catalog-filters label{display:flex;flex-direction:column;gap:.3rem;font-size:.85rem}
+.pc-catalog input,.pc-catalog select,.pc-catalog button{box-sizing:border-box;width:100%;max-width:100%;min-width:0;padding:.55rem;font:inherit}
+.pc-catalog-filters button{background:#213e32;color:#fff;border:1px solid #213e32;border-radius:3px;cursor:pointer}
+.pc-catalog-filters>a{font-size:.85rem;text-align:center;padding:.35rem}
+.pc-catalog-results{min-width:0}
+.pc-catalog-results-heading{display:flex;justify-content:space-between;align-items:baseline;gap:.5rem 1rem;flex-wrap:wrap;margin-bottom:1rem;font-size:.85rem}
+.pc-catalog-results-heading>p{margin:0;color:#4b5d53}
+.pc-catalog-help[open]{flex-basis:100%}
+.pc-catalog-help>div{padding:.75rem 1rem;border:1px solid #d6ddd8;border-radius:4px;max-width:65ch;line-height:1.6}
+.pc-catalog-help p{margin:.5rem 0}
+.pc-catalog-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.25rem;align-items:start}
+.pc-catalog-card{min-width:0;padding:.8rem;border:1px solid #d6ddd8;border-radius:6px;font-size:.9rem}
+.pc-catalog-card>a:first-child{display:block;text-decoration:none}
+.pc-catalog-card img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:contain;border-radius:3px}
+.pc-catalog-card h2{font-size:1.05rem;line-height:1.35;margin:.8rem 0 .4rem;overflow-wrap:anywhere}
+.pc-catalog-card p{margin:.4rem 0}
+.pc-catalog-card .price{font-weight:600}
+.pc-catalog-card>a:not(:first-child){display:inline-block;margin-top:.6rem}
+.pc-catalog-pages{display:flex;justify-content:space-between;gap:1rem;margin:1.5rem 0}
+.pc-catalog .pc-compare-selection{padding:.65rem 1rem;margin:0 0 1rem;font-size:.85rem}
+.pc-catalog .pc-compare-selection p{margin:0}
+.pc-catalog .pc-compare-selection ul{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;margin:.3rem 0;padding-left:1.2rem}
+.pc-catalog .pc-compare-selection li{margin:0}
+.pc-catalog :focus-visible{outline:2px solid #356653;outline-offset:3px}
+@media(max-width:1100px){.pc-catalog-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.pc-catalog-layout{gap:1.25rem;grid-template-columns:210px minmax(0,1fr)}}
+@media(max-width:700px){
+.pc-catalog-page main.wp-block-group{margin-block-start:.5rem!important}
+.pc-catalog-heading{gap:.25rem .75rem;margin-bottom:.75rem}
+.pc-catalog-preview{font-size:.75rem}
+.pc-catalog-layout{grid-template-columns:minmax(0,1fr);gap:.75rem}
+.pc-catalog-filter-panel{padding:.5rem .8rem}
+.pc-catalog-filters{gap:.75rem}
+.pc-catalog-results-heading{font-size:.75rem;gap:0 .75rem;margin-bottom:.5rem}
+.pc-catalog-grid{gap:.65rem}
+.pc-catalog-card{padding:.6rem;font-size:.8rem}
+.pc-catalog-card h2{font-size:.95rem;margin-top:.6rem}
+}
+@media(max-width:360px){.pc-catalog-grid{grid-template-columns:minmax(0,1fr)}.pc-catalog-card img{max-height:190px}}

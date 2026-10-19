@@ -1,0 +1,20 @@
+name: sockspecs-cn
+services:
+  db:
+    image: mysql:8.0@sha256:4a8843ef1c30d30937dea3cba5b72665bae17051af7a72b1651f3b7681f76aee
+    ports:
+      - "127.0.0.1:${SSCN_DB_PORT:-33089}:3306"
+    environment:
+      MYSQL_DATABASE: sockspecs_cn
+      MYSQL_USER: sockspecs_cn
+      MYSQL_PASSWORD: ${SSCN_DB_PASSWORD:?Run bash tools/setup-local.sh first}
+      MYSQL_ROOT_PASSWORD: ${SSCN_DB_ROOT_PASSWORD:?Run bash tools/setup-local.sh first}
+    volumes:
+      - database_cn:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "MYSQL_PWD=\"$$MYSQL_PASSWORD\" mysql --protocol=tcp -h 127.0.0.1 -u sockspecs_cn sockspecs_cn -e 'SELECT 1' >/dev/null 2>&1"]
+      interval: 3s
+      timeout: 3s
+      retries: 40
+volumes:
+  database_cn:

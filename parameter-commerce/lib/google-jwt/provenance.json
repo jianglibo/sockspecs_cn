@@ -1,0 +1,18 @@
+{
+  "package": "firebase/php-jwt",
+  "version": "v7.2.1",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/googleapis/php-jwt.git",
+    "reference": "0501f5729b9e2448516674aff07c7d1727869b8e"
+  },
+  "upstream_sha256": {
+    "BeforeValidException.php": "77fe003a44eb941bfd2fac7399f8ca761511a2ad49117f093ef12489b6f09cd0",
+    "ExpiredException.php": "fe92315afbde5a898deabc1562b0f1bc3793bade3c2e61231619aa4849cf476d",
+    "JWT.php": "fa59d2771a8a6542cb33f40de460fd60f54c49b0334a568b1697be7154f6522c",
+    "JWTExceptionWithPayloadInterface.php": "899678f85fe560248895cf921b70ec95ad87b68d5c4da4ff561870d6942cacac",
+    "Key.php": "458bc77981ae49a8fd15dee7781d5b69e88e701536901488a90241134d522e07",
+    "SignatureInvalidException.php": "fc624b17bf730387079c3b25dd282743259bd3c6c20920e007879412c85ebdee"
+  },
+  "modification": "Namespace changed to ParameterCommerce\\Vendor\\GoogleJWT only."
+}

@@ -1,0 +1,31 @@
+.pc-google-login { margin: 1rem 0 1.5rem; max-width: 38rem; }
+.pc-google-help, .pc-google-status { font-size: .875rem; line-height: 1.5; }
+.pc-google-help { color: #555; }
+.pc-google-status:empty { display: none; }
+.pc-google-account { margin: 1.5rem 0; }
+.pc-google-button { max-width: 100%; min-height: 0; }
+.pc-google-login button { max-width: 100%; white-space: normal; }
+.pc-google-login [hidden], .pc-google-account [hidden] { display: none !important; }
+.pc-google-login .pc-google-load, .pc-google-account .pc-google-disconnect {
+  min-height: 44px; padding: .65rem 1rem; border: 1px solid #747775;
+  border-radius: 4px; background: #fff; color: #1f1f1f; font: inherit;
+  font-size: 1rem; cursor: pointer;
+}
+.pc-google-login button:focus-visible, .pc-google-account button:focus-visible {
+  outline: 2px solid #1a73e8; outline-offset: 3px;
+}
+.pc-google-login button:disabled, .pc-google-account button:disabled { opacity: .65; cursor: wait; }
+
+/* Locally served Google brand asset; no third-party request before activation. */
+.pc-google-login .pc-google-load {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 10px 12px; font-family: Arial, sans-serif; font-weight: 500;
+  line-height: 1.25; text-transform: none; letter-spacing: normal;
+}
+.pc-google-login .pc-google-load .pc-google-logo {
+  display: block; flex: 0 0 20px; width: 20px; height: auto;
+  margin: 0; padding: 0; border: 0; box-shadow: none;
+}
+.pc-google-login .pc-google-load:hover:not(:disabled) {
+  background: #fff; box-shadow: 0 1px 3px rgb(60 64 67 / 25%);
+}

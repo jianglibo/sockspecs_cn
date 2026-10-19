@@ -1,0 +1,350 @@
+{
+  "source_repository": "https://github.com/jianglibo/sockspecs.git",
+  "source_head": "6337e355ac030736c67f56a3ceb5f523b7bf1fae",
+  "source_plugin_version": "0.5.26",
+  "snapshot_date": "2026-10-19",
+  "source_includes_uncommitted_work": true,
+  "note": "Independent source snapshot; no old .git history, private data, credentials, runtime or deployment tooling copied. Hashes describe files before domestic edits.",
+  "files": {
+    "parameter-commerce/assets/brand.css": {
+      "source": "parameter-commerce/assets/brand.css",
+      "sha256": "bd235992870303b3a67dbd59b2d5dabfc3f5f052ba64f8d613cffea66223abfa"
+    },
+    "parameter-commerce/assets/catalog.css": {
+      "source": "parameter-commerce/assets/catalog.css",
+      "sha256": "1cdb742d5533da01540716bbd7922833b5a26bcfed5e5ca9b2d32bf17f1fe321"
+    },
+    "parameter-commerce/assets/catalog.js": {
+      "source": "parameter-commerce/assets/catalog.js",
+      "sha256": "654fbfca1a0a94dd6de4b91e2ab612f23d4ced300b6739938f0345dadbf59398"
+    },
+    "parameter-commerce/assets/comparison.css": {
+      "source": "parameter-commerce/assets/comparison.css",
+      "sha256": "d67a76e266fac58da11392bccf41f100fdd670fce74fb3c87586f268170e4e18"
+    },
+    "parameter-commerce/assets/google-g.png": {
+      "source": "parameter-commerce/assets/google-g.png",
+      "sha256": "d1ce9c2af0b10a7333abc99bc706f9a6a199e5b65bf3e3009624f076b8638e6a"
+    },
+    "parameter-commerce/assets/google-login.css": {
+      "source": "parameter-commerce/assets/google-login.css",
+      "sha256": "f2f84a8ca92dc598fc979aa3696848d986926cbcb4222b0849b583b1a99a3581"
+    },
+    "parameter-commerce/assets/google-login.js": {
+      "source": "parameter-commerce/assets/google-login.js",
+      "sha256": "a3dff58e082b77ba81a56049d5d4c41866f3a2778c8fa4a4ad0fe38f65406314"
+    },
+    "parameter-commerce/assets/language.css": {
+      "source": "parameter-commerce/assets/language.css",
+      "sha256": "d7d04f441d1fcc9f55fccf798537d55710e4892f652471cf4736294ff38f75f0"
+    },
+    "parameter-commerce/assets/pack-builder.css": {
+      "source": "parameter-commerce/assets/pack-builder.css",
+      "sha256": "002e0a9cea4d35089c1b5b1efaf94ff91e33697d6723eb838afd5738d3621e40"
+    },
+    "parameter-commerce/assets/pack-builder.js": {
+      "source": "parameter-commerce/assets/pack-builder.js",
+      "sha256": "b4e9eb26e694e5e379315b7916ec8315d65363ae09fca5af547be43ec1f99e85"
+    },
+    "parameter-commerce/assets/product-picker.js": {
+      "source": "parameter-commerce/assets/product-picker.js",
+      "sha256": "163602a201ee25e8fceab856e328b3293407d05c1db595bac1e8b1b5cd0d08af"
+    },
+    "parameter-commerce/assets/referrals.css": {
+      "source": "parameter-commerce/assets/referrals.css",
+      "sha256": "a8f65932d807114747a1b1e3c65834772dd3f3d7cdec9d77bb7e26f7907de1c9"
+    },
+    "parameter-commerce/assets/referrals.js": {
+      "source": "parameter-commerce/assets/referrals.js",
+      "sha256": "cb64888ff9f71d8d4525e779ac5b8c62e91b791b6ba82fa75a6036a388b81a0f"
+    },
+    "parameter-commerce/assets/shipping.css": {
+      "source": "parameter-commerce/assets/shipping.css",
+      "sha256": "d9c483cbbe67d229c8a7164cf32ae95df59fc2c0129082934096774fd918b5ee"
+    },
+    "parameter-commerce/assets/size-shape.css": {
+      "source": "parameter-commerce/assets/size-shape.css",
+      "sha256": "d12c0436055955ca26222acdad85d48ae7a742403ae741442729456318058297"
+    },
+    "parameter-commerce/assets/specifications.css": {
+      "source": "parameter-commerce/assets/specifications.css",
+      "sha256": "7ed9fbd6a6ca4625e62e8cdd63c2ff7feab31184f3ca092fd699d59e73994b2f"
+    },
+    "parameter-commerce/assets/specifications.js": {
+      "source": "parameter-commerce/assets/specifications.js",
+      "sha256": "0df67ea8df67d8c304e3d7c18376e1969149ed3c9fb9ebe38b6a3ff3d81d4f3a"
+    },
+    "parameter-commerce/data/demo-catalog.json": {
+      "source": "parameter-commerce/data/demo-catalog.json",
+      "sha256": "b5deadd626b4f14e0e7d90936df9a51e675fa68c00897642f2b973ac0171f320"
+    },
+    "parameter-commerce/includes/class-account-notices.php": {
+      "source": "parameter-commerce/includes/class-account-notices.php",
+      "sha256": "831703980f57625cdcfbb004f3470c8303207296bdfb27247a04c4826793f7b5"
+    },
+    "parameter-commerce/includes/class-admin.php": {
+      "source": "parameter-commerce/includes/class-admin.php",
+      "sha256": "46a0788bf1e71ad224727b85c37a18bec74b3c38affa1cdec42c6ecb3c6e2a05"
+    },
+    "parameter-commerce/includes/class-brand-pages.php": {
+      "source": "parameter-commerce/includes/class-brand-pages.php",
+      "sha256": "7d025aa604d6efd83f719eea5031536b18c49c7582957e0484ff664ef7870f2a"
+    },
+    "parameter-commerce/includes/class-catalog-specifications.php": {
+      "source": "parameter-commerce/includes/class-catalog-specifications.php",
+      "sha256": "202b0792b7d839e0a2704a4c066b586816930ab7096cd5c714db1404f0ec0360"
+    },
+    "parameter-commerce/includes/class-catalog.php": {
+      "source": "parameter-commerce/includes/class-catalog.php",
+      "sha256": "45d40d21b90b5fc73fad64c736a37417e796d2334dccc57f09384c550e159d48"
+    },
+    "parameter-commerce/includes/class-comparison.php": {
+      "source": "parameter-commerce/includes/class-comparison.php",
+      "sha256": "b96006ba8f443b35e8ef4b91663cbf2827c5af33741b2cc73a37e52133f8ec62"
+    },
+    "parameter-commerce/includes/class-demo-catalog.php": {
+      "source": "parameter-commerce/includes/class-demo-catalog.php",
+      "sha256": "804cbde4daf761708ad0fa1d5ce5226470eb21c5868a5478b6c5bcbfac332d53"
+    },
+    "parameter-commerce/includes/class-failure.php": {
+      "source": "parameter-commerce/includes/class-failure.php",
+      "sha256": "5d9a03d9e10aff9b90cb4f669ab23c2fe8fc6a9273257c2a29935a0dfa7af6c2"
+    },
+    "parameter-commerce/includes/class-google-login.php": {
+      "source": "parameter-commerce/includes/class-google-login.php",
+      "sha256": "7347c4c02814a92b1148d8871a6fbc04036e15cb043b268895852d177383d218"
+    },
+    "parameter-commerce/includes/class-google-packs.php": {
+      "source": "parameter-commerce/includes/class-google-packs.php",
+      "sha256": "b637ce3c7322be0cc66a044878baeb88d6fcf17dee5a4b024b7ee98a1020237b"
+    },
+    "parameter-commerce/includes/class-metrics.php": {
+      "source": "parameter-commerce/includes/class-metrics.php",
+      "sha256": "96e7610605b16a5177923f5a2bc08f8c89ff6526b71a5c52ac98f02dfd19b646"
+    },
+    "parameter-commerce/includes/class-pack-builder.php": {
+      "source": "parameter-commerce/includes/class-pack-builder.php",
+      "sha256": "b390ae5a6362213b21f91a5b5e48a8bcc1e41e249619b6273f04a56af0d721f0"
+    },
+    "parameter-commerce/includes/class-pack-pricing.php": {
+      "source": "parameter-commerce/includes/class-pack-pricing.php",
+      "sha256": "7a966799b4fa02397f67a8fa7c4d9a110fe9617b13793ce3ba33cd9109cf4afe"
+    },
+    "parameter-commerce/includes/class-plugin.php": {
+      "source": "parameter-commerce/includes/class-plugin.php",
+      "sha256": "aec9c9a5ac2114aa051f78183de9b98c90d2060e950921d4cfc83aa5ab2a4a2c"
+    },
+    "parameter-commerce/includes/class-product-discovery.php": {
+      "source": "parameter-commerce/includes/class-product-discovery.php",
+      "sha256": "900c285d77ec56fb07c96c6fdf4de2c9db77609840d21d4013fdfc914f7a69a0"
+    },
+    "parameter-commerce/includes/class-product-drafts.php": {
+      "source": "parameter-commerce/includes/class-product-drafts.php",
+      "sha256": "ff1ec222f157920168b06482b7816266d54def47c85093fa325e81cf54347bce"
+    },
+    "parameter-commerce/includes/class-product-picker.php": {
+      "source": "parameter-commerce/includes/class-product-picker.php",
+      "sha256": "f26b7f03300307121a4e85e1f399df07e2ca6e74fc677609090b65448295e317"
+    },
+    "parameter-commerce/includes/class-public-policies.php": {
+      "source": "parameter-commerce/includes/class-public-policies.php",
+      "sha256": "6765ef7067179f37edc8b482c278b9859120007b5daf9736693f6c4312f29722"
+    },
+    "parameter-commerce/includes/class-public-specifications.php": {
+      "source": "parameter-commerce/includes/class-public-specifications.php",
+      "sha256": "ae7913363fb40c137e0637b0dad9166bf7e0dc4e8697f9c7d1367ecf7ae5d329"
+    },
+    "parameter-commerce/includes/class-referral-store.php": {
+      "source": "parameter-commerce/includes/class-referral-store.php",
+      "sha256": "3d6a086f2c267c4f2c51a9b3cbd7496dd398e4e43200f5c31a30e0021ded34e4"
+    },
+    "parameter-commerce/includes/class-referral-ui.php": {
+      "source": "parameter-commerce/includes/class-referral-ui.php",
+      "sha256": "12025e634223c0dd949e1d546124e8397dec38c402945e8540f13dfbeb12412e"
+    },
+    "parameter-commerce/includes/class-referrals.php": {
+      "source": "parameter-commerce/includes/class-referrals.php",
+      "sha256": "335c2044634a50928e1b1e661133e63dae85186a828f0b5c971a6dcf1ca1cd81"
+    },
+    "parameter-commerce/includes/class-repository.php": {
+      "source": "parameter-commerce/includes/class-repository.php",
+      "sha256": "c9d51816d217475166973368e1d1ee85351406d996aa0824eae26ed9bdf6fd0b"
+    },
+    "parameter-commerce/includes/class-schema.php": {
+      "source": "parameter-commerce/includes/class-schema.php",
+      "sha256": "7b2c623a1f7764248bb243ccd7994be348d489faee2ef11952b8f2f7e5af14c0"
+    },
+    "parameter-commerce/includes/class-shipping-admin.php": {
+      "source": "parameter-commerce/includes/class-shipping-admin.php",
+      "sha256": "9c6c838da3da01eed317571d2ef43475e59f52575e72ae31b5daa103543cce1b"
+    },
+    "parameter-commerce/includes/class-shipping.php": {
+      "source": "parameter-commerce/includes/class-shipping.php",
+      "sha256": "2775408ed7b7053e510c16fef310181637c2649c96a07e64351e0ce5ca5927dc"
+    },
+    "parameter-commerce/includes/class-size-shape.php": {
+      "source": "parameter-commerce/includes/class-size-shape.php",
+      "sha256": "ef91074070c5c17485090a39803a3a0ec85e7c06514155f9d97970800a36e8a2"
+    },
+    "parameter-commerce/includes/class-storefront-language.php": {
+      "source": "parameter-commerce/includes/class-storefront-language.php",
+      "sha256": "1356b8c9b591003c747d7f638c8a1f19d80412e3f32dabdeb186e92dff82565b"
+    },
+    "parameter-commerce/includes/class-suppliers.php": {
+      "source": "parameter-commerce/includes/class-suppliers.php",
+      "sha256": "dca83aac0dc18913d88f70fe49037ebf02aa029b0fada7dbf3b0d55451bf3db6"
+    },
+    "parameter-commerce/includes/class-validator.php": {
+      "source": "parameter-commerce/includes/class-validator.php",
+      "sha256": "61b949c95aa627f04d31d705956a9f16927bd45ab863cf90a5e8155dac91f746"
+    },
+    "parameter-commerce/includes/class-yarn-specifications.php": {
+      "source": "parameter-commerce/includes/class-yarn-specifications.php",
+      "sha256": "ab787276e1f663124ed5005bab07beb56c23522d442bf2c7507cb31f6355eb4c"
+    },
+    "parameter-commerce/includes/class-yunexpress-client.php": {
+      "source": "parameter-commerce/includes/class-yunexpress-client.php",
+      "sha256": "0104ce14e6fbe1cf68bcf53ed0fb6973c942ef93276be95bf52aca7ea5183c87"
+    },
+    "parameter-commerce/languages/parameter-commerce-zh_CN.mo": {
+      "source": "parameter-commerce/languages/parameter-commerce-zh_CN.mo",
+      "sha256": "2a271d0206514e39c7199693eb24249d4fd4acb68bbc0f113c3e00d839d57ea9"
+    },
+    "parameter-commerce/languages/parameter-commerce-zh_CN.po": {
+      "source": "parameter-commerce/languages/parameter-commerce-zh_CN.po",
+      "sha256": "78d6e20ba8b714299f3372fb134d8bf68604ef6538cec300e10039b253fb9543"
+    },
+    "parameter-commerce/languages/parameter-commerce.pot": {
+      "source": "parameter-commerce/languages/parameter-commerce.pot",
+      "sha256": "0c8598c3990f3a6de4f895b48316837d9929501f8daa63383938f8d44fafded6"
+    },
+    "parameter-commerce/lib/google-jwt/BeforeValidException.php": {
+      "source": "parameter-commerce/lib/google-jwt/BeforeValidException.php",
+      "sha256": "29908cf8dc7053a24b7263ad8c48dc0359b24dd53c46a52bccee894c06fafebb"
+    },
+    "parameter-commerce/lib/google-jwt/ExpiredException.php": {
+      "source": "parameter-commerce/lib/google-jwt/ExpiredException.php",
+      "sha256": "3fba055404bfef9e1d23204134338e870e4420c71f1332a671e86b8585eb0388"
+    },
+    "parameter-commerce/lib/google-jwt/JWT.php": {
+      "source": "parameter-commerce/lib/google-jwt/JWT.php",
+      "sha256": "c9792eead376695d790228ed64376a12b547cbdd107e8c3ccf14c085ff0a79ab"
+    },
+    "parameter-commerce/lib/google-jwt/JWTExceptionWithPayloadInterface.php": {
+      "source": "parameter-commerce/lib/google-jwt/JWTExceptionWithPayloadInterface.php",
+      "sha256": "732febae5f54fb16ddcc73d64e8ed01fc8c70b5ac66ccc3943f0a8cd0c2b04c0"
+    },
+    "parameter-commerce/lib/google-jwt/Key.php": {
+      "source": "parameter-commerce/lib/google-jwt/Key.php",
+      "sha256": "ec307f3edff2b6527b82d292de92351d783711f3bc21ec0b1057030ce7911bd6"
+    },
+    "parameter-commerce/lib/google-jwt/LICENSE.txt": {
+      "source": "parameter-commerce/lib/google-jwt/LICENSE.txt",
+      "sha256": "00e641cb185172e752bb3ab744925502c099dca06c9ecf53ea6fba941a65910c"
+    },
+    "parameter-commerce/lib/google-jwt/SignatureInvalidException.php": {
+      "source": "parameter-commerce/lib/google-jwt/SignatureInvalidException.php",
+      "sha256": "c5d60daab9d87499db91f489c83e3595e4ad86da5c927299ebced4e6f5daecb4"
+    },
+    "parameter-commerce/lib/google-jwt/provenance.json": {
+      "source": "parameter-commerce/lib/google-jwt/provenance.json",
+      "sha256": "086df933b3b9ce5d6e16c8d5257cf75800b0c4ad105ae6e707b5152f2223d661"
+    },
+    "parameter-commerce/parameter-commerce.php": {
+      "source": "parameter-commerce/parameter-commerce.php",
+      "sha256": "132f11d4538c07dbeb773ecbd1b82d29aa122c21bca779b449bc441f512b1dc1"
+    },
+    "parameter-commerce/templates/admin-page.php": {
+      "source": "parameter-commerce/templates/admin-page.php",
+      "sha256": "4be258c0a0967502ceeac5f93355f96aec14887717560815f7ae714f2ed9bc44"
+    },
+    "parameter-commerce/templates/catalog.php": {
+      "source": "parameter-commerce/templates/catalog.php",
+      "sha256": "a9b488501712a2b3051e1b98ca05b25bed5440d6898983b1ffd4c2856c12e2aa"
+    },
+    "parameter-commerce/templates/comparison.php": {
+      "source": "parameter-commerce/templates/comparison.php",
+      "sha256": "e740ed8ed486e6f64ace53f8afb254f952f26dabe24a1cb7aa1dc2cc3891dcd1"
+    },
+    "parameter-commerce/templates/evidence-details.php": {
+      "source": "parameter-commerce/templates/evidence-details.php",
+      "sha256": "7b40a122513083bb9c1130b8d26a0dd44e73388c6fdc00273ae22ebdc2969e62"
+    },
+    "parameter-commerce/templates/pack-builder.php": {
+      "source": "parameter-commerce/templates/pack-builder.php",
+      "sha256": "07d7dc504e89e57e39865ffe86b1f3ad8aaa214238fe67f8547f27e15e72855b"
+    },
+    "parameter-commerce/templates/size-shape-low-cut.php": {
+      "source": "parameter-commerce/templates/size-shape-low-cut.php",
+      "sha256": "44b3c7f8a9592b27999d44fd8d4b0cc9883207fc99b965be54484f46611a9ffc"
+    },
+    "parameter-commerce/templates/size-shape.php": {
+      "source": "parameter-commerce/templates/size-shape.php",
+      "sha256": "58a16afb48013a2c1598c169d008587e700ad23cf02cdb05bb55026aca464946"
+    },
+    "parameter-commerce/templates/specifications.php": {
+      "source": "parameter-commerce/templates/specifications.php",
+      "sha256": "25398d1e1949a23762a1d8eaa854f1d5c114c86f1770ed353cdb71b8840717f1"
+    },
+    "parameter-commerce/templates/yarn-specifications.php": {
+      "source": "parameter-commerce/templates/yarn-specifications.php",
+      "sha256": "af48b9bfe33d69041d87ba81a7482e54c8d293b7da3a9f47bf8e1fae62ef144f"
+    },
+    ".editorconfig": {
+      "source": ".editorconfig",
+      "sha256": "e7a1ff83a235bce14b5fd769fb90ec39743749381b7b5a022ea63e3a7c6be252"
+    },
+    "phpcs.xml.dist": {
+      "source": "phpcs.xml.dist",
+      "sha256": "89d2765151a9ae131dbde5888fdfe0654a79241ec00feb00da076efcf2f24707"
+    },
+    "composer.json": {
+      "source": "composer.json",
+      "sha256": "480cb5284a5b32e79816cd5dabf15ddd1e04b65a50e441c842fcc5a7dc213200"
+    },
+    "composer.lock": {
+      "source": "composer.lock",
+      "sha256": "8d74223e2a516804782dd7d8e1da4bd073718cfea332b20498e07bcd5676b187"
+    },
+    "tools/lint.php": {
+      "source": "tools/lint.php",
+      "sha256": "4d1c00a038fbe01b87bf76eedf9763b3d78c63baca8ea27fa6664d22e921ff6f"
+    },
+    "tests/bootstrap.php": {
+      "source": "tests/bootstrap.php",
+      "sha256": "3d1a14eaadd2617ed38e15c1377a2c271c47b3cffa02752c4b64808f1cc66c03"
+    },
+    "tests/run.php": {
+      "source": "tests/run.php",
+      "sha256": "acf4c295d67659fbd86d733c8baedfc62e7239cab0aadab3e55896aeffefa4ee"
+    },
+    "tests/pack-builder-js.js": {
+      "source": "tests/pack-builder-js.js",
+      "sha256": "984e519727ff12d178b6efc45bcc3178e19789f0656d6ac7068d4aaaf5852e9f"
+    },
+    "tests/fixtures/demo-product.json": {
+      "source": "tests/fixtures/demo-product.json",
+      "sha256": "bbf2d351014578d6edb3c11c403ae14e3aa73ecaa1c4c997a3847236732cda6a"
+    },
+    "docs/reference/02-domain-model.md": {
+      "source": "docs/02-domain-model.md",
+      "sha256": "3c5796dc1a5cb3f5731f5b83da5bb0e01ad922503d4ca7c48cbef2cf17c4399b"
+    },
+    "docs/reference/03-architecture.md": {
+      "source": "docs/03-architecture.md",
+      "sha256": "094a6066ac7216b97e96e132aba4edfd3b2af89e7713488f89f5ef7b5c4a8645"
+    },
+    "docs/reference/05-functional-spec.md": {
+      "source": "docs/05-functional-spec.md",
+      "sha256": "dd5ba0a474038df3d03e6bc200daf43ce8087739e79bfb38887c4fe3ff3d79e5"
+    },
+    "docs/reference/06-nonfunctional-security.md": {
+      "source": "docs/06-nonfunctional-security.md",
+      "sha256": "1770f0ea497567b7771932e7ac671105c33c3946cc86b92bc312a24924aa88a9"
+    },
+    "docs/reference/12-specifications-contract.md": {
+      "source": "docs/12-specifications-contract.md",
+      "sha256": "6fc2fb2a7764744b58223235776df64b7246da73051dd7eab3eacb533b690ae9"
+    }
+  }
+}

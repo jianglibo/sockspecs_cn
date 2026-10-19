@@ -1,0 +1,1804 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Parameter Commerce 0.5.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-14T23:19:35+00:00\n"
+"PO-Revision-Date: 2026-10-14T23:19:35+00:00\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. Plugin Name of the plugin
+#: parameter-commerce.php
+msgid "Parameter Commerce"
+msgstr "Parameter Commerce"
+
+#. Description of the plugin
+#: parameter-commerce.php
+msgid "Evidence-led product specifications and staff claim management for SockSpecs."
+msgstr "SockSpecs 基于证据的商品参数与员工声明管理。"
+
+#: includes/class-admin.php:30
+#: includes/class-admin.php:33
+#: includes/class-admin.php:99
+#: templates/admin-page.php:15
+msgid "Parameter Specs"
+msgstr "商品参数"
+
+#: includes/class-admin.php:48
+msgid "Use POST for changes."
+msgstr "请使用 POST 请求提交更改。"
+
+#: includes/class-admin.php:58
+msgid "Evidence fields are required, even for incomplete drafts."
+msgstr "即使草稿尚未完成，也必须提交证据字段。"
+
+#: includes/class-admin.php:65
+msgid "Confirm the status change after reviewing this claim."
+msgstr "请审阅此声明后确认状态变更。"
+
+#: includes/class-admin.php:74
+msgid "Unknown operation."
+msgstr "未知操作。"
+
+#: includes/class-admin.php:169
+#: includes/class-repository.php:120
+msgid "Invalid record ID or revision."
+msgstr "记录 ID 或版本号无效。"
+
+#: includes/class-admin.php:182
+msgid "Draft"
+msgstr "草稿"
+
+#: includes/class-admin.php:183
+msgid "Reviewed"
+msgstr "已审核"
+
+#: includes/class-admin.php:184
+msgid "Published"
+msgstr "已发布"
+
+#: includes/class-admin.php:185
+msgid "Retracted"
+msgstr "已撤回"
+
+#: includes/class-admin.php:198
+msgid "Return to draft"
+msgstr "退回草稿"
+
+#: includes/class-admin.php:199
+msgid "Mark reviewed"
+msgstr "标记为已审核"
+
+#: includes/class-admin.php:200
+msgid "Publish"
+msgstr "发布"
+
+#: includes/class-admin.php:201
+msgid "Retract"
+msgstr "撤回"
+
+#: includes/class-brand-pages.php:33
+msgid "Quality, Not Hype."
+msgstr "Quality, Not Hype."
+
+#: includes/class-brand-pages.php:34
+msgid "Know your socks. See the specifications."
+msgstr "了解每双袜子，查看商品参数。"
+
+#: includes/class-brand-pages.php:35
+msgid "Discover what goes into every pair—and what makes it worth the price."
+msgstr "看看每双袜子用了什么，以及它的价值体现在哪里。"
+
+#: includes/class-brand-pages.php:40
+msgid "Explore the socks"
+msgstr "查看袜子"
+
+#: includes/class-brand-pages.php:45
+msgid "Our philosophy"
+msgstr "我们的理念"
+
+#: includes/class-brand-pages.php:48
+msgid "What goes into a pair"
+msgstr "一双袜子的组成"
+
+#: includes/class-brand-pages.php:48
+msgid "Examine material composition, construction, and measurements where records are available."
+msgstr "查看已有记录的材料成分、结构工艺与测量数据。"
+
+#: includes/class-brand-pages.php:49
+msgid "Where the evidence comes from"
+msgstr "证据来自哪里"
+
+#: includes/class-brand-pages.php:49
+msgid "Manufacturer declarations, our measurements, and third-party tests are clearly distinguished."
+msgstr "清楚区分厂家声明、平台实测和第三方检测。"
+
+#: includes/class-brand-pages.php:50
+msgid "What we do not know yet"
+msgstr "哪些还未测量"
+
+#: includes/class-brand-pages.php:50
+msgid "Missing results say Not yet measured. We do not fill the gaps with promises."
+msgstr "没有测量结果的项目会标注“尚未测量”。我们不会用承诺填补数据空白。"
+
+#: includes/class-brand-pages.php:62
+msgid "Our Philosophy"
+msgstr "我们的理念"
+
+#: includes/class-brand-pages.php:63
+msgid "Products should compete on quality, not marketing budgets."
+msgstr "商品应以品质竞争，而不是营销预算。"
+
+#: includes/class-brand-pages.php:64
+msgid "At SockSpecs, we believe the value of a product should come from its materials, construction, performance, and durability—not simply the name printed on its packaging."
+msgstr "在 SockSpecs，我们相信商品的价值应来自材料、工艺、性能和耐用性，而不只是包装上的品牌名称。"
+
+#: includes/class-brand-pages.php:65
+msgid "That’s why we make product specifications and available quality evidence easy to examine."
+msgstr "因此，我们让商品参数和已有的质量证据便于查看。"
+
+#: includes/class-brand-pages.php:66
+msgid "Our goal is simple: better-informed choices, better value, and fair prices."
+msgstr "我们的目标很简单：让选择更有依据，让价值更清晰，让价格更合理。"
+
+#: includes/class-brand-pages.php:67
+msgid "Evidence before promises"
+msgstr "先看证据，再谈承诺"
+
+#: includes/class-brand-pages.php:68
+msgid "Each published measurement identifies its source and method. A manufacturer declaration is labelled as a declaration. Where measurements are unavailable, we say Not yet measured."
+msgstr "每项已发布的测量都注明来源与方法。厂家声明会明确标注为声明。没有测量数据的项目，我们会注明“尚未测量”。"
+
+#: includes/class-brand-pages.php:69
+msgid "We do not claim equivalent quality, a longer lifetime, or a particular saving without evidence that supports the claim."
+msgstr "没有相应证据，我们不会声称品质相当、寿命更长或能节省特定金额。"
+
+#: includes/class-catalog.php:92
+#: includes/class-catalog.php:105
+msgid "Invalid catalog filter."
+msgstr "商品筛选条件无效。"
+
+#: includes/class-catalog.php:98
+msgid "Enter a nonnegative number; cotton percentage cannot exceed 100."
+msgstr "请输入非负数；棉含量不得超过 100%。"
+
+#: includes/class-catalog.php:102
+msgid "Minimum price cannot exceed maximum price."
+msgstr "最低价格不能高于最高价格。"
+
+#: includes/class-catalog.php:131
+msgid "This measurement filter is currently disabled."
+msgstr "此测量筛选目前已停用。"
+
+#: includes/class-catalog.php:150
+msgid "Catalog evidence is temporarily unavailable."
+msgstr "商品证据暂时无法读取。"
+
+#: includes/class-catalog.php:207
+msgid "The catalog is temporarily unavailable."
+msgstr "商品目录暂时无法使用。"
+
+#: includes/class-catalog.php:238
+#: includes/class-catalog.php:264
+msgid "Please narrow your category or intended use to browse this catalog."
+msgstr "请缩小商品类别或用途范围后浏览。"
+
+#: includes/class-demo-catalog.php:27
+#: includes/class-product-drafts.php:226
+msgid "You cannot edit this product."
+msgstr "您无权编辑此商品。"
+
+#: includes/class-demo-catalog.php:34
+msgid "A demo SKU already belongs to an independently managed product. Nothing was overwritten."
+msgstr "演示 SKU 已被独立管理的商品使用。未覆盖任何内容。"
+
+#: includes/class-metrics.php:25
+msgid "Cotton"
+msgstr "棉"
+
+#: includes/class-metrics.php:26
+msgid "Wool"
+msgstr "羊毛"
+
+#: includes/class-metrics.php:27
+msgid "Merino wool (part of total wool)"
+msgstr "美利奴羊毛（包含在羊毛总量中）"
+
+#: includes/class-metrics.php:28
+msgid "Nylon"
+msgstr "锦纶"
+
+#: includes/class-metrics.php:29
+msgid "Polyester"
+msgstr "涤纶"
+
+#: includes/class-metrics.php:30
+msgid "Elastane"
+msgstr "氨纶"
+
+#: includes/class-metrics.php:31
+msgid "Other / unknown fiber"
+msgstr "其他／未知纤维"
+
+#: includes/class-metrics.php:45
+msgid "Pair weight"
+msgstr "每双重量"
+
+#: includes/class-metrics.php:50
+#: templates/size-shape.php:33
+msgid "Foot length"
+msgstr "袜底长度"
+
+#: includes/class-metrics.php:55
+msgid "Leg height"
+msgstr "袜筒高度"
+
+#: includes/class-metrics.php:60
+msgid "Fabric thickness"
+msgstr "织物厚度"
+
+#: includes/class-metrics.php:65
+msgid "Needle count"
+msgstr "针数"
+
+#: includes/class-metrics.php:72
+msgid "Toe seam"
+msgstr "袜头接缝"
+
+#: includes/class-metrics.php:79
+msgid "Cushioning"
+msgstr "缓冲厚度类别"
+
+#: includes/class-metrics.php:86
+msgid "Abrasion result"
+msgstr "耐磨测试结果"
+
+#: includes/class-metrics.php:92
+msgid "Wash dimensional change"
+msgstr "洗后尺寸变化"
+
+#: includes/class-metrics.php:97
+msgid "Air permeability"
+msgstr "透气性"
+
+#: includes/class-metrics.php:105
+msgid "Heel reinforcement"
+msgstr "袜跟加固"
+
+#: includes/class-metrics.php:112
+msgid "Sock height style"
+msgstr "袜筒款式"
+
+#: includes/class-metrics.php:119
+msgid "Cuff circumference"
+msgstr "袜口周长"
+
+#: includes/class-metrics.php:124
+msgid "Cuff height"
+msgstr "袜口高度"
+
+#: includes/class-metrics.php:129
+msgid "Pilling resistance result"
+msgstr "抗起球测试结果"
+
+#: includes/class-metrics.php:134
+msgid "Elastic recovery"
+msgstr "弹性回复率"
+
+#: includes/class-metrics.php:141
+msgid "Moisture management result"
+msgstr "湿气管理测试结果"
+
+#: includes/class-plugin.php:88
+msgid "Parameter Commerce requires an active WooCommerce installation for commerce features. The plugin remains inactive for commerce until WooCommerce is available."
+msgstr "Parameter Commerce 的电商功能需要已启用的 WooCommerce。WooCommerce 可用之前，本插件的电商功能保持停用。"
+
+#: includes/class-product-drafts.php:41
+msgid "SockSpecs sourcing and readiness"
+msgstr "SockSpecs 采购来源与发布检查"
+
+#: includes/class-product-drafts.php:59
+msgid "Ankle profile"
+msgstr "短筒设计"
+
+#: includes/class-product-drafts.php:60
+msgid "Crew profile"
+msgstr "中筒设计"
+
+#: includes/class-product-drafts.php:61
+msgid "Cushioned sole"
+msgstr "袜底缓冲设计"
+
+#: includes/class-product-drafts.php:62
+msgid "Ribbed cuff"
+msgstr "罗纹袜口"
+
+#: includes/class-product-drafts.php:63
+#: includes/class-public-specifications.php:230
+msgid "Reinforced heel"
+msgstr "加固袜跟"
+
+#: includes/class-product-drafts.php:64
+msgid "Low profile"
+msgstr "低筒设计"
+
+#: includes/class-product-drafts.php:152
+msgid "Use WooCommerce for categories, product tags (intended use), Size, Color and Pack quantity attributes, images and variations. Sourcing fields below are private."
+msgstr "使用 WooCommerce 管理类别、商品标签（用途）、尺码、颜色、包装双数属性、图片和变体。以下采购字段仅供内部使用。"
+
+#: includes/class-product-drafts.php:153
+msgid "Supplier (private)"
+msgstr "供应商（私密）"
+
+#: includes/class-product-drafts.php:153
+msgid "Not assigned"
+msgstr "未关联"
+
+#: includes/class-product-drafts.php:169
+#: includes/class-suppliers.php:35
+msgid "Add private supplier"
+msgstr "添加私密供应商"
+
+#: includes/class-product-drafts.php:170
+msgid "Supplier product URL (private, HTTPS)"
+msgstr "供应商商品链接（私密，HTTPS）"
+
+#: includes/class-product-drafts.php:171
+msgid "Proposed design features (not verified specifications)"
+msgstr "拟定设计特征（非已验证参数）"
+
+#: includes/class-product-drafts.php:175
+msgid "Save draft and generate description suggestion"
+msgstr "保存草稿并生成描述建议"
+
+#: includes/class-product-drafts.php:176
+msgid "Draft products only. Review the suggestion and copy accepted wording into the native description fields; generation never publishes or replaces your description."
+msgstr "仅适用于草稿商品。请审阅建议，将认可的内容复制到原生描述字段；生成操作不会发布商品或替换现有描述。"
+
+#: includes/class-product-drafts.php:180
+msgid "Draft description suggestion"
+msgstr "商品描述草稿建议"
+
+#: includes/class-product-drafts.php:185
+msgid "Publication review"
+msgstr "发布前检查"
+
+#: includes/class-product-drafts.php:187
+msgid "Fictional demonstration product: publication is blocked."
+msgstr "虚构演示商品：禁止发布。"
+
+#: includes/class-product-drafts.php:190
+msgid "SKU"
+msgstr "SKU"
+
+#: includes/class-product-drafts.php:191
+msgid "Description"
+msgstr "商品描述"
+
+#: includes/class-product-drafts.php:192
+msgid "Product image"
+msgstr "商品图片"
+
+#: includes/class-product-drafts.php:193
+msgid "Supplier reference"
+msgstr "供应商关联"
+
+#: includes/class-product-drafts.php:195
+msgid "Present — review required"
+msgstr "已有内容 — 仍需审阅"
+
+#: includes/class-product-drafts.php:195
+msgid "Missing"
+msgstr "缺失"
+
+#: includes/class-product-drafts.php:197
+msgid "Metrics without published evidence (not all are applicable):"
+msgstr "尚无已发布证据的参数（并非所有参数都适用）："
+
+#: includes/class-product-drafts.php:199
+msgid "This summary covers parent records only. Review each size/SKU in Parameter Specs; no child inherits parent measurements."
+msgstr "本摘要仅涵盖父商品记录。请在商品参数中逐一审阅尺码或 SKU；子变体不会继承父商品的测量结果。"
+
+#: includes/class-product-drafts.php:212
+msgid "Review declarations, measurements and evidence"
+msgstr "审阅声明、测量与证据"
+
+#: includes/class-product-drafts.php:230
+#: includes/class-suppliers.php:123
+msgid "Choose an existing private supplier."
+msgstr "请选择现有的私密供应商。"
+
+#: includes/class-product-drafts.php:235
+msgid "Choose supported design features."
+msgstr "请选择受支持的设计特征。"
+
+#: includes/class-product-drafts.php:238
+msgid "Description generation is available only for saved draft products."
+msgstr "只能为已保存的草稿商品生成描述。"
+
+#: includes/class-product-picker.php:44
+msgid "Search products by name, SKU, or ID"
+msgstr "按商品名称、SKU 或 ID 搜索"
+
+#: includes/class-product-picker.php:45
+#: includes/class-product-picker.php:172
+msgid "Whole product (no variation)"
+msgstr "整个商品（不指定变体）"
+
+#: includes/class-product-picker.php:46
+msgid "No matching products or variations."
+msgstr "没有匹配的商品或变体。"
+
+#: includes/class-product-picker.php:47
+msgid "Could not load choices. Try again."
+msgstr "无法加载选项，请重试。"
+
+#: includes/class-product-picker.php:48
+msgid "Searching…"
+msgstr "正在搜索…"
+
+#: includes/class-product-picker.php:49
+msgid "Loading more choices…"
+msgstr "正在加载更多选项…"
+
+#: includes/class-product-picker.php:50
+msgid "Showing the first 20 matches. Refine your search if needed."
+msgstr "显示前 20 个匹配结果。可输入更具体的关键词缩小范围。"
+
+#: includes/class-product-picker.php:51
+msgid "Choose a product first."
+msgstr "请先选择商品。"
+
+#: includes/class-product-picker.php:198
+msgid "Enter an ID if JavaScript is unavailable."
+msgstr "如果 JavaScript 不可用，请输入 ID。"
+
+#: includes/class-public-specifications.php:86
+#: includes/class-public-specifications.php:123
+msgid "Specifications & evidence"
+msgstr "参数与证据"
+
+#: includes/class-public-specifications.php:106
+msgid "Loading specifications for this selection…"
+msgstr "正在加载当前选择的商品参数…"
+
+#: includes/class-public-specifications.php:107
+msgid "Specifications could not be loaded. Please retry."
+msgstr "无法加载商品参数，请重试。"
+
+#: includes/class-public-specifications.php:108
+msgid "Retry"
+msgstr "重试"
+
+#: includes/class-public-specifications.php:109
+msgid "Choose an available size or SKU to see its measurements."
+msgstr "请选择可用的尺码或 SKU 查看对应测量数据。"
+
+#: includes/class-public-specifications.php:145
+#: templates/comparison.php:24
+msgid "Specification scope"
+msgstr "参数适用范围"
+
+#: includes/class-public-specifications.php:145
+#: templates/comparison.php:28
+#: templates/specifications.php:15
+msgid "Product-level records"
+msgstr "商品级记录"
+
+#: includes/class-public-specifications.php:151
+msgid "Show specifications"
+msgstr "查看参数"
+
+#: includes/class-public-specifications.php:153
+msgid "For further sizes, use the product options above."
+msgstr "更多尺码请使用上方的商品选项。"
+
+#: includes/class-public-specifications.php:231
+msgid "No-show"
+msgstr "隐形袜"
+
+#: includes/class-public-specifications.php:232
+msgid "Ankle"
+msgstr "短筒"
+
+#: includes/class-public-specifications.php:233
+msgid "Crew"
+msgstr "中筒"
+
+#: includes/class-public-specifications.php:234
+msgid "Knee-high"
+msgstr "及膝"
+
+#: includes/class-public-specifications.php:235
+msgid "Flat seam"
+msgstr "平缝"
+
+#: includes/class-public-specifications.php:236
+msgid "Linked toe"
+msgstr "对目缝合"
+
+#: includes/class-public-specifications.php:237
+msgid "Standard seam"
+msgstr "常规缝合"
+
+#: includes/class-public-specifications.php:238
+msgid "Unknown"
+msgstr "未知"
+
+#: includes/class-public-specifications.php:239
+msgid "No cushioning"
+msgstr "无缓冲"
+
+#: includes/class-public-specifications.php:240
+msgid "Light cushioning"
+msgstr "轻度缓冲"
+
+#: includes/class-public-specifications.php:241
+msgid "Medium cushioning"
+msgstr "中等缓冲"
+
+#: includes/class-public-specifications.php:242
+msgid "Heavy cushioning"
+msgstr "厚缓冲"
+
+#: includes/class-public-specifications.php:245
+msgid "None declared"
+msgstr "声明为无"
+
+#: includes/class-repository.php:28
+msgid "You are not allowed to perform this operation."
+msgstr "您无权执行此操作。"
+
+#: includes/class-repository.php:31
+msgid "WooCommerce and the current Parameter Commerce schema are required."
+msgstr "需要已启用的 WooCommerce 及当前版本的 Parameter Commerce 数据结构。"
+
+#: includes/class-repository.php:101
+msgid "Specifications are temporarily unavailable. Please try again."
+msgstr "商品参数暂时无法显示，请稍后重试。"
+
+#: includes/class-repository.php:104
+msgid "Specifications are not available for this selection."
+msgstr "当前选择无法提供商品参数。"
+
+#: includes/class-repository.php:127
+#: includes/class-validator.php:102
+msgid "Choose an existing WooCommerce parent or simple product."
+msgstr "请选择已有的 WooCommerce 父商品或简单商品。"
+
+#: includes/class-repository.php:133
+#: includes/class-validator.php:107
+msgid "The variation must belong to the selected product."
+msgstr "变体必须属于所选商品。"
+
+#: includes/class-repository.php:148
+msgid "Specifications could not be loaded."
+msgstr "无法加载商品参数。"
+
+#: includes/class-repository.php:160
+msgid "Material composition"
+msgstr "材料成分"
+
+#: includes/class-repository.php:161
+msgid "Construction"
+msgstr "结构工艺"
+
+#: includes/class-repository.php:162
+msgid "Physical measurements"
+msgstr "物理测量"
+
+#: includes/class-repository.php:163
+msgid "Performance metrics"
+msgstr "性能指标"
+
+#: includes/class-repository.php:171
+#: templates/admin-page.php:117
+#: templates/admin-page.php:178
+msgid "Manufacturer-declared"
+msgstr "厂家声明"
+
+#: includes/class-repository.php:172
+msgid "Platform-measured"
+msgstr "平台实测"
+
+#: includes/class-repository.php:173
+msgid "Third-party-tested"
+msgstr "第三方检测"
+
+#: includes/class-repository.php:187
+msgid "Not yet measured"
+msgstr "尚未测量"
+
+#: includes/class-repository.php:225
+msgid "Only drafts can be edited. Return a reviewed claim to draft, or create a revision of a published claim."
+msgstr "只能编辑草稿。请将已审核声明退回草稿，或为已发布声明创建新版本。"
+
+#: includes/class-repository.php:229
+msgid "A saved claim’s product, variation, and metric cannot be changed. Create a new claim."
+msgstr "已保存声明的商品、变体和指标不可更改。请创建新声明。"
+
+#: includes/class-repository.php:285
+msgid "Create revisions only from published or retracted claims."
+msgstr "只能从已发布或已撤回的声明创建新版本。"
+
+#: includes/class-repository.php:337
+msgid "Invalid transition. Save draft → mark reviewed → publish. Published claims can only be retracted or revised."
+msgstr "状态变更无效。流程为：保存草稿 → 标记已审核 → 发布。已发布声明只能撤回或创建新版本。"
+
+#: includes/class-repository.php:375
+msgid "A current published claim already exists. Create a revision of that claim instead."
+msgstr "当前已有已发布声明。请从该声明创建新版本。"
+
+#: includes/class-repository.php:413
+msgid "Only administrators may configure metrics."
+msgstr "只有管理员可以配置指标。"
+
+#: includes/class-repository.php:416
+msgid "Invalid metric or label length."
+msgstr "指标或标签长度无效。"
+
+#: includes/class-repository.php:447
+#: templates/admin-page.php:53
+msgid "Not tested"
+msgstr "未检测"
+
+#: includes/class-repository.php:505
+msgid "Claim not found."
+msgstr "未找到声明。"
+
+#: includes/class-repository.php:509
+msgid "Evidence snapshot is missing; restore data before editing."
+msgstr "证据快照缺失，请恢复数据后再编辑。"
+
+#: includes/class-repository.php:538
+msgid "Composition tolerance must be a finite number between 0 and 100 percentage points."
+msgstr "成分容差必须是 0 至 100 个百分点之间的有限数值。"
+
+#: includes/class-repository.php:623
+msgid "This record changed or is busy. Reload and review the latest version before retrying."
+msgstr "记录已被修改或正在处理中。请重新加载并审阅最新版本后重试。"
+
+#: includes/class-repository.php:638
+msgid "The change could not be saved. No partial changes were committed; retry or contact an administrator."
+msgstr "无法保存更改。未提交任何部分更改，请重试或联系管理员。"
+
+#: includes/class-schema.php:29
+msgid "Network activation is not supported. Activate Parameter Commerce per site."
+msgstr "不支持全站网络启用，请在各子站点分别启用 Parameter Commerce。"
+
+#: includes/class-schema.php:52
+msgid "Parameter Commerce installation failed. No claim editing is available. Check the database configuration and retry activation."
+msgstr "Parameter Commerce 安装失败，声明编辑暂不可用。请检查数据库配置后重新启用。"
+
+#: includes/class-schema.php:78
+msgid "A newer schema exists. Restore matching plugin code; do not downgrade the database."
+msgstr "数据库结构版本较新。请恢复匹配的插件代码，不要降级数据库。"
+
+#: includes/class-schema.php:82
+msgid "Installation is busy. Retry shortly."
+msgstr "安装正在进行，请稍后重试。"
+
+#: includes/class-schema.php:165
+msgid "Required columns are missing. Installation remains incomplete and can be retried."
+msgstr "缺少必需的数据列，安装尚未完成，可以重试。"
+
+#: includes/class-schema.php:172
+msgid "All Parameter Commerce tables require InnoDB. Installation can be retried without deleting data."
+msgstr "Parameter Commerce 的所有表均需要 InnoDB。无需删除数据即可重试安装。"
+
+#: includes/class-schema.php:188
+msgid "Metric seeding failed. Retry installation."
+msgstr "初始化指标失败，请重试安装。"
+
+#: includes/class-schema.php:193
+msgid "The publication uniqueness index is missing."
+msgstr "缺少用于保证发布唯一性的索引。"
+
+#: includes/class-suppliers.php:33
+msgid "Suppliers (private)"
+msgstr "供应商（私密）"
+
+#: includes/class-suppliers.php:34
+msgid "Supplier"
+msgstr "供应商"
+
+#: includes/class-suppliers.php:69
+msgid "Supplier location"
+msgstr "供应商所在地"
+
+#: includes/class-suppliers.php:70
+msgid "Supplier website (HTTPS)"
+msgstr "供应商网站（HTTPS）"
+
+#: includes/class-suppliers.php:71
+msgid "Original product URL (HTTPS)"
+msgstr "原始商品链接（HTTPS）"
+
+#: includes/class-suppliers.php:72
+msgid "Contact information (private)"
+msgstr "联系信息（私密）"
+
+#: includes/class-suppliers.php:73
+msgid "Verification notes (private)"
+msgstr "核验备注（私密）"
+
+#: includes/class-suppliers.php:74
+msgid "Internal remarks"
+msgstr "内部备注"
+
+#: includes/class-suppliers.php:80
+msgid "Private sourcing details"
+msgstr "私密采购信息"
+
+#: includes/class-suppliers.php:94
+msgid "Always private. Record supplier declarations in Parameter Specs; supplier notes never become verified measurements."
+msgstr "始终保持私密。请在商品参数中记录供应商声明；供应商备注不会成为已验证的测量结果。"
+
+#: includes/class-suppliers.php:98
+msgid "Product references"
+msgstr "关联商品"
+
+#: includes/class-suppliers.php:129
+msgid "Use text of at most 4000 characters."
+msgstr "请输入不超过 4000 个字符的文本。"
+
+#: includes/class-suppliers.php:151
+#: includes/class-suppliers.php:156
+msgid "Use a valid HTTPS URL without credentials."
+msgstr "请使用不含登录凭据的有效 HTTPS 链接。"
+
+#: includes/class-validator.php:31
+msgid "Use a nonnegative whole number within the supported ID/count range."
+msgstr "请输入支持范围内的非负整数 ID 或数量。"
+
+#: includes/class-validator.php:51
+msgid "Choose a registered sock metric."
+msgstr "请选择已注册的袜子指标。"
+
+#: includes/class-validator.php:54
+msgid "Choose a valid evidence source tier."
+msgstr "请选择有效的证据来源类别。"
+
+#: includes/class-validator.php:61
+msgid "Use the metric dictionary unit exactly; values are never silently converted."
+msgstr "请严格使用指标字典中的单位，系统不会自动转换数值。"
+
+#: includes/class-validator.php:66
+msgid "Choose one of the metric dictionary values."
+msgstr "请选择指标字典中的一个允许值。"
+
+#: includes/class-validator.php:71
+msgid "Use a plain number with at most 14 integer and 6 decimal digits; integer metrics require whole numbers."
+msgstr "请输入普通数字，整数部分最多 14 位，小数部分最多 6 位；整数指标只能填写整数。"
+
+#: includes/class-validator.php:73
+msgid "The value is outside this metric’s allowed range."
+msgstr "数值超出该指标的允许范围。"
+
+#: includes/class-validator.php:83
+msgid "Enter a valid, nonfuture source or measurement date (YYYY-MM-DD)."
+msgstr "请输入有效且不晚于今天的来源或测量日期（YYYY-MM-DD）。"
+
+#: includes/class-validator.php:94
+msgid "Test conditions must be a JSON object, such as {\"conditioning\":\"documented procedure\"}."
+msgstr "测试条件必须是 JSON 对象，例如 {\"conditioning\":\"已记录的调湿程序\"}。"
+
+#: includes/class-validator.php:98
+msgid "WooCommerce must be active to edit claims."
+msgstr "编辑声明前必须启用 WooCommerce。"
+
+#: includes/class-validator.php:139
+msgid "Choose public or private evidence visibility."
+msgstr "请选择公开或私有的证据可见性。"
+
+#: includes/class-validator.php:144
+msgid "Use an HTTPS URL without embedded credentials."
+msgstr "请使用不含用户名或密码的 HTTPS 地址。"
+
+#: includes/class-validator.php:149
+msgid "Use a valid Media Library attachment ID."
+msgstr "请填写有效的媒体库附件 ID。"
+
+#: includes/class-validator.php:153
+msgid "Private evidence cannot expose a public URL or Media Library attachment. Use an access-controlled source URL; ordinary WordPress uploads are public."
+msgstr "私有证据不能包含公开地址或媒体库附件。请使用有访问控制的来源地址；普通 WordPress 上传文件是公开的。"
+
+#: includes/class-validator.php:158
+msgid "Choose an accessible PDF, JPEG, PNG, or WebP attachment intended for public access."
+msgstr "请选择您有权访问并且明确用于公开的 PDF、JPEG、PNG 或 WebP 附件。"
+
+#: includes/class-validator.php:179
+msgid "A missing value cannot be published. Keep it as a draft / Not tested."
+msgstr "缺失数值不能发布，请保留为草稿／未检测。"
+
+#: includes/class-validator.php:182
+msgid "An explicit measurement unit is required."
+msgstr "必须填写明确的测量单位。"
+
+#: includes/class-validator.php:185
+msgid "A source or measurement date is required."
+msgstr "必须填写来源或测量日期。"
+
+#: includes/class-validator.php:188
+msgid "Attach evidence or provide a documented source URL."
+msgstr "请关联证据附件或提供可追溯的来源地址。"
+
+#: includes/class-validator.php:192
+msgid "An evidence title and source organization are required."
+msgstr "必须填写证据标题和来源机构。"
+
+#: includes/class-validator.php:199
+msgid "Tested claims require a method, version, and sample batch."
+msgstr "测试声明必须填写方法、版本和样品批次。"
+
+#: includes/class-validator.php:203
+msgid "Enter the actual positive sample count; no count is assumed."
+msgstr "请填写实际的正整数样本数量，系统不会假定样本数量。"
+
+#: includes/class-validator.php:206
+msgid "Document the actual test conditions, including the procedure and endpoint where applicable."
+msgstr "请记录实际测试条件，包括适用的测试程序及终止判据。"
+
+#: includes/class-validator.php:210
+msgid "Dimensions and weight require an explicit specimen size or size scope."
+msgstr "尺寸和重量指标必须明确样品尺码或适用尺码范围。"
+
+#: includes/class-validator.php:229
+msgid "Merino wool is a subset of total wool and cannot exceed it."
+msgstr "美利奴羊毛属于羊毛总量的一部分，不能超过羊毛总量。"
+
+#: includes/class-validator.php:235
+msgid "Composition exceeds 100% or a complete six-fiber mix is outside the configured tolerance. Unknown fractions are not normalized."
+msgstr "成分总和超过 100%，或完整六类纤维的总和超出配置容差。系统不会对未知比例进行归一化。"
+
+#: includes/class-validator.php:252
+msgid "Expected a scalar value."
+msgstr "此字段需要单一值。"
+
+#: includes/class-validator.php:257
+msgid "This field is too long."
+msgstr "此字段过长。"
+
+#: templates/admin-page.php:16
+msgid "Record evidence, review provenance, and intentionally publish claims. Missing values remain Not tested. Prices and stock stay in WooCommerce."
+msgstr "记录证据、审核来源，再明确发布声明。缺失值保持为“未检测”。价格和库存仍由 WooCommerce 管理。"
+
+#: templates/admin-page.php:18
+msgid "Nothing was saved. Correct these fields or reload after a conflict:"
+msgstr "未保存任何更改。请修正以下字段，或在发生冲突后重新加载："
+
+#: templates/admin-page.php:24
+msgid "New claim / reload list"
+msgstr "新建声明／重新加载列表"
+
+#: templates/admin-page.php:27
+msgid "Filter by product"
+msgstr "按商品筛选"
+
+#: templates/admin-page.php:28
+msgid "Filter"
+msgstr "筛选"
+
+#: templates/admin-page.php:31
+msgid "Claims, newest first; 20 per page"
+msgstr "声明按时间倒序排列，每页 20 条"
+
+#: templates/admin-page.php:33
+msgid "Claim"
+msgstr "声明"
+
+#: templates/admin-page.php:33
+msgid "Product / variation"
+msgstr "商品／变体"
+
+#: templates/admin-page.php:33
+#: templates/admin-page.php:107
+#: templates/admin-page.php:158
+#: templates/admin-page.php:272
+msgid "Metric"
+msgstr "指标"
+
+#: templates/admin-page.php:33
+#: templates/admin-page.php:159
+msgid "Value"
+msgstr "数值"
+
+#: templates/admin-page.php:33
+msgid "Status / revision"
+msgstr "状态／版本"
+
+#: templates/admin-page.php:59
+msgid "No claims yet."
+msgstr "暂无声明。"
+
+#: templates/admin-page.php:77
+#: templates/catalog.php:167
+msgid "Previous page"
+msgstr "上一页"
+
+#: templates/admin-page.php:93
+#: templates/catalog.php:168
+msgid "Next page"
+msgstr "下一页"
+
+#: templates/admin-page.php:96
+msgid "Saved claim"
+msgstr "已保存的声明"
+
+#: templates/admin-page.php:96
+msgid "New draft"
+msgstr "新草稿"
+
+#: templates/admin-page.php:103
+#: templates/comparison.php:20
+msgid "Product"
+msgstr "商品"
+
+#: templates/admin-page.php:104
+msgid "Variation"
+msgstr "变体"
+
+#: templates/admin-page.php:105
+msgid "Use a variation for size-specific measurements. Product-scope measurements must not imply they apply to every size. Product, variation, and metric are fixed once a draft is saved."
+msgstr "特定尺码的测量应关联变体。商品级测量不能暗示适用于所有尺码。草稿保存后，商品、变体和指标不可更改。"
+
+#: templates/admin-page.php:106
+#: templates/admin-page.php:165
+#: templates/evidence-details.php:20
+msgid "Specimen size / scope"
+msgstr "样品尺码／适用范围"
+
+#: templates/admin-page.php:112
+msgid "Value (blank means Not tested)"
+msgstr "数值（留空表示未检测）"
+
+#: templates/admin-page.php:113
+msgid "Unit (use the dictionary below)"
+msgstr "单位（请参考下方字典）"
+
+#: templates/admin-page.php:114
+#: templates/admin-page.php:162
+msgid "Evidence source tier"
+msgstr "证据来源类别"
+
+#: templates/admin-page.php:118
+#: templates/admin-page.php:179
+msgid "Measured by us"
+msgstr "平台实测"
+
+#: templates/admin-page.php:119
+#: templates/admin-page.php:180
+msgid "Third-party laboratory"
+msgstr "第三方检测"
+
+#: templates/admin-page.php:126
+#: templates/admin-page.php:166
+msgid "Documented method code"
+msgstr "已记录的方法编号"
+
+#: templates/admin-page.php:127
+#: templates/admin-page.php:167
+msgid "Method version"
+msgstr "方法版本"
+
+#: templates/admin-page.php:128
+#: templates/admin-page.php:168
+msgid "Test conditions (JSON object)"
+msgstr "测试条件（JSON 对象）"
+
+#: templates/admin-page.php:129
+#: templates/admin-page.php:169
+#: templates/evidence-details.php:21
+msgid "Actual sample count"
+msgstr "实际样本数量"
+
+#: templates/admin-page.php:130
+#: templates/admin-page.php:170
+#: templates/evidence-details.php:22
+msgid "Sample batch"
+msgstr "样品批次"
+
+#: templates/admin-page.php:131
+#: templates/admin-page.php:171
+#: templates/evidence-details.php:19
+msgid "Source / measurement date"
+msgstr "来源／测量日期"
+
+#: templates/admin-page.php:132
+#: templates/admin-page.php:172
+msgid "Public limitations and notes"
+msgstr "公开的限制说明和备注"
+
+#: templates/admin-page.php:135
+msgid "Evidence snapshot"
+msgstr "证据快照"
+
+#: templates/admin-page.php:136
+msgid "Each save creates a new evidence snapshot. Private source URLs and internal notes remain staff-only. Private files must be hosted behind access controls; ordinary WordPress media is public."
+msgstr "每次保存都会创建新的证据快照。私有来源地址和内部备注仅员工可见。私有文件必须通过访问控制保护；普通 WordPress 媒体文件是公开的。"
+
+#: templates/admin-page.php:138
+#: templates/admin-page.php:173
+msgid "Public evidence title"
+msgstr "公开证据标题"
+
+#: templates/admin-page.php:139
+msgid "Source organization (staff-only)"
+msgstr "来源机构（仅员工可见）"
+
+#: templates/admin-page.php:140
+msgid "Source URL (staff-only HTTPS)"
+msgstr "来源地址（仅员工可见，HTTPS）"
+
+#: templates/admin-page.php:141
+#: templates/admin-page.php:174
+msgid "Public excerpt URL (explicit HTTPS disclosure)"
+msgstr "公开摘录地址（明确公开，HTTPS）"
+
+#: templates/admin-page.php:142
+msgid "Public Media Library attachment ID (PDF or image)"
+msgstr "公开媒体库附件 ID（PDF 或图片）"
+
+#: templates/admin-page.php:143
+msgid "Internal evidence notes (staff-only)"
+msgstr "内部证据备注（仅员工可见）"
+
+#: templates/admin-page.php:145
+msgid "Evidence visibility"
+msgstr "证据可见性"
+
+#: templates/admin-page.php:146
+msgid "Private"
+msgstr "私有"
+
+#: templates/admin-page.php:147
+msgid "Public excerpt / attachment"
+msgstr "公开摘录／附件"
+
+#: templates/admin-page.php:150
+msgid "Save draft"
+msgstr "保存草稿"
+
+#: templates/admin-page.php:154
+msgid "Saved preview (staff-only; no storefront panel yet)"
+msgstr "已保存内容预览（仅员工可见，尚无商城参数面板）"
+
+#: templates/admin-page.php:155
+msgid "This preview shows the saved revision, not unsaved form input. Draft and reviewed claims are not public. Review all provenance before changing status."
+msgstr "此处预览已保存的版本。表单中尚未保存的输入不在预览中。草稿和已审核声明不会公开。请在变更状态前审阅全部来源信息。"
+
+#: templates/admin-page.php:160
+msgid "Unit"
+msgstr "单位"
+
+#: templates/admin-page.php:161
+#: templates/evidence-details.php:18
+msgid "Status"
+msgstr "状态"
+
+#: templates/admin-page.php:163
+msgid "WooCommerce product ID"
+msgstr "WooCommerce 商品 ID"
+
+#: templates/admin-page.php:164
+msgid "Variation ID (0 for product scope)"
+msgstr "变体 ID（0 表示商品级范围）"
+
+#: templates/admin-page.php:175
+msgid "Public attachment URL"
+msgstr "公开附件地址"
+
+#: templates/admin-page.php:194
+msgid "Not tested / not supplied"
+msgstr "未检测／未提供"
+
+#: templates/admin-page.php:214
+msgid "I reviewed the saved claim and confirm this status change."
+msgstr "我已审阅保存的声明，并确认此次状态变更。"
+
+#: templates/admin-page.php:223
+msgid "Create a new draft revision"
+msgstr "创建新的草稿版本"
+
+#: templates/admin-page.php:226
+msgid "Audit history (staff-only)"
+msgstr "审计历史（仅员工可见）"
+
+#: templates/admin-page.php:229
+msgid "Before"
+msgstr "更改前"
+
+#: templates/admin-page.php:230
+msgid "After"
+msgstr "更改后"
+
+#: templates/admin-page.php:250
+msgid "Newer audit entries"
+msgstr "较新的审计记录"
+
+#: templates/admin-page.php:267
+msgid "Older audit entries"
+msgstr "较早的审计记录"
+
+#: templates/admin-page.php:270
+msgid "Metric dictionary"
+msgstr "指标字典"
+
+#: templates/admin-page.php:271
+msgid "Units, types, and validation rules are versioned in code. Administrators may change labels and filterability. Composition tolerance defaults to zero percentage points; an operator may configure the documented pc_composition_tolerance filter. Partial mixes stay incomplete."
+msgstr "单位、类型和验证规则随代码版本管理。管理员可以修改标签和是否允许筛选。成分容差默认为 0 个百分点，可按文档配置 pc_composition_tolerance 过滤器。未完整填写的成分保持为不完整状态。"
+
+#: templates/admin-page.php:272
+msgid "Type / unit / enum values"
+msgstr "类型／单位／枚举值"
+
+#: templates/admin-page.php:272
+msgid "Configuration"
+msgstr "配置"
+
+#: templates/admin-page.php:274
+msgid "Explicit test unit required"
+msgstr "必须明确填写测试单位"
+
+#: templates/admin-page.php:282
+msgid "Label override (blank uses translation)"
+msgstr "自定义标签（留空使用翻译）"
+
+#: templates/admin-page.php:283
+msgid "Filterable"
+msgstr "允许筛选"
+
+#: templates/admin-page.php:284
+msgid "Save metric configuration"
+msgstr "保存指标配置"
+
+#: templates/admin-page.php:289
+msgid "Administrator access required."
+msgstr "需要管理员权限。"
+
+#: templates/catalog.php:127
+msgid "Browse socks by intended use and documented specifications."
+msgstr "按用途和已记录的技术参数选购袜子。"
+
+#: templates/catalog.php:70
+msgid "Category"
+msgstr "商品类别"
+
+#: templates/catalog.php:70
+msgid "All categories"
+msgstr "所有类别"
+
+#: templates/catalog.php:81
+msgid "Intended use"
+msgstr "预期用途"
+
+#: templates/catalog.php:81
+msgid "All uses"
+msgstr "所有用途"
+
+#: templates/catalog.php:84
+msgid "Everyday"
+msgstr "日常"
+
+#: templates/catalog.php:85
+msgid "Running"
+msgstr "跑步"
+
+#: templates/catalog.php:86
+msgid "Hiking"
+msgstr "徒步"
+
+#: templates/catalog.php:87
+msgid "Cold weather"
+msgstr "寒冷天气"
+
+#: includes/class-size-shape.php:127
+#: templates/catalog.php:92
+msgid "Size"
+msgstr "尺码"
+
+#: templates/catalog.php:95
+msgid "Minimum price"
+msgstr "最低价格"
+
+#: templates/catalog.php:96
+msgid "Maximum price"
+msgstr "最高价格"
+
+#: templates/catalog.php:97
+msgid "Declared cotton, at least (%)"
+msgstr "声明棉含量至少（%）"
+
+#: templates/catalog.php:98
+msgid "Pair weight, at most (g)"
+msgstr "每双重量至多（g）"
+
+#: templates/catalog.php:108
+msgid "Sort"
+msgstr "排序"
+
+#: templates/catalog.php:111
+msgid "Editorial order"
+msgstr "编辑顺序"
+
+#: templates/catalog.php:112
+msgid "Price: low to high"
+msgstr "价格从低到高"
+
+#: templates/catalog.php:113
+msgid "Price: high to low"
+msgstr "价格从高到低"
+
+#: templates/catalog.php:118
+msgid "Apply filters"
+msgstr "应用筛选"
+
+#: templates/catalog.php:118
+msgid "Clear all filters"
+msgstr "清除所有筛选"
+
+#: templates/catalog.php:129
+msgid "Prices vary by product option. Price sorting uses the lowest displayed price unless filters select a specific option."
+msgstr "价格因商品选项而异。除非筛选指定了某个选项，否则价格排序采用所显示的最低价格。"
+
+#. translators: %d: result count.
+#: templates/catalog.php:123
+#, php-format
+msgid "%d matching catalog entries"
+msgstr "找到 %d 个匹配的商品条目"
+
+#: templates/catalog.php:136
+msgid "No published products match these filters. Draft demonstration products are not shown."
+msgstr "没有符合筛选条件的已发布商品。演示草稿不会显示在此处。"
+
+#: templates/catalog.php:151
+msgid "View specifications and options"
+msgstr "查看参数与选项"
+
+#: templates/catalog.php:159
+msgid "Catalog pages"
+msgstr "商品目录分页"
+
+#: templates/comparison.php:30
+#: templates/specifications.php:17
+msgid "These records describe product-level samples, not every size. Choose a size or SKU for its own measurements. Missing variation data is never filled from another size or the parent product."
+msgstr "这些记录描述的是商品级样品，并不适用于所有尺码。请选择尺码或 SKU 查看对应的测量数据。缺失的变体数据不会用其他尺码或父商品的数据补充。"
+
+#: templates/comparison.php:15
+#: templates/specifications.php:19
+msgid "Only staff-approved, published records appear here. Approval is not independent certification. Each source is identified; missing results are not a zero or a failing grade."
+msgstr "这里仅展示经员工审核并发布的记录。审核不等于独立认证。每条记录都标明来源；缺失的结果不代表零分或不合格。"
+
+#: templates/comparison.php:47
+#: templates/specifications.php:24
+msgid "Parameter"
+msgstr "参数"
+
+#: templates/specifications.php:24
+msgid "Value / unit"
+msgstr "数值／单位"
+
+#: templates/specifications.php:24
+msgid "Source"
+msgstr "来源"
+
+#: templates/specifications.php:24
+msgid "Method & evidence"
+msgstr "方法与证据"
+
+#: templates/evidence-details.php:14
+msgid "No test method declared"
+msgstr "未声明测试方法"
+
+#: templates/evidence-details.php:15
+msgid "View evidence details"
+msgstr "查看证据详情"
+
+#: templates/evidence-details.php:18
+msgid "Published; staff-approved"
+msgstr "已发布；经员工审核"
+
+#: templates/evidence-details.php:20
+#: templates/evidence-details.php:21
+#: templates/evidence-details.php:22
+msgid "Not specified"
+msgstr "未注明"
+
+#: templates/evidence-details.php:23
+msgid "Evidence"
+msgstr "证据"
+
+#: templates/evidence-details.php:30
+msgid "Test conditions"
+msgstr "测试条件"
+
+#: templates/evidence-details.php:39
+msgid "Public evidence excerpt"
+msgstr "公开证据摘录"
+
+#: templates/evidence-details.php:43
+msgid "Public evidence attachment"
+msgstr "公开证据附件"
+
+#: templates/evidence-details.php:47
+msgid "Source document is not public."
+msgstr "来源文件未公开。"
+
+#: templates/comparison.php:78
+#: templates/specifications.php:50
+msgid "Results apply to the documented samples and conditions. Different test methods are not interchangeable, and a single measurement does not establish overall quality or predict product lifetime."
+msgstr "结果仅适用于记录中的样品和条件。不同测试方法的结果不可直接互换，单项测量不能证明整体质量，也不能预测使用寿命。"
+
+#: includes/class-brand-pages.php:65
+msgid "That’s why we make product specifications and available quality evidence easy to examine and compare."
+msgstr "因此，我们让商品参数和现有质量证据便于查阅和比较。"
+
+#: includes/class-comparison.php:52
+msgid "Select up to four products or sizes for comparison."
+msgstr "最多可选择四个商品或尺码进行比较。"
+
+#: includes/class-comparison.php:57
+msgid "Invalid comparison selection."
+msgstr "比较选择无效。"
+
+#: includes/class-comparison.php:79
+msgid "Comparison is temporarily unavailable."
+msgstr "比较功能暂时不可用。"
+
+#: includes/class-comparison.php:88
+msgid "A selected product or size is no longer available for comparison. Clear the selection and choose from the catalog."
+msgstr "所选商品或尺码已无法用于比较。请清空选择并从目录重新选择。"
+
+#: includes/class-comparison.php:145
+msgid "Four selected. Remove an item before adding another."
+msgstr "已选择四项。请先移除一项再添加。"
+
+#: includes/class-comparison.php:149
+#: includes/class-comparison.php:176
+msgid "Remove from comparison"
+msgstr "从比较中移除"
+
+#: includes/class-comparison.php:149
+msgid "Add to comparison"
+msgstr "加入比较"
+
+#: includes/class-comparison.php:152
+#: includes/class-comparison.php:182
+msgid "Clear comparison"
+msgstr "清空比较"
+
+#: includes/class-comparison.php:166
+msgid "Comparison selection"
+msgstr "比较选择"
+
+#. translators: %d: number of selected products or variations, at most four.
+#: includes/class-comparison.php:171
+#, php-format
+msgid "%d of 4 comparison items selected"
+msgstr "已选择 %d 项，最多 4 项"
+
+#: includes/class-comparison.php:176
+msgid "Remove"
+msgstr "移除"
+
+#: includes/class-comparison.php:178
+msgid "Compare selections"
+msgstr "比较所选项目"
+
+#: includes/class-comparison.php:210
+msgid "Not enough measurements to compare."
+msgstr "没有足够的测量数据可供比较。"
+
+#: includes/class-comparison.php:236
+msgid "Incomplete comparison: one or more measurements are unavailable."
+msgstr "比较不完整：一项或多项测量数据不可用。"
+
+#: includes/class-comparison.php:215
+msgid "Not comparable: different units. Original values are shown without conversion."
+msgstr "不可直接比较：单位不同。保留原始数值，不进行换算。"
+
+#: includes/class-comparison.php:218
+msgid "Not comparable: different product or specimen scopes."
+msgstr "不可直接比较：商品或样品适用范围不同。"
+
+#: includes/class-comparison.php:221
+msgid "Not comparable: different evidence source categories."
+msgstr "不可直接比较：证据来源类别不同。"
+
+#: includes/class-comparison.php:229
+msgid "Comparability not established: method, version, conditions or specimen scope is incomplete."
+msgstr "尚无法确定可比性：方法、版本、条件或样品范围不完整。"
+
+#: includes/class-comparison.php:232
+msgid "Not comparable: different methods, versions or test conditions."
+msgstr "不可直接比较：方法、版本或测试条件不同。"
+
+#: includes/class-comparison.php:238
+msgid "Declared values only; these are not independently verified test results."
+msgstr "仅为声明值，并非经过独立验证的测试结果。"
+
+#: includes/class-comparison.php:238
+msgid "Recorded units, source category, method and specimen conditions match. Review the evidence; this does not establish equivalent quality."
+msgstr "记录中的单位、来源类别、方法及样品条件一致。请审阅证据；这并不证明质量相同。"
+
+#: includes/class-comparison.php:251
+#: includes/class-comparison.php:275
+msgid "Choose two to four products or sizes from the catalog to compare."
+msgstr "请从目录中选择二至四个商品或尺码进行比较。"
+
+#: includes/class-comparison.php:267
+msgid "Compare socks"
+msgstr "比较袜子"
+
+#: includes/class-comparison.php:270
+msgid "Choose products from the catalog"
+msgstr "从目录选择商品"
+
+#: templates/comparison.php:16
+msgid "Scroll each table horizontally to see all selections. Keyboard users can focus the table region and use the arrow keys."
+msgstr "横向滚动表格可查看全部选择。键盘用户可聚焦表格区域后使用方向键。"
+
+#: templates/comparison.php:17
+#: templates/comparison.php:19
+msgid "Products, prices and availability"
+msgstr "商品、价格及供货情况"
+
+#: templates/comparison.php:32
+msgid "Current price"
+msgstr "当前价格"
+
+#: templates/comparison.php:36
+msgid "Price not available"
+msgstr "价格暂无"
+
+#: templates/comparison.php:37
+msgid "Availability"
+msgstr "供货情况"
+
+#: templates/comparison.php:41
+msgid "Choose a size on the product page to check availability."
+msgstr "请在商品页选择尺码以查看供货情况。"
+
+#: templates/comparison.php:41
+msgid "In stock"
+msgstr "有货"
+
+#: templates/comparison.php:43
+msgid "Prices and availability come from WooCommerce. Pack quantities and product options may differ; these are product prices, not a calculated price per pair."
+msgstr "价格和供货情况由 WooCommerce 提供。组合双数及商品选项可能不同；此处显示商品价格，并非换算后的每双价格。"
+
+#: templates/catalog.php:39
+msgid "Staff catalog preview. Coming-soon mode is still enabled; public sales remain closed."
+msgstr "员工商品目录预览。即将上线模式仍已启用，尚未开放公众购买。"
+
+#: templates/catalog.php:35
+msgid "Shop"
+msgstr "选购"
+
+#: templates/catalog.php:38
+msgid "Staff preview — sales closed"
+msgstr "员工预览 — 尚未开放购买"
+
+#: templates/catalog.php:55
+msgid "Filters"
+msgstr "筛选"
+
+#: templates/catalog.php:125
+msgid "About filters and prices"
+msgstr "筛选和价格说明"
+
+#: templates/catalog.php:128
+msgid "Measurement filters show only products with matching published data. For products with multiple options, all selected filters must match the same option. Visit each product page for material details, measurement methods, and supporting evidence."
+msgstr "测量筛选仅显示已发布数据符合条件的商品。对于提供多个选项的商品，所有筛选条件必须匹配同一个选项。请查看商品页了解材料详情、测量方法和相关证据。"
+
+#: includes/class-account-notices.php:47
+msgid "If the email is not in your inbox, please check your spam or junk folder."
+msgstr "如果收件箱中没有这封邮件，请检查垃圾邮件文件夹。"
+
+#: includes/class-pack-builder.php:66
+#: templates/pack-builder.php:13
+msgid "Build Your Pack"
+msgstr ""
+
+#: includes/class-pack-builder.php:67
+msgid "Sell 6 or 12 pairs with a quantity per color. Enable only when every variation price, weight and stock quantity represents ONE PAIR. Use explicit Color and Size attributes, variation-level stock and no backorders. Existing prepacked stock must not be reused."
+msgstr ""
+
+#: includes/class-pack-builder.php:96
+msgid "Build Your Pack requires an existing variable product."
+msgstr ""
+
+#: includes/class-pack-builder.php:99
+msgid "Build Your Pack is not enabled for this product."
+msgstr ""
+
+#: includes/class-pack-builder.php:102
+msgid "Only authorized store staff can preview this pack."
+msgstr ""
+
+#: includes/class-pack-builder.php:105
+msgid "This pack cannot be purchased while the store is in coming-soon mode."
+msgstr ""
+
+#: includes/class-pack-builder.php:108
+msgid "Demonstration products cannot be purchased as packs."
+msgstr ""
+
+#: includes/class-pack-builder.php:111
+msgid "This product must be published before its pack builder is available."
+msgstr ""
+
+#: includes/class-pack-builder.php:114
+msgid "This product is not publicly accessible. Check its catalog visibility and password protection."
+msgstr ""
+
+#: includes/class-pack-builder.php:119
+msgid "WooCommerce global stock management is disabled. Enable Manage stock in Products > Inventory."
+msgstr ""
+
+#: includes/class-pack-builder.php:122
+msgid "WooCommerce Hold stock must be a positive number of minutes in Products > Inventory."
+msgstr ""
+
+#: includes/class-pack-builder.php:125
+msgid "Checkout stock reservations are disabled by the woocommerce_hold_stock_for_checkout filter. Review the plugin or customization supplying this filter."
+msgstr ""
+
+#: includes/class-pack-builder.php:130
+msgid "Pack setup requires one Color attribute, single-pair variations and at most 100 variations."
+msgstr ""
+
+#: includes/class-pack-builder.php:141
+msgid "Each pack variation needs explicit attributes, its own pair stock, physical shipping and no backorders."
+msgstr ""
+
+#: includes/class-pack-builder.php:148
+msgid "Duplicate color variations must be resolved before selling packs."
+msgstr ""
+
+#: includes/class-pack-builder.php:154
+msgid "One size"
+msgstr ""
+
+#: includes/class-pack-builder.php:171
+msgid "Choose a 6-pair or 12-pair pack."
+msgstr ""
+
+#: includes/class-pack-builder.php:176
+msgid "Color quantities must be whole numbers between zero and the pack size."
+msgstr ""
+
+#: includes/class-pack-builder.php:183
+msgid "The selected color quantities must equal the pack size."
+msgstr ""
+
+#: includes/class-pack-builder.php:191
+msgid "Choose available colors from the same sock model and size."
+msgstr ""
+
+#: includes/class-pack-builder.php:211
+msgid "Not enough stock for the selected colors. Please adjust your pack."
+msgstr ""
+
+#: includes/class-pack-builder.php:228
+#: includes/class-pack-builder.php:232
+msgid "This pack could not be added. Please check availability."
+msgstr ""
+
+#: includes/class-pack-builder.php:287
+msgid "No colors are currently available for this pack."
+msgstr ""
+
+#: includes/class-pack-builder.php:310
+msgid "Please reload the product page and try again."
+msgstr ""
+
+#: includes/class-pack-builder.php:314
+msgid "Your pack was added. Quantities are pairs; removing a color removes the entire pack. To change colors, remove the pack and build it again."
+msgstr ""
+
+#: includes/class-pack-builder.php:334
+#: includes/class-pack-builder.php:352
+#: includes/class-pack-builder.php:354
+msgid "Please use Build Your Pack on the product page."
+msgstr ""
+
+#: includes/class-pack-builder.php:395
+msgid "A pack is incomplete or no longer available. Remove that pack and build it again before checkout."
+msgstr ""
+
+#: includes/class-pack-builder.php:432
+msgid "To change colors or pack size, remove the pack and build it again."
+msgstr ""
+
+#: includes/class-pack-builder.php:518
+msgid "Pack reference"
+msgstr ""
+
+#: includes/class-pack-builder.php:522
+msgid "Pairs in pack"
+msgstr ""
+
+#: includes/class-pack-builder.php:526
+msgid "Pack contents"
+msgstr ""
+
+#: includes/class-size-shape.php:109
+msgid "Supplier catalog"
+msgstr "供应商产品手册"
+
+#: includes/class-size-shape.php:127
+#: includes/class-size-shape.php:133
+msgid "EU size"
+msgstr "欧码"
+
+#: includes/class-size-shape.php:134
+msgid "To be confirmed"
+msgstr "待确认"
+
+#: includes/class-size-shape.php:214
+#: templates/size-shape.php:14
+msgid "Size & Shape"
+msgstr "尺码与外形"
+
+#: includes/class-size-shape.php:216
+msgid "Leg length (cm)"
+msgstr "袜筒长度（厘米）"
+
+#: includes/class-size-shape.php:217
+msgid "Foot length (cm)"
+msgstr "袜底长度（厘米）"
+
+#: includes/class-size-shape.php:218
+msgid "Dimension source"
+msgstr "尺寸来源"
+
+#: includes/class-size-shape.php:225
+msgid "Shown to shoppers. Use a public source label, not a private URL. These are model dimensions; manage shoe sizes under Attributes."
+msgstr "向顾客显示。请填写可公开的来源名称，不要填写私密链接。此处为款式尺寸；鞋码请在属性中管理。"
+
+#: includes/class-size-shape.php:229
+msgid "Enter both dimensions and their source to show the guide. Clear both dimensions to hide it."
+msgstr "填写两项尺寸及来源以显示图示。清空两项尺寸即可隐藏。"
+
+#: includes/class-size-shape.php:256
+msgid "Size & Shape was not changed. Enter both lengths between 0 and 100 cm (up to two decimal places) and a short public source label."
+msgstr "尺码与外形未修改。请填写大于 0 且不超过 100 厘米的两项长度（最多两位小数），以及简短的公开来源名称。"
+
+#: templates/pack-builder.php:14
+msgid "Choose 6 or 12 pairs of this model. Prices and quantities below are per pair; the pack price is their sum. Each color has its own specifications."
+msgstr ""
+
+#: templates/pack-builder.php:19
+msgid "Size / options"
+msgstr ""
+
+#: templates/pack-builder.php:25
+msgid "Show colors"
+msgstr ""
+
+#: templates/pack-builder.php:28
+msgid "Staff preview only: the store is in coming-soon mode. Adding packs to the cart is disabled. Public specifications remain unavailable until launch."
+msgstr ""
+
+#: templates/pack-builder.php:33
+msgid "Pack size"
+msgstr ""
+
+#: templates/pack-builder.php:34
+msgid "6 pairs"
+msgstr ""
+
+#: templates/pack-builder.php:34
+msgid "12 pairs"
+msgstr ""
+
+#: templates/pack-builder.php:53
+msgid "Specifications for this color / size"
+msgstr ""
+
+#: templates/pack-builder.php:58
+msgid "Select exactly the chosen number of pairs before adding your pack."
+msgstr ""
+
+#: templates/pack-builder.php:59
+msgid "Pack subtotal"
+msgstr ""
+
+#: templates/pack-builder.php:60
+msgid "Shipping and any applicable taxes are calculated at checkout. To change a pack in the cart, remove it and build it again."
+msgstr ""
+
+#: templates/pack-builder.php:61
+msgid "pairs selected"
+msgstr ""
+
+#: templates/pack-builder.php:61
+msgid "Add pack to cart"
+msgstr ""
+
+#: templates/size-shape.php:19
+msgid "Sock shape and dimensions"
+msgstr "袜子外形与尺寸"
+
+#: templates/size-shape.php:20
+msgid "Schematic side view. A indicates the sock leg; B indicates the foot. Values are listed beside the illustration."
+msgstr "侧面示意图。A 表示袜筒，B 表示袜底。尺寸数值列于图旁。"
+
+#: templates/size-shape.php:32
+msgid "Leg length"
+msgstr "袜筒长度"
+
+#: templates/size-shape.php:32
+#: templates/size-shape.php:33
+msgid "cm"
+msgstr "厘米"
+
+#: templates/size-shape.php:36
+msgid "Model dimensions · Schematic illustration"
+msgstr "款式尺寸 · 外形示意图"
+
+#: templates/size-shape.php:37
+msgid "About these dimensions"
+msgstr "尺寸说明"
+
+#: templates/size-shape.php:37
+msgid "These dimensions describe the sock’s shape. Use the shoe-size option for fit. The illustration is not a measurement method or a size-specific test record."
+msgstr "这些尺寸描述袜子的外形。请选择适合的鞋码。图示不代表测量方法或某一尺码的检测记录。"
+
+#: includes/class-size-shape.php
+msgid "Size & Shape was not changed. Enter valid lengths for every size."
+msgstr "尺寸与外形未更改。请为每个尺码输入有效长度。"
+
+#: includes/class-brand-pages.php
+msgid "Who operates SockSpecs?"
+msgstr "谁在运营 SockSpecs？"
+
+#: includes/class-brand-pages.php
+msgid "SockSpecs is operated by:"
+msgstr "SockSpecs 的运营公司为："
+
+#: includes/class-brand-pages.php
+msgid "English translation of the company name:"
+msgstr "公司名称英文译名："
+
+#: includes/class-brand-pages.php
+msgid "We are based in China. Orders ship from Zhejiang, China."
+msgstr "我们位于中国，订单从中国浙江发货。"
+
+#: includes/class-brand-pages.php
+msgid "For questions about our products, specifications or orders, contact:"
+msgstr "如有产品、参数或订单相关问题，请联系："
+
+#: includes/class-brand-pages.php
+msgid "Returns & Refunds"
+msgstr "退换货与退款（英文）"
+
+msgid "Pack prices need review before this product can be purchased."
+msgstr "此商品的组合装价格需要审核后才能购买。"
+
+msgid "%1$d-pair pack price (%2$s)"
+msgstr "%1$d双组合装价格（%2$s）"
+
+msgid "Optional: enter both pack totals, using the same tax basis as regular prices. Leave both blank to sum pair prices. Variation stock and weight still represent one pair."
+msgstr "选填：同时输入两种组合装总价，含税方式与常规价格一致。两项留空则按单双价格相加。变体库存和重量仍以一双为单位。"
+
+msgid "%1$d pairs: %2$s"
+msgstr "%1$d双：%2$s"
+
+msgid "Choose 6 or 12 pairs of this model and mix your colors within one size. The price below is for the whole pack."
+msgstr "选择此款的6双或12双组合装，在同一尺码内自由搭配颜色。以下价格为整组总价。"
+
+msgid "All colors and sizes in a priced pack must share the parent product tax settings."
+msgstr "设置组合装价格时，所有颜色和尺码必须使用与父商品相同的税务设置。"
+
+msgid "Free US shipping"
+msgstr "美国包邮"
+
+msgid "Free shipping to the United States. No minimum order. To change a pack in the cart, remove it and build it again."
+msgstr "美国包邮，无最低订单金额。如需更改购物车中的组合装，请移除后重新搭配。"

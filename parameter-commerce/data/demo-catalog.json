@@ -1,0 +1,12 @@
+[
+  {"sku":"SS-E001","name":"Combed Cotton Everyday Crew Socks","category":"everyday-socks","use":"everyday","features":["crew-profile","ribbed-cuff"]},
+  {"sku":"SS-E002","name":"Lightweight Cotton Ankle Socks","category":"everyday-socks","use":"everyday","features":["ankle-profile"]},
+  {"sku":"SS-E003","name":"Everyday Low-Profile Cotton Socks","category":"everyday-socks","use":"everyday","features":["low-profile"]},
+  {"sku":"SS-C001","name":"Cushioned Athletic Crew Socks","category":"cushioned-socks","use":"everyday","features":["crew-profile","cushioned-sole"]},
+  {"sku":"SS-C002","name":"Cushioned Walking Ankle Socks","category":"cushioned-socks","use":"everyday","features":["ankle-profile","cushioned-sole"]},
+  {"sku":"SS-C003","name":"Cushioned Hiking Crew Socks","category":"cushioned-socks","use":"hiking","features":["crew-profile","cushioned-sole","reinforced-heel"]},
+  {"sku":"SS-R001","name":"Running Ankle Socks","category":"running-socks","use":"running","features":["ankle-profile"]},
+  {"sku":"SS-R002","name":"Running Crew Socks","category":"running-socks","use":"running","features":["crew-profile","ribbed-cuff"]},
+  {"sku":"SS-M001","name":"Merino Wool Hiking Socks","category":"merino-wool-socks","use":"hiking","features":["crew-profile","reinforced-heel"]},
+  {"sku":"SS-M002","name":"Merino Wool Cold-Weather Crew Socks","category":"merino-wool-socks","use":"cold-weather","features":["crew-profile","ribbed-cuff"]}
+]

@@ -1,0 +1,13 @@
+.pc-referral-invitation { font-size: .9rem; line-height: 1.6; }
+.pc-referral-confirmation { border: 1px solid #ccd7cf; border-radius: .5rem; padding: clamp(1rem, 3vw, 2rem); margin-block: 2rem; background: #f5f8f5; color: #17291f; }
+.pc-referral-confirmation h2 { margin-top: 0; font-size: clamp(1.3rem, 3vw, 1.8rem); }
+.pc-referral-share { max-width: 100%; }
+.pc-referral-share label { display: block; }
+.pc-referral-share input, .pc-referral-share textarea { display: block; width: 100%; box-sizing: border-box; min-width: 0; margin-block: .5rem .75rem; padding: .6rem; font: inherit; }
+.pc-referral-copy { margin: 0 .5rem .5rem 0; padding: .65rem 1rem; min-height: 44px; border: 1px solid #17291f; border-radius: .3rem; background: #17291f; color: #fff; font: inherit; cursor: pointer; }
+.pc-referral-copy[hidden] { display: none; }
+.pc-referral-copy:focus-visible, .pc-referral-share input:focus-visible, .pc-referral-share textarea:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+.pc-referral-copy-status { font-size: .9rem; }
+.wp-block-post-content > .pc-referral-share { max-width: var(--wp--style--global--content-size, 40rem); margin-inline: auto; }
+
+.pc-referral-share textarea { resize: vertical; line-height: 1.5; }

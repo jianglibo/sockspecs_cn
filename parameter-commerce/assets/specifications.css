@@ -1,0 +1,22 @@
+.pc-specifications{font-size:1rem;line-height:1.6;max-width:100%;color:inherit}.pc-specifications *{box-sizing:border-box}.pc-scope-form{display:flex;flex-wrap:wrap;gap:.75rem;align-items:end;margin:1rem 0}.pc-scope-form select{max-width:100%;padding:.45rem}.pc-scope-form label{max-width:100%}.pc-scope-notice{border-left:3px solid #356653;padding:.75rem 1rem;background:#f1f6f3;color:#20362d}.pc-table-scroll{max-width:100%;overflow-x:auto;margin:1.5rem 0;outline-offset:3px}.pc-spec-table{width:100%;border-collapse:collapse;table-layout:fixed;min-width:580px;font-size:.92rem}.pc-spec-table caption{text-align:left;font-size:1.1rem;font-weight:700;padding:.75rem 0}.pc-spec-table th,.pc-spec-table td{text-align:left;vertical-align:top;border-bottom:1px solid #d6ddd8;padding:.8rem;overflow-wrap:anywhere}.pc-spec-table thead{background:#f1f6f3;color:#20362d}.pc-spec-table th:first-child{width:22%}.pc-spec-table td p{margin:0 0 .6rem}.pc-spec-table details{margin:.5rem 0}.pc-spec-table summary{cursor:pointer;text-decoration:underline;text-underline-offset:3px}.pc-spec-table dt{font-weight:600}.pc-spec-table dd{margin:0 0 .65rem}.pc-spec-table pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:.85em}.pc-unit{white-space:nowrap}.pc-method-note{font-size:.9rem;border-top:1px solid #d6ddd8;padding-top:1rem}.pc-specifications button{cursor:pointer;padding:.5rem .8rem}.pc-specifications :focus-visible{outline:2px solid #356653;outline-offset:3px}.pc-spec-announcement:empty{display:none}
+.pc-specifications .pc-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* Concise product copy; keep provenance below the primary table. */
+.pc-product-facts{max-width:100%;font-size:1rem;line-height:1.6}
+.pc-product-facts>figure{margin:1rem 0 1.5rem;max-width:100%}
+.pc-product-facts table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:inherit}
+.pc-product-facts th,.pc-product-facts td{text-align:left;vertical-align:top;padding:.8rem;border-bottom:1px solid #d6ddd8;overflow-wrap:anywhere}
+.pc-product-facts>figure th:first-child{width:36%}
+.pc-product-facts thead{background:#f1f6f3;color:#20362d}
+.pc-product-facts tbody th{font-weight:600}
+.pc-product-evidence{border-top:1px solid #d6ddd8;padding:1rem 0;margin:1.5rem 0}
+.pc-product-evidence>summary{cursor:pointer;font-weight:600;min-height:44px;align-content:center}
+.pc-product-evidence>summary:focus-visible{outline:2px solid #356653;outline-offset:3px}
+.pc-product-evidence p{margin:1rem 0}
+.pc-product-evidence figure{margin:1rem 0;max-width:100%;overflow-x:auto}
+@media(max-width:480px){.pc-product-facts th,.pc-product-facts td{padding:.65rem .5rem}.pc-product-facts>figure th:first-child{width:40%}}
+
+/* Detailed shared-record table: keep values readable; scroll within the table on narrow screens. */
+.pc-spec-table{min-width:760px}.pc-spec-table th:first-child{width:22%}.pc-spec-table th:nth-child(2){width:14%}.pc-spec-table th:nth-child(3){width:32%}
+
+.pc-metric-help{font-size:.85rem;font-weight:400;line-height:1.5;margin:.5rem 0 0}
