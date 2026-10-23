@@ -1,0 +1,165 @@
+{
+  "site": "domestic",
+  "quotes": [
+    {
+      "model": "X31",
+      "currency": "CNY",
+      "unit": "pair",
+      "recorded_at": "2026-10-20",
+      "source": "operator-pasted supplier listing",
+      "model_status": "identified",
+      "tiers": [
+        {
+          "unit_price": "8.64",
+          "min_pairs": 1,
+          "max_pairs": null,
+          "condition": "60-day returning-customer price"
+        },
+        {
+          "unit_price": "6.80",
+          "min_pairs": 5,
+          "max_pairs": 499,
+          "condition": "listed quantity tier"
+        },
+        {
+          "unit_price": "5.94",
+          "min_pairs": 500,
+          "max_pairs": null,
+          "condition": "listed quantity tier"
+        }
+      ],
+      "tax_shipping_inclusion": "unknown"
+    },
+    {
+      "model": "X58",
+      "currency": "CNY",
+      "unit": "pair",
+      "recorded_at": "2026-10-20",
+      "source": "operator-pasted supplier listing",
+      "model_status": "pending clarification: X58 supplied, X59 draft exists",
+      "tiers": [
+        {
+          "unit_price": "9.18",
+          "min_pairs": 1,
+          "max_pairs": null,
+          "condition": "60-day returning-customer price"
+        },
+        {
+          "unit_price": "7.56",
+          "min_pairs": 5,
+          "max_pairs": 499,
+          "condition": "listed quantity tier"
+        },
+        {
+          "unit_price": "7.02",
+          "min_pairs": 500,
+          "max_pairs": null,
+          "condition": "listed quantity tier"
+        }
+      ],
+      "tax_shipping_inclusion": "unknown"
+    },
+    {
+      "model": "323",
+      "currency": "CNY",
+      "unit": "pair",
+      "recorded_at": "2026-10-20",
+      "source": "operator-pasted supplier listing",
+      "model_status": "identified",
+      "tiers": [
+        {
+          "unit_price": "6.26",
+          "min_pairs": 1,
+          "max_pairs": null,
+          "condition": "60-day returning-customer price"
+        },
+        {
+          "unit_price": "4.10",
+          "min_pairs": 5,
+          "max_pairs": 499,
+          "condition": "listed quantity tier"
+        },
+        {
+          "unit_price": "3.54",
+          "min_pairs": 500,
+          "max_pairs": null,
+          "condition": "listed quantity tier"
+        }
+      ],
+      "tax_shipping_inclusion": "unknown"
+    },
+    {
+      "model": "X72",
+      "currency": "CNY",
+      "unit": "pair",
+      "recorded_at": "2026-10-20",
+      "source": "operator-pasted supplier listing",
+      "model_status": "identified",
+      "tiers": [
+        {
+          "unit_price": "8.96",
+          "min_pairs": 1,
+          "max_pairs": null,
+          "condition": "60-day returning-customer price"
+        },
+        {
+          "unit_price": "7.56",
+          "min_pairs": 5,
+          "max_pairs": 499,
+          "condition": "listed quantity tier"
+        },
+        {
+          "unit_price": "7.02",
+          "min_pairs": 500,
+          "max_pairs": null,
+          "condition": "listed quantity tier"
+        }
+      ],
+      "tax_shipping_inclusion": "unknown"
+    },
+    {
+      "model": "X65",
+      "currency": "CNY",
+      "unit": "pair",
+      "recorded_at": "2026-10-20",
+      "source": "operator-pasted supplier listing",
+      "model_status": "identified",
+      "tiers": [
+        {
+          "unit_price": "11.02",
+          "min_pairs": 1,
+          "max_pairs": null,
+          "condition": "one-pair starting price"
+        },
+        {
+          "unit_price": "10.80",
+          "min_pairs": 5,
+          "max_pairs": 499,
+          "condition": "listed quantity tier"
+        },
+        {
+          "unit_price": "10.26",
+          "min_pairs": 500,
+          "max_pairs": null,
+          "condition": "listed quantity tier"
+        }
+      ],
+      "tax_shipping_inclusion": "unknown"
+    },
+    {
+      "model": "J02",
+      "currency": "CNY",
+      "unit": "pair",
+      "recorded_at": "2026-10-20",
+      "source": "operator-pasted supplier listing",
+      "unmapped_prices": [
+        "8.10",
+        "8.42"
+      ],
+      "tier_conditions": "unknown; not a confirmed price range or size mapping",
+      "applicability": "J02 only; do not apply to J03",
+      "tax_shipping_inclusion": "unknown"
+    }
+  ],
+  "display_note": "采购报价记录：2026-10-20；人民币/双；运费及含税情况未知。\nX31: 1双起批 ¥8.64（60天老客价）；5–499双 ¥6.80/双；≥500双 ¥5.94/双。\nX58: 1双起批 ¥9.18（60天老客价）；5–499双 ¥7.56/双；≥500双 ¥7.02/双。\n323: 1双起批 ¥6.26（60天老客价）；5–499双 ¥4.10/双；≥500双 ¥3.54/双。\nX72: 1双起批 ¥8.96（60天老客价）；5–499双 ¥7.56/双；≥500双 ¥7.02/双。\nX65: 1双起批 ¥11.02（起批价）；5–499双 ¥10.80/双；≥500双 ¥10.26/双。\nJ02: ¥8.10 / ¥8.42；对应条件未知，不套用到J03。\nX58型号待确认：现有草稿为X59，未将此报价归入X59。首档仅标起批量，不擅自认定适用1–4双。"
+}

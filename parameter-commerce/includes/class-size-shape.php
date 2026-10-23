@@ -70,6 +70,52 @@ final class Size_Shape {
 	}
 
 	/**
+	 * Optional native cuff-height attribute; never infer it from a measurement.
+	 *
+	 * @param \WC_Product $product Parent product.
+	 * @return bool
+	 */
+	public static function has_cuff_height( $product ) {
+		return $product && $product->is_type( 'variable' ) && ( isset( $product->get_variation_attributes()['pa_cuff-height'] ) || isset( $product->get_variation_attributes()['cuff-height'] ) );
+	}
+
+	/**
+	 * Every non-color option identifies a distinct shape/weight scope.
+	 *
+	 * @param \WC_Product $child Variation.
+	 * @return array
+	 */
+	public static function option_attributes( $child ) {
+		$attributes = $child->get_attributes();
+		unset( $attributes['color'], $attributes['pa_color'] );
+		ksort( $attributes );
+		return $attributes;
+	}
+
+	/**
+	 * Match the pack selector's server-rendered selection for cuff-height products.
+	 * Missing or invalid groups must not display another height's dimensions.
+	 *
+	 * @param \WC_Product $product Parent product.
+	 * @return array Variation IDs.
+	 */
+	private static function selected_children( $product ) {
+		if ( ! self::has_cuff_height( $product ) || ! Pack_Builder::enabled( $product->get_id() ) ) {
+			return $product->get_children();
+		}
+		try {
+			$preview = 'yes' === get_option( 'woocommerce_coming_soon', 'no' ) && current_user_can( 'manage_woocommerce' ) && current_user_can( 'edit_post', $product->get_id() );
+			$groups  = Pack_Builder::groups( $product->get_id(), $preview, true );
+		} catch ( \RuntimeException $error ) {
+			return array();
+		}
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only option selection.
+		$requested = isset( $_GET['pc_pack_group'] ) && is_string( $_GET['pc_pack_group'] ) ? sanitize_key( $_GET['pc_pack_group'] ) : '';
+		$selected  = isset( $groups[ $requested ] ) ? $requested : array_key_first( $groups );
+		return isset( $groups[ $selected ] ) ? array_keys( $groups[ $selected ]['items'] ) : array();
+	}
+
+	/**
 	 * Whitelist just the two dimensions from the imported workbook C column.
 	 * Never expose the raw row, procurement details, source path or private claims.
 	 *
@@ -80,7 +126,7 @@ final class Size_Shape {
 		if ( ! $product || ! $product->is_type( array( 'simple', 'variable' ) ) ) {
 			return array();
 		}
-		if ( $product->get_meta( '_pc_structured_specs' ) ) {
+		if ( $product->get_meta( '_pc_structured_specs' ) || self::has_cuff_height( $product ) ) {
 			$rows = self::structured_dimensions( $product );
 			return $rows ? array_merge( reset( $rows ), count( $rows ) > 1 ? array( 'sizes' => $rows ) : array() ) : array();
 		}
@@ -129,25 +175,30 @@ final class Size_Shape {
 	 */
 	private static function structured_dimensions( $product ) {
 		$rows = array();
-		foreach ( $product->get_children() as $id ) {
+		foreach ( self::selected_children( $product ) as $id ) {
 			try {
 				$spec = current_user_can( 'manage_woocommerce' ) && current_user_can( 'edit_post', $product->get_id() ) ? Repository::specifications( $product->get_id(), $id ) : Repository::public_specifications( $product->get_id(), $id );
 			} catch ( Failure $error ) {
 				continue; }
 			$m = $spec['groups']['measurement']['metrics'];
 			if ( null === $m['foot_length_mm']['value'] || null === $m['catalog_height_mm']['value'] ) {
+				if ( self::has_cuff_height( $product ) ) {
+					return array();
+				}
 				continue; }
-			$child = wc_get_product( $id );
-			$size  = explode( ' ', $child->get_attribute( 'size' ) )[0];
-			$row   = array(
+			$child   = wc_get_product( $id );
+			$options = self::option_attributes( $child );
+			$key     = wp_json_encode( $options );
+			$size    = wc_get_formatted_variation( $options, true, false );
+			$row     = array(
 				'size'    => $size,
 				'leg_cm'  => self::centimeters( (string) ( (float) $m['catalog_height_mm']['value'] / 10 ) ),
 				'foot_cm' => self::centimeters( (string) ( (float) $m['foot_length_mm']['value'] / 10 ) ),
 				'source'  => __( 'Supplier catalog', 'parameter-commerce' ),
 			);
-			if ( isset( $rows[ $size ] ) && $rows[ $size ] !== $row ) {
+			if ( isset( $rows[ $key ] ) && $rows[ $key ] !== $row ) {
 				return array(); }
-			$rows[ $size ] = $row;
+			$rows[ $key ] = $row;
 		}
 		return array_values( $rows );
 	}
@@ -159,7 +210,7 @@ final class Size_Shape {
 	 * @return array
 	 */
 	public static function size_dimensions( $product ) {
-		if ( $product->get_meta( '_pc_structured_specs' ) ) {
+		if ( $product->get_meta( '_pc_structured_specs' ) || self::has_cuff_height( $product ) ) {
 			return self::structured_dimensions( $product );
 		}
 		$rows = $product->get_meta( '_pc_shape_sizes' );
@@ -228,12 +279,12 @@ final class Size_Shape {
 	 * @return string Escaped summary.
 	 */
 	public static function weight_summary( $product ) {
-		if ( ! self::visible( $product ) || ! $product->get_meta( '_pc_structured_specs' ) ) {
+		if ( ! self::visible( $product ) || ( ! $product->get_meta( '_pc_structured_specs' ) && ! self::has_cuff_height( $product ) ) ) {
 			return '';
 		}
 		$rows    = array();
 		$missing = array();
-		foreach ( $product->get_children() as $id ) {
+		foreach ( self::selected_children( $product ) as $id ) {
 			try {
 				$spec = current_user_can( 'manage_woocommerce' ) && current_user_can( 'edit_post', $product->get_id() ) ? Repository::specifications( $product->get_id(), $id ) : Repository::public_specifications( $product->get_id(), $id );
 			} catch ( Failure $error ) {
@@ -242,7 +293,7 @@ final class Size_Shape {
 			$child      = wc_get_product( $id );
 			$metric     = $spec['groups']['measurement']['metrics']['pair_weight_g'];
 			$conditions = json_decode( $metric['record']['conditions_json'] ?? '{}', true );
-			$size       = $child->get_attribute( 'size' );
+			$size       = wc_get_formatted_variation( self::option_attributes( $child ), true, false );
 			$color      = $child->get_attribute( 'color' );
 			if ( null === $metric['value'] || (float) $metric['value'] <= 0 || 'g' !== $metric['unit'] || 'excluded' !== ( $conditions['packaging'] ?? '' ) || 'one pair (operator confirmed)' !== ( $conditions['quantity'] ?? '' ) ) {
 				$missing[] = $color . ' / ' . $size;
@@ -283,7 +334,10 @@ final class Size_Shape {
 		if ( ! $dimensions ) {
 			return $weight;
 		}
-		$sizing = self::sizing( $product );
+		$sizing = self::has_cuff_height( $product ) ? array(
+			'label' => __( 'Size / options', 'parameter-commerce' ),
+			'value' => $dimensions['size'] ?? '',
+		) : self::sizing( $product );
 		$id     = wp_unique_id( 'pc-size-shape-' );
 		// Change the relative leg height; the outline is explicitly schematic.
 		$top = round( 205 - min( 170, max( 30, 190 * (float) $dimensions['leg_cm'] / (float) $dimensions['foot_cm'] ) ), 2 );
@@ -333,7 +387,7 @@ final class Size_Shape {
 	/** Fields in Product data > General; native size attributes remain unchanged. @return void */
 	public static function settings() {
 		global $product_object;
-		if ( $product_object && $product_object->get_meta( '_pc_structured_specs' ) ) {
+		if ( $product_object && ( $product_object->get_meta( '_pc_structured_specs' ) || self::has_cuff_height( $product_object ) ) ) {
 			echo '<p>' . esc_html__( 'Size & Shape uses the approved dimensions in WooCommerce → Parameter Specs.', 'parameter-commerce' ) . '</p>';
 			return;
 		}
@@ -383,7 +437,7 @@ final class Size_Shape {
 	 * @return void
 	 */
 	public static function save_settings( $product ) {
-		if ( $product->get_meta( '_pc_structured_specs' ) ) {
+		if ( $product->get_meta( '_pc_structured_specs' ) || self::has_cuff_height( $product ) ) {
 			return; }
 		if ( ! current_user_can( 'edit_post', $product->get_id() ) || ! isset( $_POST['woocommerce_meta_nonce'] ) || ! is_string( $_POST['woocommerce_meta_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['woocommerce_meta_nonce'] ) ), 'woocommerce_save_data' ) ) {
 			return;

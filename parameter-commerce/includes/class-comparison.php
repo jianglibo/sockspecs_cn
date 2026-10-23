@@ -28,7 +28,7 @@ final class Comparison {
 
 	/** Managed page URL; a missing page disables entry controls. @return string */
 	public static function url() {
-		$page = get_page_by_path( 'sockspecs-compare' );
+		$page = get_page_by_path( 'compare' );
 		return $page && 'publish' === $page->post_status && ! $page->post_password && has_shortcode( $page->post_content, 'pc_compare' ) ? get_permalink( $page ) : '';
 	}
 
@@ -36,7 +36,7 @@ final class Comparison {
 	public static function assets() {
 		$post = get_post();
 		if ( ( $post && ( has_shortcode( $post->post_content, 'pc_compare' ) || has_shortcode( $post->post_content, 'pc_catalog' ) ) ) || ( Plugin::has_woocommerce() && function_exists( 'is_product' ) && is_product() ) ) {
-			wp_enqueue_style( 'pc-comparison', plugins_url( 'assets/comparison.css', dirname( __DIR__ ) . '/parameter-commerce.php' ), array(), '0.5.19' );
+			wp_enqueue_style( 'pc-comparison', plugins_url( 'assets/comparison.css', dirname( __DIR__ ) . '/parameter-commerce.php' ), array(), '0.5.20' );
 		}
 	}
 
@@ -209,6 +209,11 @@ final class Comparison {
 		if ( count( $available ) < 2 ) {
 			return __( 'Not enough measurements to compare.', 'parameter-commerce' );
 		}
+		foreach ( $available as $cell ) {
+			if ( 'platform_observed' === ( $cell['record']['source_type'] ?? '' ) ) {
+				return __( 'Based on direct sample observations; see any recorded scope and notes. These are not laboratory measurements or a quality ranking.', 'parameter-commerce' );
+			}
+		}
 		$first = $available[0];
 		// Color identity is not a different weight basis. Keep the actual packaging uncertainty visible.
 		$first_conditions = json_decode( $first['record']['conditions_json'], true );
@@ -277,12 +282,67 @@ final class Comparison {
 		$items = self::items( $ids );
 		foreach ( $items as &$item ) {
 			$item['specifications'] = Repository::public_specifications( $item['parent_id'], $item['variation_id'] );
+			$item['options']        = self::options( $item['product'] );
+			// Exact child measurements remain separate; never turn them into parent claims.
+			if ( ! $item['variation_id'] && $item['product']->is_type( 'variable' ) ) {
+				foreach ( array_slice( $item['product']->get_children(), 0, 100 ) as $child_id ) {
+					if ( ! Public_Specifications::visible( $item['parent_id'], $child_id ) ) {
+						continue;
+					}
+					$child_specs = Repository::public_specifications( $item['parent_id'], $child_id );
+					foreach ( Wear_Profile::KEYS as $wear_key ) {
+						$wear_metric = $child_specs['groups']['construction']['metrics'][ $wear_key ];
+						if ( null !== $wear_metric['value'] && (int) $wear_metric['record']['wc_variation_id'] === (int) $child_id ) {
+							$cell =& $item['specifications']['groups']['construction']['metrics'][ $wear_key ];
+							if ( empty( $cell['variants'] ) && null !== $cell['value'] ) {
+								$cell['variants'] = array( $cell );
+							}
+							$cell['variants'][] = $wear_metric;
+							unset( $cell );
+						}
+					}
+
+					foreach ( $child_specs['groups']['measurement']['metrics'] as $key => $metric ) {
+						if ( null !== $metric['value'] && null === $item['specifications']['groups']['measurement']['metrics'][ $key ]['value'] && 0 !== strpos( $key, 'listing_' ) ) {
+							$item['specifications']['groups']['measurement']['metrics'][ $key ]['variants'][] = $metric;
+						}
+					}
+				}
+			}
 		}
 		unset( $item );
 		return array(
 			'items'       => $items,
 			'definitions' => Metrics::all(),
 		);
+	}
+
+	/**
+	 * Public native size/color choices, shared with the purchase options.
+	 *
+	 * @param \WC_Product $product Selected product or exact variation.
+	 * @return array Display strings, without inventing shoe-size conversions.
+	 */
+	private static function options( $product ) {
+		$options = array(
+			'size'  => array(),
+			'color' => array(),
+		);
+		$choices = $product->is_type( 'variable' ) ? array_slice( $product->get_children(), 0, 100 ) : array( $product->get_id() );
+		foreach ( $choices as $id ) {
+			$child = wc_get_product( $id );
+			if ( ! $child || ( $child->is_type( 'variation' ) && ! Public_Specifications::visible( $child->get_parent_id(), $id ) ) ) {
+				continue;
+			}
+			foreach ( array_keys( $options ) as $key ) {
+				$value = $child->get_attribute( 'pa_' . $key );
+				$value = $value ? $value : $child->get_attribute( $key );
+				if ( '' !== $value ) {
+					$options[ $key ][] = $value;
+				}
+			}
+		}
+		return array_map( static fn( $values ) => implode( ' / ', array_unique( $values ) ), $options );
 	}
 
 	/** Render the ordinary WordPress comparison page. @return string */

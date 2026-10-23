@@ -25,6 +25,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<form method="get" action="<?php echo esc_url( admin_url( 'admin.php' ) ); ?>">
 		<input type="hidden" name="page" value="pc-specs">
 		<?php Product_Picker::field( 'product_id', $product_filter, __( 'Filter by product', 'parameter-commerce' ) ); ?>
+		<p><label for="pc-metric-filter"><?php esc_html_e( 'Metric name', 'parameter-commerce' ); ?></label><br>
+		<select id="pc-metric-filter" name="metric_filter">
+			<option value=""><?php esc_html_e( 'All metrics', 'parameter-commerce' ); ?></option>
+			<?php foreach ( $definitions as $key => $definition ) : ?>
+				<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $metric_filter, $key ); ?>><?php echo esc_html( $definition['label'] ); ?></option>
+			<?php endforeach; ?>
+		</select></p>
 		<?php submit_button( __( 'Filter', 'parameter-commerce' ), 'secondary', '', false ); ?>
 	</form>
 	<table class="widefat striped">
@@ -40,8 +47,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 			echo esc_url(
 				add_query_arg(
 					array(
-						'page'     => 'pc-specs',
-						'claim_id' => $row['id'],
+						'page'          => 'pc-specs',
+						'claim_id'      => $row['id'],
+						'product_id'    => $product_filter,
+						'metric_filter' => $metric_filter,
+						'paged'         => $page_number,
 					),
 					admin_url( 'admin.php' )
 				)
@@ -66,9 +76,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 		echo esc_url(
 			add_query_arg(
 				array(
-					'page'       => 'pc-specs',
-					'product_id' => $product_filter,
-					'paged'      => $page_number - 1,
+					'page'          => 'pc-specs',
+					'product_id'    => $product_filter,
+					'metric_filter' => $metric_filter,
+					'paged'         => $page_number - 1,
 				),
 				admin_url( 'admin.php' )
 			)
@@ -82,9 +93,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 		echo esc_url(
 			add_query_arg(
 				array(
-					'page'       => 'pc-specs',
-					'product_id' => $product_filter,
-					'paged'      => $page_number + 1,
+					'page'          => 'pc-specs',
+					'product_id'    => $product_filter,
+					'metric_filter' => $metric_filter,
+					'paged'         => $page_number + 1,
 				),
 				admin_url( 'admin.php' )
 			)
@@ -93,12 +105,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 		"><?php esc_html_e( 'Next page', 'parameter-commerce' ); ?></a>
 	<?php endif; ?>
 	</p>
+	<p><?php esc_html_e( 'Each product, variation and parameter has one current value. Saving another entry for the same parameter creates a revision; the storefront changes only after that revision is reviewed and published.', 'parameter-commerce' ); ?></p>
 	<h2><?php echo esc_html( $id ? __( 'Saved claim', 'parameter-commerce' ) . ' #' . $id : __( 'New draft', 'parameter-commerce' ) ); ?></h2>
-	<?php if ( ! $claim || 'draft' === $claim['status'] || $submitted ) : ?>
+	<?php if ( $claim ) : ?>
+		<p><strong><?php esc_html_e( 'Status', 'parameter-commerce' ); ?>: <?php echo esc_html( Admin::status_label( $claim['status'] ) ); ?></strong></p>
+	<?php endif; ?>
+	<?php if ( ! $claim || 'retracted' !== $claim['status'] || $submitted ) : ?>
 	<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
-		<input type="hidden" name="action" value="pc_claim"><input type="hidden" name="pc_operation" value="save">
+		<input type="hidden" name="action" value="pc_claim"><input type="hidden" name="pc_operation" value="edit">
 		<input type="hidden" name="claim_id" value="<?php echo esc_attr( $id ); ?>">
 		<input type="hidden" name="revision" value="<?php echo esc_attr( is_scalar( $form['revision'] ) ? $form['revision'] : '' ); ?>">
+		<input type="hidden" name="current_id" value="<?php echo esc_attr( is_scalar( $form['current_id'] ) ? $form['current_id'] : '' ); ?>">
+		<input type="hidden" name="current_revision" value="<?php echo esc_attr( is_scalar( $form['current_revision'] ) ? $form['current_revision'] : '' ); ?>">
+		<p><?php esc_html_e( 'Edit the fields below and choose Save and publish to update the product page. History is kept automatically; there is no need to retract or add the parameter again. Save draft keeps the current public value unchanged.', 'parameter-commerce' ); ?></p>
 		<?php wp_nonce_field( 'pc_claim', 'pc_nonce' ); ?>
 		<?php Product_Picker::field( 'wc_product_id', $claim['wc_product_id'] ?? $form['wc_product_id'], __( 'Product', 'parameter-commerce' ), 'product', (bool) $claim ); ?>
 		<?php Product_Picker::field( 'wc_variation_id', $claim['wc_variation_id'] ?? $form['wc_variation_id'], __( 'Variation', 'parameter-commerce' ), 'variation', (bool) $claim ); ?>
@@ -107,9 +126,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php Admin::field( $form, 'size_scope', __( 'Specimen size / scope', 'parameter-commerce' ) ); ?>
 		<p><label for="pc-metric"><?php esc_html_e( 'Metric', 'parameter-commerce' ); ?></label><br><select id="pc-metric" name="metric_key">
 		<?php foreach ( $definitions as $key => $definition ) : ?>
-			<option value="<?php echo esc_attr( $key ); ?>" <?php selected( is_scalar( $form['metric_key'] ) ? $form['metric_key'] : '', $key ); ?>><?php echo esc_html( $definition['label'] . ' (' . $key . ')' ); ?></option>
+			<option data-unit="<?php echo esc_attr( wp_json_encode( $definition['unit'] ) ); ?>" value="<?php echo esc_attr( $key ); ?>" <?php selected( is_scalar( $form['metric_key'] ) ? $form['metric_key'] : '', $key ); ?>><?php echo esc_html( $definition['label'] . ' (' . $key . ')' ); ?></option>
 		<?php endforeach; ?>
 		</select></p>
+		<p><?php esc_html_e( 'Thickness and shoe pairing are optional. Leave unconfirmed values blank. Use thin / moderate / thick for relative thickness; no-terry / partial-terry / terry-sole / full-terry for confirmed terry distribution; close-fitting-shoes / regular-fit-shoes / roomier-shoes for assessed shoe pairing. Choose the appropriate source before publishing. Sample observations need a date and description; color/size and sample count are optional. Existing terry-cushioning means coverage unspecified.', 'parameter-commerce' ); ?></p>
 		<?php Admin::field( $form, 'value', __( 'Value (blank means Not tested)', 'parameter-commerce' ) ); ?>
 		<?php Admin::field( $form, 'unit', __( 'Unit (use the dictionary below)', 'parameter-commerce' ) ); ?>
 		<p><label for="pc-source"><?php esc_html_e( 'Evidence source tier', 'parameter-commerce' ); ?></label><br><select id="pc-source" name="source_type">
@@ -117,6 +137,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		foreach ( array(
 			'supplier_declared' => __( 'Manufacturer-declared', 'parameter-commerce' ),
 			'platform_measured' => __( 'Measured by us', 'parameter-commerce' ),
+			'platform_observed' => __( 'Sample observation by us', 'parameter-commerce' ),
 			'third_party_lab'   => __( 'Third-party laboratory', 'parameter-commerce' ),
 			'supplier_report'   => __( 'Supplier-provided laboratory report', 'parameter-commerce' ),
 		) as $key => $label ) :
@@ -125,6 +146,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php endforeach; ?>
 		</select></p>
 		<?php
+		echo '<p class="description">' . esc_html__( 'For visible terry placement, choose Sample observation by us. Record the actual observation date and a short description. Sample color/size and sample count are optional; add them only when useful, such as when variants differ. Blank evidence title and source organization are filled as our own sample observation record; no external URL, laboratory method/version, batch or test-conditions JSON is required. Leave unknowns blank. Do not use this source for composition percentages or performance tests.', 'parameter-commerce' ) . '</p>';
 		Admin::field( $form, 'method_code', __( 'Documented method code', 'parameter-commerce' ) );
 		Admin::field( $form, 'method_version', __( 'Method version', 'parameter-commerce' ) );
 		Admin::field( $form, 'conditions_json', __( 'Test conditions (JSON object)', 'parameter-commerce' ), 'textarea' );
@@ -149,10 +171,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<option value="public" <?php selected( is_scalar( $evidence_form['visibility'] ?? '' ) ? ( $evidence_form['visibility'] ?? '' ) : '', 'public' ); ?>><?php esc_html_e( 'Public excerpt / attachment', 'parameter-commerce' ); ?></option>
 		</select></p>
 		</fieldset>
-		<?php submit_button( __( 'Save draft', 'parameter-commerce' ) ); ?>
+		<?php if ( current_user_can( 'publish_pc_claims' ) ) : ?>
+			<button type="submit" class="button button-primary" name="save_mode" value="publish"><?php esc_html_e( 'Save and publish', 'parameter-commerce' ); ?></button>
+		<?php endif; ?>
+		<button type="submit" class="button" name="save_mode" value="draft"><?php esc_html_e( 'Save draft', 'parameter-commerce' ); ?></button>
 	</form>
 	<?php endif; ?>
 	<?php if ( $claim ) : ?>
+		<details><summary><?php esc_html_e( 'Saved details, history and advanced actions', 'parameter-commerce' ); ?></summary>
 		<h3><?php esc_html_e( 'Saved preview (staff-only; no storefront panel yet)', 'parameter-commerce' ); ?></h3>
 		<p><?php esc_html_e( 'This preview shows the saved revision, not unsaved form input. Draft and reviewed claims are not public. Review all provenance before changing status.', 'parameter-commerce' ); ?></p>
 		<?php
@@ -179,6 +205,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		$source_labels  = array(
 			'supplier_declared' => __( 'Manufacturer-declared', 'parameter-commerce' ),
 			'platform_measured' => __( 'Measured by us', 'parameter-commerce' ),
+			'platform_observed' => __( 'Sample observation by us', 'parameter-commerce' ),
 			'third_party_lab'   => __( 'Third-party laboratory', 'parameter-commerce' ),
 			'supplier_report'   => __( 'Supplier-provided laboratory report', 'parameter-commerce' ),
 		);
@@ -198,6 +225,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php endforeach; ?>
 		</tbody></table>
 		<?php
+		$replacement = null;
+		if ( in_array( $claim['status'], array( 'draft', 'reviewed' ), true ) ) {
+			$replacement = $claim['supersedes_id'] ? Repository::find( $claim['supersedes_id'] ) : Repository::current_claim( $claim );
+		}
+		if ( $replacement ) :
+			?>
+			<div class="notice notice-info inline">
+				<p><strong><?php esc_html_e( 'This is a revision of an existing parameter. Publishing replaces the current value and preserves its history. Updating the product does not publish parameters.', 'parameter-commerce' ); ?></strong></p>
+				<p><?php esc_html_e( 'Current value', 'parameter-commerce' ); ?>: <?php echo esc_html( $replacement['value_num'] ?? ( Wear_Profile::labels()[ $replacement['value_enum'] ] ?? $replacement['value_enum'] ) ); ?> → <?php esc_html_e( 'New value', 'parameter-commerce' ); ?>: <?php echo esc_html( $claim['value_num'] ?? ( Wear_Profile::labels()[ $claim['value_enum'] ] ?? $claim['value_enum'] ) ); ?></p>
+			</div>
+			<?php
+		endif;
 		$pc_targets = array(
 			'draft'     => array( 'reviewed' ),
 			'reviewed'  => array( 'draft', 'published' ),
@@ -214,8 +253,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<input type="hidden" name="action" value="pc_claim"><input type="hidden" name="pc_operation" value="transition">
 				<input type="hidden" name="claim_id" value="<?php echo esc_attr( $id ); ?>"><input type="hidden" name="revision" value="<?php echo esc_attr( $claim['revision'] ); ?>">
 				<input type="hidden" name="target" value="<?php echo esc_attr( $target ); ?>">
+				<?php if ( 'published' === $target && $replacement ) : ?>
+					<input type="hidden" name="replace_id" value="<?php echo esc_attr( $replacement['id'] ); ?>">
+					<input type="hidden" name="replace_revision" value="<?php echo esc_attr( $claim['supersedes_id'] ? $claim['supersedes_revision'] : $replacement['revision'] ); ?>">
+				<?php endif; ?>
 				<p><label><input type="checkbox" name="confirm" value="yes" required> <?php esc_html_e( 'I reviewed the saved claim and confirm this status change.', 'parameter-commerce' ); ?></label></p>
-				<?php submit_button( Admin::transition_label( $target ), 'secondary', '', false ); ?>
+				<?php submit_button( 'published' === $target && $replacement ? __( 'Publish and replace current value', 'parameter-commerce' ) : Admin::transition_label( $target ), 'secondary', '', false ); ?>
 			</form>
 		<?php endforeach; ?>
 		<?php if ( in_array( $claim['status'], array( 'published', 'retracted' ), true ) ) : ?>
@@ -269,6 +312,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			?>
 			"><?php esc_html_e( 'Older audit entries', 'parameter-commerce' ); ?></a><?php endif; ?>
 		</p>
+		</details>
 	<?php endif; ?>
 	<h2><?php esc_html_e( 'Metric dictionary', 'parameter-commerce' ); ?></h2>
 	<p><?php esc_html_e( 'Units, types, and validation rules are versioned in code. Administrators may change labels and filterability. Composition tolerance defaults to zero percentage points; an operator may configure the documented pc_composition_tolerance filter. Partial mixes stay incomplete.', 'parameter-commerce' ); ?></p>

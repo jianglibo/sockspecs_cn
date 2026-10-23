@@ -25,7 +25,7 @@ final class Plugin {
 		add_action( 'init', array( self::class, 'load_translations' ) );
 		add_action( 'admin_notices', array( self::class, 'dependency_notice' ) );
 		add_action( 'init', array( Schema::class, 'maybe_upgrade' ), 20 );
-		// Domestic baseline: international branding, login, feeds, rewards and shipping stay unregistered.
+		// Domestic baseline: international branding, login, feeds and shipping stay unregistered.
 		Admin::register_hooks();
 		Public_Specifications::register_hooks();
 		Catalog::register_hooks();
@@ -38,6 +38,10 @@ final class Plugin {
 		Yarn_Specifications::register_hooks();
 		Account_Notices::register_hooks();
 		Size_Shape::register_hooks();
+		Wear_Profile::register_hooks();
+		Domestic_Catalog::register_hooks();
+		Referrals::register_hooks();
+		Referral_UI::register_hooks();
 		add_action( 'activated_plugin', array( self::class, 'dependency_activated' ) );
 	}
 

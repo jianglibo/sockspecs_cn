@@ -1,0 +1,31 @@
+{
+  "description": "<p>低帮运动袜，前脚掌和后跟采用加厚毛圈，足弓区域较薄，形成有区别的脚底触感。适合运动及日常休闲时偏好局部厚实脚感的穿着需求，后跟提耳方便穿脱。</p>",
+  "short_description": "前脚掌及后跟加厚毛圈，足弓较薄；低帮设计，适合运动及日常休闲。",
+  "images": [
+    {
+      "file": "ss-001-x59-worn.webp",
+      "alt": "SS-001-X59 白紫配色低帮运动袜上脚展示",
+      "sha256": "a7d4d3f44cb53662164864675ca4bd609a57b482c908aafc41523b6268084fe4",
+      "source": {
+        "model": "X58",
+        "url": "https://cbu01.alicdn.com/img/ibank/O1CN012t0pMR26fcBIEmCJl_!!3447167689-0-cib.jpg?__r__=1682496658710",
+        "file": "originals/X58-08.jpg",
+        "bytes": 332926,
+        "sha256": "5b4ec953ef70504bbcc52a52e3636a3cd8537027f486a18002e96800072c46d0"
+      }
+    },
+    {
+      "file": "ss-001-x59-detail.webp",
+      "alt": "SS-001-X59 白紫配色袜口、后跟提耳及织纹细节",
+      "sha256": "2306b46e9d149f7cf4912b262c461cd0bc948909eb82bcd3ffb8e1a5467b7652",
+      "source": {
+        "model": "X58",
+        "url": "https://cbu01.alicdn.com/img/ibank/O1CN01Hun1h726fcBWpAYST_!!3447167689-0-cib.jpg?__r__=1682496726238",
+        "file": "originals/X58-09.jpg",
+        "bytes": 265273,
+        "sha256": "b4d8cce4b5f626f051461c6a7edf4216d4a21dcad87b671244e0a240b38ee613"
+      }
+    }
+  ],
+  "source_note": "Operator confirmed the previously X58-labelled listing photos match the received X59 sample on 2026-10-21. Use white-purple imagery only; no variant/color/material changes. Text-removal edits are merchandising, not evidence."
+}

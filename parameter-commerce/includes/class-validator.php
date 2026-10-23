@@ -50,8 +50,11 @@ final class Validator {
 		if ( ! $definition ) {
 			$errors['metric_key'] = __( 'Choose a registered sock metric.', 'parameter-commerce' );
 		}
-		if ( ! in_array( $data['source_type'], array( 'supplier_declared', 'platform_measured', 'third_party_lab', 'supplier_report' ), true ) ) {
+		if ( ! in_array( $data['source_type'], array( 'supplier_declared', 'platform_measured', 'platform_observed', 'third_party_lab', 'supplier_report' ), true ) ) {
 			$errors['source_type'] = __( 'Choose a valid evidence source tier.', 'parameter-commerce' );
+		}
+		if ( 'platform_observed' === $data['source_type'] && ! in_array( $data['metric_key'], Wear_Profile::KEYS, true ) ) {
+			$errors['source_type'] = __( 'Sample observations are limited to thickness, terry distribution and shoe pairing. Measurements and performance claims require their original evidence rules.', 'parameter-commerce' );
 		}
 		$data['value_num']  = null;
 		$data['value_enum'] = null;
@@ -187,7 +190,16 @@ final class Validator {
 		if ( ! $claim['measured_at'] ) {
 			$errors['measured_at'] = __( 'A source or measurement date is required.', 'parameter-commerce' );
 		}
-		if ( empty( $evidence['source_url'] ) && empty( $evidence['public_url'] ) && empty( $evidence['attachment_id'] ) && ! ( 'private' === ( $evidence['visibility'] ?? '' ) && preg_match( '/Stored source SHA-256: [a-f0-9]{64}(?:[.; ]|$)/D', ( $evidence['note'] ?? '' ) ) ) ) {
+		$observation = 'platform_observed' === $claim['source_type'] && in_array( $claim['metric_key'], Wear_Profile::KEYS, true );
+		if ( 'platform_observed' === $claim['source_type'] && ! $observation ) {
+			$errors['source_type'] = __( 'Sample observations are limited to thickness, terry distribution and shoe pairing. Measurements and performance claims require their original evidence rules.', 'parameter-commerce' );
+		}
+		if ( $observation ) {
+			if ( ! $claim['note'] ) {
+				$errors['note'] = __( 'Briefly describe what you observed on the sample.', 'parameter-commerce' );
+			}
+		}
+		if ( ! $observation && empty( $evidence['source_url'] ) && empty( $evidence['public_url'] ) && empty( $evidence['attachment_id'] ) && ! ( 'private' === ( $evidence['visibility'] ?? '' ) && preg_match( '/Stored source SHA-256: [a-f0-9]{64}(?:[.; ]|$)/D', ( $evidence['note'] ?? '' ) ) ) ) {
 			$errors['evidence.source_url'] = __( 'Attach evidence or provide a documented source URL.', 'parameter-commerce' );
 		}
 		foreach ( array( 'public_title', 'source_org' ) as $field ) {

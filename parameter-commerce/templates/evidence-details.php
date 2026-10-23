@@ -30,7 +30,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				</dl>
 				<?php if ( '{}' !== $record['conditions_json'] ) : ?>
 					<dl><?php foreach ( (array) json_decode( $record['conditions_json'], true ) as $key => $value ) : ?>
-<dt><?php echo esc_html( ucfirst( str_replace( '_', ' ', $key ) ) ); ?></dt><dd><?php echo esc_html( is_scalar( $value ) ? str_replace( '_', ' ', (string) $value ) : wp_json_encode( $value ) ); ?></dd>
+<dt><?php echo esc_html( Domestic_Catalog::condition_text( $key ) ); ?></dt><dd><?php echo esc_html( is_scalar( $value ) ? Domestic_Catalog::condition_text( (string) $value ) : wp_json_encode( $value ) ); ?></dd>
 <?php endforeach; ?></dl>
 				<?php endif; ?>
 				<?php
@@ -48,5 +48,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<?php
 				if ( ! $record['evidence_url'] && ! $record['attachment_url'] ) :
 					?>
-					<p><?php esc_html_e( 'Source document is not public.', 'parameter-commerce' ); ?></p><?php endif; ?>
+					<p><?php echo esc_html( 'platform_observed' === $record['source_type'] ? __( 'Based on our direct sample observation; no external report is claimed.', 'parameter-commerce' ) : __( 'Source document is not public.', 'parameter-commerce' ) ); ?></p><?php endif; ?>
 				</details>

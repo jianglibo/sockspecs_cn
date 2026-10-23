@@ -49,9 +49,15 @@ fi
 bash tools/wp.sh plugin activate woocommerce parameter-commerce
 bash tools/wp.sh language core install zh_CN
 bash tools/wp.sh site switch-language zh_CN
-bash tools/wp.sh language plugin install woocommerce zh_CN
+if ! bash tools/wp.sh language plugin install woocommerce zh_CN; then
+  # Some local networks reject the updater's URL validation. Fetch the same
+  # official translation archive over HTTPS without weakening WP HTTP checks.
+  curl -fsSL --retry 3 "https://downloads.wordpress.org/translation/plugin/woocommerce/${SSCN_WC_VERSION}/zh_CN.zip" -o .local/bin/woocommerce-zh_CN.zip
+  php tools/install-local-translations.php
+fi
 bash tools/wp.sh option update blog_public 0
 bash tools/wp.sh option update woocommerce_coming_soon yes
+bash tools/wp.sh option update woocommerce_store_pages_only yes
 bash tools/wp.sh option update woocommerce_allow_tracking no
 bash tools/wp.sh option update woocommerce_currency CNY
 bash tools/wp.sh option update woocommerce_default_country CN:CN12
@@ -60,5 +66,14 @@ bash tools/wp.sh option update woocommerce_specific_allowed_countries '["CN"]' -
 bash tools/wp.sh option update woocommerce_ship_to_countries specific
 bash tools/wp.sh option update woocommerce_specific_ship_to_countries '["CN"]' --format=json
 bash tools/wp.sh option update woocommerce_review_rating_verification_required yes
+bash tools/wp.sh option update timezone_string Asia/Shanghai
+bash tools/wp.sh option update woocommerce_price_num_decimals 2
+bash tools/wp.sh option update woocommerce_weight_unit g
+bash tools/wp.sh option update woocommerce_dimension_unit cm
+if [[ ! -e .local/wordpress/wp-content/themes/sockspecs-cn ]]; then
+  ln -s "$PWD/theme" .local/wordpress/wp-content/themes/sockspecs-cn
+fi
+bash tools/wp.sh theme activate sockspecs-cn
+bash tools/wp.sh eval-file tools/seed-local-pages.php
 composer install --no-interaction --prefer-dist
 printf 'Domestic setup complete. Preview: bash tools/preview.sh\nCredentials: sockspecs_cn; password is in the private .env.\n'

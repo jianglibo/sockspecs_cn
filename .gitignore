@@ -22,3 +22,5 @@ client_secret*.json
 __pycache__/
 *.pyc
 .DS_Store
+
+/commerce-libraries/vendor/

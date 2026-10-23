@@ -1,0 +1,23 @@
+{
+  "site_url": "https://sockspecs.cn",
+  "live_enabled": false,
+  "trusted_proxies": ["172.16.3.52"],
+  "login": {
+    "website": {"enabled": false, "app_id": "", "secret": ""},
+    "official": {"enabled": false, "app_id": "", "secret": ""}
+  },
+  "wechat": {
+    "enabled": false,
+    "modes": {"native": false, "jsapi": false, "h5": false},
+    "app_id": "", "mch_id": "", "serial": "", "platform_serial": "", "api_v3_key": "",
+    "private_key": "/etc/sockspecs-cn/commerce/wechat-private.pem",
+    "platform_cert": "/etc/sockspecs-cn/commerce/wechat-platform.pem"
+  },
+  "alipay": {
+    "enabled": false, "app_id": "",
+    "private_key": "/etc/sockspecs-cn/commerce/alipay-private.pem",
+    "app_cert": "/etc/sockspecs-cn/commerce/alipay-app.pem",
+    "public_cert": "/etc/sockspecs-cn/commerce/alipay-public.pem",
+    "root_cert": "/etc/sockspecs-cn/commerce/alipay-root.pem"
+  }
+}

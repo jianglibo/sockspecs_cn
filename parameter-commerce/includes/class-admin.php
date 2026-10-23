@@ -53,11 +53,16 @@ final class Admin {
 			$operation = isset( $input['pc_operation'] ) && is_string( $input['pc_operation'] ) ? sanitize_key( $input['pc_operation'] ) : '';
 			$id        = self::integer( $input, 'claim_id' );
 			$revision  = self::integer( $input, 'revision' );
-			if ( 'save' === $operation ) {
+			if ( in_array( $operation, array( 'save', 'edit' ), true ) ) {
 				if ( ! isset( $input['evidence'] ) || ! is_array( $input['evidence'] ) ) {
 					throw new Failure( array( 'evidence' => __( 'Evidence fields are required, even for incomplete drafts.', 'parameter-commerce' ) ) );
 				}
-				$id = Repository::save( $input, $input['evidence'], $id, $revision );
+				if ( 'edit' === $operation ) {
+					$publish = isset( $input['save_mode'] ) && 'publish' === $input['save_mode'];
+					$id      = Repository::edit( $input, $input['evidence'], $id, $revision, $publish, self::integer( $input, 'current_id' ), self::integer( $input, 'current_revision' ) );
+				} else {
+					$id = Repository::save( $input, $input['evidence'], $id, $revision );
+				}
 			} elseif ( 'fork' === $operation ) {
 				$id = Repository::fork( $id, $revision );
 			} elseif ( 'transition' === $operation ) {
@@ -65,7 +70,7 @@ final class Admin {
 					throw new Failure( array( 'confirm' => __( 'Confirm the status change after reviewing this claim.', 'parameter-commerce' ) ) );
 				}
 				$target = isset( $input['target'] ) && is_string( $input['target'] ) ? sanitize_key( $input['target'] ) : '';
-				$id     = Repository::transition( $id, $revision, $target );
+				$id     = Repository::transition( $id, $revision, $target, self::integer( $input, 'replace_id' ), self::integer( $input, 'replace_revision' ) );
 			} elseif ( 'metric' === $operation ) {
 				$key   = isset( $input['metric_key'] ) && is_string( $input['metric_key'] ) ? sanitize_key( $input['metric_key'] ) : '';
 				$label = isset( $input['label_override'] ) && is_string( $input['label_override'] ) ? sanitize_text_field( $input['label_override'] ) : '';
@@ -100,7 +105,7 @@ final class Admin {
 			echo '</title>';
 			wp_print_styles( array( 'common', 'forms', 'buttons', 'list-tables', 'pc-select2' ) );
 			echo '</head><body class="wp-core-ui"><main style="margin:2rem">';
-			self::page( $error->fields, isset( $input ) && 'save' === $operation ? $input : null, $id ?? 0 );
+			self::page( $error->fields, isset( $input ) && in_array( $operation, array( 'save', 'edit' ), true ) ? $input : null, $id ?? 0 );
 			echo '</main>';
 			wp_print_footer_scripts();
 			echo '</body></html>';
@@ -122,6 +127,7 @@ final class Admin {
 			// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Read-only navigation; all writes use a nonce-protected POST.
 			$id             = isset( $_GET['claim_id'] ) && is_scalar( $_GET['claim_id'] ) ? absint( $_GET['claim_id'] ) : 0;
 			$product_filter = isset( $_GET['product_id'] ) && is_scalar( $_GET['product_id'] ) ? absint( $_GET['product_id'] ) : 0;
+			$metric_filter  = isset( $_GET['metric_filter'] ) && is_string( $_GET['metric_filter'] ) ? sanitize_key( wp_unslash( $_GET['metric_filter'] ) ) : '';
 			$page_number    = isset( $_GET['paged'] ) && is_scalar( $_GET['paged'] ) ? max( 1, absint( $_GET['paged'] ) ) : 1;
 			$audit_page     = isset( $_GET['audit_page'] ) && is_scalar( $_GET['audit_page'] ) ? max( 1, absint( $_GET['audit_page'] ) ) : 1;
 			// phpcs:enable WordPress.Security.NonceVerification.Recommended
@@ -129,8 +135,8 @@ final class Admin {
 			if ( $submitted ) {
 				$id = self::integer( $submitted, 'claim_id' );
 			}
-			$claim         = $id ? Repository::find( $id ) : null;
-			$form          = $claim ?? array(
+			$claim                    = $id ? Repository::find( $id ) : null;
+			$form                     = $claim ?? array(
 				'metric_key'      => 'cotton_pct',
 				'unit'            => '%',
 				'source_type'     => 'supplier_declared',
@@ -140,13 +146,16 @@ final class Admin {
 				'revision'        => 0,
 				'evidence'        => array( 'visibility' => 'private' ),
 			);
-			$form['value'] = $form['value_num'] ?? $form['value_enum'] ?? '';
+			$form['value']            = $form['value_num'] ?? $form['value_enum'] ?? '';
+			$current                  = $claim ? Repository::current_claim( $claim ) : null;
+			$form['current_id']       = $current['id'] ?? 0;
+			$form['current_revision'] = $current['revision'] ?? 0;
 			if ( $submitted ) {
 				$form = array_merge( $form, $submitted );
 				// Persist the submitted revision on an error: never silently upgrade a stale form.
 			}
 			$definitions = Metrics::all();
-			$rows        = Repository::listing( $product_filter, $page_number );
+			$rows        = Repository::listing( $product_filter, $page_number, $metric_filter );
 			$history     = $id ? Repository::history( $id, $audit_page ) : array();
 			$preview     = $claim ? Repository::preview( $claim ) : array();
 			require dirname( __DIR__ ) . '/templates/admin-page.php';

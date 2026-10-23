@@ -35,8 +35,8 @@ final class Catalog {
 	public static function assets() {
 		$post = get_post();
 		if ( $post && has_shortcode( $post->post_content, 'pc_catalog' ) ) {
-			wp_enqueue_style( 'pc-catalog', plugins_url( 'assets/catalog.css', dirname( __DIR__ ) . '/parameter-commerce.php' ), array(), '0.5.3' );
-			wp_enqueue_script( 'pc-catalog', plugins_url( 'assets/catalog.js', dirname( __DIR__ ) . '/parameter-commerce.php' ), array(), '0.5.3', true );
+			wp_enqueue_style( 'pc-catalog', plugins_url( 'assets/catalog.css', dirname( __DIR__ ) . '/parameter-commerce.php' ), array(), '0.5.4' );
+			wp_enqueue_script( 'pc-catalog', plugins_url( 'assets/catalog.js', dirname( __DIR__ ) . '/parameter-commerce.php' ), array(), '0.5.4', true );
 		}
 	}
 	/**
@@ -86,12 +86,15 @@ final class Catalog {
 	 */
 	public static function filters( array $input ) {
 		$result = array();
-		foreach ( array( 'category', 'use', 'size', 'min_price', 'max_price', 'cotton_min', 'weight_max', 'weight_basis', 'sort', 'page' ) as $key ) {
+		foreach ( array( 'category', 'use', 'size', 'min_price', 'max_price', 'cotton_min', 'weight_max', 'weight_basis', 'thickness_grade', 'cushion_location', 'footwear_fit', 'sort', 'page' ) as $key ) {
 			$value = $input[ 'pc_' . $key ] ?? '';
 			if ( ! is_scalar( $value ) || strlen( (string) $value ) > 100 ) {
 				throw new Failure( array( 'filter' => __( 'Invalid catalog filter.', 'parameter-commerce' ) ) );
 			}
 			$result[ $key ] = sanitize_text_field( (string) $value );
+			if ( in_array( $key, Wear_Profile::KEYS, true ) && (string) $value !== $result[ $key ] ) {
+				throw new Failure( array( 'filter' => __( 'Invalid catalog filter.', 'parameter-commerce' ) ) );
+			}
 		}
 		foreach ( array( 'min_price', 'max_price', 'cotton_min', 'weight_max' ) as $key ) {
 			if ( '' !== $result[ $key ] && ( ! preg_match( '/^\d{1,10}(?:\.\d{1,6})?$/D', $result[ $key ] ) || ( 'cotton_min' === $key && (float) $result[ $key ] > 100 ) ) ) {
@@ -107,6 +110,7 @@ final class Catalog {
 		if ( ! in_array( $result['weight_basis'], array( '', 'catalog', 'measured' ), true ) ) {
 			throw new Failure( array( 'weight_basis' => __( 'Invalid weight basis.', 'parameter-commerce' ) ) );
 		}
+		Wear_Profile::validate_filters( $result );
 		$result['page'] = $result['page'] ? (int) $result['page'] : 1;
 		return $result;
 	}
@@ -259,7 +263,7 @@ final class Catalog {
 				$variable_ids[] = $parent->get_id();
 			}
 		}
-		$scoped = '' !== $f['size'] || '' !== $f['min_price'] || '' !== $f['max_price'] || '' !== $f['cotton_min'] || '' !== $f['weight_max'];
+		$scoped = Wear_Profile::active_filters( $f ) || '' !== $f['size'] || '' !== $f['min_price'] || '' !== $f['max_price'] || '' !== $f['cotton_min'] || '' !== $f['weight_max'];
 		$scopes = $parents;
 		if ( $scoped && $variable_ids ) {
 			$children = wc_get_products(
@@ -280,7 +284,7 @@ final class Catalog {
 		}
 		$matches = self::evidence_matches( $f, array_keys( $parent_map ) );
 		$items   = array();
-		if ( '' !== $f['cotton_min'] && '' === $f['weight_max'] && '' === $f['size'] && '' === $f['min_price'] && '' === $f['max_price'] ) {
+		if ( ! Wear_Profile::active_filters( $f ) && '' !== $f['cotton_min'] && '' === $f['weight_max'] && '' === $f['size'] && '' === $f['min_price'] && '' === $f['max_price'] ) {
 			foreach ( $parents as $parent ) {
 				if ( $parent->is_type( 'variable' ) && ! empty( $matches[ $parent->get_id() . ':0' ]['cotton_pct'] ) && empty( $matches[ $parent->get_id() . ':model' ]['cotton_pct'] ) ) {
 					$scopes[] = $parent;
@@ -291,6 +295,9 @@ final class Catalog {
 			$variation = $product->is_type( 'variation' ) ? $product->get_id() : 0;
 			$parent    = $variation ? ( $parent_map[ $product->get_parent_id() ] ?? null ) : $product;
 			if ( ! $parent || ! Public_Specifications::catalog_visible( $parent->get_id(), $variation ) || ! self::size_matches( $product, $parent, $f['size'] ) ) {
+				continue;
+			}
+			if ( ! Wear_Profile::matches( $parent->get_id(), $variation, $f ) ) {
 				continue;
 			}
 			$scope = $parent->get_id() . ':' . $variation;

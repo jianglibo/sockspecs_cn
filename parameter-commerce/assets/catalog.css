@@ -52,3 +52,9 @@
 .pc-catalog-card h2{font-size:.95rem;margin-top:.6rem}
 }
 @media(max-width:360px){.pc-catalog-grid{grid-template-columns:minmax(0,1fr)}.pc-catalog-card img{max-height:190px}}
+
+.pc-catalog-more{border-top:1px solid #d6ddd8;padding-top:.45rem}
+.pc-catalog-more>summary{font-size:.85rem}
+.pc-catalog-more-fields{display:grid;gap:.9rem;padding-top:.75rem}
+.pc-catalog-auto-hint{font-size:.75rem;color:#4b5d53;margin:0}
+.pc-catalog-filters [hidden]{display:none!important}

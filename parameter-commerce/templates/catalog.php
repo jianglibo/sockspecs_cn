@@ -23,6 +23,8 @@ $active_filters    = count(
 		static fn( $value ) => '' !== $value
 	)
 );
+$advanced_filters  = array_intersect_key( $f, array_flip( array( 'use', 'size', 'min_price', 'max_price', 'cotton_min', 'weight_max', 'weight_basis', 'footwear_fit' ) ) );
+$advanced_active   = count( array_filter( $advanced_filters, static fn( $value ) => '' !== $value ) );
 $comparison_return = get_permalink();
 foreach ( $f as $filter_key => $filter_value ) {
 	if ( '' !== $filter_value ) {
@@ -51,7 +53,7 @@ try {
 }
 ?>
 <div class="pc-catalog-layout">
-<details class="pc-catalog-filter-panel">
+<details class="pc-catalog-filter-panel" data-active="<?php echo esc_attr( $active_filters ); ?>">
 <summary><?php esc_html_e( 'Filters', 'parameter-commerce' ); ?>
 <?php
 if ( $active_filters ) :
@@ -78,6 +80,25 @@ foreach ( get_terms(
 	?>
 <option value="<?php echo esc_attr( $category_term->slug ); ?>" <?php selected( $f['category'], $category_term->slug ); ?>><?php echo esc_html( $category_term->name ); ?></option>
 <?php endforeach; ?></select></label>
+<?php Wear_Profile::filter_controls( $f, array( 'thickness_grade', 'cushion_location' ) ); ?>
+<label><?php esc_html_e( 'Sort', 'parameter-commerce' ); ?><select name="pc_sort">
+<?php
+foreach ( array(
+	''           => __( 'Editorial order', 'parameter-commerce' ),
+	'price_asc'  => __( 'Price: low to high', 'parameter-commerce' ),
+	'price_desc' => __( 'Price: high to low', 'parameter-commerce' ),
+) as $key => $label ) :
+	?>
+<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $f['sort'], $key ); ?>><?php echo esc_html( $label ); ?></option>
+<?php endforeach; ?></select></label>
+<details class="pc-catalog-more" <?php echo $advanced_active ? 'open' : ''; ?>>
+<summary><?php esc_html_e( 'More filters', 'parameter-commerce' ); ?>
+<?php
+if ( $advanced_active ) {
+	echo ' (' . esc_html( $advanced_active ) . ')'; }
+?>
+</summary>
+<div class="pc-catalog-more-fields">
 <label><?php esc_html_e( 'Intended use', 'parameter-commerce' ); ?><select name="pc_use"><option value=""><?php esc_html_e( 'All uses', 'parameter-commerce' ); ?></option>
 <?php
 foreach ( array(
@@ -89,6 +110,7 @@ foreach ( array(
 	?>
 <option value="<?php echo esc_attr( $key ); ?>" <?php selected( $f['use'], $key ); ?>><?php echo esc_html( $label ); ?></option>
 <?php endforeach; ?></select></label>
+<?php Wear_Profile::filter_controls( $f, array( 'footwear_fit' ) ); ?>
 <label><?php esc_html_e( 'Size', 'parameter-commerce' ); ?><input name="pc_size" maxlength="100" value="<?php echo esc_attr( $f['size'] ); ?>" placeholder="S, M, L…"></label>
 <?php
 foreach ( array(
@@ -115,16 +137,8 @@ foreach ( array(
 	?>
 <option value="<?php echo esc_attr( $key ); ?>" <?php selected( $f['weight_basis'], $key ); ?>><?php echo esc_html( $label ); ?></option>
 <?php endforeach; ?></select></label>
-<label><?php esc_html_e( 'Sort', 'parameter-commerce' ); ?><select name="pc_sort">
-<?php
-foreach ( array(
-	''           => __( 'Editorial order', 'parameter-commerce' ),
-	'price_asc'  => __( 'Price: low to high', 'parameter-commerce' ),
-	'price_desc' => __( 'Price: high to low', 'parameter-commerce' ),
-) as $key => $label ) :
-	?>
-<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $f['sort'], $key ); ?>><?php echo esc_html( $label ); ?></option>
-<?php endforeach; ?></select></label>
+</div></details>
+<p class="pc-catalog-auto-hint" hidden><?php esc_html_e( 'Selections update results automatically.', 'parameter-commerce' ); ?></p>
 <button type="submit"><?php esc_html_e( 'Apply filters', 'parameter-commerce' ); ?></button><a href="<?php echo esc_url( Comparison::carry( get_permalink() ) ); ?>"><?php esc_html_e( 'Clear all filters', 'parameter-commerce' ); ?></a>
 </form>
 </details>
@@ -153,6 +167,7 @@ foreach ( $result['items'] as $item ) :
 		$url = add_query_arg( 'pc_variation', $item['variation_id'], $url ); }
 	?>
 <article class="pc-catalog-card"><a href="<?php echo esc_url( $url ); ?>"><?php echo wp_kses_post( $p->get_image( 'woocommerce_thumbnail' ) ); ?><h2><?php echo esc_html( $p->get_name() ); ?></h2></a>
+	<?php echo wp_kses_post( Wear_Profile::render( $p, true ) ); ?>
 <p><?php echo esc_html( $p->get_sku() ); ?></p><p><?php echo wp_kses_post( $p->get_price_html() ); ?></p>
 	<?php
 	if ( $item['variation_id'] ) :

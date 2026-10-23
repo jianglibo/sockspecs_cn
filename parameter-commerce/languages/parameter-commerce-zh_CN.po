@@ -12,6 +12,21 @@ msgstr ""
 "Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+msgid "Documented cotton, at least (%)"
+msgstr "棉含量至少（%）"
+
+msgid "Weight source"
+msgstr "重量依据"
+
+msgid "Recorded pair weight"
+msgstr "全部已记录的每双净重"
+
+msgid "Catalog pair weight"
+msgstr "产品手册标注的每双净重"
+
+msgid "Measured pair weight only"
+msgstr "仅实测的每双净重"
+
 #. Plugin Name of the plugin
 #: parameter-commerce.php
 msgid "Parameter Commerce"
@@ -22,10 +37,8 @@ msgstr "Parameter Commerce"
 msgid "Evidence-led product specifications and staff claim management for SockSpecs."
 msgstr "SockSpecs 基于证据的商品参数与员工声明管理。"
 
-#: includes/class-admin.php:30
-#: includes/class-admin.php:33
-#: includes/class-admin.php:99
-#: templates/admin-page.php:15
+#: includes/class-admin.php:30 includes/class-admin.php:33
+#: includes/class-admin.php:99 templates/admin-page.php:15
 msgid "Parameter Specs"
 msgstr "商品参数"
 
@@ -45,8 +58,7 @@ msgstr "请审阅此声明后确认状态变更。"
 msgid "Unknown operation."
 msgstr "未知操作。"
 
-#: includes/class-admin.php:169
-#: includes/class-repository.php:120
+#: includes/class-admin.php:169 includes/class-repository.php:120
 msgid "Invalid record ID or revision."
 msgstr "记录 ID 或版本号无效。"
 
@@ -158,8 +170,7 @@ msgstr "每项已发布的测量都注明来源与方法。厂家声明会明确
 msgid "We do not claim equivalent quality, a longer lifetime, or a particular saving without evidence that supports the claim."
 msgstr "没有相应证据，我们不会声称品质相当、寿命更长或能节省特定金额。"
 
-#: includes/class-catalog.php:92
-#: includes/class-catalog.php:105
+#: includes/class-catalog.php:92 includes/class-catalog.php:105
 msgid "Invalid catalog filter."
 msgstr "商品筛选条件无效。"
 
@@ -183,13 +194,11 @@ msgstr "商品证据暂时无法读取。"
 msgid "The catalog is temporarily unavailable."
 msgstr "商品目录暂时无法使用。"
 
-#: includes/class-catalog.php:238
-#: includes/class-catalog.php:264
+#: includes/class-catalog.php:238 includes/class-catalog.php:264
 msgid "Please narrow your category or intended use to browse this catalog."
 msgstr "请缩小商品类别或用途范围后浏览。"
 
-#: includes/class-demo-catalog.php:27
-#: includes/class-product-drafts.php:226
+#: includes/class-demo-catalog.php:27 includes/class-product-drafts.php:226
 msgid "You cannot edit this product."
 msgstr "您无权编辑此商品。"
 
@@ -229,8 +238,7 @@ msgstr "其他／未知纤维"
 msgid "Pair weight"
 msgstr "每双重量"
 
-#: includes/class-metrics.php:50
-#: templates/size-shape.php:33
+#: includes/class-metrics.php:50 templates/size-shape.php:33
 msgid "Foot length"
 msgstr "袜底长度"
 
@@ -339,8 +347,7 @@ msgstr "供应商（私密）"
 msgid "Not assigned"
 msgstr "未关联"
 
-#: includes/class-product-drafts.php:169
-#: includes/class-suppliers.php:35
+#: includes/class-product-drafts.php:169 includes/class-suppliers.php:35
 msgid "Add private supplier"
 msgstr "添加私密供应商"
 
@@ -408,8 +415,7 @@ msgstr "本摘要仅涵盖父商品记录。请在商品参数中逐一审阅尺
 msgid "Review declarations, measurements and evidence"
 msgstr "审阅声明、测量与证据"
 
-#: includes/class-product-drafts.php:230
-#: includes/class-suppliers.php:123
+#: includes/class-product-drafts.php:230 includes/class-suppliers.php:123
 msgid "Choose an existing private supplier."
 msgstr "请选择现有的私密供应商。"
 
@@ -425,8 +431,7 @@ msgstr "只能为已保存的草稿商品生成描述。"
 msgid "Search products by name, SKU, or ID"
 msgstr "按商品名称、SKU 或 ID 搜索"
 
-#: includes/class-product-picker.php:45
-#: includes/class-product-picker.php:172
+#: includes/class-product-picker.php:45 includes/class-product-picker.php:172
 msgid "Whole product (no variation)"
 msgstr "整个商品（不指定变体）"
 
@@ -458,10 +463,8 @@ msgstr "请先选择商品。"
 msgid "Enter an ID if JavaScript is unavailable."
 msgstr "如果 JavaScript 不可用，请输入 ID。"
 
-#: includes/class-public-specifications.php:86
-#: includes/class-public-specifications.php:123
 msgid "Specifications & evidence"
-msgstr "参数与证据"
+msgstr "参数与依据"
 
 #: includes/class-public-specifications.php:106
 msgid "Loading specifications for this selection…"
@@ -479,13 +482,11 @@ msgstr "重试"
 msgid "Choose an available size or SKU to see its measurements."
 msgstr "请选择可用的尺码或 SKU 查看对应测量数据。"
 
-#: includes/class-public-specifications.php:145
-#: templates/comparison.php:24
+#: includes/class-public-specifications.php:145 templates/comparison.php:24
 msgid "Specification scope"
 msgstr "参数适用范围"
 
-#: includes/class-public-specifications.php:145
-#: templates/comparison.php:28
+#: includes/class-public-specifications.php:145 templates/comparison.php:28
 #: templates/specifications.php:15
 msgid "Product-level records"
 msgstr "商品级记录"
@@ -566,13 +567,11 @@ msgstr "商品参数暂时无法显示，请稍后重试。"
 msgid "Specifications are not available for this selection."
 msgstr "当前选择无法提供商品参数。"
 
-#: includes/class-repository.php:127
-#: includes/class-validator.php:102
+#: includes/class-repository.php:127 includes/class-validator.php:102
 msgid "Choose an existing WooCommerce parent or simple product."
 msgstr "请选择已有的 WooCommerce 父商品或简单商品。"
 
-#: includes/class-repository.php:133
-#: includes/class-validator.php:107
+#: includes/class-repository.php:133 includes/class-validator.php:107
 msgid "The variation must belong to the selected product."
 msgstr "变体必须属于所选商品。"
 
@@ -596,8 +595,7 @@ msgstr "物理测量"
 msgid "Performance metrics"
 msgstr "性能指标"
 
-#: includes/class-repository.php:171
-#: templates/admin-page.php:117
+#: includes/class-repository.php:171 templates/admin-page.php:117
 #: templates/admin-page.php:178
 msgid "Manufacturer-declared"
 msgstr "厂家声明"
@@ -642,8 +640,7 @@ msgstr "只有管理员可以配置指标。"
 msgid "Invalid metric or label length."
 msgstr "指标或标签长度无效。"
 
-#: includes/class-repository.php:447
-#: templates/admin-page.php:53
+#: includes/class-repository.php:447 templates/admin-page.php:53
 msgid "Not tested"
 msgstr "未检测"
 
@@ -747,8 +744,7 @@ msgstr "关联商品"
 msgid "Use text of at most 4000 characters."
 msgstr "请输入不超过 4000 个字符的文本。"
 
-#: includes/class-suppliers.php:151
-#: includes/class-suppliers.php:156
+#: includes/class-suppliers.php:151 includes/class-suppliers.php:156
 msgid "Use a valid HTTPS URL without credentials."
 msgstr "请使用不含登录凭据的有效 HTTPS 链接。"
 
@@ -896,15 +892,12 @@ msgstr "声明"
 msgid "Product / variation"
 msgstr "商品／变体"
 
-#: templates/admin-page.php:33
-#: templates/admin-page.php:107
-#: templates/admin-page.php:158
-#: templates/admin-page.php:272
+#: templates/admin-page.php:33 templates/admin-page.php:107
+#: templates/admin-page.php:158 templates/admin-page.php:272
 msgid "Metric"
 msgstr "指标"
 
-#: templates/admin-page.php:33
-#: templates/admin-page.php:159
+#: templates/admin-page.php:33 templates/admin-page.php:159
 msgid "Value"
 msgstr "数值"
 
@@ -916,13 +909,11 @@ msgstr "状态／版本"
 msgid "No claims yet."
 msgstr "暂无声明。"
 
-#: templates/admin-page.php:77
-#: templates/catalog.php:167
+#: templates/admin-page.php:77 templates/catalog.php:167
 msgid "Previous page"
 msgstr "上一页"
 
-#: templates/admin-page.php:93
-#: templates/catalog.php:168
+#: templates/admin-page.php:93 templates/catalog.php:168
 msgid "Next page"
 msgstr "下一页"
 
@@ -934,8 +925,7 @@ msgstr "已保存的声明"
 msgid "New draft"
 msgstr "新草稿"
 
-#: templates/admin-page.php:103
-#: templates/comparison.php:20
+#: templates/admin-page.php:103 templates/comparison.php:20
 msgid "Product"
 msgstr "商品"
 
@@ -947,8 +937,7 @@ msgstr "变体"
 msgid "Use a variation for size-specific measurements. Product-scope measurements must not imply they apply to every size. Product, variation, and metric are fixed once a draft is saved."
 msgstr "特定尺码的测量应关联变体。商品级测量不能暗示适用于所有尺码。草稿保存后，商品、变体和指标不可更改。"
 
-#: templates/admin-page.php:106
-#: templates/admin-page.php:165
+#: templates/admin-page.php:106 templates/admin-page.php:165
 #: templates/evidence-details.php:20
 msgid "Specimen size / scope"
 msgstr "样品尺码／适用范围"
@@ -961,56 +950,46 @@ msgstr "数值（留空表示未检测）"
 msgid "Unit (use the dictionary below)"
 msgstr "单位（请参考下方字典）"
 
-#: templates/admin-page.php:114
-#: templates/admin-page.php:162
+#: templates/admin-page.php:114 templates/admin-page.php:162
 msgid "Evidence source tier"
 msgstr "证据来源类别"
 
-#: templates/admin-page.php:118
-#: templates/admin-page.php:179
+#: templates/admin-page.php:118 templates/admin-page.php:179
 msgid "Measured by us"
 msgstr "平台实测"
 
-#: templates/admin-page.php:119
-#: templates/admin-page.php:180
+#: templates/admin-page.php:119 templates/admin-page.php:180
 msgid "Third-party laboratory"
 msgstr "第三方检测"
 
-#: templates/admin-page.php:126
-#: templates/admin-page.php:166
+#: templates/admin-page.php:126 templates/admin-page.php:166
 msgid "Documented method code"
 msgstr "已记录的方法编号"
 
-#: templates/admin-page.php:127
-#: templates/admin-page.php:167
+#: templates/admin-page.php:127 templates/admin-page.php:167
 msgid "Method version"
 msgstr "方法版本"
 
-#: templates/admin-page.php:128
-#: templates/admin-page.php:168
+#: templates/admin-page.php:128 templates/admin-page.php:168
 msgid "Test conditions (JSON object)"
 msgstr "测试条件（JSON 对象）"
 
-#: templates/admin-page.php:129
-#: templates/admin-page.php:169
+#: templates/admin-page.php:129 templates/admin-page.php:169
 #: templates/evidence-details.php:21
 msgid "Actual sample count"
 msgstr "实际样本数量"
 
-#: templates/admin-page.php:130
-#: templates/admin-page.php:170
+#: templates/admin-page.php:130 templates/admin-page.php:170
 #: templates/evidence-details.php:22
 msgid "Sample batch"
 msgstr "样品批次"
 
-#: templates/admin-page.php:131
-#: templates/admin-page.php:171
+#: templates/admin-page.php:131 templates/admin-page.php:171
 #: templates/evidence-details.php:19
 msgid "Source / measurement date"
 msgstr "来源／测量日期"
 
-#: templates/admin-page.php:132
-#: templates/admin-page.php:172
+#: templates/admin-page.php:132 templates/admin-page.php:172
 msgid "Public limitations and notes"
 msgstr "公开的限制说明和备注"
 
@@ -1022,8 +1001,7 @@ msgstr "证据快照"
 msgid "Each save creates a new evidence snapshot. Private source URLs and internal notes remain staff-only. Private files must be hosted behind access controls; ordinary WordPress media is public."
 msgstr "每次保存都会创建新的证据快照。私有来源地址和内部备注仅员工可见。私有文件必须通过访问控制保护；普通 WordPress 媒体文件是公开的。"
 
-#: templates/admin-page.php:138
-#: templates/admin-page.php:173
+#: templates/admin-page.php:138 templates/admin-page.php:173
 msgid "Public evidence title"
 msgstr "公开证据标题"
 
@@ -1035,8 +1013,7 @@ msgstr "来源机构（仅员工可见）"
 msgid "Source URL (staff-only HTTPS)"
 msgstr "来源地址（仅员工可见，HTTPS）"
 
-#: templates/admin-page.php:141
-#: templates/admin-page.php:174
+#: templates/admin-page.php:141 templates/admin-page.php:174
 msgid "Public excerpt URL (explicit HTTPS disclosure)"
 msgstr "公开摘录地址（明确公开，HTTPS）"
 
@@ -1076,8 +1053,7 @@ msgstr "此处预览已保存的版本。表单中尚未保存的输入不在预
 msgid "Unit"
 msgstr "单位"
 
-#: templates/admin-page.php:161
-#: templates/evidence-details.php:18
+#: templates/admin-page.php:161 templates/evidence-details.php:18
 msgid "Status"
 msgstr "状态"
 
@@ -1197,8 +1173,7 @@ msgstr "徒步"
 msgid "Cold weather"
 msgstr "寒冷天气"
 
-#: includes/class-size-shape.php:127
-#: templates/catalog.php:92
+#: includes/class-size-shape.php:127 templates/catalog.php:92
 msgid "Size"
 msgstr "尺码"
 
@@ -1264,18 +1239,15 @@ msgstr "查看参数与选项"
 msgid "Catalog pages"
 msgstr "商品目录分页"
 
-#: templates/comparison.php:30
-#: templates/specifications.php:17
+#: templates/comparison.php:30 templates/specifications.php:17
 msgid "These records describe product-level samples, not every size. Choose a size or SKU for its own measurements. Missing variation data is never filled from another size or the parent product."
 msgstr "这些记录描述的是商品级样品，并不适用于所有尺码。请选择尺码或 SKU 查看对应的测量数据。缺失的变体数据不会用其他尺码或父商品的数据补充。"
 
-#: templates/comparison.php:15
-#: templates/specifications.php:19
+#: templates/comparison.php:15 templates/specifications.php:19
 msgid "Only staff-approved, published records appear here. Approval is not independent certification. Each source is identified; missing results are not a zero or a failing grade."
 msgstr "这里仅展示经员工审核并发布的记录。审核不等于独立认证。每条记录都标明来源；缺失的结果不代表零分或不合格。"
 
-#: templates/comparison.php:47
-#: templates/specifications.php:24
+#: templates/comparison.php:47 templates/specifications.php:24
 msgid "Parameter"
 msgstr "参数"
 
@@ -1303,8 +1275,7 @@ msgstr "查看证据详情"
 msgid "Published; staff-approved"
 msgstr "已发布；经员工审核"
 
-#: templates/evidence-details.php:20
-#: templates/evidence-details.php:21
+#: templates/evidence-details.php:20 templates/evidence-details.php:21
 #: templates/evidence-details.php:22
 msgid "Not specified"
 msgstr "未注明"
@@ -1329,8 +1300,7 @@ msgstr "公开证据附件"
 msgid "Source document is not public."
 msgstr "来源文件未公开。"
 
-#: templates/comparison.php:78
-#: templates/specifications.php:50
+#: templates/comparison.php:78 templates/specifications.php:50
 msgid "Results apply to the documented samples and conditions. Different test methods are not interchangeable, and a single measurement does not establish overall quality or predict product lifetime."
 msgstr "结果仅适用于记录中的样品和条件。不同测试方法的结果不可直接互换，单项测量不能证明整体质量，也不能预测使用寿命。"
 
@@ -1358,8 +1328,7 @@ msgstr "所选商品或尺码已无法用于比较。请清空选择并从目录
 msgid "Four selected. Remove an item before adding another."
 msgstr "已选择四项。请先移除一项再添加。"
 
-#: includes/class-comparison.php:149
-#: includes/class-comparison.php:176
+#: includes/class-comparison.php:149 includes/class-comparison.php:176
 msgid "Remove from comparison"
 msgstr "从比较中移除"
 
@@ -1367,8 +1336,7 @@ msgstr "从比较中移除"
 msgid "Add to comparison"
 msgstr "加入比较"
 
-#: includes/class-comparison.php:152
-#: includes/class-comparison.php:182
+#: includes/class-comparison.php:152 includes/class-comparison.php:182
 msgid "Clear comparison"
 msgstr "清空比较"
 
@@ -1426,8 +1394,7 @@ msgstr "仅为声明值，并非经过独立验证的测试结果。"
 msgid "Recorded units, source category, method and specimen conditions match. Review the evidence; this does not establish equivalent quality."
 msgstr "记录中的单位、来源类别、方法及样品条件一致。请审阅证据；这并不证明质量相同。"
 
-#: includes/class-comparison.php:251
-#: includes/class-comparison.php:275
+#: includes/class-comparison.php:251 includes/class-comparison.php:275
 msgid "Choose two to four products or sizes from the catalog to compare."
 msgstr "请从目录中选择二至四个商品或尺码进行比较。"
 
@@ -1443,8 +1410,7 @@ msgstr "从目录选择商品"
 msgid "Scroll each table horizontally to see all selections. Keyboard users can focus the table region and use the arrow keys."
 msgstr "横向滚动表格可查看全部选择。键盘用户可聚焦表格区域后使用方向键。"
 
-#: templates/comparison.php:17
-#: templates/comparison.php:19
+#: templates/comparison.php:17 templates/comparison.php:19
 msgid "Products, prices and availability"
 msgstr "商品、价格及供货情况"
 
@@ -1500,140 +1466,136 @@ msgstr "测量筛选仅显示已发布数据符合条件的商品。对于提供
 msgid "If the email is not in your inbox, please check your spam or junk folder."
 msgstr "如果收件箱中没有这封邮件，请检查垃圾邮件文件夹。"
 
-#: includes/class-pack-builder.php:66
-#: templates/pack-builder.php:13
+#: includes/class-pack-builder.php:66 templates/pack-builder.php:13
 msgid "Build Your Pack"
-msgstr ""
+msgstr "自由搭配套装"
 
 #: includes/class-pack-builder.php:67
 msgid "Sell 6 or 12 pairs with a quantity per color. Enable only when every variation price, weight and stock quantity represents ONE PAIR. Use explicit Color and Size attributes, variation-level stock and no backorders. Existing prepacked stock must not be reused."
-msgstr ""
+msgstr "按颜色选择数量组成套装。仅当每个变体的价格、重量和库存数量均以一双为单位时启用。需明确颜色与尺码属性，按变体管理库存且不允许缺货订购。不可直接复用已包装套装的库存。"
 
 #: includes/class-pack-builder.php:96
 msgid "Build Your Pack requires an existing variable product."
-msgstr ""
+msgstr "配色套装需要使用已创建的可变商品。"
 
 #: includes/class-pack-builder.php:99
 msgid "Build Your Pack is not enabled for this product."
-msgstr ""
+msgstr "此商品尚未启用配色套装。"
 
 #: includes/class-pack-builder.php:102
 msgid "Only authorized store staff can preview this pack."
-msgstr ""
+msgstr "仅获授权的店铺工作人员可预览此套装。"
 
 #: includes/class-pack-builder.php:105
 msgid "This pack cannot be purchased while the store is in coming-soon mode."
-msgstr ""
+msgstr "店铺尚未开放时无法购买此套装。"
 
 #: includes/class-pack-builder.php:108
 msgid "Demonstration products cannot be purchased as packs."
-msgstr ""
+msgstr "演示商品无法作为套装购买。"
 
 #: includes/class-pack-builder.php:111
 msgid "This product must be published before its pack builder is available."
-msgstr ""
+msgstr "商品发布后才能使用配色套装功能。"
 
 #: includes/class-pack-builder.php:114
 msgid "This product is not publicly accessible. Check its catalog visibility and password protection."
-msgstr ""
+msgstr "此商品无法公开访问，请检查目录可见性和密码保护设置。"
 
 #: includes/class-pack-builder.php:119
 msgid "WooCommerce global stock management is disabled. Enable Manage stock in Products > Inventory."
-msgstr ""
+msgstr "全局库存管理尚未启用，请在商品设置的库存选项中开启库存管理。"
 
 #: includes/class-pack-builder.php:122
 msgid "WooCommerce Hold stock must be a positive number of minutes in Products > Inventory."
-msgstr ""
+msgstr "请在商品设置的库存选项中将保留库存时间设为大于零的分钟数。"
 
 #: includes/class-pack-builder.php:125
 msgid "Checkout stock reservations are disabled by the woocommerce_hold_stock_for_checkout filter. Review the plugin or customization supplying this filter."
-msgstr ""
+msgstr "结账库存预留已被 woocommerce_hold_stock_for_checkout 筛选器关闭，请检查相关插件或自定义代码。"
 
 #: includes/class-pack-builder.php:130
 msgid "Pack setup requires one Color attribute, single-pair variations and at most 100 variations."
-msgstr ""
+msgstr "套装需包含一个颜色属性，变体以双为单位，且不超过 100 个变体。"
 
 #: includes/class-pack-builder.php:141
 msgid "Each pack variation needs explicit attributes, its own pair stock, physical shipping and no backorders."
-msgstr ""
+msgstr "每个套装变体需明确属性、独立的双数库存和实物配送，且不允许缺货订购。"
 
 #: includes/class-pack-builder.php:148
 msgid "Duplicate color variations must be resolved before selling packs."
-msgstr ""
+msgstr "销售套装前需处理重复的颜色变体。"
 
 #: includes/class-pack-builder.php:154
 msgid "One size"
-msgstr ""
+msgstr "均码"
 
 #: includes/class-pack-builder.php:171
 msgid "Choose a 6-pair or 12-pair pack."
-msgstr ""
+msgstr "请选择套装双数。"
 
 #: includes/class-pack-builder.php:176
 msgid "Color quantities must be whole numbers between zero and the pack size."
-msgstr ""
+msgstr "每种颜色的数量须为整数，且介于零与套装总双数之间。"
 
 #: includes/class-pack-builder.php:183
 msgid "The selected color quantities must equal the pack size."
-msgstr ""
+msgstr "所选颜色的数量合计须等于套装总双数。"
 
 #: includes/class-pack-builder.php:191
 msgid "Choose available colors from the same sock model and size."
-msgstr ""
+msgstr "请选择同一款式、同一尺码下的可用颜色。"
 
 #: includes/class-pack-builder.php:211
 msgid "Not enough stock for the selected colors. Please adjust your pack."
-msgstr ""
+msgstr "所选颜色库存不足，请调整搭配。"
 
-#: includes/class-pack-builder.php:228
-#: includes/class-pack-builder.php:232
+#: includes/class-pack-builder.php:228 includes/class-pack-builder.php:232
 msgid "This pack could not be added. Please check availability."
-msgstr ""
+msgstr "无法加入此套装，请检查商品是否有货。"
 
 #: includes/class-pack-builder.php:287
 msgid "No colors are currently available for this pack."
-msgstr ""
+msgstr "此套装目前没有可选颜色。"
 
 #: includes/class-pack-builder.php:310
 msgid "Please reload the product page and try again."
-msgstr ""
+msgstr "请刷新商品页面后重试。"
 
 #: includes/class-pack-builder.php:314
 msgid "Your pack was added. Quantities are pairs; removing a color removes the entire pack. To change colors, remove the pack and build it again."
-msgstr ""
+msgstr "套装已加入购物车，数量以双为单位。移除某种颜色会移除整套商品。如需更换颜色，请移除套装后重新搭配。"
 
-#: includes/class-pack-builder.php:334
-#: includes/class-pack-builder.php:352
+#: includes/class-pack-builder.php:334 includes/class-pack-builder.php:352
 #: includes/class-pack-builder.php:354
 msgid "Please use Build Your Pack on the product page."
-msgstr ""
+msgstr "请在商品页使用自由搭配套装功能。"
 
 #: includes/class-pack-builder.php:395
 msgid "A pack is incomplete or no longer available. Remove that pack and build it again before checkout."
-msgstr ""
+msgstr "某个套装不完整或已无法购买，请先移除并重新搭配，再进行结账。"
 
 #: includes/class-pack-builder.php:432
 msgid "To change colors or pack size, remove the pack and build it again."
-msgstr ""
+msgstr "如需更换颜色或套装双数，请移除套装后重新搭配。"
 
 #: includes/class-pack-builder.php:518
 msgid "Pack reference"
-msgstr ""
+msgstr "套装编号"
 
 #: includes/class-pack-builder.php:522
 msgid "Pairs in pack"
-msgstr ""
+msgstr "套装双数"
 
 #: includes/class-pack-builder.php:526
 msgid "Pack contents"
-msgstr ""
+msgstr "套装内容"
 
 #: includes/class-size-shape.php:109
 msgid "Supplier catalog"
 msgstr "供应商产品手册"
 
-#: includes/class-size-shape.php:127
-#: includes/class-size-shape.php:133
+#: includes/class-size-shape.php:127 includes/class-size-shape.php:133
 msgid "EU size"
 msgstr "欧码"
 
@@ -1641,8 +1603,7 @@ msgstr "欧码"
 msgid "To be confirmed"
 msgstr "待确认"
 
-#: includes/class-size-shape.php:214
-#: templates/size-shape.php:14
+#: includes/class-size-shape.php:214 templates/size-shape.php:14
 msgid "Size & Shape"
 msgstr "尺码与外形"
 
@@ -1672,55 +1633,55 @@ msgstr "尺码与外形未修改。请填写大于 0 且不超过 100 厘米的�
 
 #: templates/pack-builder.php:14
 msgid "Choose 6 or 12 pairs of this model. Prices and quantities below are per pair; the pack price is their sum. Each color has its own specifications."
-msgstr ""
+msgstr "选择本款的套装双数。下方价格和数量以双为单位，合计为套装价格。各颜色的参数可分别查看。"
 
 #: templates/pack-builder.php:19
 msgid "Size / options"
-msgstr ""
+msgstr "尺码／选项"
 
 #: templates/pack-builder.php:25
 msgid "Show colors"
-msgstr ""
+msgstr "查看颜色"
 
 #: templates/pack-builder.php:28
 msgid "Staff preview only: the store is in coming-soon mode. Adding packs to the cart is disabled. Public specifications remain unavailable until launch."
-msgstr ""
+msgstr "仅供工作人员预览：店铺尚未开放，无法将套装加入购物车。正式开放前不公开参数。"
 
 #: templates/pack-builder.php:33
 msgid "Pack size"
-msgstr ""
+msgstr "套装双数"
 
 #: templates/pack-builder.php:34
 msgid "6 pairs"
-msgstr ""
+msgstr "6 双"
 
 #: templates/pack-builder.php:34
 msgid "12 pairs"
-msgstr ""
+msgstr "12 双"
 
 #: templates/pack-builder.php:53
 msgid "Specifications for this color / size"
-msgstr ""
+msgstr "查看此颜色／尺码的参数"
 
 #: templates/pack-builder.php:58
 msgid "Select exactly the chosen number of pairs before adding your pack."
-msgstr ""
+msgstr "请选满对应双数后，将套装加入购物车。"
 
 #: templates/pack-builder.php:59
 msgid "Pack subtotal"
-msgstr ""
+msgstr "套装小计"
 
 #: templates/pack-builder.php:60
 msgid "Shipping and any applicable taxes are calculated at checkout. To change a pack in the cart, remove it and build it again."
-msgstr ""
+msgstr "运费及适用税费将在结账时计算。如需调整购物车中的套装，请移除后重新搭配。"
 
 #: templates/pack-builder.php:61
 msgid "pairs selected"
-msgstr ""
+msgstr "双已选"
 
 #: templates/pack-builder.php:61
 msgid "Add pack to cart"
-msgstr ""
+msgstr "加入购物车"
 
 #: templates/size-shape.php:19
 msgid "Sock shape and dimensions"
@@ -1734,8 +1695,7 @@ msgstr "侧面示意图。A 表示袜筒，B 表示袜底。尺寸数值列于�
 msgid "Leg length"
 msgstr "袜筒长度"
 
-#: templates/size-shape.php:32
-#: templates/size-shape.php:33
+#: templates/size-shape.php:32 templates/size-shape.php:33
 msgid "cm"
 msgstr "厘米"
 
@@ -1802,3 +1762,704 @@ msgstr "美国包邮"
 
 msgid "Free shipping to the United States. No minimum order. To change a pack in the cart, remove it and build it again."
 msgstr "美国包邮，无最低订单金额。如需更改购物车中的组合装，请移除后重新搭配。"
+
+msgid "Color"
+msgstr "颜色"
+
+msgid "Price and stock pending confirmation."
+msgstr "价格与库存待确认。"
+
+msgid "Product preview. Price and stock are not set; purchasing is not yet available. Choose a color and size in Specifications & evidence to view its parameters."
+msgstr "商品预览：价格与库存尚未设置，暂未开放购买。可在“参数与依据”中选择颜色和尺码，查看对应参数。"
+
+msgid "Specifications preview only"
+msgstr "仅供参数预览（暂不销售）"
+
+msgid "Disable purchasing until domestic prices and stock are ready."
+msgstr "国内价格与库存确认前，保持禁止购买。"
+
+msgid "Acrylic"
+msgstr "腈纶"
+
+msgid "Air-jet-spun"
+msgstr "喷气纺"
+
+msgid "Applies to"
+msgstr "适用范围"
+
+msgid "Average thickness of the wool fibres, including Merino when documented. This is separate from yarn count."
+msgstr "羊毛纤维的平均直径；有依据时可包括美利奴羊毛。此指标不同于纱支。"
+
+msgid "Carded"
+msgstr "普梳"
+
+msgid "Catalog foot length"
+msgstr "手册标注的袜底长度"
+
+msgid "Catalog sock height (measurement endpoints unconfirmed)"
+msgstr "手册标注的袜子高度（测量起止位置待确认）"
+
+msgid "Choose a size/color for its weight and dimensions, or Product-level records for sample composition reports."
+msgstr "选择具体规格（颜色、尺码及适用的袜筒款式），查看对应的重量与尺寸；选择“商品级记录”，查看样品成分报告。"
+
+msgid "Combed"
+msgstr "精梳"
+
+msgid "Compact ring-spun"
+msgstr "紧密环锭纺"
+
+msgid "Cotton fibre length, using the stated measurement basis. This is not yarn thickness."
+msgstr "按记录中的测量依据标注棉纤维长度，不代表纱线粗细。"
+
+msgid "Cotton preparation"
+msgstr "棉纱梳理工艺"
+
+msgid "Cotton staple class"
+msgstr "棉纤维长度类别"
+
+msgid "Cotton staple length"
+msgstr "棉纤维长度"
+
+msgid "Count of one yarn strand in the stated numbering system. Different systems are not directly comparable; ply is recorded separately."
+msgstr "按注明的计数体系表示单根纱线的纱支。不同体系不可直接比较；合股数另行记录。"
+
+msgid "Cuff shape"
+msgstr "袜口形态"
+
+msgid "Cushioning location"
+msgstr "缓冲结构位置"
+
+msgid "Declared pair weights. Packaging inclusion is unconfirmed; these are not verified net weights."
+msgstr "声明的一双重量，是否含包装未确认，不能视为已确认的净重。"
+
+msgid "Details"
+msgstr "详情"
+
+msgid "Documented sheep breed or breed group. Merino does not specify fibre diameter or wool percentage."
+msgstr "有依据的绵羊品种或品种类别。美利奴不代表确定的纤维细度或羊毛含量。"
+
+msgid "Documented wool staple length; compare the same measurement basis."
+msgstr "有依据的羊毛纤维长度，应按相同测量依据比较。"
+
+msgid "Elastic arch band"
+msgstr "足弓弹力带"
+
+msgid "Excludes packaging."
+msgstr "不含包装。"
+
+msgid "Extra-long-staple"
+msgstr "超长绒棉"
+
+msgid "Fibres & yarns"
+msgstr "纤维与纱线"
+
+msgid "Illustrative profile · Not to scale"
+msgstr "外形示意 · 非等比例图"
+
+msgid "Illustrative side profile based on the product photo. The low opening and heel tab are shown without measurement arrows; the outline is not to scale."
+msgstr "参考实物照片绘制的侧面示意，展示低帮袜口及后跟提耳；不标注测量箭头，轮廓并非等比例图。"
+
+msgid "Jacquard"
+msgstr "提花"
+
+msgid "Knit pattern"
+msgstr "织物图案"
+
+msgid "Knitting method"
+msgstr "织造方法"
+
+msgid "Left/right markings"
+msgstr "左右脚标识"
+
+msgid "Listing package/item height"
+msgstr "详情页商品或包装高度"
+
+msgid "Listing package/item length"
+msgstr "详情页商品或包装长度"
+
+msgid "Listing package/item width"
+msgstr "详情页商品或包装宽度"
+
+msgid "Long-staple"
+msgstr "长绒棉"
+
+msgid "Low-cut"
+msgstr "低帮"
+
+msgid "Low-cut sock with a raised heel tab"
+msgstr "带后跟提耳的低帮袜"
+
+msgid "Lyocell"
+msgstr "莱赛尔纤维"
+
+msgid "Manufacturer workbook weights per pair, excluding packaging. Compare the stated sizes; these are not independently measured results."
+msgstr "厂家产品手册中一双袜子的净重，不含包装。请按标注尺码比较；这些数值尚未经过独立实测。"
+
+msgid "Mean wool fibre diameter"
+msgstr "羊毛纤维平均直径"
+
+msgid "Medium-staple"
+msgstr "中长绒棉"
+
+msgid "Merino"
+msgstr "美利奴羊毛"
+
+msgid "Mesh panels"
+msgstr "网眼区域"
+
+msgid "Method"
+msgstr "方法"
+
+msgid "Mixed sheep breeds"
+msgstr "混合绵羊品种"
+
+msgid "Not available"
+msgstr "暂无数据"
+
+msgid "Number of strands combined in the documented yarn."
+msgstr "有依据的纱线合股数量。"
+
+msgid "Other documented sheep breed"
+msgstr "其他已注明的绵羊品种"
+
+msgid "Preparation method, separate from cotton fibre length and yarn count."
+msgstr "梳理工艺，不等同于棉纤维长度或纱支。"
+
+msgid "Present"
+msgstr "有"
+
+msgid "Profile"
+msgstr "外形"
+
+msgid "Raised heel tab"
+msgstr "后跟提耳"
+
+msgid "Reviewed for display. These details apply to the stated area and sample scope; review is not independent certification."
+msgstr "资料经审核后展示，仅适用于注明的部位和样品范围；审核不等于独立认证。"
+
+msgid "Ring-spun"
+msgstr "环锭纺"
+
+msgid "Rotor-spun"
+msgstr "转杯纺"
+
+msgid "Semi-worsted"
+msgstr "半精纺"
+
+msgid "Shaped"
+msgstr "异形袜口"
+
+msgid "Short-staple"
+msgstr "短绒棉"
+
+msgid "Single-needle"
+msgstr "单针织造"
+
+msgid "Size & Shape uses the approved dimensions in WooCommerce → Parameter Specs."
+msgstr "尺码与外形使用“WooCommerce → 参数管理”中已审核的尺寸。"
+
+msgid "Source & evidence"
+msgstr "来源与依据"
+
+msgid "Sources & testing details"
+msgstr "来源与检测详情"
+
+msgid "Specification"
+msgstr "参数"
+
+msgid "Supplier-provided laboratory report"
+msgstr "供应商提供的实验室报告"
+
+msgid "Terry cushioning"
+msgstr "毛圈缓冲"
+
+msgid "Terry sole"
+msgstr "毛圈袜底"
+
+msgid "The catalog lists a leg length of %s cm. Its measurement points are awaiting sample confirmation, so this value is not drawn as a cuff height."
+msgstr "手册标注的高度为 %s 厘米。测量起止位置尚待样品确认，因此图中不将此数值画成脚跟上方的袜筒高度。"
+
+msgid "The documented fibre-length classification; combed cotton is not automatically long-staple."
+msgstr "有依据的纤维长度分类；精梳棉并不一定是长绒棉。"
+
+msgid "The documented spinning process, separate from fibre preparation and knitting needle count."
+msgstr "有依据的纺纱工艺，不同于纤维梳理工艺和织袜针数。"
+
+msgid "These records describe product-level samples, not every size. Choose a size or SKU for its own measurements. Sample measurements do not transfer to other sizes. Only explicit model-wide declarations apply across variants."
+msgstr "商品级记录可能对应特定送检样品，并不代表所有尺码。请选择颜色和尺码查看相应测量值。样品实测值不会套用到其他规格；只有明确声明适用于全款的信息才会共用。"
+
+msgid "Tonal jacquard"
+msgstr "同色提花"
+
+msgid "Use the shoe-size option for fit. The illustration shows the low-cut shape, not a measurement method or a size-specific test record."
+msgstr "请根据鞋码选择合适尺码。此图仅展示低帮外形，不代表测量方法或特定尺码的检测结果。"
+
+msgid "Weight per pair"
+msgstr "每双净重"
+
+msgid "Wool staple length"
+msgstr "羊毛纤维长度"
+
+msgid "Wool type"
+msgstr "羊毛种类"
+
+msgid "Wool yarn processing"
+msgstr "毛纺工艺"
+
+msgid "Woollen"
+msgstr "粗纺"
+
+msgid "Woollen, semi-worsted or worsted processing, when documented."
+msgstr "有依据时标明粗纺、半精纺或精纺工艺。"
+
+msgid "Worsted"
+msgstr "精纺"
+
+msgid "Yarn count"
+msgstr "纱支"
+
+msgid "Yarn ply"
+msgstr "纱线合股数"
+
+msgid "Yarn spinning method"
+msgstr "纺纱工艺"
+msgid "4 pairs"
+msgstr "4 双"
+
+msgid "Choose a 4-pair, 6-pair or 12-pair pack."
+msgstr "请选择 4 双、6 双或 12 双装。"
+
+msgid "Choose 4, 6 or 12 pairs of this model and mix your colors within one size. The price below is for the whole pack."
+msgstr "选择本款 4 双、6 双或 12 双装，同一尺码内可自由搭配颜色。下方价格为整套价格。"
+
+msgid "Choose 4, 6 or 12 pairs of this model. Prices and quantities below are per pair; the pack price is their sum. Each color has its own specifications."
+msgstr "选择本款 4 双、6 双或 12 双装。下方单价与数量以双为单位，套装价格为各双价格之和。各颜色有独立参数。"
+
+msgid "Optional: enter all three pack totals, using the same tax basis as regular prices. Leave all blank to sum pair prices. Variation stock and weight still represent one pair."
+msgstr "可选：填写三种套装总价，税费口径与常规价格一致。全部留空则按单双价格求和。变体库存和重量仍以一双为单位。"
+
+msgid "Sell 4, 6 or 12 pairs with a quantity per color. Enable only when every variation price, weight and stock quantity represents ONE PAIR. Use explicit Color and Size attributes, variation-level stock and no backorders. Existing prepacked stock must not be reused."
+msgstr "以 4 双、6 双或 12 双装销售，按颜色选择数量。仅在每个变体的价格、重量和库存均代表一双时启用。使用明确的颜色和尺码属性、变体独立库存，并禁止缺货预订；不能复用原有整包库存。"
+
+msgid "Stock pending confirmation."
+msgstr "库存待确认。"
+
+msgid "Product preview. Purchasing is not yet available. Choose a color and size in Specifications & evidence to view its parameters."
+msgstr "商品预览，暂未开放购买。可在“参数与依据”中选择颜色和尺码查看对应参数。"
+
+msgid "Price pending confirmation."
+msgstr "价格待确认。"
+
+msgid "This six-pair color and size combination is currently unavailable. You can choose other available colors below."
+msgstr "此六双装的颜色与尺码组合暂时无货，您可在下方选择其他有货颜色。"
+
+msgid "Loading colors for the selected size…"
+msgstr "正在加载所选尺码的颜色……"
+
+msgid "Model"
+msgstr "款式"
+
+msgid "Referrals & credit"
+msgstr "推荐与购物余额"
+
+msgid "Sign in with an available CNY shopping credit balance to use this reward."
+msgstr "请登录拥有可用人民币购物余额的账户后使用。"
+
+msgid "This referral offer is for a new customer’s first order only. Self-referrals are not eligible."
+msgstr "推荐优惠仅限新客户首单，不支持自我推荐。"
+
+msgid "Only one referral can be used for your first order."
+msgstr "首单只能使用一个推荐码。"
+
+msgid "Shopping credit"
+msgstr "购物余额"
+
+msgid "First-order referral discount"
+msgstr "推荐首单优惠"
+
+msgid "Please enter a valid referral code."
+msgstr "请输入有效的推荐码。"
+
+msgid "Referrals and shopping credit"
+msgstr "推荐与购物余额"
+
+msgid "Available shopping credit:"
+msgstr "可用购物余额："
+
+msgid "Remove shopping credit"
+msgstr "取消使用购物余额"
+
+msgid "Apply shopping credit"
+msgstr "使用购物余额"
+
+msgid "Sign in to use shopping credit"
+msgstr "登录后使用购物余额"
+
+msgid "Have a referral code? Get ¥5 off your first order."
+msgstr "有推荐码？首单可减 ¥5。"
+
+msgid "Referral code"
+msgstr "推荐码"
+
+msgid "Apply referral"
+msgstr "使用推荐码"
+
+msgid "Referrals & shopping credit"
+msgstr "推荐与购物余额"
+
+msgid "Available credit:"
+msgstr "可用余额："
+
+msgid "Give a friend ¥5 off their first order. Earn ¥5 in shopping credit when that order is completed. Credit accumulates, has no expiry and can cover the full product total on any SockSpecs products. It cannot be withdrawn or exchanged for cash."
+msgstr "好友首单减 ¥5，订单完成后您获得 ¥5 购物余额。余额可累积、不过期，可用于国内站任意商品，并可抵扣全部商品金额。余额不可提现或兑换现金。"
+
+msgid "One reward per new customer. Self-referrals do not qualify. Cancelled or fully refunded orders reverse the reward. Partial refunds keep the referral reward while a purchase remains. Credit used on refunded purchases is returned proportionally as credit. If a reversed reward has already been spent, future rewards first cover the adjustment."
+msgstr "每位新客户仅奖励一次，不支持自我推荐。订单取消或全额退款时撤回奖励；部分退款且仍保留购买时，推荐奖励保留。退款订单使用的购物余额按比例退回。若撤回的奖励已被使用，后续奖励会先抵扣这部分差额。"
+
+msgid "Your referral link"
+msgstr "您的推荐链接"
+
+msgid "Your referral code:"
+msgstr "您的推荐码："
+
+msgid "The referral program is currently paused. Your recorded credit is preserved."
+msgstr "推荐活动暂时关闭，已记录的购物余额保留。"
+
+msgid "A reversed reward is being offset against future credit."
+msgstr "已使用的奖励被撤回，差额将从后续奖励中抵扣。"
+
+msgid "Recent activity"
+msgstr "最近记录"
+
+msgid "Date (UTC)"
+msgstr "时间（UTC）"
+
+msgid "Activity"
+msgstr "事项"
+
+msgid "Amount"
+msgstr "金额"
+
+msgid "Credit applied to an order"
+msgstr "订单使用余额"
+
+msgid "Credit returned"
+msgstr "余额退回"
+
+msgid "Order credit adjustment"
+msgstr "订单余额调整"
+
+msgid "Referral reward"
+msgstr "推荐奖励"
+
+msgid "Referral reward reversed"
+msgstr "推荐奖励撤回"
+
+msgid "Credit adjustment"
+msgstr "余额调整"
+
+msgid "Invalid referral discount. Please rebuild your cart."
+msgstr "推荐优惠无效，请重新整理购物车。"
+
+msgid "Cancel the previous reward order before changing its discounts."
+msgstr "请先取消之前使用奖励的订单，再修改优惠。"
+
+msgid "This reward cannot be used for this order. Please sign in and refresh your cart."
+msgstr "此订单无法使用该奖励，请登录后刷新购物车。"
+
+msgid "Shopping credit requires review: a reversal or late payment left a credit adjustment. Future credit offsets it; no cash is charged automatically."
+msgstr "购物余额需核对：奖励撤回或延迟付款产生了余额差额，后续奖励将抵扣差额，不会自动扣取现金。"
+
+msgid "Every five minutes (referral reconciliation)"
+msgstr "每五分钟核对推荐奖励"
+
+msgid "Referral credit"
+msgstr "推荐购物余额"
+
+msgid "CNY: ¥5 off a referred first order; ¥5 credit after completion. No expiry or cash withdrawal. Mark an order Completed after delivery to release its reward. Balances include pending checkout reservations. Negative balances offset future rewards."
+msgstr "人民币奖励：被推荐人首单减 ¥5，订单完成后介绍人获得 ¥5 购物余额。余额不过期、不可提现。请在交付后将订单标记为已完成以发放奖励。余额已扣除待付款订单预留金额；负余额由后续奖励抵扣。"
+
+msgid "Customer"
+msgstr "客户"
+
+msgid "Balance (CNY)"
+msgstr "余额（人民币）"
+
+msgid "Rewards are busy. Please try again."
+msgstr "奖励系统繁忙，请重试。"
+
+msgid "Unable to update shopping credit. Please try again."
+msgstr "暂时无法更新购物余额，请重试。"
+
+msgid "Sign in to use your CNY shopping credit."
+msgstr "请登录后使用人民币购物余额。"
+
+msgid "This order has already been paid."
+msgstr "此订单已经付款。"
+
+msgid "This order already has a reward reservation. Cancel it before changing the order."
+msgstr "此订单已预留奖励，请先取消订单再修改。"
+
+msgid "Your credit is reserved or has changed. Pay or cancel any unpaid order, then refresh your cart."
+msgstr "您的余额已被预留或发生变化，请支付或取消待付款订单后刷新购物车。"
+
+msgid "The referral discount is only for a new customer’s first order and cannot be used for self-referrals."
+msgstr "推荐优惠仅限新客户首单，不支持自我推荐。"
+
+msgid "Give friends ¥5 off. Earn ¥5 in shopping credit."
+msgstr "好友首单减 ¥5，您获 ¥5 购物余额。"
+
+msgid "Refer & Earn"
+msgstr "推荐有礼"
+
+msgid "Happy with your socks? Share with friends."
+msgstr "喜欢这双袜子？分享给朋友。"
+
+msgid "If you’re happy with the quality and value of your SockSpecs socks, share your referral link with friends or on your social profiles. Each new customer gets ¥5 off their first order, and you earn ¥5 in shopping credit when their order is completed. Your rewards add up with no earning cap."
+msgstr "如果您认可 SockSpecs 袜子的品质和性价比，欢迎把推荐链接分享给朋友或发布在自己的社交平台。新客户首单减 ¥5，订单完成后您获得 ¥5 购物余额。奖励可累积，累计金额不设上限。"
+
+msgid "Sign in or create an account to get your referral link."
+msgstr "登录或注册，获取您的推荐链接。"
+
+msgid "Link copied"
+msgstr "链接已复制"
+
+msgid "Select and copy the link above."
+msgstr "请选中并复制上方链接。"
+
+msgid "Copy link"
+msgstr "复制链接"
+
+msgid "Shopping for socks? Use my link for ¥5 off your first SockSpecs order. I’ll also receive ¥5 in shopping credit when your order is completed: %s"
+msgstr "如果你正在选袜子，可以通过我的链接在 SockSpecs 国内站首单减 ¥5。你的订单完成后，我也会获得 ¥5 购物余额：%s"
+
+msgid "A message you can share"
+msgstr "分享文案"
+
+msgid "Message copied"
+msgstr "文案已复制"
+
+msgid "Select and copy the message above."
+msgstr "请选中并复制上方文案。"
+
+msgid "Copy message"
+msgstr "复制文案"
+
+msgid "View your credit and activity"
+msgstr "查看余额与记录"
+
+msgid "Share your link with a friend. They get ¥5 off their first order, and you earn ¥5 in shopping credit when that order is completed."
+msgstr "把推荐链接分享给朋友，对方首单减 ¥5，订单完成后您获得 ¥5 购物余额。"
+
+msgid "How Refer & Earn works"
+msgstr "了解推荐奖励规则"
+
+msgid "Compare materials, construction, sizes and measurements. Missing information is marked as not provided; expand a value to see its scope and evidence."
+msgstr "对比材质、工艺、尺码和测量数据。缺少的数据标为“未提供”；展开数值可查看适用范围和资料依据。"
+
+msgid "Available sizes"
+msgstr "可选尺码"
+
+msgid "Available colors"
+msgstr "可选颜色"
+
+msgid "Not provided"
+msgstr "未提供"
+
+msgid "Prices are per pack. Select a pack size and product options on the product page to see the total."
+msgstr "价格为整套售价；在商品页选择装数和规格可查看合计金额。"
+
+msgid "Measurements are listed for their recorded sizes/colors, not every variant."
+msgstr "测量值仅对应已记录的尺码／颜色，具体范围见各项说明。"
+
+msgid "Sizes, source and evidence"
+msgstr "适用范围与资料依据"
+
+msgid "Material trade name"
+msgstr "材料商品名称"
+
+msgid "A declared material trade name does not establish fibre percentages, certification or tested performance."
+msgstr "材料商品名称不能代表纤维比例、认证或经检测确认的功能。"
+
+msgid "Thickness"
+msgstr "厚薄"
+
+msgid "Terry distribution"
+msgstr "毛圈分布"
+
+msgid "Shoe pairing"
+msgstr "鞋型搭配建议"
+
+msgid "Thin"
+msgstr "薄款"
+
+msgid "Medium thickness"
+msgstr "中等厚度"
+
+msgid "Thick"
+msgstr "厚款"
+
+msgid "No terry"
+msgstr "无毛圈"
+
+msgid "Partial terrry"
+msgstr "局部毛圈"
+
+msgid "Partial terry"
+msgstr "局部毛圈"
+
+msgid "Full terry"
+msgstr "全毛圈"
+
+msgid "Terry — coverage unspecified"
+msgstr "有毛圈（覆盖范围未明确）"
+
+msgid "Suitable for close-fitting shoes"
+msgstr "适合搭配贴脚鞋款"
+
+msgid "Suitable for regular-fit shoes"
+msgstr "适合搭配常规空间的鞋款"
+
+msgid "Best with roomier shoes"
+msgstr "建议搭配鞋内空间较宽松的鞋款"
+
+msgid "Thickness & shoe pairing"
+msgstr "厚薄与鞋型搭配"
+
+msgid "Any"
+msgstr "不限"
+
+msgid "Relative wearing thickness, not a quality score or a conversion from pair weight. Compare using the stated assessment method."
+msgstr "穿着厚薄的相对分级，不代表品质高低，也不是由每双重量换算而来。请结合所注明的评估方法比较。"
+
+msgid "Guidance about room inside the shoe, not a guarantee of fit. Record the shoes and sizes assessed."
+msgstr "根据鞋内空间提供搭配建议，不保证适合所有人的脚型。记录评估所用鞋款和尺码。"
+
+msgid "Where terry loops are present. Unspecified terry does not establish full-sole coverage or overall thickness."
+msgstr "说明毛圈覆盖的位置。笼统的“有毛圈”不代表全脚底覆盖或整双袜子的厚薄。"
+
+msgid "Thickness is relative; fit depends on room inside your shoes. See Specifications & evidence for the assessment and applicable options."
+msgstr "厚薄为相对分级，穿着是否合适取决于鞋内空间。评估依据与适用规格请查看“参数与依据”。"
+
+msgid "Thickness and shoe pairing are optional. Leave unconfirmed values blank. Use thin / moderate / thick for relative thickness; no-terry / partial-terry / terry-sole / full-terry for confirmed terry distribution; close-fitting-shoes / regular-fit-shoes / roomier-shoes for assessed shoe pairing. Choose the appropriate source before publishing. Sample observations need a date and description; color/size and sample count are optional. Existing terry-cushioning means coverage unspecified."
+msgstr "厚薄和鞋型搭配为可选参数，未确认的留空。厚薄使用 thin（薄款）/ moderate（中等）/ thick（厚款）；毛圈分布使用 no-terry（无）/ partial-terry（局部）/ terry-sole（全脚底）/ full-terry（全毛圈）；鞋型搭配使用 close-fitting-shoes（贴脚）/ regular-fit-shoes（常规）/ roomier-shoes（宽松）。发布前选择适当的来源。样品观察只需记录日期和描述，颜色尺码及样品数量为选填。已有 terry-cushioning 仅表示毛圈覆盖范围未明确。"
+
+msgid "Thickness by option"
+msgstr "按规格记录的厚薄"
+
+msgid "Recorded options only; see product details."
+msgstr "仅适用于已记录的规格，详见商品页。"
+
+msgid "Sample observation by us"
+msgstr "本站样品观察"
+
+msgid "Sample observation record"
+msgstr "样品观察记录"
+
+msgid "Our store"
+msgstr "本站"
+
+msgid "Sample observations are limited to thickness, terry distribution and shoe pairing. Measurements and performance claims require their original evidence rules."
+msgstr "样品观察仅适用于厚薄、毛圈分布和鞋型搭配。定量测量和功能测试仍需原有的检测依据。"
+
+msgid "Identify the color and size of the sample you observed."
+msgstr "请注明实际观察的样品颜色和尺码。"
+
+msgid "Enter the number of samples actually observed."
+msgstr "请填写实际观察的样品数量。"
+
+msgid "Briefly describe what you observed on the sample."
+msgstr "请简短描述在样品上观察到的情况。"
+
+msgid "For visible terry placement, choose Sample observation by us. Record the actual observation date and a short description. Sample color/size and sample count are optional; add them only when useful, such as when variants differ. Blank evidence title and source organization are filled as our own sample observation record; no external URL, laboratory method/version, batch or test-conditions JSON is required. Leave unknowns blank. Do not use this source for composition percentages or performance tests."
+msgstr "肉眼观察毛圈位置时，来源选择“本站样品观察”。填写实际观察日期和简短描述即可。样品颜色尺码及数量均为选填；例如发现不同规格存在差异时再补充。证据标题及来源机构留空时会自动标为本站样品观察记录；无需外部网址、实验方法、版本、批次或测试条件。未知信息留空。此来源不能用于成分比例或性能测试。"
+
+msgid "Based on direct sample observations; see any recorded scope and notes. These are not laboratory measurements or a quality ranking."
+msgstr "依据样品直接观察；如有适用范围及备注，请一并查看。这不是实验室测量或品质排名。"
+
+msgid "Based on our direct sample observation; no external report is claimed."
+msgstr "依据本站直接观察的样品记录，不代表外部检测报告。"
+
+msgid "This is a revision of an existing parameter. Publishing replaces the current value and preserves its history. Updating the product does not publish parameters."
+msgstr "这是已有参数的修订。发布后会替换当前值，并保留历史记录。更新商品不会发布参数。"
+
+msgid "Current value"
+msgstr "当前生效值"
+
+msgid "New value"
+msgstr "本次修改值"
+
+msgid "Publish and replace current value"
+msgstr "发布并替换当前值"
+
+msgid "Each product, variation and parameter has one current value. Saving another entry for the same parameter creates a revision; the storefront changes only after that revision is reviewed and published."
+msgstr "同一商品、同一规格的每个参数只有一个当前生效值。重复录入会保存为修订版，审核并发布后才会更新前台。"
+
+msgid "Thickness is a relative assessment, not a quality rating."
+msgstr "厚薄为相对判断，不代表品质高低。"
+
+msgid "Shoe pairing is guidance; comfort also depends on the room inside your shoes."
+msgstr "鞋型搭配仅供参考，穿着舒适度还取决于鞋内空间。"
+
+msgid "Metric name"
+msgstr "指标名称"
+
+msgid "All metrics"
+msgstr "全部指标"
+
+msgid "Save and publish"
+msgstr "保存并发布"
+
+msgid "Edit the fields below and choose Save and publish to update the product page. History is kept automatically; there is no need to retract or add the parameter again. Save draft keeps the current public value unchanged."
+msgstr "直接修改下方内容，点击“保存并发布”即可更新商品页。系统自动保留历史，无需先撤回，也无需重新添加同名参数。“保存草稿”不会改变前台当前值。"
+
+msgid "Saved details, history and advanced actions"
+msgstr "已保存详情、历史与高级操作"
+
+msgid "Cuff style"
+msgstr "袜筒款式"
+
+msgid "Choose one cuff style and size, then mix colors in a 4, 6 or 12-pair pack. The price below is for the whole pack."
+msgstr "先选择袜筒款式和尺码，再自由搭配颜色，组成 4、6 或 12 双装。下方价格为整套价格。"
+
+msgid "Loading colors for the selected options…"
+msgstr "正在加载所选规格的颜色…"
+
+msgid "Specifications for this option"
+msgstr "查看此规格的参数"
+
+msgid "Stock pending confirmation — unavailable to order."
+msgstr "库存待确认，暂不可购买。"
+
+msgid "Currently unavailable."
+msgstr "暂不可购买。"
+
+msgid "Mix styles, colors, sizes and cuff heights within this product at the same per-pair price. Choose 4, 6 or 12 pairs in total. The price below is for the whole pack."
+msgstr "同一商品中，单价相同的款式、颜色、尺码和袜筒长度可以混选，合计凑够 4、6 或 12 双。下方价格为整套价格。"
+
+msgid "Only variants of the same product with matching per-pair prices and tax treatment can share a pack. Adjust your selection."
+msgstr "同一套装只能选择同一商品中单价及税务设置一致的规格，请调整选择。"
+
+msgid "Choose available variants of the same product with matching per-pair prices and tax treatment."
+msgstr "请选择同一商品中单价及税务设置一致且有库存的规格。"
+
+msgid "Variant quantities must be whole numbers between zero and the pack size."
+msgstr "每种规格的数量必须是零至套装双数之间的整数。"
+
+msgid "The selected quantities must equal the pack size."
+msgstr "所选规格的数量合计必须等于套装双数。"
+
+msgid "Not enough stock for the selected variants. Please adjust your pack."
+msgstr "所选规格库存不足，请调整套装。"
+
+msgid "Your pack was added. Quantities are pairs; removing a variant removes the entire pack. To change your selection, remove the pack and build it again."
+msgstr "套装已加入购物车，数量以双为单位。移除其中一种规格会移除整套；如需调整，请移除套装后重新选择。"
+
+msgid "View dimensions for this option (new tab)"
+msgstr "查看该规格尺寸示意（新标签页）"
+
+msgid "More filters"
+msgstr "更多筛选"
+
+msgid "Selections update results automatically."
+msgstr "修改选项后自动更新结果。"

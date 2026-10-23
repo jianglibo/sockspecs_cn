@@ -1,57 +1,28 @@
-/* Regression for the actual progressive-enhancement script; no browser dependencies. */
+/* Actual pack enhancement: cross-fieldset quantities, price/tax boundaries, history. */
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const vm = require('node:vm');
 const script = fs.readFileSync('parameter-commerce/assets/pack-builder.js', 'utf8');
-for (const preview of ['true', 'false']) {
-for (const fixed of [false, true]) {
-	const inputs = [{name:'pc_colors[1]',value:'2',dataset:{price:'2'},validity:{valid:true}}, {name:'pc_colors[2]',value:'4',dataset:{price:'2'},validity:{valid:true}}];
-	const size = {value:'6'};
-	const button = {disabled:preview==='true',dataset:{label:'pairs selected'}};
-	const progress = {};
-	const subtotal = {dataset:{locale:'en-US',currency:'USD',label:'Pack subtotal'}};
-	const fieldset = {};
-	const listeners = {}, groupListeners = {}, optionsListeners = {}, windowListeners = {};
-	const group = {value:'M',addEventListener:(name,fn)=>{groupListeners[name]=fn;}};
-	const optionsPackSize = {value:'6'};
-	const showColors = {hidden:false};
-	const googleOffer = {dataset:{googlePackVariant:'1'}};
-	let navigations = [];
-	const options = {dataset:{loading:'Loading colors for the selected size…'},querySelector:key=>({'[name="pc_pack_group"]':group,'[name="pc_pack_size"]':optionsPackSize,'button[type="submit"]':showColors})[key],
-		addEventListener:(name,fn)=>{optionsListeners[name]=fn;},requestSubmit:()=>{optionsListeners.submit();navigations.push({group:group.value,packSize:optionsPackSize.value});}};
-	const elements = {'[name="pc_pack_size"]':size,'button[type="submit"]':button,'.pc-pack-progress':progress,'.pc-pack-total':subtotal,'fieldset':fieldset};
-	const attrs = {};
-	const form = {dataset:{preview,packGroup:'M',packPrices:fixed ? JSON.stringify({6:23.90,12:42.90}) : '{}'},closest:()=>({querySelector:key=>key==='.pc-pack-options' ? options : googleOffer}),setAttribute:(k,v)=>{attrs[k]=v;},querySelectorAll:()=>inputs,querySelector:key=>elements[key],addEventListener:(name,fn)=>{listeners[name]=fn;}};
-	vm.runInNewContext(script,{document:{querySelectorAll:()=>[form]},window:{addEventListener:(name,fn)=>{windowListeners[name]=fn;}},Intl});
-	assert.equal(button.disabled,preview==='true');
-	assert.equal(progress.textContent,'6 / 6 pairs selected');
-	assert.equal(subtotal.textContent,fixed ? 'Pack subtotal: $23.90' : 'Pack subtotal: $12.00');
-	let prevented = false;
-	listeners.submit({preventDefault:()=>{prevented=true;}});
-	assert.equal(prevented,preview==='true');
-	size.value='12'; listeners.change(); assert.equal(button.disabled,true);
-	assert.equal(optionsPackSize.value,'12');
-	inputs[1].value='10'; listeners.input(); assert.equal(button.disabled,preview==='true');
-	assert.equal(subtotal.textContent,fixed ? 'Pack subtotal: $42.90' : 'Pack subtotal: $24.00');
-	// M -> L loads the exact group, preserves 12 pairs, and cannot submit the old M rows.
-	group.value='L';groupListeners.change();
-	assert.deepEqual(navigations,[{group:'L',packSize:'12'}]);
-	assert.equal(button.disabled,true);assert.equal(fieldset.disabled,true);assert.equal(attrs['aria-busy'],'true');
-	assert.equal(progress.textContent,options.dataset.loading);
-	prevented=false;listeners.submit({preventDefault:()=>{prevented=true;}});assert.equal(prevented,true);
-	listeners.input();assert.equal(button.disabled,true); // Input events cannot reopen stale submission.
-	// Cancelled navigation / restored selection of M unlocks only the rendered group's rows.
-	group.value='M';groupListeners.change();assert.equal(navigations.length,1);assert.equal(fieldset.disabled,false);assert.equal(button.disabled,preview==='true');
-	// History restores the rendered selection without adding a navigation/back loop.
-	group.value='L';windowListeners.pageshow();assert.equal(navigations.length,1);assert.equal(group.value,'M');assert.equal(button.disabled,preview==='true');
-	// Fresh L markup after the GET is coherent; choosing M goes back with the pack size intact.
-	form.dataset.packGroup='L';windowListeners.pageshow();assert.equal(navigations.length,1);assert.equal(group.value,'L');assert.equal(fieldset.disabled,false);
-	size.value='6';inputs[1].value='4';listeners.change();group.value='M';groupListeners.change();
-	assert.deepEqual(navigations[1],{group:'M',packSize:'6'});
-	group.value='L';inputs[0].value='6';inputs[1].value='0';listeners.input();assert.equal(googleOffer.hidden,false);
-	size.value='12';listeners.change();assert.equal(googleOffer.hidden,true);
-	size.value='6';inputs[0].value='3';inputs[1].value='3';listeners.input();assert.equal(googleOffer.hidden,true);
-	inputs[0].value='6';inputs[1].value='0';listeners.input();assert.equal(googleOffer.hidden,false);
+for (const preview of ['true', 'false']) for (const fixed of [false, true]) {
+ const inputs = [1,2,3].map(id=>({name:`pc_colors[${id}]`,value:id===3?'0':'2',dataset:{price:'10',mixKey:'same-product-price-tax'},validity:{valid:true},disabled:id===3}));
+ const size={value:'4'},button={dataset:{label:'双已选'}},progress={},subtotal={dataset:{locale:'zh-CN',currency:'CNY',label:'总价'}};
+ const listeners={},windowListeners={},offer={dataset:{googlePackVariant:'1'}};
+ const form={dataset:{preview,mixError:'不能混选不同单价或税务设置',packPrices:fixed?JSON.stringify({4:39.60,6:59.40,12:118.80}):'{}'},querySelectorAll:()=>inputs,querySelector:key=>({'[name="pc_pack_size"]':size,'button[type="submit"]':button,'.pc-pack-progress':progress,'.pc-pack-total':subtotal})[key],closest:()=>({querySelector:()=>offer}),addEventListener:(k,v)=>listeners[k]=v};
+ vm.runInNewContext(script,{document:{querySelectorAll:()=>[form]},window:{addEventListener:(k,v)=>windowListeners[k]=v},Intl});
+ for(const n of [4,6,12]){
+  size.value=String(n);inputs[1].value=String(n-2);listeners.change();
+  assert.equal(button.disabled,preview==='true');assert.equal(progress.textContent,`${n} / ${n} 双已选`);
+  const total=fixed?{4:39.60,6:59.40,12:118.80}[n]:n*10;
+  assert.equal(subtotal.textContent,`总价: ${new Intl.NumberFormat('zh-CN',{style:'currency',currency:'CNY'}).format(total)}`);
+  windowListeners.pageshow();assert.equal(inputs[0].value,'2');assert.equal(inputs[1].value,String(n-2));
+ }
+ inputs[1].dataset.mixKey='another-price-or-tax';listeners.input();assert.equal(button.disabled,true);assert.equal(subtotal.hidden,true);assert.match(progress.textContent,/不能混选/);
+ let prevented=false;listeners.submit({preventDefault:()=>prevented=true});assert.equal(prevented,true);
+ inputs[1].value='0';inputs[0].value='12';listeners.input();assert.equal(button.disabled,preview==='true');
+ inputs[2].value='1';inputs[0].value='11';listeners.input();assert.equal(button.disabled,true); // Unavailable options cannot contribute.
+ inputs[2].value='0';inputs[0].value='12';inputs[0].validity.valid=false;listeners.input();assert.equal(button.disabled,true);
+ inputs[0].validity.valid=true;inputs[0].value='11.5';listeners.input();assert.equal(button.disabled,true);
+ size.value='6';inputs[0].value='6';listeners.input();assert.equal(offer.hidden,false);
+ inputs[0].value='2';inputs[1].value='4';inputs[1].dataset.mixKey='same-product-price-tax';listeners.input();assert.equal(offer.hidden,true);assert.equal(button.disabled,preview==='true');
 }
-}
-console.log('PASS: pack JS — M/L switching, pack size preservation, stale-submit prevention, history restoration, preview and pricing.');
+console.log('PASS: mixed-pack JS — all groups counted, 4/6/12 prices, compatibility, unavailable stock, invalid totals, preview and history.');

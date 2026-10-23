@@ -30,6 +30,7 @@ final class Product_Picker {
 		if ( ( $hook && ! str_ends_with( $hook, '_page_pc-specs' ) ) || ! current_user_can( 'manage_woocommerce' ) || ! Plugin::has_woocommerce() || ! function_exists( 'WC' ) ) {
 			return;
 		}
+		wp_enqueue_script( 'pc-metric-editor', plugins_url( 'assets/metric-editor.js', dirname( __DIR__ ) . '/parameter-commerce.php' ), array(), '1.0.0', true );
 		wp_enqueue_style( 'pc-select2', WC()->plugin_url() . '/assets/css/select2.css', array(), WC_VERSION );
 		if ( ! wp_script_is( 'selectWoo', 'registered' ) ) {
 			wp_register_script( 'selectWoo', WC()->plugin_url() . '/assets/js/selectWoo/selectWoo.full.min.js', array( 'jquery' ), WC_VERSION, true );

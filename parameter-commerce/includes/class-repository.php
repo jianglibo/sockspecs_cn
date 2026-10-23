@@ -17,6 +17,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 /** All mutation entry points enforce authorization independently of the UI. */
 final class Repository {
 	/**
+	 * Current outer write scope for composed atomic operations.
+	 *
+	 * @var string|null
+	 */
+	private static $transaction_scope = null;
+
+	/**
 	 * Require staff access and a usable schema/dependency.
 	 *
 	 * @param bool $publish Require publication capability too.
@@ -45,17 +52,36 @@ final class Repository {
 	}
 
 	/**
-	 * Bounded staff listing with optional product filter.
+	 * Read the current claim for exactly the same product, variation and metric.
 	 *
-	 * @param int $product_id Product filter, zero for all.
-	 * @param int $page Page number.
-	 * @return array
+	 * @param array $claim Saved scope.
+	 * @return array|null
 	 */
-	public static function listing( $product_id = 0, $page = 1 ) {
+	public static function current_claim( array $claim ) {
 		self::authorize();
 		global $wpdb;
+		$slot = $claim['wc_product_id'] . ':' . $claim['wc_variation_id'] . ':' . $claim['metric_key'];
+		$id   = $wpdb->get_var( $wpdb->prepare( 'SELECT id FROM %i WHERE published_slot = %s', $wpdb->prefix . 'pc_claims', $slot ) );
+		return $id ? self::read( $id ) : null;
+	}
+
+	/**
+	 * Bounded staff listing with optional product and metric filters.
+	 *
+	 * @param int    $product_id Product filter, zero for all.
+	 * @param int    $page Page number.
+	 * @param string $metric_key Metric key, blank for all.
+	 * @return array
+	 * @throws Failure When the filter is not a registered metric.
+	 */
+	public static function listing( $product_id = 0, $page = 1, $metric_key = '' ) {
+		self::authorize();
+		if ( ! is_string( $metric_key ) || ( '' !== $metric_key && ! isset( Metrics::all()[ $metric_key ] ) ) ) {
+			throw new Failure( array( 'metric_filter' => __( 'Choose a registered sock metric.', 'parameter-commerce' ) ) );
+		}
+		global $wpdb;
 		$offset = ( max( 1, min( 100000, (int) $page ) ) - 1 ) * 20;
-		return $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM %i WHERE (%d = 0 OR wc_product_id = %d) ORDER BY id DESC LIMIT 21 OFFSET %d', $wpdb->prefix . 'pc_claims', $product_id, $product_id, $offset ), ARRAY_A );
+		return $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM %i WHERE (%d = 0 OR wc_product_id = %d) AND (%s = %s OR metric_key = %s) ORDER BY id DESC LIMIT 21 OFFSET %d', $wpdb->prefix . 'pc_claims', $product_id, $product_id, $metric_key, '', $metric_key, $offset ), ARRAY_A );
 	}
 
 	/**
@@ -171,6 +197,7 @@ final class Repository {
 		$source_labels = array(
 			'supplier_declared' => __( 'Manufacturer-declared', 'parameter-commerce' ),
 			'platform_measured' => __( 'Platform-measured', 'parameter-commerce' ),
+			'platform_observed' => __( 'Sample observation by us', 'parameter-commerce' ),
 			'third_party_lab'   => __( 'Third-party-tested', 'parameter-commerce' ),
 			'supplier_report'   => __( 'Supplier-provided laboratory report', 'parameter-commerce' ),
 		);
@@ -243,6 +270,16 @@ final class Repository {
 		self::authorize();
 		$data          = Validator::claim( $input );
 		$evidence_data = Validator::evidence( $evidence );
+		if ( 'platform_observed' === $data['source_type'] ) {
+			// Identify this first-party record, without inventing dates, samples or observations.
+			if ( '' === $evidence_data['public_title'] ) {
+				$evidence_data['public_title'] = __( 'Sample observation record', 'parameter-commerce' );
+			}
+			if ( '' === $evidence_data['source_org'] ) {
+				$evidence_data['source_org'] = __( 'Our store', 'parameter-commerce' );
+			}
+		}
+
 		return self::transaction(
 			$data['wc_product_id'],
 			$data['wc_variation_id'],
@@ -258,6 +295,15 @@ final class Repository {
 						if ( (string) $before[ $field ] !== (string) $data[ $field ] ) {
 							throw new Failure( array( $field => __( 'A saved claim’s product, variation, and metric cannot be changed. Create a new claim.', 'parameter-commerce' ) ), 409 );
 						}
+					}
+				}
+				// New duplicate entries become revisions, without changing the live value.
+				// Preserve an existing target/version so stale drafts never silently rebase.
+				if ( empty( $before['supersedes_id'] ) ) {
+					$current = self::current_claim( $data );
+					if ( $current ) {
+						$data['supersedes_id']       = (int) $current['id'];
+						$data['supersedes_revision'] = (int) $current['revision'];
 					}
 				}
 				$now = current_time( 'mysql', true );
@@ -289,6 +335,62 @@ final class Repository {
 					$id = (int) $wpdb->insert_id;
 				}
 				self::audit( $id, $before ? 'draft_updated' : 'draft_created', $before, self::read( $id ) );
+				return $id;
+			}
+		);
+	}
+
+	/**
+	 * Direct form editing with optional atomic review and publication.
+	 *
+	 * @param array $input Submitted claim fields.
+	 * @param array $evidence Submitted evidence.
+	 * @param int   $id Existing claim or zero.
+	 * @param int   $revision Expected form revision.
+	 * @param bool  $publish Explicit Save and publish action.
+	 * @param int   $current_id Live record shown when opening the form.
+	 * @param int   $current_revision Live revision shown in the form.
+	 * @return int Saved claim ID.
+	 * @throws Failure On validation, permission or stale form errors.
+	 */
+	public static function edit( array $input, array $evidence, $id, $revision, $publish, $current_id = 0, $current_revision = 0 ) {
+		self::authorize( $publish );
+		$data = Validator::claim( $input );
+		return self::transaction(
+			$data['wc_product_id'],
+			$data['wc_variation_id'],
+			static function () use ( $input, $evidence, $data, $id, $revision, $publish, $current_id, $current_revision ) {
+				$source = $id ? self::read( $id, true ) : null;
+				if ( $source ) {
+					self::expect( $source, $revision );
+					foreach ( array( 'wc_product_id', 'wc_variation_id', 'metric_key' ) as $field ) {
+						if ( (string) $source[ $field ] !== (string) $data[ $field ] ) {
+							self::conflict();
+						}
+					}
+					if ( 'retracted' === $source['status'] ) {
+						self::conflict();
+					}
+				}
+				if ( $publish ) {
+					$current = self::current_claim( $data );
+					if ( (int) ( $current['id'] ?? 0 ) !== (int) $current_id || (int) ( $current['revision'] ?? 0 ) !== (int) $current_revision ) {
+						self::conflict();
+					}
+				}
+				if ( $source && 'published' === $source['status'] ) {
+					$id       = self::fork( $id, $revision );
+					$revision = 1;
+				} elseif ( $source && 'reviewed' === $source['status'] ) {
+					self::transition( $id, $revision, 'draft' );
+					++$revision;
+				}
+				$id    = self::save( $input, $evidence, $id, $revision );
+				$saved = self::read( $id );
+				if ( $publish ) {
+					self::transition( $id, (int) $saved['revision'], 'reviewed' );
+					self::transition( $id, (int) $saved['revision'] + 1, 'published', $current_id, $current_revision );
+				}
 				return $id;
 			}
 		);
@@ -339,15 +441,17 @@ final class Repository {
 	 * @param int    $id Claim ID.
 	 * @param int    $revision Expected revision.
 	 * @param string $target Target status.
+	 * @param int    $replace_id Explicit current claim shown for a legacy unlinked draft.
+	 * @param int    $replace_revision Expected current revision shown to the reviewer.
 	 * @return int Claim ID.
 	 */
-	public static function transition( $id, $revision, $target ) {
+	public static function transition( $id, $revision, $target, $replace_id = 0, $replace_revision = 0 ) {
 		self::authorize( in_array( $target, array( 'published', 'retracted' ), true ) );
 		$source = self::read( $id );
 		return self::transaction(
 			$source['wc_product_id'],
 			$source['wc_variation_id'],
-			static function () use ( $id, $revision, $target ) {
+			static function () use ( $id, $revision, $target, $replace_id, $replace_revision ) {
 				global $wpdb;
 				$before = self::read( $id, true );
 				self::expect( $before, $revision );
@@ -366,7 +470,8 @@ final class Repository {
 				if ( ! in_array( $target, $allowed[ $before['status'] ], true ) ) {
 					throw new Failure( array( 'status' => __( 'Invalid transition. Save draft → mark reviewed → publish. Published claims can only be retracted or revised.', 'parameter-commerce' ) ), 409 );
 				}
-				$changes = array(
+				$audit_before = $before;
+				$changes      = array(
 					'status'     => $target,
 					'revision'   => $revision + 1,
 					'updated_at' => current_time( 'mysql', true ),
@@ -380,6 +485,19 @@ final class Repository {
 				if ( 'published' === $target ) {
 					$slot   = $before['wc_product_id'] . ':' . $before['wc_variation_id'] . ':' . $before['metric_key'];
 					$active = $wpdb->get_row( $wpdb->prepare( 'SELECT id FROM %i WHERE published_slot = %s FOR UPDATE', $wpdb->prefix . 'pc_claims', $slot ), ARRAY_A );
+					// Legacy duplicate drafts can replace only the exact record displayed in the form.
+					if ( $replace_id ) {
+						if ( ! $active || (int) $active['id'] !== (int) $replace_id ) {
+							self::conflict();
+						}
+						if ( $before['supersedes_id'] && ( (int) $before['supersedes_id'] !== (int) $replace_id || (int) $before['supersedes_revision'] !== (int) $replace_revision ) ) {
+							self::conflict();
+						}
+						$before['supersedes_id']        = (int) $replace_id;
+						$before['supersedes_revision']  = (int) $replace_revision;
+						$changes['supersedes_id']       = (int) $replace_id;
+						$changes['supersedes_revision'] = (int) $replace_revision;
+					}
 					if ( $before['supersedes_id'] ) {
 						$old = self::read( $before['supersedes_id'], true );
 						self::expect( $old, $before['supersedes_revision'] );
@@ -421,7 +539,7 @@ final class Repository {
 						)
 					)
 				);
-				self::audit( $id, $target, $before, self::read( $id ) );
+				self::audit( $id, $target, $audit_before, self::read( $id ) );
 				return $id;
 			}
 		);
@@ -607,7 +725,13 @@ final class Repository {
 	 */
 	private static function transaction( $product, $variation, callable $callback ) {
 		global $wpdb;
-		$lock            = 'pc-write-' . md5( DB_NAME . $wpdb->prefix . ':' . $product . ':' . $variation );
+		$lock = 'pc-write-' . md5( DB_NAME . $wpdb->prefix . ':' . $product . ':' . $variation );
+		if ( null !== self::$transaction_scope ) {
+			if ( self::$transaction_scope !== $lock ) {
+				self::conflict();
+			}
+			return $callback();
+		}
 		$previous_errors = $wpdb->suppress_errors( true );
 		$locked          = false;
 		try {
@@ -616,13 +740,15 @@ final class Repository {
 				self::conflict();
 			}
 			self::written( $wpdb->query( 'START TRANSACTION' ), false );
-			$result = $callback();
+			self::$transaction_scope = $lock;
+			$result                  = $callback();
 			self::written( $wpdb->query( 'COMMIT' ), false );
 			return $result;
 		} catch ( \Throwable $error ) {
 			$wpdb->query( 'ROLLBACK' );
 			throw $error;
 		} finally {
+			self::$transaction_scope = null;
 			if ( $locked ) {
 				$wpdb->get_var( $wpdb->prepare( 'SELECT RELEASE_LOCK(%s)', $lock ) );
 			}

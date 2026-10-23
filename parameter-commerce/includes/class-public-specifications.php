@@ -68,7 +68,7 @@ final class Public_Specifications {
 		}
 		if ( (int) $variation_id ) {
 			$variation = wc_get_product( (int) $variation_id );
-			return $product->is_type( 'variable' ) && $variation && $variation->is_type( 'variation' ) && (int) $variation->get_parent_id() === (int) $product_id && 'publish' === $variation->get_status() && ! get_post_field( 'post_password', $variation->get_id() ) && $variation->variation_is_visible() && $variation->variation_is_active() && $variation->is_in_stock();
+			return $product->is_type( 'variable' ) && $variation && $variation->is_type( 'variation' ) && (int) $variation->get_parent_id() === (int) $product_id && 'publish' === $variation->get_status() && ! get_post_field( 'post_password', $variation->get_id() ) && ( Domestic_Catalog::preview( $product ) || ( $variation->variation_is_visible() && $variation->variation_is_active() && ( $variation->is_in_stock() || Pack_Builder::show_unavailable( $product ) ) ) );
 		}
 		return true;
 	}
@@ -263,7 +263,12 @@ final class Public_Specifications {
 	 * @return string
 	 */
 	public static function scope_label( $product ) {
-		return $product->get_name() . ( $product->get_sku() ? ' — ' . $product->get_sku() : '' );
+		$name = $product->get_name();
+		if ( $product->is_type( 'variation' ) && Size_Shape::has_cuff_height( wc_get_product( $product->get_parent_id() ) ) ) {
+			// WooCommerce may omit attribute text from names with three or more axes.
+			$name = wc_get_formatted_variation( $product, true, true );
+		}
+		return $name . ( $product->get_sku() ? ' — ' . $product->get_sku() : '' );
 	}
 
 	/**
@@ -280,7 +285,7 @@ final class Public_Specifications {
 			$value = (string) $metric['value'];
 			return wc_format_localized_decimal( str_contains( $value, '.' ) ? rtrim( rtrim( $value, '0' ), '.' ) : $value );
 		}
-		$labels = array(
+		$labels = Wear_Profile::labels() + array(
 			'carded'             => __( 'Carded', 'parameter-commerce' ),
 			'short-staple'       => __( 'Short-staple', 'parameter-commerce' ),
 			'medium-staple'      => __( 'Medium-staple', 'parameter-commerce' ),

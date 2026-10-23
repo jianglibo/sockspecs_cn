@@ -1,0 +1,10 @@
+const fs = require('fs'), vm = require('vm'), assert = require('assert');
+let click, invoked=0; const button={disabled:false,addEventListener:(name,fn)=>{click=fn;}}, message={textContent:''};
+const context={window:{sscnJsapi:{appId:'fixture'}},document:{getElementById:id=>id==='sscn-jsapi-pay'?button:message}};
+vm.runInNewContext(fs.readFileSync('sscn-commerce/assets/jsapi.js','utf8'),context);
+click(); assert(message.textContent.includes('微信中'));assert.equal(invoked,0);
+context.window.WeixinJSBridge={invoke:(name,data,callback)=>{invoked++;assert.equal(name,'getBrandWCPayRequest');assert(button.disabled);callback({err_msg:'get_brand_wcpay_request:ok'});}};
+click();assert.equal(invoked,1);assert(!button.disabled);assert(message.textContent.includes('确认结果'));
+context.window.WeixinJSBridge.invoke=(name,data,callback)=>callback({err_msg:'get_brand_wcpay_request:cancel'});
+click();assert(!button.disabled);assert(message.textContent.includes('未完成'));
+console.log('PASS: JSAPI requires WeChat, handles completion/cancellation, waits for server payment confirmation.');

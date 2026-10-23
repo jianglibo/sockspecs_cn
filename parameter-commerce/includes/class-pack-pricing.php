@@ -36,13 +36,14 @@ final class Pack_Pricing {
 		if ( ! is_array( $config ) || ( $config['currency'] ?? '' ) !== get_woocommerce_currency() ) {
 			throw new \RuntimeException( esc_html__( 'Pack prices need review before this product can be purchased.', 'parameter-commerce' ) );
 		}
-		foreach ( array( 6, 12 ) as $size ) {
+		foreach ( array( 4, 6, 12 ) as $size ) {
 			$value = $config[ $size ] ?? null;
 			if ( ! is_scalar( $value ) || ! is_numeric( $value ) || ! is_finite( (float) $value ) || (float) $value <= 0 || wc_format_decimal( $value, wc_get_price_decimals() ) !== (string) $value ) {
 				throw new \RuntimeException( esc_html__( 'Pack prices need review before this product can be purchased.', 'parameter-commerce' ) );
 			}
 		}
 		return array(
+			4  => $config[4],
 			6  => $config[6],
 			12 => $config[12],
 		);
@@ -53,7 +54,7 @@ final class Pack_Pricing {
 		global $product_object;
 		$config = $product_object ? $product_object->get_meta( '_pc_pack_prices' ) : array();
 		echo '<div class="options_group show_if_variable">';
-		foreach ( array( 6, 12 ) as $size ) {
+		foreach ( array( 4, 6, 12 ) as $size ) {
 			woocommerce_wp_text_input(
 				array(
 					'id'          => '_pc_pack_price_' . $size,
@@ -61,7 +62,7 @@ final class Pack_Pricing {
 					'label'       => sprintf( __( '%1$d-pair pack price (%2$s)', 'parameter-commerce' ), $size, get_woocommerce_currency() ),
 					'value'       => is_array( $config ) ? ( $config[ $size ] ?? '' ) : '',
 					'data_type'   => 'price',
-					'description' => __( 'Optional: enter both pack totals, using the same tax basis as regular prices. Leave both blank to sum pair prices. Variation stock and weight still represent one pair.', 'parameter-commerce' ),
+					'description' => __( 'Optional: enter all three pack totals, using the same tax basis as regular prices. Leave all blank to sum pair prices. Variation stock and weight still represent one pair.', 'parameter-commerce' ),
 				)
 			);
 		}
@@ -69,23 +70,23 @@ final class Pack_Pricing {
 	}
 
 	/**
-	 * Save both prices together under native product permissions and nonce.
+	 * Save all prices together under native product permissions and nonce.
 	 *
 	 * @param \WC_Product $product Product being edited.
 	 */
 	public static function save( $product ) {
-		if ( ! $product->is_type( 'variable' ) || ! current_user_can( 'edit_post', $product->get_id() ) || ! isset( $_POST['woocommerce_meta_nonce'], $_POST['_pc_pack_price_6'], $_POST['_pc_pack_price_12'] ) || ! is_string( $_POST['woocommerce_meta_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['woocommerce_meta_nonce'] ) ), 'woocommerce_save_data' ) ) {
+		if ( ! $product->is_type( 'variable' ) || ! current_user_can( 'edit_post', $product->get_id() ) || ! isset( $_POST['woocommerce_meta_nonce'], $_POST['_pc_pack_price_4'], $_POST['_pc_pack_price_6'], $_POST['_pc_pack_price_12'] ) || ! is_string( $_POST['woocommerce_meta_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['woocommerce_meta_nonce'] ) ), 'woocommerce_save_data' ) ) {
 			return;
 		}
 		$config = array( 'currency' => get_woocommerce_currency() );
-		foreach ( array( 6, 12 ) as $size ) {
-			$raw = wp_unslash( $_POST[ '_pc_pack_price_' . $size ] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,WordPress.Security.ValidatedSanitizedInput.InputNotValidated -- Both keys checked above; normalized below.
+		foreach ( array( 4, 6, 12 ) as $size ) {
+			$raw = wp_unslash( $_POST[ '_pc_pack_price_' . $size ] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,WordPress.Security.ValidatedSanitizedInput.InputNotValidated -- All keys checked above; normalized below.
 			if ( ! is_string( $raw ) ) {
 				return;
 			}
 			$config[ $size ] = '' === trim( $raw ) ? '' : wc_format_decimal( $raw, wc_get_price_decimals() );
 		}
-		if ( '' === $config[6] && '' === $config[12] ) {
+		if ( '' === $config[4] && '' === $config[6] && '' === $config[12] ) {
 			$product->delete_meta_data( '_pc_pack_prices' );
 			return;
 		}
@@ -161,7 +162,7 @@ final class Pack_Pricing {
 	public static function calculate( $cart ) {
 		$groups = array();
 		foreach ( $cart->get_cart() as $key => $item ) {
-			if ( empty( $item['pc_pack'] ) ) {
+			if ( empty( $item['pc_pack'] ) || 'selection-v1' === ( $item['pc_pack']['kind'] ?? '' ) ) {
 				continue;
 			}
 			// Reset from storage on every pass; never reuse a prior discounted object.

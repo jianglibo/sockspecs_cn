@@ -13,6 +13,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /** Native coupon integration; WooCommerce retains orders, taxes and payments. */
 final class Referrals {
+	/** Domestic first-order benefit, in fen, for each side. */
+	const REWARD_FEN = 500;
+
+	/** Require this independent domestic installation. */
+	public static function domestic() {
+		return defined( 'DB_NAME' ) && 'sockspecs_cn' === DB_NAME &&
+			in_array( home_url(), array( 'https://sockspecs.cn', 'http://127.0.0.1:8089' ), true );
+	}
 	/** Register inert hooks; an explicit migration and option enable the program. */
 	public static function register_hooks() {
 		add_action( 'init', array( self::class, 'endpoint' ) );
@@ -32,7 +40,7 @@ final class Referrals {
 		add_action( 'woocommerce_order_status_changed', array( self::class, 'changed' ), 20 );
 		add_action( 'woocommerce_payment_complete', array( self::class, 'changed' ), 20 );
 		add_action( 'woocommerce_order_refunded', array( self::class, 'changed' ), 20 );
-		add_action( 'pc_referrals_reconcile', array( self::class, 'reconcile' ) );
+		add_action( 'sscn_referrals_reconcile', array( self::class, 'reconcile' ) );
 		// This recovery sweep is short and only processes existing local order IDs.
 		// phpcs:ignore WordPress.WP.CronInterval.CronSchedulesInterval
 		add_filter( 'cron_schedules', array( self::class, 'schedules' ) );
@@ -45,16 +53,16 @@ final class Referrals {
 	 * @return bool
 	 */
 	public static function ready() {
-		return Plugin::has_woocommerce() && 1 === (int) get_option( 'pc_referrals_schema' );
+		return self::domestic() && Plugin::has_woocommerce() && 1 === (int) get_option( 'sscn_referrals_schema' );
 	}
 
 	/**
-	 * Only the operator-approved USD program is available for new checkout use.
+	 * Only the operator-approved CNY program is available for new checkout use.
 	 *
 	 * @return bool
 	 */
 	public static function enabled() {
-		return self::ready() && 'yes' === get_option( 'pc_referrals_enabled' ) && 'USD' === get_woocommerce_currency() && 2 === wc_get_price_decimals();
+		return self::ready() && 'yes' === get_option( 'sscn_referrals_enabled' ) && 'CNY' === get_woocommerce_currency() && 2 === wc_get_price_decimals();
 	}
 
 	/**
@@ -98,7 +106,7 @@ final class Referrals {
 	 * @return string
 	 */
 	public static function code( $user ) {
-		return 'ss-ref-' . $user . '-' . substr( hash_hmac( 'sha256', 'referral:' . $user, wp_salt( 'auth' ) ), 0, 20 );
+		return 'sscn-ref-' . $user . '-' . substr( hash_hmac( 'sha256', 'sockspecs-cn-referral:' . $user, wp_salt( 'auth' ) ), 0, 20 );
 	}
 
 	/**
@@ -108,7 +116,7 @@ final class Referrals {
 	 * @return int
 	 */
 	public static function referrer( $code ) {
-		if ( preg_match( '/^ss-ref-([1-9][0-9]*)-[a-f0-9]{20}$/D', $code, $match ) ) {
+		if ( preg_match( '/^sscn-ref-([1-9][0-9]*)-[a-f0-9]{20}$/D', $code, $match ) ) {
 			$id = (int) $match[1];
 			if ( hash_equals( self::code( $id ), $code ) && get_userdata( $id ) ) {
 				return $id;
@@ -187,10 +195,10 @@ final class Referrals {
 		if ( ! self::enabled() ) {
 			return $data;
 		}
-		if ( 'ss-credit' === $code || self::referrer( $code ) ) {
+		if ( 'sscn-credit' === $code || self::referrer( $code ) ) {
 			return array(
 				'discount_type'  => 'fixed_cart',
-				'amount'         => 'ss-credit' === $code ? self::available() / 100 : 2,
+				'amount'         => 'sscn-credit' === $code ? self::available() / 100 : self::REWARD_FEN / 100,
 				'individual_use' => false,
 				'free_shipping'  => false,
 			);
@@ -208,13 +216,13 @@ final class Referrals {
 	 */
 	public static function valid( $valid, $coupon ) {
 		$code = $coupon->get_code();
-		if ( 'ss-credit' !== $code && ! str_starts_with( $code, 'ss-ref-' ) ) {
+		if ( 'sscn-credit' !== $code && ! str_starts_with( $code, 'sscn-ref-' ) ) {
 			return $valid;
 		}
-		if ( ! self::enabled() || ( 'ss-credit' === $code && ! self::available() ) ) {
-			throw new \Exception( esc_html__( 'Sign in with an available USD shopping credit balance to use this reward.', 'parameter-commerce' ) );
+		if ( ! self::enabled() || ( 'sscn-credit' === $code && ! self::available() ) ) {
+			throw new \Exception( esc_html__( 'Sign in with an available CNY shopping credit balance to use this reward.', 'parameter-commerce' ) );
 		}
-		if ( 'ss-credit' === $code ) {
+		if ( 'sscn-credit' === $code ) {
 			return $valid;
 		}
 		$id    = self::referrer( $code );
@@ -225,7 +233,7 @@ final class Referrals {
 			throw new \Exception( esc_html__( 'This referral offer is for a new customer’s first order only. Self-referrals are not eligible.', 'parameter-commerce' ) );
 		}
 		foreach ( WC()->cart ? WC()->cart->get_applied_coupons() : array() as $applied ) {
-			if ( $code !== $applied && str_starts_with( $applied, 'ss-ref-' ) ) {
+			if ( $code !== $applied && str_starts_with( $applied, 'sscn-ref-' ) ) {
 				throw new \Exception( esc_html__( 'Only one referral can be used for your first order.', 'parameter-commerce' ) );
 			}
 		}
@@ -240,7 +248,7 @@ final class Referrals {
 	 * @return string
 	 */
 	public static function label( $label, $coupon ) {
-		return 'ss-credit' === $coupon->get_code() ? __( 'Shopping credit', 'parameter-commerce' ) : ( self::referrer( $coupon->get_code() ) ? __( 'First-order referral discount', 'parameter-commerce' ) : $label );
+		return 'sscn-credit' === $coupon->get_code() ? __( 'Shopping credit', 'parameter-commerce' ) : ( self::referrer( $coupon->get_code() ) ? __( 'First-order referral discount', 'parameter-commerce' ) : $label );
 	}
 
 	/** Handle first-party share links and nonce-protected reward form submissions. */
@@ -250,12 +258,12 @@ final class Referrals {
 		}
 		// A referral link only selects a nonfinancial discount. Final eligibility is server checked.
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$code = isset( $_GET['ss_ref'] ) && is_string( $_GET['ss_ref'] ) ? sanitize_text_field( wp_unslash( $_GET['ss_ref'] ) ) : '';
+		$code = isset( $_GET['sscn_ref'] ) && is_string( $_GET['sscn_ref'] ) ? sanitize_text_field( wp_unslash( $_GET['sscn_ref'] ) ) : '';
 		if ( $code && self::referrer( $code ) ) {
 			WC()->session->set_customer_session_cookie( true );
-			WC()->session->set( 'pc_referral_code', $code );
+			WC()->session->set( 'sscn_referral_code', $code );
 			self::apply_pending();
-			wp_safe_redirect( remove_query_arg( 'ss_ref' ) );
+			wp_safe_redirect( remove_query_arg( 'sscn_ref' ) );
 			exit;
 		}
 		if ( empty( $_POST['pc_reward_action'] ) || ! is_string( $_POST['pc_reward_action'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
@@ -264,11 +272,11 @@ final class Referrals {
 		check_admin_referer( 'pc_rewards', 'pc_rewards_nonce' );
 		$action = sanitize_key( wp_unslash( $_POST['pc_reward_action'] ) );
 		if ( 'credit' === $action ) {
-			WC()->cart->apply_coupon( 'ss-credit' );
+			WC()->cart->apply_coupon( 'sscn-credit' );
 		} elseif ( 'remove' === $action ) {
-			WC()->cart->remove_coupon( 'ss-credit' );
-		} elseif ( 'referral' === $action && isset( $_POST['pc_referral_code'] ) && is_string( $_POST['pc_referral_code'] ) ) {
-			$code = sanitize_text_field( wp_unslash( $_POST['pc_referral_code'] ) );
+			WC()->cart->remove_coupon( 'sscn-credit' );
+		} elseif ( 'referral' === $action && isset( $_POST['sscn_referral_code'] ) && is_string( $_POST['sscn_referral_code'] ) ) {
+			$code = sanitize_text_field( wp_unslash( $_POST['sscn_referral_code'] ) );
 			if ( self::referrer( $code ) ) {
 				WC()->cart->apply_coupon( $code );
 			} else {
@@ -283,7 +291,7 @@ final class Referrals {
 	/** Apply a remembered share code when products first enter the cart. */
 	public static function apply_pending() {
 		if ( self::enabled() && WC()->session && WC()->cart && ! WC()->cart->is_empty() ) {
-			$code = WC()->session->get( 'pc_referral_code' );
+			$code = WC()->session->get( 'sscn_referral_code' );
 			if ( is_string( $code ) && self::referrer( $code ) && ! WC()->cart->has_discount( $code ) ) {
 				WC()->cart->apply_coupon( $code );
 			}
@@ -296,8 +304,8 @@ final class Referrals {
 	 * @param string $code Removed coupon.
 	 */
 	public static function removed( $code ) {
-		if ( WC()->session && WC()->session->get( 'pc_referral_code' ) === $code ) {
-			WC()->session->__unset( 'pc_referral_code' );
+		if ( WC()->session && WC()->session->get( 'sscn_referral_code' ) === $code ) {
+			WC()->session->__unset( 'sscn_referral_code' );
 		}
 	}
 
@@ -316,18 +324,18 @@ final class Referrals {
 		if ( is_user_logged_in() ) {
 			$available = self::available();
 			echo '<p>' . esc_html__( 'Available shopping credit:', 'parameter-commerce' ) . ' ' . wp_kses_post( wc_price( $available / 100 ) ) . '</p>';
-			if ( $available || WC()->cart->has_discount( 'ss-credit' ) ) {
+			if ( $available || WC()->cart->has_discount( 'sscn-credit' ) ) {
 				echo '<form method="post">';
 				wp_nonce_field( 'pc_rewards', 'pc_rewards_nonce' );
-				$applied = WC()->cart->has_discount( 'ss-credit' );
+				$applied = WC()->cart->has_discount( 'sscn-credit' );
 				echo '<button class="button" name="pc_reward_action" value="' . ( $applied ? 'remove' : 'credit' ) . '">' . esc_html( $applied ? __( 'Remove shopping credit', 'parameter-commerce' ) : __( 'Apply shopping credit', 'parameter-commerce' ) ) . '</button></form>';
 			}
 		} else {
 			echo '<p><a href="' . esc_url( wc_get_page_permalink( 'myaccount' ) ) . '">' . esc_html__( 'Sign in to use shopping credit', 'parameter-commerce' ) . '</a></p>';
 		}
-		echo '<details><summary>' . esc_html__( 'Have a referral code? Get $2 off your first order.', 'parameter-commerce' ) . '</summary><form method="post">';
+		echo '<details><summary>' . esc_html__( 'Have a referral code? Get ¥5 off your first order.', 'parameter-commerce' ) . '</summary><form method="post">';
 		wp_nonce_field( 'pc_rewards', 'pc_rewards_nonce' );
-		echo '<label>' . esc_html__( 'Referral code', 'parameter-commerce' ) . ' <input name="pc_referral_code" type="text" required maxlength="80"></label> <button class="button" name="pc_reward_action" value="referral">' . esc_html__( 'Apply referral', 'parameter-commerce' ) . '</button></form></details></section>';
+		echo '<label>' . esc_html__( 'Referral code', 'parameter-commerce' ) . ' <input name="sscn_referral_code" type="text" required maxlength="80"></label> <button class="button" name="pc_reward_action" value="referral">' . esc_html__( 'Apply referral', 'parameter-commerce' ) . '</button></form></details></section>';
 		return ob_get_clean() . $content;
 	}
 
@@ -339,17 +347,17 @@ final class Referrals {
 		nocache_headers();
 		$user    = get_current_user_id();
 		$balance = Referral_Store::balance( $user );
-		echo '<h2>' . esc_html__( 'Referrals & shopping credit', 'parameter-commerce' ) . '</h2><p>' . esc_html__( 'Available credit:', 'parameter-commerce' ) . ' <strong>' . wp_kses_post( wc_price( max( 0, $balance ) / 100, array( 'currency' => 'USD' ) ) ) . '</strong></p>';
-		echo '<p>' . esc_html__( 'Give a friend $2 off their first order. Earn $2 in shopping credit when that order is completed. Credit accumulates, has no expiry and can cover the full product total on any SockSpecs products. It cannot be withdrawn or exchanged for cash.', 'parameter-commerce' ) . '</p>';
+		echo '<h2>' . esc_html__( 'Referrals & shopping credit', 'parameter-commerce' ) . '</h2><p>' . esc_html__( 'Available credit:', 'parameter-commerce' ) . ' <strong>' . wp_kses_post( wc_price( max( 0, $balance ) / 100, array( 'currency' => 'CNY' ) ) ) . '</strong></p>';
+		echo '<p>' . esc_html__( 'Give a friend ¥5 off their first order. Earn ¥5 in shopping credit when that order is completed. Credit accumulates, has no expiry and can cover the full product total on any SockSpecs products. It cannot be withdrawn or exchanged for cash.', 'parameter-commerce' ) . '</p>';
 		echo '<p>' . esc_html__( 'One reward per new customer. Self-referrals do not qualify. Cancelled or fully refunded orders reverse the reward. Partial refunds keep the referral reward while a purchase remains. Credit used on refunded purchases is returned proportionally as credit. If a reversed reward has already been spent, future rewards first cover the adjustment.', 'parameter-commerce' ) . '</p>';
 		if ( self::enabled() ) {
 			$code = self::code( $user );
-			echo '<p><label>' . esc_html__( 'Your referral link', 'parameter-commerce' ) . '<input type="text" readonly style="width:100%" value="' . esc_attr( add_query_arg( 'ss_ref', $code, home_url( '/' ) ) ) . '"></label></p><p>' . esc_html__( 'Your referral code:', 'parameter-commerce' ) . ' <code>' . esc_html( $code ) . '</code></p>';
+			echo '<p><label>' . esc_html__( 'Your referral link', 'parameter-commerce' ) . '<input type="text" readonly style="width:100%" value="' . esc_attr( add_query_arg( 'sscn_ref', $code, home_url( '/' ) ) ) . '"></label></p><p>' . esc_html__( 'Your referral code:', 'parameter-commerce' ) . ' <code>' . esc_html( $code ) . '</code></p>';
 		} else {
 			echo '<p>' . esc_html__( 'The referral program is currently paused. Your recorded credit is preserved.', 'parameter-commerce' ) . '</p>';
 		}
 		if ( $balance < 0 ) {
-			echo '<p>' . esc_html__( 'A reversed reward is being offset against future credit.', 'parameter-commerce' ) . ' ' . wp_kses_post( wc_price( abs( $balance ) / 100, array( 'currency' => 'USD' ) ) ) . '</p>';
+			echo '<p>' . esc_html__( 'A reversed reward is being offset against future credit.', 'parameter-commerce' ) . ' ' . wp_kses_post( wc_price( abs( $balance ) / 100, array( 'currency' => 'CNY' ) ) ) . '</p>';
 		}
 		echo '<h3>' . esc_html__( 'Recent activity', 'parameter-commerce' ) . '</h3><table class="shop_table"><thead><tr><th>' . esc_html__( 'Date (UTC)', 'parameter-commerce' ) . '</th><th>' . esc_html__( 'Activity', 'parameter-commerce' ) . '</th><th>' . esc_html__( 'Amount', 'parameter-commerce' ) . '</th></tr></thead><tbody>';
 		$labels = array(
@@ -360,7 +368,7 @@ final class Referrals {
 			'referral_reversed' => __( 'Referral reward reversed', 'parameter-commerce' ),
 		);
 		foreach ( Referral_Store::history( $user ) as $entry ) {
-			echo '<tr><td>' . esc_html( $entry['created'] ) . '</td><td>' . esc_html( $labels[ $entry['reason'] ] ?? __( 'Credit adjustment', 'parameter-commerce' ) ) . '</td><td>' . wp_kses_post( wc_price( $entry['delta'] / 100, array( 'currency' => 'USD' ) ) ) . '</td></tr>';
+			echo '<tr><td>' . esc_html( $entry['created'] ) . '</td><td>' . esc_html( $labels[ $entry['reason'] ] ?? __( 'Credit adjustment', 'parameter-commerce' ) ) . '</td><td>' . wp_kses_post( wc_price( $entry['delta'] / 100, array( 'currency' => 'CNY' ) ) ) . '</td></tr>';
 		}
 		echo '</tbody></table>';
 	}
@@ -378,14 +386,14 @@ final class Referrals {
 		$special  = false;
 		foreach ( $order->get_items( 'coupon' ) as $item ) {
 			$code = $item->get_code();
-			if ( 'ss-credit' === $code ) {
+			if ( 'sscn-credit' === $code ) {
 				$credit += (int) round( (float) $item->get_discount() * 100 );
 				$special = true;
-			} elseif ( str_starts_with( $code, 'ss-ref-' ) ) {
+			} elseif ( str_starts_with( $code, 'sscn-ref-' ) ) {
 				++$count;
 				$special  = true;
 				$referrer = self::referrer( $code );
-				if ( ! $referrer || (float) $item->get_discount() > 2.001 ) {
+				if ( ! $referrer || (float) $item->get_discount() > self::REWARD_FEN / 100 + 0.001 ) {
 					throw new \RuntimeException( esc_html__( 'Invalid referral discount. Please rebuild your cart.', 'parameter-commerce' ) );
 				}
 			}
@@ -400,7 +408,7 @@ final class Referrals {
 			throw new \RuntimeException( esc_html__( 'This reward cannot be used for this order. Please sign in and refresh your cart.', 'parameter-commerce' ) );
 		}
 		Referral_Store::reserve( $order, $credit, $referrer );
-		$order->update_meta_data( '_pc_referral_program', 'usd-first-order-v1' );
+		$order->update_meta_data( '_sscn_referral_program', 'cny-first-order-v1' );
 		$order->save_meta_data();
 	}
 
@@ -415,7 +423,7 @@ final class Referrals {
 		try {
 			self::reserve( $order );
 		} catch ( \RuntimeException $error ) {
-			throw new \Automattic\WooCommerce\StoreApi\Exceptions\RouteException( 'pc_referral_invalid', esc_html( $error->getMessage() ), 400 );
+			throw new \Automattic\WooCommerce\StoreApi\Exceptions\RouteException( 'sscn_referral_invalid', esc_html( $error->getMessage() ), 400 );
 		}
 	}
 
@@ -451,7 +459,7 @@ final class Referrals {
 	 * @return array
 	 */
 	public static function schedules( $schedules ) {
-		$schedules['pc_referrals_five_minutes'] = array(
+		$schedules['sscn_referrals_five_minutes'] = array(
 			'interval' => 300,
 			'display'  => __( 'Every five minutes (referral reconciliation)', 'parameter-commerce' ),
 		);
@@ -464,13 +472,13 @@ final class Referrals {
 		if ( ! self::ready() ) {
 			return;
 		}
-		$cursor = (int) get_option( 'pc_referrals_cursor', 0 );
+		$cursor = (int) get_option( 'sscn_referrals_cursor', 0 );
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-		$ids = $wpdb->get_col( $wpdb->prepare( "SELECT order_id FROM {$wpdb->prefix}pc_referral_orders WHERE order_id > %d ORDER BY order_id LIMIT 100", $cursor ) );
+		$ids = $wpdb->get_col( $wpdb->prepare( "SELECT order_id FROM {$wpdb->prefix}sscn_referral_orders WHERE order_id > %d ORDER BY order_id LIMIT 100", $cursor ) );
 		foreach ( $ids as $id ) {
 			self::changed( (int) $id );
 		}
-		update_option( 'pc_referrals_cursor', count( $ids ) === 100 ? (int) end( $ids ) : 0, false );
+		update_option( 'sscn_referrals_cursor', count( $ids ) === 100 ? (int) end( $ids ) : 0, false );
 	}
 
 	/** Add a read-only staff overview. */
@@ -484,12 +492,12 @@ final class Referrals {
 		if ( ! current_user_can( 'manage_woocommerce' ) || ! self::ready() ) {
 			return;
 		}
-		echo '<div class="wrap"><h1>' . esc_html__( 'Referral credit', 'parameter-commerce' ) . '</h1><p>' . esc_html__( 'USD: $2 off a referred first order; $2 credit after completion. No expiry or cash withdrawal. Mark an order Completed after delivery to release its reward. Balances include pending checkout reservations. Negative balances offset future rewards.', 'parameter-commerce' ) . '</p>';
+		echo '<div class="wrap"><h1>' . esc_html__( 'Referral credit', 'parameter-commerce' ) . '</h1><p>' . esc_html__( 'CNY: ¥5 off a referred first order; ¥5 credit after completion. No expiry or cash withdrawal. Mark an order Completed after delivery to release its reward. Balances include pending checkout reservations. Negative balances offset future rewards.', 'parameter-commerce' ) . '</p>';
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-		$rows = $wpdb->get_results( "SELECT user_id,SUM(delta) AS balance FROM {$wpdb->prefix}pc_referral_ledger GROUP BY user_id ORDER BY user_id LIMIT 200", ARRAY_A );
-		echo '<table class="widefat"><thead><tr><th>' . esc_html__( 'Customer', 'parameter-commerce' ) . '</th><th>' . esc_html__( 'Balance (USD)', 'parameter-commerce' ) . '</th></tr></thead><tbody>';
+		$rows = $wpdb->get_results( "SELECT user_id,SUM(delta) AS balance FROM {$wpdb->prefix}sscn_referral_ledger GROUP BY user_id ORDER BY user_id LIMIT 200", ARRAY_A );
+		echo '<table class="widefat"><thead><tr><th>' . esc_html__( 'Customer', 'parameter-commerce' ) . '</th><th>' . esc_html__( 'Balance (CNY)', 'parameter-commerce' ) . '</th></tr></thead><tbody>';
 		foreach ( $rows as $row ) {
-			echo '<tr><td><a href="' . esc_url( get_edit_user_link( $row['user_id'] ) ) . '">' . esc_html( $row['user_id'] ) . '</a></td><td>' . wp_kses_post( wc_price( $row['balance'] / 100, array( 'currency' => 'USD' ) ) ) . '</td></tr>';
+			echo '<tr><td><a href="' . esc_url( get_edit_user_link( $row['user_id'] ) ) . '">' . esc_html( $row['user_id'] ) . '</a></td><td>' . wp_kses_post( wc_price( $row['balance'] / 100, array( 'currency' => 'CNY' ) ) ) . '</td></tr>';
 		}
 		echo '</tbody></table></div>';
 	}

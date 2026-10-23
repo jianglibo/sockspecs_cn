@@ -16,7 +16,11 @@
     "lint": "@php tools/lint.php",
     "test": [
       "@php tests/run.php",
-      "@php tests/cn-boundaries.php"
+      "@php tests/cn-boundaries.php",
+      "@php tests/commerce-providers.php",
+      "node tests/commerce-js.js",
+      "node tests/catalog-js.js",
+      "node tests/metric-editor-js.js"
     ],
     "standards": "phpcs --standard=phpcs.xml.dist",
     "check": [

@@ -17,8 +17,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 require_once __DIR__ . '/includes/class-plugin.php';
+require_once __DIR__ . '/includes/class-domestic-catalog.php';
 require_once __DIR__ . '/includes/class-failure.php';
 require_once __DIR__ . '/includes/class-metrics.php';
+require_once __DIR__ . '/includes/class-wear-profile.php';
 require_once __DIR__ . '/includes/class-schema.php';
 require_once __DIR__ . '/includes/class-validator.php';
 require_once __DIR__ . '/includes/class-repository.php';

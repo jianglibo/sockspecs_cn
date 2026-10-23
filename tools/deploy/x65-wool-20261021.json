@@ -1,0 +1,19 @@
+{
+  "site": "domestic",
+  "sku": "SS-001-X65",
+  "description": "短筒羊毛混纺袜，脚感温暖，适合日常穿着与步行。",
+  "metric_key": "wool_pct",
+  "value": 30,
+  "unit": "%",
+  "source_type": "supplier_declared",
+  "source_received_at": "2026-10-21",
+  "source": {
+    "title": "1688 商品详情成分标注及经营者确认",
+    "organization": "名郡",
+    "listing_models": "X65 X66 X68【美利奴羊毛袜】",
+    "pasted_fabric_name": "美利奴羊毛",
+    "pasted_composition_content": "30",
+    "operator_confirmation": "好的，按这个描述更新国内站的X65，羊毛含量按厂家声明填30%。",
+    "scope": "仅将经营者明确确认的 X65 羊毛含量发布为厂家声明；其余纤维比例不推算。不是检测报告。"
+  }
+}

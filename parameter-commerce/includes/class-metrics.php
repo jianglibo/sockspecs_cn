@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /** Types and validation rules remain versioned in code; labels are configurable. */
 final class Metrics {
-	const VERSION = 4;
+	const VERSION = 6;
 	/**
 	 * Return the sock definitions; no measurement method is invented here.
 	 *
@@ -184,11 +184,11 @@ final class Metrics {
 				'choices'  => array( 'single-needle' ),
 			),
 			'cushion_location'      => array(
-				'label'    => __( 'Cushioning location', 'parameter-commerce' ),
+				'label'    => __( 'Terry distribution', 'parameter-commerce' ),
 				'unit'     => '',
 				'category' => 'construction',
 				'type'     => 'enum',
-				'choices'  => array( 'terry-sole', 'terry-cushioning' ),
+				'choices'  => array( 'no-terry', 'partial-terry', 'terry-sole', 'full-terry', 'terry-cushioning' ),
 			),
 			'mesh_panels'           => array(
 				'label'    => __( 'Mesh panels', 'parameter-commerce' ),
@@ -307,6 +307,33 @@ final class Metrics {
 				'material_scope' => true,
 			);
 		}
+		$definitions['material_trade_name']      = array(
+			'label'          => __( 'Material trade name', 'parameter-commerce' ),
+			'type'           => 'enum',
+			'unit'           => '',
+			'choices'        => array( 'COOLMAX' ),
+			'category'       => 'material',
+			'material_scope' => true,
+			'filterable'     => false,
+			'help'           => __( 'A declared material trade name does not establish fibre percentages, certification or tested performance.', 'parameter-commerce' ),
+		);
+		$definitions['thickness_grade']          = array(
+			'label'    => __( 'Thickness', 'parameter-commerce' ),
+			'type'     => 'enum',
+			'unit'     => '',
+			'category' => 'construction',
+			'choices'  => array( 'thin', 'moderate', 'thick' ),
+			'help'     => __( 'Relative wearing thickness, not a quality score or a conversion from pair weight. Compare using the stated assessment method.', 'parameter-commerce' ),
+		);
+		$definitions['footwear_fit']             = array(
+			'label'    => __( 'Shoe pairing', 'parameter-commerce' ),
+			'type'     => 'enum',
+			'unit'     => '',
+			'category' => 'construction',
+			'choices'  => array( 'close-fitting-shoes', 'regular-fit-shoes', 'roomier-shoes' ),
+			'help'     => __( 'Guidance about room inside the shoe, not a guarantee of fit. Record the shoes and sizes assessed.', 'parameter-commerce' ),
+		);
+		$definitions['cushion_location']['help'] = __( 'Where terry loops are present. Unspecified terry does not establish full-sole coverage or overall thickness.', 'parameter-commerce' );
 		foreach ( $definitions as &$definition ) {
 			$definition['applicability']     = 'socks';
 			$definition['comparison_policy'] = 'performance' === ( $definition['category'] ?? 'measurement' ) ? 'matching_method_version_conditions_unit' : 'same_unit_and_scope';

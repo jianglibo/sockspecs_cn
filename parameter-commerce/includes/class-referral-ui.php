@@ -26,7 +26,7 @@ final class Referral_UI {
 
 	/** Register the editable explanation page's personal-link panel. */
 	public static function shortcodes() {
-		add_shortcode( 'pc_refer_and_earn', array( self::class, 'panel' ) );
+		add_shortcode( 'sscn_refer_and_earn', array( self::class, 'panel' ) );
 	}
 
 	/**
@@ -63,7 +63,7 @@ final class Referral_UI {
 	public static function product() {
 		$url = self::url();
 		if ( Referrals::enabled() && $url ) {
-			echo '<p class="pc-referral-invitation">' . esc_html__( 'Give friends $2 off. Earn $2 in shopping credit.', 'parameter-commerce' ) . ' <a href="' . esc_url( $url ) . '">' . esc_html__( 'Refer & Earn', 'parameter-commerce' ) . '</a></p>';
+			echo '<p class="pc-referral-invitation">' . esc_html__( 'Give friends ¥5 off. Earn ¥5 in shopping credit.', 'parameter-commerce' ) . ' <a href="' . esc_url( $url ) . '">' . esc_html__( 'Refer & Earn', 'parameter-commerce' ) . '</a></p>';
 		}
 	}
 
@@ -111,19 +111,19 @@ final class Referral_UI {
 		if ( ! Referrals::enabled() ) {
 			return '<p>' . esc_html__( 'The referral program is currently paused. Your recorded credit is preserved.', 'parameter-commerce' ) . '</p>';
 		}
-		$intro = '<h2>' . esc_html__( 'Happy with your socks? Share with friends.', 'parameter-commerce' ) . '</h2><p>' . esc_html__( 'If you’re happy with the quality and value of your SockSpecs socks, share your referral link with friends or on your social profiles. Each new customer gets $2 off their first order, and you earn $2 in shopping credit when their order is completed. Your rewards add up with no earning cap.', 'parameter-commerce' ) . '</p>';
+		$intro = '<h2>' . esc_html__( 'Happy with your socks? Share with friends.', 'parameter-commerce' ) . '</h2><p>' . esc_html__( 'If you’re happy with the quality and value of your SockSpecs socks, share your referral link with friends or on your social profiles. Each new customer gets ¥5 off their first order, and you earn ¥5 in shopping credit when their order is completed. Your rewards add up with no earning cap.', 'parameter-commerce' ) . '</p>';
 		if ( ! is_user_logged_in() ) {
 			return '<div class="pc-referral-share">' . $intro . '<p><a href="' . esc_url( wc_get_page_permalink( 'myaccount' ) ) . '">' . esc_html__( 'Sign in or create an account to get your referral link.', 'parameter-commerce' ) . '</a></p></div>';
 		}
 		$user = get_current_user_id();
-		$url  = add_query_arg( 'ss_ref', Referrals::code( $user ), home_url( '/' ) );
+		$url  = add_query_arg( 'sscn_ref', Referrals::code( $user ), home_url( '/' ) );
 		ob_start();
 		echo '<div class="pc-referral-share">' . $intro; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped translated text.
-		echo '<p>' . esc_html__( 'Available shopping credit:', 'parameter-commerce' ) . ' <strong>' . wp_kses_post( wc_price( max( 0, Referral_Store::balance( $user ) ) / 100, array( 'currency' => 'USD' ) ) ) . '</strong></p>';
+		echo '<p>' . esc_html__( 'Available shopping credit:', 'parameter-commerce' ) . ' <strong>' . wp_kses_post( wc_price( max( 0, Referral_Store::balance( $user ) ) / 100, array( 'currency' => 'CNY' ) ) ) . '</strong></p>';
 		echo '<div class="pc-referral-copy-field"><label>' . esc_html__( 'Your referral link', 'parameter-commerce' ) . '<input type="text" readonly value="' . esc_attr( $url ) . '"></label>';
 		echo '<button type="button" class="button pc-referral-copy" hidden data-copied="' . esc_attr__( 'Link copied', 'parameter-commerce' ) . '" data-fallback="' . esc_attr__( 'Select and copy the link above.', 'parameter-commerce' ) . '">' . esc_html__( 'Copy link', 'parameter-commerce' ) . '</button> <span class="pc-referral-copy-status" role="status" aria-live="polite"></span></div>';
 		/* translators: %s: the signed-in customer's personal referral URL. */
-		$message = sprintf( __( 'Shopping for socks? Use my link for $2 off your first SockSpecs order. I’ll also receive $2 in shopping credit when your order is completed: %s', 'parameter-commerce' ), $url );
+		$message = sprintf( __( 'Shopping for socks? Use my link for ¥5 off your first SockSpecs order. I’ll also receive ¥5 in shopping credit when your order is completed: %s', 'parameter-commerce' ), $url );
 		echo '<div class="pc-referral-copy-field"><p><label>' . esc_html__( 'A message you can share', 'parameter-commerce' ) . '<textarea readonly rows="5">' . esc_textarea( $message ) . '</textarea></label></p>';
 		echo '<button type="button" class="button pc-referral-copy" hidden data-copied="' . esc_attr__( 'Message copied', 'parameter-commerce' ) . '" data-fallback="' . esc_attr__( 'Select and copy the message above.', 'parameter-commerce' ) . '">' . esc_html__( 'Copy message', 'parameter-commerce' ) . '</button> <span class="pc-referral-copy-status" role="status" aria-live="polite"></span></div>';
 		echo '<p><a href="' . esc_url( wc_get_account_endpoint_url( 'referrals' ) ) . '">' . esc_html__( 'View your credit and activity', 'parameter-commerce' ) . '</a></p></div>';
@@ -146,7 +146,7 @@ final class Referral_UI {
 		if ( is_user_logged_in() && (int) $order->get_customer_id() !== get_current_user_id() ) {
 			return;
 		}
-		echo '<section class="pc-referral-confirmation"><h2>' . esc_html__( 'Give friends $2 off. Earn $2 in shopping credit.', 'parameter-commerce' ) . '</h2><p>' . esc_html__( 'Share your link with a friend. They get $2 off their first order, and you earn $2 in shopping credit when that order is completed.', 'parameter-commerce' ) . '</p>';
+		echo '<section class="pc-referral-confirmation"><h2>' . esc_html__( 'Give friends ¥5 off. Earn ¥5 in shopping credit.', 'parameter-commerce' ) . '</h2><p>' . esc_html__( 'Share your link with a friend. They get ¥5 off their first order, and you earn ¥5 in shopping credit when that order is completed.', 'parameter-commerce' ) . '</p>';
 		echo self::panel(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped renderer.
 		$url = self::url();
 		if ( $url ) {

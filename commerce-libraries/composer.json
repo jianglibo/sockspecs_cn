@@ -1,0 +1,16 @@
+{
+  "name": "sockspecs-cn/commerce-libraries",
+  "description": "Private SDK runtime for domestic commerce",
+  "type": "wordpress-plugin",
+  "license": "proprietary",
+  "require": {
+    "php": "^8.3",
+    "alipaysdk/easysdk": "^2.2.3",
+    "wechatpay/wechatpay": "^1.5",
+    "bacon/bacon-qr-code": "^3.0"
+  },
+  "config": {
+    "allow-plugins": {},
+    "sort-packages": true
+  }
+}

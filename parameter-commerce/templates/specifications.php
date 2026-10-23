@@ -34,7 +34,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<?php
 			if ( null !== $metric['value'] && $metric['unit'] ) :
 				?>
-				<span class="pc-unit"><?php echo esc_html( $metric['unit'] ); ?></span><?php endif; ?></td>
+				<span class="pc-unit"><?php echo esc_html( Domestic_Catalog::unit( $metric ) ); ?></span><?php endif; ?></td>
 			<td><?php echo esc_html( $metric['record']['size_scope'] ?? '' ); ?></td>
 			<td><p><?php echo esc_html( $metric['source_label'] ?? '—' ); ?></p>
 			<?php $record = $metric['record']; ?>

@@ -1,6 +1,6 @@
 <?php
 /**
- * Transactional USD referral balances. Only these plugin-owned tables are written.
+ * Transactional CNY referral balances. Only these plugin-owned tables are written.
  *
  * @package ParameterCommerce
  */
@@ -23,12 +23,12 @@ final class Referral_Store {
 	 */
 	public static function install() {
 		global $wpdb;
-		if ( ! current_user_can( 'manage_woocommerce' ) ) {
+		if ( ! Referrals::domestic() || ! current_user_can( 'manage_woocommerce' ) ) {
 			throw new \RuntimeException( 'Store manager required.' );
 		}
 		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 		$collate = $wpdb->get_charset_collate();
-		$prefix  = $wpdb->prefix . 'pc_referral_';
+		$prefix  = $wpdb->prefix . 'sscn_referral_';
 		dbDelta(
 			"CREATE TABLE {$prefix}ledger (
 			id bigint unsigned NOT NULL AUTO_INCREMENT,
@@ -69,7 +69,7 @@ final class Referral_Store {
 				throw new \RuntimeException( 'Referral tables require InnoDB.' );
 			}
 		}
-		update_option( 'pc_referrals_schema', 1, false );
+		update_option( 'sscn_referrals_schema', 1, false );
 	}
 
 	/**
@@ -82,7 +82,7 @@ final class Referral_Store {
 	 */
 	public static function transaction( $operation ) {
 		global $wpdb;
-		$name = 'pc-ref-' . md5( DB_NAME . $wpdb->prefix );
+		$name = 'sscn-ref-lock-' . md5( DB_NAME . $wpdb->prefix );
 		if ( '1' !== (string) $wpdb->get_var( $wpdb->prepare( 'SELECT GET_LOCK(%s, 10)', $name ) ) ) {
 			throw new \RuntimeException( esc_html__( 'Rewards are busy. Please try again.', 'parameter-commerce' ) );
 		}
@@ -119,7 +119,7 @@ final class Referral_Store {
 	 */
 	public static function balance( $user_id ) {
 		global $wpdb;
-		$value = $wpdb->get_var( $wpdb->prepare( "SELECT COALESCE(SUM(delta),0) FROM {$wpdb->prefix}pc_referral_ledger WHERE user_id = %d", $user_id ) );
+		$value = $wpdb->get_var( $wpdb->prepare( "SELECT COALESCE(SUM(delta),0) FROM {$wpdb->prefix}sscn_referral_ledger WHERE user_id = %d", $user_id ) );
 		self::check( $value );
 		return (int) $value;
 	}
@@ -132,7 +132,7 @@ final class Referral_Store {
 	 */
 	public static function record( $order_id ) {
 		global $wpdb;
-		$row = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}pc_referral_orders WHERE order_id = %d", $order_id ), ARRAY_A );
+		$row = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}sscn_referral_orders WHERE order_id = %d", $order_id ), ARRAY_A );
 		if ( $wpdb->last_error ) {
 			self::check( false );
 		}
@@ -168,7 +168,7 @@ final class Referral_Store {
 			return false;
 		}
 		foreach ( self::identities( $email, $user_id ) as $key ) {
-			$claim = $wpdb->get_var( $wpdb->prepare( "SELECT order_id FROM {$wpdb->prefix}pc_referral_claims WHERE identity_key = %s", $key ) );
+			$claim = $wpdb->get_var( $wpdb->prepare( "SELECT order_id FROM {$wpdb->prefix}sscn_referral_claims WHERE identity_key = %s", $key ) );
 			if ( $wpdb->last_error || ( $claim && (int) $claim !== (int) $exclude ) ) {
 				return false;
 			}
@@ -199,7 +199,7 @@ final class Referral_Store {
 		if ( $delta ) {
 			self::check(
 				$wpdb->insert(
-					$wpdb->prefix . 'pc_referral_ledger',
+					$wpdb->prefix . 'sscn_referral_ledger',
 					array(
 						'user_id'  => $user,
 						'order_id' => $order,
@@ -229,8 +229,8 @@ final class Referral_Store {
 				$user  = $order->get_customer_id();
 				$email = strtolower( trim( $order->get_billing_email() ) );
 				$old   = self::record( $id );
-				if ( ! $id || 'USD' !== $order->get_currency() || $credit < 0 || ( $credit && ! $user ) ) {
-					throw new \RuntimeException( esc_html__( 'Sign in to use your USD shopping credit.', 'parameter-commerce' ) );
+				if ( ! $id || 'CNY' !== $order->get_currency() || $credit < 0 || ( $credit && ! $user ) ) {
+					throw new \RuntimeException( esc_html__( 'Sign in to use your CNY shopping credit.', 'parameter-commerce' ) );
 				}
 				if ( $old && 'paid' === $old['state'] ) {
 					throw new \RuntimeException( esc_html__( 'This order has already been paid.', 'parameter-commerce' ) );
@@ -248,7 +248,7 @@ final class Referral_Store {
 						throw new \RuntimeException( esc_html__( 'The referral discount is only for a new customer’s first order and cannot be used for self-referrals.', 'parameter-commerce' ) );
 					}
 					foreach ( self::identities( $email, $user ) as $key ) {
-						self::check( $wpdb->query( $wpdb->prepare( "INSERT INTO {$wpdb->prefix}pc_referral_claims (identity_key,order_id,permanent) VALUES (%s,%d,0) ON DUPLICATE KEY UPDATE order_id = order_id", $key, $id ) ) );
+						self::check( $wpdb->query( $wpdb->prepare( "INSERT INTO {$wpdb->prefix}sscn_referral_claims (identity_key,order_id,permanent) VALUES (%s,%d,0) ON DUPLICATE KEY UPDATE order_id = order_id", $key, $id ) ) );
 					}
 				}
 				self::entry( $user, $id, (int) ( $old['debit'] ?? 0 ) - $credit, 'credit_reserved' );
@@ -261,7 +261,7 @@ final class Referral_Store {
 					'reward'      => 0,
 					'state'       => 'reserved',
 				);
-				self::check( $old ? $wpdb->update( $wpdb->prefix . 'pc_referral_orders', $data, array( 'order_id' => $id ) ) : $wpdb->insert( $wpdb->prefix . 'pc_referral_orders', $data ) );
+				self::check( $old ? $wpdb->update( $wpdb->prefix . 'sscn_referral_orders', $data, array( 'order_id' => $id ) ) : $wpdb->insert( $wpdb->prefix . 'sscn_referral_orders', $data ) );
 			}
 		);
 	}
@@ -306,7 +306,10 @@ final class Referral_Store {
 				$id = $order->get_id();
 				// Read current native state after acquiring the lock, not an earlier event snapshot.
 				$order = new \WC_Order( $id );
-				$row   = self::record( $id );
+				if ( 'CNY' !== $order->get_currency() ) {
+					throw new \RuntimeException( 'Domestic rewards require CNY orders.' );
+				}
+				$row = self::record( $id );
 				if ( ! $row ) {
 					return false;
 				}
@@ -318,27 +321,27 @@ final class Referral_Store {
 				if ( $closed || ( (float) $order->get_total() > 0 && $order->get_total_refunded() >= (float) $order->get_total() ) ) {
 					$reward = 0;
 				} elseif ( $row['referrer_id'] && $order->has_status( 'completed' ) ) {
-					$reward = 200;
+					$reward = Referrals::REWARD_FEN;
 				}
 				if ( $paid && $row['referrer_id'] ) {
 					foreach ( self::identities( $order->get_billing_email(), $order->get_customer_id() ) as $key ) {
-						$owner = $wpdb->get_var( $wpdb->prepare( "SELECT order_id FROM {$wpdb->prefix}pc_referral_claims WHERE identity_key = %s", $key ) );
+						$owner = $wpdb->get_var( $wpdb->prepare( "SELECT order_id FROM {$wpdb->prefix}sscn_referral_claims WHERE identity_key = %s", $key ) );
 						if ( $owner && (int) $owner !== $id ) {
 							$reward   = 0;
 							$conflict = true;
 							continue;
 						}
-						self::check( $wpdb->query( $wpdb->prepare( "INSERT INTO {$wpdb->prefix}pc_referral_claims (identity_key,order_id,permanent) VALUES (%s,%d,1) ON DUPLICATE KEY UPDATE permanent = 1", $key, $id ) ) );
+						self::check( $wpdb->query( $wpdb->prepare( "INSERT INTO {$wpdb->prefix}sscn_referral_claims (identity_key,order_id,permanent) VALUES (%s,%d,1) ON DUPLICATE KEY UPDATE permanent = 1", $key, $id ) ) );
 					}
 				}
 				if ( $closed && ! $paid ) {
-					self::check( $wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->prefix}pc_referral_claims WHERE order_id = %d AND permanent = 0", $id ) ) );
+					self::check( $wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->prefix}sscn_referral_claims WHERE order_id = %d AND permanent = 0", $id ) ) );
 				}
 				self::entry( (int) $row['user_id'], $id, (int) $row['debit'] - $debit, $debit > (int) $row['debit'] ? 'credit_reapplied' : 'credit_returned' );
 				self::entry( (int) $row['referrer_id'], $id, $reward - (int) $row['reward'], $reward ? 'referral_earned' : 'referral_reversed' );
 				self::check(
 					$wpdb->update(
-						$wpdb->prefix . 'pc_referral_orders',
+						$wpdb->prefix . 'sscn_referral_orders',
 						array(
 							'debit'  => $debit,
 							'reward' => $reward,
@@ -360,6 +363,6 @@ final class Referral_Store {
 	 */
 	public static function history( $user_id ) {
 		global $wpdb;
-		return $wpdb->get_results( $wpdb->prepare( "SELECT delta,reason,created FROM {$wpdb->prefix}pc_referral_ledger WHERE user_id = %d ORDER BY id DESC LIMIT 50", $user_id ), ARRAY_A );
+		return $wpdb->get_results( $wpdb->prepare( "SELECT delta,reason,created FROM {$wpdb->prefix}sscn_referral_ledger WHERE user_id = %d ORDER BY id DESC LIMIT 50", $user_id ), ARRAY_A );
 	}
 }

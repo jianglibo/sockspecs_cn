@@ -30,7 +30,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</svg>
 		<?php if ( ! empty( $dimensions['sizes'] ) ) : ?>
 		<table class="pc-size-shape__sizes">
-			<thead><tr><th><?php esc_html_e( 'Size', 'parameter-commerce' ); ?></th><th>A<br><?php esc_html_e( 'Leg length', 'parameter-commerce' ); ?></th><th>B<br><?php esc_html_e( 'Foot length', 'parameter-commerce' ); ?></th></tr></thead>
+			<thead><tr><th><?php esc_html_e( 'Size / options', 'parameter-commerce' ); ?></th><th>A<br><?php esc_html_e( 'Leg length', 'parameter-commerce' ); ?></th><th>B<br><?php esc_html_e( 'Foot length', 'parameter-commerce' ); ?></th></tr></thead>
 			<tbody>
 			<?php foreach ( $dimensions['sizes'] as $row ) : ?>
 				<tr><th scope="row"><?php echo esc_html( $row['size'] ); ?></th><td><?php echo esc_html( wc_format_localized_decimal( $row['leg_cm'] ) ); ?> cm</td><td><?php echo esc_html( wc_format_localized_decimal( $row['foot_cm'] ) ); ?> cm</td></tr>

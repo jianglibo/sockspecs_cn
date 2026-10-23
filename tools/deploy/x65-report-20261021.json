@@ -1,0 +1,19 @@
+{
+  "sku": "SS-001-X65",
+  "report": "S240919011",
+  "report_date": "2024-09-19",
+  "received_date": "2026-10-21",
+  "lab": "佛山市科顺达纺织检测技术服务有限公司",
+  "submitter": "名郡",
+  "sha256": "9f4479a98eb479882217f5ba524629b32d57992474259567f006f7bb08d0b9a4",
+  "sample": "X65 灰黑色针织袜子：脚底部分（袜尖、袜跟除外）；尺码、数量及批次未注明",
+  "method_code": "FZ/T 01057; GB/T 2910; GB/T 38015",
+  "method_version": "2007; 2009; 2019",
+  "values": {"wool_pct": 9.7, "polyester_pct": 41.8, "nylon_pct": 33.3, "acrylic_pct": 11.8, "elastane_pct": 3.4},
+  "limitations": "仅对此来样及检测部位负责；不代表整双袜子、所有颜色、尺码或当前批次。报告注明仅供生产参考，不能作为诉讼依据。报告真实性及实验室资质未经独立核验。",
+  "supplier_chat_unpublished": {
+    "yarn_wool_content": "纱线含绵羊毛20%，非袜子成品含量",
+    "wool_diameter": "19.5–21.5；聊天未注明单位、测量方法或适用批次；报告未检测此项",
+    "wool_type": "美利奴羊毛混纺；厂家声明，报告只标注绵羊毛"
+  }
+}

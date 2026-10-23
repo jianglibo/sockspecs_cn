@@ -1,0 +1,28 @@
+{
+  "site": "domestic",
+  "date": "2026-10-21",
+  "model": "X59",
+  "colors": [
+    "白灰",
+    "白蓝",
+    "白绿",
+    "白紫"
+  ],
+  "material_trade_name": "COOLMAX",
+  "material_source": {
+    "operator_context_date": "2026-10-19",
+    "workbook_sha256": "2a3b8f952078de82af2b4cbdfb2702f6b5aa0afe1b75024d727fa650b63b7d10",
+    "sheet": "跑步袜",
+    "range": "A5:H5",
+    "original_cells": [
+      "X59",
+      "袜筒8.5cm，脚底17cm",
+      "黑绿，黑粉，黑蓝，黑灰",
+      "200针，拼色，提花",
+      "\ncoolmax",
+      "28g",
+      "浅口跑步袜，夏日透气清爽，跑步更清爽。\n袜头手工无骨缝合，平整不硌脚。\n精选COOLMAX面料，高弹透气，快速排汗，速干抗菌。\n脚底圆形条纹起毛，提升防滑摩擦力，穿着柔软舒适。\n袜口提耳设计，穿脱便捷不费力。支持一件代发，抖音面单拼多多面单，免费设计加logo，来图定制改款，可改包装。"
+    ]
+  },
+  "limits": "Manufacturer workbook declaration only. Complete fibre composition, licensing/authenticity and performance are unverified. Do not apply X60/X61 combed cotton information."
+}

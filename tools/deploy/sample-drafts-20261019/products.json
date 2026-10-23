@@ -1,0 +1,633 @@
+{
+  "operation": "sample-drafts-20261019-v1",
+  "site": "domestic",
+  "language": "zh",
+  "products": [
+    {
+      "model": "323",
+      "sku": "SS-001-323",
+      "name": "棉质低帮袜 — SS-001-323",
+      "description": "低帮棉混纺袜，适合日常穿着与跑步，采用网眼袜面和毛圈袜底。",
+      "review_notes": "用户提供的1688参数：棉80%，EU 39–44，200针，单针，机器缝头。用户提供重量24g，是否含包装尚未确认，不作为净重或运费重量。手册无此型号，商品图待补。其余成分比例未知；页面标注加厚，实际相对厚薄待样品比较。",
+      "variants": [
+        {
+          "sku": "SS-001-323-BLACK-39-44",
+          "attributes": {
+            "color": "黑色",
+            "size": "EU 39–44"
+          }
+        },
+        {
+          "sku": "SS-001-323-WHITE-39-44",
+          "attributes": {
+            "color": "白色",
+            "size": "EU 39–44"
+          }
+        },
+        {
+          "sku": "SS-001-323-GRAY-39-44",
+          "attributes": {
+            "color": "灰色",
+            "size": "EU 39–44"
+          }
+        },
+        {
+          "sku": "SS-001-323-DARK-GRAY-39-44",
+          "attributes": {
+            "color": "深灰",
+            "size": "EU 39–44"
+          }
+        },
+        {
+          "sku": "SS-001-323-ROYAL-BLUE-39-44",
+          "attributes": {
+            "color": "宝蓝",
+            "size": "EU 39–44"
+          }
+        }
+      ],
+      "claims": [
+        {
+          "metric_key": "needle_count",
+          "value": "200",
+          "unit": "count",
+          "note": ""
+        },
+        {
+          "metric_key": "cotton_pct",
+          "value": "80",
+          "unit": "%",
+          "note": ""
+        },
+        {
+          "metric_key": "toe_seam_type",
+          "value": "standard",
+          "unit": "",
+          "note": ""
+        },
+        {
+          "metric_key": "knitting_method",
+          "value": "single-needle",
+          "unit": "",
+          "note": ""
+        },
+        {
+          "metric_key": "mesh_panels",
+          "value": "present",
+          "unit": "",
+          "note": ""
+        },
+        {
+          "metric_key": "cushion_location",
+          "value": "terry-sole",
+          "unit": "",
+          "note": ""
+        }
+      ],
+      "source": {
+        "operator_context_date": "2026-10-19"
+      }
+    },
+    {
+      "model": "J02-J03",
+      "sku": "SS-001-J02-J03",
+      "name": "锦纶中筒袜 — SS-001-J02-J03",
+      "description": "锦纶混纺中筒袜，适合日常穿着与跑步。J02 与 J03 为同一商品下的两个型号。",
+      "review_notes": "手册将J02/J03合并：51g与尺寸没有分别对应型号或鞋码，仅保留为商品组参考，不复制到每个变体。J02标注速干锦纶、氨纶及脚面网眼；J03标注抗起球锦纶、氨纶，功能未经验证。适用鞋码与完整比例未知。",
+      "variants": [
+        {
+          "sku": "SS-001-J02-J03-J02-BLACK",
+          "attributes": {
+            "color": "黑色",
+            "model": "J02"
+          }
+        },
+        {
+          "sku": "SS-001-J02-J03-J02-BLUE",
+          "attributes": {
+            "color": "蓝色",
+            "model": "J02"
+          }
+        },
+        {
+          "sku": "SS-001-J02-J03-J02-CORAL",
+          "attributes": {
+            "color": "珊瑚色",
+            "model": "J02"
+          }
+        },
+        {
+          "sku": "SS-001-J02-J03-J02-GRAY",
+          "attributes": {
+            "color": "灰色",
+            "model": "J02"
+          }
+        },
+        {
+          "sku": "SS-001-J02-J03-J03-BLACK",
+          "attributes": {
+            "color": "黑色",
+            "model": "J03"
+          }
+        },
+        {
+          "sku": "SS-001-J02-J03-J03-DARK-BLUE",
+          "attributes": {
+            "color": "深蓝",
+            "model": "J03"
+          }
+        },
+        {
+          "sku": "SS-001-J02-J03-J03-WHITE",
+          "attributes": {
+            "color": "白色",
+            "model": "J03"
+          }
+        },
+        {
+          "sku": "SS-001-J02-J03-J03-LIGHT-BLUE",
+          "attributes": {
+            "color": "浅蓝",
+            "model": "J03"
+          }
+        },
+        {
+          "sku": "SS-001-J02-J03-J03-GRAY",
+          "attributes": {
+            "color": "灰色",
+            "model": "J03"
+          }
+        }
+      ],
+      "claims": [
+        {
+          "metric_key": "catalog_height_mm",
+          "value": "175.0",
+          "unit": "mm",
+          "note": ""
+        },
+        {
+          "metric_key": "foot_length_mm",
+          "value": "200.0",
+          "unit": "mm",
+          "note": ""
+        },
+        {
+          "metric_key": "pair_weight_g",
+          "value": "51",
+          "unit": "g",
+          "note": "商品组参考，具体型号和尺码范围未确认。"
+        },
+        {
+          "metric_key": "needle_count",
+          "value": "144",
+          "unit": "count",
+          "note": ""
+        },
+        {
+          "metric_key": "knit_pattern",
+          "value": "jacquard",
+          "unit": "",
+          "note": ""
+        }
+      ],
+      "source": {
+        "operator_context_date": "2026-10-19",
+        "workbook_sha256": "2a3b8f952078de82af2b4cbdfb2702f6b5aa0afe1b75024d727fa650b63b7d10",
+        "sheet": "跑步袜",
+        "range": "A27:H27",
+        "original_cells": [
+          "j02 j03",
+          "袜筒17.5cm，脚底20cm",
+          "j02：黑色，蓝色，珊瑚色，灰色\nj03：黑色，深蓝，白色，浅蓝，灰色",
+          "144针，提花工艺",
+          "j02：速干锦纶，氨纶\nj03：抗起球锦纶，氨纶",
+          "51g",
+          "J02:速干锦纶面料，快速吸湿排汗，长时间保持干爽舒适。\n脚面采用网格状橡筋网眼结构，加速空气流通，散热更快，跑步不闷脚。\n足弓橡筋设计，舒适贴合足部。\n整体轻薄透气，适合日常训练与长跑穿着。\n袜口反光纱线，夜跑更安全。\nJ03:不易起球、不起毛，表面持久平整美观。\n耐磨耐穿，反复洗涤不易变形。\n手感柔软顺滑，亲肤舒适。\n强度高、韧性好，使用寿命更长。\n易清洗、快干，打理方便。\n支持一件代发，抖音面单拼多多面单，免费设计加logo，来图定制改款，可改包装。"
+        ]
+      },
+      "image": {
+        "file": "images/ss-001-j02-j03.webp",
+        "sha256": "16777e56f8b440a365ae66a8d110962e3427c0475d412a0acfb81c3f7486028c"
+      }
+    },
+    {
+      "model": "X31",
+      "sku": "SS-001-X31",
+      "name": "袜头袜跟毛圈棉质中筒袜 — SS-001-X31",
+      "description": "棉混纺中筒袜，袜头和袜跟设有毛圈，足弓部位采用网眼结构。",
+      "review_notes": "手册材料为棉、氨纶、橡筋；橡筋不等同于完整纤维成分。明确毛圈部位为袜头、袜跟。适用鞋码与完整比例未知。",
+      "variants": [
+        {
+          "sku": "SS-001-X31-BLACK",
+          "attributes": {
+            "color": "黑色"
+          }
+        },
+        {
+          "sku": "SS-001-X31-WHITE",
+          "attributes": {
+            "color": "白色"
+          }
+        },
+        {
+          "sku": "SS-001-X31-ORANGE",
+          "attributes": {
+            "color": "橙色"
+          }
+        },
+        {
+          "sku": "SS-001-X31-BLUE",
+          "attributes": {
+            "color": "蓝色"
+          }
+        },
+        {
+          "sku": "SS-001-X31-GREEN",
+          "attributes": {
+            "color": "绿色"
+          }
+        },
+        {
+          "sku": "SS-001-X31-PURPLE",
+          "attributes": {
+            "color": "紫色"
+          }
+        }
+      ],
+      "claims": [
+        {
+          "metric_key": "catalog_height_mm",
+          "value": "180.0",
+          "unit": "mm",
+          "note": ""
+        },
+        {
+          "metric_key": "foot_length_mm",
+          "value": "180.0",
+          "unit": "mm",
+          "note": ""
+        },
+        {
+          "metric_key": "pair_weight_g",
+          "value": "47",
+          "unit": "g",
+          "note": ""
+        },
+        {
+          "metric_key": "needle_count",
+          "value": "168",
+          "unit": "count",
+          "note": ""
+        },
+        {
+          "metric_key": "knit_pattern",
+          "value": "jacquard",
+          "unit": "",
+          "note": ""
+        },
+        {
+          "metric_key": "cushion_location",
+          "value": "terry-cushioning",
+          "unit": "",
+          "note": "袜头和袜跟。"
+        },
+        {
+          "metric_key": "mesh_panels",
+          "value": "present",
+          "unit": "",
+          "note": ""
+        }
+      ],
+      "source": {
+        "operator_context_date": "2026-10-19",
+        "workbook_sha256": "2a3b8f952078de82af2b4cbdfb2702f6b5aa0afe1b75024d727fa650b63b7d10",
+        "sheet": "户外运动毛巾袜（羽毛球袜",
+        "range": "A15:H15",
+        "original_cells": [
+          "X31",
+          "袜筒18cm，脚底18cm",
+          "黑色，白色，橙色，蓝色，绿色，紫色",
+          "168针，提花",
+          "棉、氨纶、橡筋",
+          "47g",
+          "袜头袜跟毛圈设计，保护脚跟防止受伤，吸湿排汗，减震舒适，足弓整网支撑关键肌群支持一件代发，抖音面单拼多多面单，免费设计加logo，来图定制改款，可改包装。"
+        ]
+      },
+      "image": {
+        "file": "images/ss-001-x31.webp",
+        "sha256": "0af31a834f41048430d4f703f5ec5b1de6c2fb54de083c61f640d7295941e0bc"
+      }
+    },
+    {
+      "model": "X65",
+      "sku": "SS-001-X65",
+      "name": "美利奴羊毛混纺袜 — SS-001-X65",
+      "description": "较短袜筒的羊毛混纺袜，适合日常穿着与步行。",
+      "review_notes": "用户最新提供的详情为EU 39–44，宝蓝/黑/棕/灰，替代手册中的绿色选项。X65/X66/X68合并页面填写含量30，未明确逐款完整成分，暂不录为已确认30%。手册列羊毛、锦纶、氨纶；毛圈范围未知。",
+      "variants": [
+        {
+          "sku": "SS-001-X65-ROYAL-BLUE-39-44",
+          "attributes": {
+            "color": "宝蓝",
+            "size": "EU 39–44"
+          }
+        },
+        {
+          "sku": "SS-001-X65-BLACK-39-44",
+          "attributes": {
+            "color": "黑色",
+            "size": "EU 39–44"
+          }
+        },
+        {
+          "sku": "SS-001-X65-BROWN-39-44",
+          "attributes": {
+            "color": "棕色",
+            "size": "EU 39–44"
+          }
+        },
+        {
+          "sku": "SS-001-X65-GRAY-39-44",
+          "attributes": {
+            "color": "灰色",
+            "size": "EU 39–44"
+          }
+        }
+      ],
+      "claims": [
+        {
+          "metric_key": "catalog_height_mm",
+          "value": "110.0",
+          "unit": "mm",
+          "note": ""
+        },
+        {
+          "metric_key": "foot_length_mm",
+          "value": "190.0",
+          "unit": "mm",
+          "note": ""
+        },
+        {
+          "metric_key": "pair_weight_g",
+          "value": "48",
+          "unit": "g",
+          "note": ""
+        },
+        {
+          "metric_key": "needle_count",
+          "value": "144",
+          "unit": "count",
+          "note": ""
+        },
+        {
+          "metric_key": "knit_pattern",
+          "value": "jacquard",
+          "unit": "",
+          "note": ""
+        },
+        {
+          "metric_key": "toe_seam_type",
+          "value": "linked",
+          "unit": "",
+          "note": ""
+        },
+        {
+          "metric_key": "wool_type",
+          "value": "merino",
+          "unit": "",
+          "note": ""
+        },
+        {
+          "metric_key": "knitting_method",
+          "value": "single-needle",
+          "unit": "",
+          "note": ""
+        }
+      ],
+      "source": {
+        "operator_context_date": "2026-10-19",
+        "workbook_sha256": "2a3b8f952078de82af2b4cbdfb2702f6b5aa0afe1b75024d727fa650b63b7d10",
+        "sheet": "滑雪袜（羊毛袜",
+        "range": "A11:H11",
+        "original_cells": [
+          "x65",
+          "袜筒11cm，脚底19cm",
+          "黑色、灰色、绿色、棕色",
+          "144N、提花工艺",
+          "美利奴羊毛、锦纶、\n氨纶",
+          "48g",
+          "美利奴羊毛，恒温透气，四季干爽。\n天然抑菌防臭，久穿清新。\n柔软亲肤不扎脚，舒适耐磨。\n高弹贴合，不易滑落。\n短筒设计，运动徒步都合适。\n支持一件代发，免费设计加logo，来图定制改款，可改包装"
+        ]
+      },
+      "image": {
+        "file": "images/ss-001-x65.webp",
+        "sha256": "8e3b4aac7e84431d1bd23a3a96bf6534043a75b3de5b1d7b16fd81e0fa59fa60"
+      }
+    },
+    {
+      "model": "X72",
+      "sku": "SS-001-X72",
+      "name": "长绒棉低帮袜 — SS-001-X72",
+      "description": "采用商家声明的长绒棉，低帮设计，配有弹力足弓带。",
+      "review_notes": "长绒棉为商家声明，完整混纺比例、纤维长度、纱支和EU鞋码未知。42g不代表比X70更薄。",
+      "variants": [
+        {
+          "sku": "SS-001-X72-YELLOW",
+          "attributes": {
+            "color": "黄色"
+          }
+        },
+        {
+          "sku": "SS-001-X72-GRAY",
+          "attributes": {
+            "color": "灰色"
+          }
+        },
+        {
+          "sku": "SS-001-X72-PURPLE",
+          "attributes": {
+            "color": "紫色"
+          }
+        },
+        {
+          "sku": "SS-001-X72-ORANGE",
+          "attributes": {
+            "color": "橙色"
+          }
+        },
+        {
+          "sku": "SS-001-X72-BLUE",
+          "attributes": {
+            "color": "蓝色"
+          }
+        }
+      ],
+      "claims": [
+        {
+          "metric_key": "catalog_height_mm",
+          "value": "80.0",
+          "unit": "mm",
+          "note": ""
+        },
+        {
+          "metric_key": "foot_length_mm",
+          "value": "200.0",
+          "unit": "mm",
+          "note": ""
+        },
+        {
+          "metric_key": "pair_weight_g",
+          "value": "42",
+          "unit": "g",
+          "note": ""
+        },
+        {
+          "metric_key": "needle_count",
+          "value": "144",
+          "unit": "count",
+          "note": ""
+        },
+        {
+          "metric_key": "knit_pattern",
+          "value": "jacquard",
+          "unit": "",
+          "note": ""
+        },
+        {
+          "metric_key": "toe_seam_type",
+          "value": "linked",
+          "unit": "",
+          "note": ""
+        },
+        {
+          "metric_key": "cotton_staple_class",
+          "value": "long-staple",
+          "unit": "",
+          "note": ""
+        },
+        {
+          "metric_key": "arch_band",
+          "value": "present",
+          "unit": "",
+          "note": ""
+        }
+      ],
+      "source": {
+        "operator_context_date": "2026-10-19",
+        "workbook_sha256": "2a3b8f952078de82af2b4cbdfb2702f6b5aa0afe1b75024d727fa650b63b7d10",
+        "sheet": "跑步袜",
+        "range": "A17:H17",
+        "original_cells": [
+          "x72",
+          "袜筒8cm，脚底20cm",
+          "黄,灰,紫,橙,蓝",
+          "144针，拼色，提花工艺，手工无骨缝头，",
+          "长绒棉，",
+          "42g",
+          "X形状拉架橡筋包裹足弓，支撑透气双效合一。\n脚底防滑纱设计，防滑耐磨，运动更稳。\n长绒棉纤维细长柔软，触感细腻，上脚舒适。\n整体轻薄透气，适合日常训练与长跑。\n长绒棉光泽自然，质感高级，耐洗不变形。\n支持一件代发，免费设计加logo，来图定制改款，可改包装"
+        ]
+      },
+      "image": {
+        "file": "images/ss-001-x72.webp",
+        "sha256": "ef4d273dbee027640f83abd9718988008faaef3f85c5c0268e3aa748bf63bb23"
+      }
+    },
+    {
+      "model": "X59",
+      "sku": "SS-001-X59",
+      "name": "低帮跑步袜 — SS-001-X59",
+      "description": "低帮跑步袜，采用后跟提耳和袜底起毛纹理。",
+      "review_notes": "手册注明COOLMAX，完整纤维比例与EU鞋码未知，授权认证和功能未验证。",
+      "variants": [
+        {
+          "sku": "SS-001-X59-BLACK-GREEN",
+          "attributes": {
+            "color": "黑绿"
+          }
+        },
+        {
+          "sku": "SS-001-X59-BLACK-PINK",
+          "attributes": {
+            "color": "黑粉"
+          }
+        },
+        {
+          "sku": "SS-001-X59-BLACK-BLUE",
+          "attributes": {
+            "color": "黑蓝"
+          }
+        },
+        {
+          "sku": "SS-001-X59-BLACK-GRAY",
+          "attributes": {
+            "color": "黑灰"
+          }
+        }
+      ],
+      "claims": [
+        {
+          "metric_key": "catalog_height_mm",
+          "value": "85.0",
+          "unit": "mm",
+          "note": ""
+        },
+        {
+          "metric_key": "foot_length_mm",
+          "value": "170.0",
+          "unit": "mm",
+          "note": ""
+        },
+        {
+          "metric_key": "pair_weight_g",
+          "value": "28",
+          "unit": "g",
+          "note": ""
+        },
+        {
+          "metric_key": "needle_count",
+          "value": "200",
+          "unit": "count",
+          "note": ""
+        },
+        {
+          "metric_key": "knit_pattern",
+          "value": "jacquard",
+          "unit": "",
+          "note": ""
+        },
+        {
+          "metric_key": "toe_seam_type",
+          "value": "linked",
+          "unit": "",
+          "note": ""
+        },
+        {
+          "metric_key": "heel_tab",
+          "value": "present",
+          "unit": "",
+          "note": ""
+        }
+      ],
+      "source": {
+        "operator_context_date": "2026-10-19",
+        "workbook_sha256": "2a3b8f952078de82af2b4cbdfb2702f6b5aa0afe1b75024d727fa650b63b7d10",
+        "sheet": "跑步袜",
+        "range": "A5:H5",
+        "original_cells": [
+          "X59",
+          "袜筒8.5cm，脚底17cm",
+          "黑绿，黑粉，黑蓝，黑灰",
+          "200针，拼色，提花",
+          "\ncoolmax",
+          "28g",
+          "浅口跑步袜，夏日透气清爽，跑步更清爽。\n袜头手工无骨缝合，平整不硌脚。\n精选COOLMAX面料，高弹透气，快速排汗，速干抗菌。\n脚底圆形条纹起毛，提升防滑摩擦力，穿着柔软舒适。\n袜口提耳设计，穿脱便捷不费力。支持一件代发，抖音面单拼多多面单，免费设计加logo，来图定制改款，可改包装。"
+        ]
+      },
+      "image": {
+        "file": "images/ss-001-x59.webp",
+        "sha256": "8018230df79ade6a480e31a32957f646f5df8571d5501391885be2283827dc04"
+      }
+    }
+  ]
+}

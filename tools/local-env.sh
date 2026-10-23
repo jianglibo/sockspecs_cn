@@ -11,3 +11,8 @@ set +a
 [[ "${SSCN_DB_PORT:-}" =~ ^[0-9]+$ && "${SSCN_HTTP_PORT:-}" =~ ^[0-9]+$ ]] || { echo 'Domestic ports required.' >&2; exit 1; }
 [[ "$SSCN_DB_PORT" != 33088 && "$SSCN_HTTP_PORT" != 8088 && "$SSCN_DB_PORT" != "$SSCN_HTTP_PORT" ]] || { echo 'Ports must be separate from the international preview.' >&2; exit 1; }
 [[ -n "${SSCN_DB_PASSWORD:-}" && -n "${SSCN_DB_ROOT_PASSWORD:-}" && -n "${SSCN_ADMIN_PASSWORD:-}" ]] || { echo 'Fresh domestic credentials required.' >&2; exit 1; }
+
+# Optional project-local PHP BCMath runtime for the Alipay certificate SDK.
+if [[ -f "$sscn_root/.local/php-bcmath/conf.d/20-bcmath.ini" ]]; then
+  export PHP_INI_SCAN_DIR="${PHP_INI_SCAN_DIR:-}:$sscn_root/.local/php-bcmath/conf.d"
+fi

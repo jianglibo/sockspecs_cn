@@ -58,6 +58,17 @@ final class Pack_Builder {
 		return $product && $product->is_type( 'variable' ) && 'yes' === $product->get_meta( '_pc_pack_builder' );
 	}
 
+	/**
+	 * Optional browsing of confirmed variants whose stock is not available yet.
+	 * This affects display only; cart validation always uses sellable groups.
+	 *
+	 * @param \WC_Product $product Parent product.
+	 * @return bool
+	 */
+	public static function show_unavailable( $product ) {
+		return $product && 'yes' === $product->get_meta( '_pc_pack_show_unavailable' );
+	}
+
 	/** Native product editor setting, covered by its product-save nonce. */
 	public static function settings() {
 		echo '<div class="options_group show_if_variable">';
@@ -65,7 +76,7 @@ final class Pack_Builder {
 			array(
 				'id'          => '_pc_pack_builder',
 				'label'       => __( 'Build Your Pack', 'parameter-commerce' ),
-				'description' => __( 'Sell 6 or 12 pairs with a quantity per color. Enable only when every variation price, weight and stock quantity represents ONE PAIR. Use explicit Color and Size attributes, variation-level stock and no backorders. Existing prepacked stock must not be reused.', 'parameter-commerce' ),
+				'description' => __( 'Sell 4, 6 or 12 pairs with a quantity per color. Enable only when every variation price, weight and stock quantity represents ONE PAIR. Use explicit Color and Size attributes, variation-level stock and no backorders. Existing prepacked stock must not be reused.', 'parameter-commerce' ),
 			)
 		);
 		echo '</div>';
@@ -88,10 +99,11 @@ final class Pack_Builder {
 	 *
 	 * @param int  $id Parent ID.
 	 * @param bool $preview Staff-only, read-only coming-soon preview. Never used for cart validation.
+	 * @param bool $display Include unavailable options only for opted-in display. Never for cart validation.
 	 * @return array Groups of native variations.
 	 * @throws \RuntimeException Invalid configuration.
 	 */
-	public static function groups( $id, $preview = false ) {
+	public static function groups( $id, $preview = false, $display = false ) {
 		$product = wc_get_product( $id );
 		if ( ! $product || ! $product->is_type( 'variable' ) ) {
 			throw new \RuntimeException( esc_html__( 'Build Your Pack requires an existing variable product.', 'parameter-commerce' ) );
@@ -131,8 +143,9 @@ final class Pack_Builder {
 		if ( 1 !== count( $colors ) || array_intersect( $keys, array( 'pack-quantity', 'pa_pack-quantity', 'pack-size', 'pa_pack-size' ) ) || count( $product->get_children() ) > 100 ) {
 			throw new \RuntimeException( esc_html__( 'Pack setup requires one Color attribute, single-pair variations and at most 100 variations.', 'parameter-commerce' ) );
 		}
-		$groups = array();
-		$seen   = array();
+		$display = $display && self::show_unavailable( $product );
+		$groups  = array();
+		$seen    = array();
 		foreach ( $product->get_children() as $child_id ) {
 			$child = wc_get_product( $child_id );
 			if ( ! $child || 'publish' !== $child->get_status() ) {
@@ -153,13 +166,28 @@ final class Pack_Builder {
 				throw new \RuntimeException( esc_html__( 'Duplicate color variations must be resolved before selling packs.', 'parameter-commerce' ) );
 			}
 			$seen[ $group ][ $color ] = true;
-			if ( ! $child->is_purchasable() || get_post_field( 'post_password', $child_id ) || ! $child->variation_is_visible() || ! $child->variation_is_active() || ! $child->is_in_stock() ) {
+			if ( get_post_field( 'post_password', $child_id ) || ! $child->variation_is_visible() || ! $child->variation_is_active() || ( ! $display && ( ! $child->is_purchasable() || ! $child->is_in_stock() ) ) ) {
 				continue;
 			}
 			$groups[ $group ]['label']              = $attributes ? wc_get_formatted_variation( $attributes, true, false ) : __( 'One size', 'parameter-commerce' );
 			$groups[ $group ]['items'][ $child_id ] = $child;
 		}
 		return $groups;
+	}
+
+	/**
+	 * All variation attributes may differ within a single-product pack.
+	 * Preserve current single-pair price and native tax treatment.
+	 *
+	 * @param \WC_Product_Variation $variation Native single-pair variation.
+	 * @return string Compatibility identity, never trusted from a request.
+	 */
+	public static function mix_key( $variation ) {
+		return md5(
+			wp_json_encode(
+				array( $variation->get_parent_id(), wc_format_decimal( $variation->get_price(), 6 ), $variation->get_tax_status(), $variation->get_tax_class() )
+			)
+		);
 	}
 
 	/**
@@ -172,28 +200,34 @@ final class Pack_Builder {
 	 * @throws \RuntimeException Invalid selection.
 	 */
 	public static function selection( $id, $size, $quantities ) {
-		if ( ! in_array( $size, array( 6, 12, '6', '12' ), true ) || ! is_array( $quantities ) || count( $quantities ) > 100 ) {
-			throw new \RuntimeException( esc_html__( 'Choose a 6-pair or 12-pair pack.', 'parameter-commerce' ) );
+		if ( ! in_array( $size, array( 4, 6, 12, '4', '6', '12' ), true ) || ! is_array( $quantities ) || count( $quantities ) > 100 ) {
+			throw new \RuntimeException( esc_html__( 'Choose a 4-pair, 6-pair or 12-pair pack.', 'parameter-commerce' ) );
 		}
 		$chosen = array();
 		foreach ( $quantities as $variation_id => $quantity ) {
 			if ( ! ctype_digit( (string) $variation_id ) || ! is_scalar( $quantity ) || ! preg_match( '/^(0|[1-9][0-9]?)$/D', (string) $quantity ) || (int) $quantity > (int) $size ) {
-				throw new \RuntimeException( esc_html__( 'Color quantities must be whole numbers between zero and the pack size.', 'parameter-commerce' ) );
+				throw new \RuntimeException( esc_html__( 'Variant quantities must be whole numbers between zero and the pack size.', 'parameter-commerce' ) );
 			}
 			if ( (int) $quantity ) {
 				$chosen[ (int) $variation_id ] = (int) $quantity;
 			}
 		}
 		if ( array_sum( $chosen ) !== (int) $size ) {
-			throw new \RuntimeException( esc_html__( 'The selected color quantities must equal the pack size.', 'parameter-commerce' ) );
+			throw new \RuntimeException( esc_html__( 'The selected quantities must equal the pack size.', 'parameter-commerce' ) );
 		}
+		$compatible = array();
 		foreach ( self::groups( $id ) as $group ) {
-			if ( ! array_diff_key( $chosen, $group['items'] ) ) {
+			foreach ( $group['items'] as $variation_id => $variation ) {
+				$compatible[ self::mix_key( $variation ) ][ $variation_id ] = true;
+			}
+		}
+		foreach ( $compatible as $items ) {
+			if ( ! array_diff_key( $chosen, $items ) ) {
 				ksort( $chosen );
 				return $chosen;
 			}
 		}
-		throw new \RuntimeException( esc_html__( 'Choose available colors from the same sock model and size.', 'parameter-commerce' ) );
+		throw new \RuntimeException( esc_html__( 'Choose available variants of the same product with matching per-pair prices and tax treatment.', 'parameter-commerce' ) );
 	}
 
 	/**
@@ -213,7 +247,7 @@ final class Pack_Builder {
 		foreach ( $chosen as $variation_id => $quantity ) {
 			$variation = wc_get_product( $variation_id );
 			if ( $variation->get_stock_quantity() - wc_get_held_stock_quantity( $variation ) < $quantity + ( $in_cart[ $variation_id ] ?? 0 ) ) {
-				throw new \RuntimeException( esc_html__( 'Not enough stock for the selected colors. Please adjust your pack.', 'parameter-commerce' ) );
+				throw new \RuntimeException( esc_html__( 'Not enough stock for the selected variants. Please adjust your pack.', 'parameter-commerce' ) );
 			}
 			$summary[] = wc_get_formatted_variation( $variation, true, true ) . ' × ' . $quantity;
 		}
@@ -270,7 +304,7 @@ final class Pack_Builder {
 	/** Load assets in the head/footer of opted-in product pages only. */
 	public static function assets() {
 		if ( Plugin::has_woocommerce() && function_exists( 'is_product' ) && is_product() && self::enabled( get_queried_object_id() ) ) {
-			wp_enqueue_script( 'pc-pack-builder', plugins_url( 'assets/pack-builder.js', dirname( __DIR__ ) . '/parameter-commerce.php' ), array(), '0.5.23', true );
+			wp_enqueue_script( 'pc-pack-builder', plugins_url( 'assets/pack-builder.js', dirname( __DIR__ ) . '/parameter-commerce.php' ), array(), '0.5.24', true );
 			wp_enqueue_style( 'pc-pack-builder', plugins_url( 'assets/pack-builder.css', dirname( __DIR__ ) . '/parameter-commerce.php' ), array(), '0.5.1' );
 		}
 	}
@@ -287,7 +321,7 @@ final class Pack_Builder {
 		remove_action( 'woocommerce_variable_add_to_cart', 'woocommerce_variable_add_to_cart', 30 );
 		try {
 			$preview = 'yes' === get_option( 'woocommerce_coming_soon', 'no' ) && self::can_preview( $product->get_id() );
-			$groups  = self::groups( $product->get_id(), $preview );
+			$groups  = self::groups( $product->get_id(), $preview, true );
 			if ( ! $groups ) {
 				throw new \RuntimeException( esc_html__( 'No colors are currently available for this pack.', 'parameter-commerce' ) );
 			}
@@ -316,7 +350,7 @@ final class Pack_Builder {
 			}
 			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- wc_clean recursively sanitizes; selection strictly validates IDs/counts.
 			self::add_pack( $id, isset( $_POST['pc_pack_size'] ) ? wc_clean( wp_unslash( $_POST['pc_pack_size'] ) ) : '', isset( $_POST['pc_colors'] ) ? wc_clean( wp_unslash( $_POST['pc_colors'] ) ) : array() );
-			wc_add_notice( __( 'Your pack was added. Quantities are pairs; removing a color removes the entire pack. To change colors, remove the pack and build it again.', 'parameter-commerce' ) );
+			wc_add_notice( __( 'Your pack was added. Quantities are pairs; removing a variant removes the entire pack. To change your selection, remove the pack and build it again.', 'parameter-commerce' ) );
 			wp_safe_redirect( wc_get_cart_url() );
 		} catch ( \RuntimeException $error ) {
 			wc_add_notice( $error->getMessage(), 'error' );
@@ -335,7 +369,7 @@ final class Pack_Builder {
 	public static function allow_add( $passed, $id ) {
 		$product = wc_get_product( $id );
 		$id      = $product && $product->is_type( 'variation' ) ? $product->get_parent_id() : $id;
-		if ( ! self::$adding && self::enabled( $id ) ) {
+		if ( ! self::$adding && ! self::selection_adding() && self::enabled( $id ) ) {
 			wc_add_notice( __( 'Please use Build Your Pack on the product page.', 'parameter-commerce' ), 'error' );
 			return false;
 		}
@@ -352,13 +386,21 @@ final class Pack_Builder {
 	 * @throws \RuntimeException Invalid addition on installations without Store API.
 	 */
 	public static function guard_add( $data, $id ) {
-		if ( ! self::$adding && ( self::enabled( $id ) || isset( $data['pc_pack'] ) ) ) {
+		if ( ! self::$adding && ! self::selection_adding() && ( self::enabled( $id ) || isset( $data['pc_pack'] ) ) ) {
 			if ( class_exists( '\Automattic\WooCommerce\StoreApi\Exceptions\RouteException' ) ) {
 				throw new \Automattic\WooCommerce\StoreApi\Exceptions\RouteException( 'pc_pack_required', esc_html__( 'Please use Build Your Pack on the product page.', 'parameter-commerce' ), 400 );
 			}
 			throw new \RuntimeException( esc_html__( 'Please use Build Your Pack on the product page.', 'parameter-commerce' ) );
 		}
 		return $data;
+	}
+
+	/** Whether the domestic selection service is adding validated native lines.
+	 *
+	 * @return bool
+	 */
+	private static function selection_adding() {
+		return class_exists( '\SockSpecsCN\Commerce\SelectionCart' ) && \SockSpecsCN\Commerce\SelectionCart::adding();
 	}
 
 	/**
@@ -379,16 +421,30 @@ final class Pack_Builder {
 					}
 					continue;
 				}
+				if ( ! is_array( $pack ) || ! is_string( $pack['id'] ?? null ) || ! wp_is_uuid( $pack['id'] ) ) {
+					throw new \RuntimeException();
+				}
+				if ( 'selection-v1' === ( $pack['kind'] ?? '' ) && class_exists( '\SockSpecsCN\Commerce\SelectionCart' ) ) {
+					$groups[ $pack['id'] ]['selection'][] = $item;
+					continue;
+				}
 				if ( empty( $pack['id'] ) || (int) $item['product_id'] !== $pack['product'] || ! isset( $pack['items'][ $item['variation_id'] ] ) || (float) $item['quantity'] !== (float) $pack['items'][ $item['variation_id'] ] ) {
 					throw new \RuntimeException();
 				}
-				if ( isset( $groups[ $pack['id'] ] ) && $groups[ $pack['id'] ]['pack'] !== $pack ) {
+				if ( isset( $groups[ $pack['id'] ] ) && ( $groups[ $pack['id'] ]['pack'] ?? null ) !== $pack ) {
 					throw new \RuntimeException();
 				}
 				$groups[ $pack['id'] ]['pack']                           = $pack;
 				$groups[ $pack['id'] ]['count'][ $item['variation_id'] ] = ( $groups[ $pack['id'] ]['count'][ $item['variation_id'] ] ?? 0 ) + $item['quantity'];
 			}
 			foreach ( $groups as $group ) {
+				if ( isset( $group['selection'] ) ) {
+					if ( isset( $group['pack'] ) ) {
+						throw new \RuntimeException();
+					}
+					\SockSpecsCN\Commerce\SelectionCart::validate( $group['selection'][0]['pc_pack'], $group['selection'], $cart );
+					continue;
+				}
 				$pack     = $group['pack'];
 				$expected = self::selection( $pack['product'], $pack['size'], $pack['items'] );
 				ksort( $group['count'] );
@@ -517,6 +573,9 @@ final class Pack_Builder {
 	 * @return array
 	 */
 	public static function item_data( $data, $item ) {
+		if ( 'selection-v1' === ( $item['pc_pack']['kind'] ?? '' ) ) {
+			return $data;
+		}
 		if ( isset( $item['pc_pack'] ) ) {
 			$pack   = $item['pc_pack'];
 			$data[] = array(
