@@ -31,6 +31,7 @@ final class Plugin {
 		Catalog::register_hooks();
 		Suppliers::register_hooks();
 		Product_Drafts::register_hooks();
+		Product_Identity::register_hooks();
 		Catalog_Specifications::register_hooks();
 		Comparison::register_hooks();
 		Pack_Builder::register_hooks();

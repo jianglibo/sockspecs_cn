@@ -35,6 +35,7 @@ require_once __DIR__ . '/includes/class-storefront-language.php';
 require_once __DIR__ . '/includes/class-catalog.php';
 require_once __DIR__ . '/includes/class-suppliers.php';
 require_once __DIR__ . '/includes/class-product-drafts.php';
+require_once __DIR__ . '/includes/class-product-identity.php';
 require_once __DIR__ . '/includes/class-demo-catalog.php';
 require_once __DIR__ . '/includes/class-comparison.php';
 

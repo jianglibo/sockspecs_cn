@@ -161,7 +161,7 @@ final class Pack_Builder {
 			$color = $attributes[ $colors[0] ];
 			unset( $attributes[ $colors[0] ] );
 			ksort( $attributes );
-			$group = md5( wp_json_encode( $attributes ) );
+			$group = Product_Identity::pack_group( $attributes, $child );
 			if ( isset( $seen[ $group ][ $color ] ) ) {
 				throw new \RuntimeException( esc_html__( 'Duplicate color variations must be resolved before selling packs.', 'parameter-commerce' ) );
 			}

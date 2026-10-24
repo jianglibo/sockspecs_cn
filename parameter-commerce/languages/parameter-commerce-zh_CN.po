@@ -2463,3 +2463,54 @@ msgstr "更多筛选"
 
 msgid "Selections update results automatically."
 msgstr "修改选项后自动更新结果。"
+
+msgid "Product model and sourcing"
+msgstr "商品型号与采购信息"
+
+msgid "SockSpecs model"
+msgstr "索克派型号"
+
+msgid "Product family"
+msgstr "商品品类"
+
+msgid "Socks"
+msgstr "袜子"
+
+msgid "Towels"
+msgstr "毛巾"
+
+msgid "Assign a permanent model number when saving"
+msgstr "保存时分配正式型号"
+
+msgid "Assigned numbers cannot be changed or reused, including after deletion. Candidates can stay unnumbered."
+msgstr "正式型号分配后不可更改或复用，删除商品也不会释放编号。选品候选可以暂不编号。"
+
+msgid "Manufacturer model (private)"
+msgstr "厂家原始型号（仅后台可见）"
+
+msgid "For products containing different manufacturer models, enter the exact model on each variation."
+msgstr "商品包含多个厂家型号时，请在各个变体中填写对应的原始型号。"
+
+msgid "Manufacturer model must be text of at most 100 bytes."
+msgstr "厂家原始型号必须是文字，长度不超过100字节。"
+
+msgid "Only authorized staff can number a saved, non-demo parent product."
+msgstr "只有授权人员可以为已保存的非演示商品分配型号。"
+
+msgid "Use SS-S0001 to SS-S9999 for socks, or SS-T0001 to SS-T9999 for towels."
+msgstr "袜子型号范围为 SS-S0001 至 SS-S9999，毛巾为 SS-T0001 至 SS-T9999。"
+
+msgid "Model numbering is busy. Please try again."
+msgstr "正在分配型号，请稍后重试。"
+
+msgid "This model number is already assigned and cannot be changed."
+msgstr "该型号已经分配，不能更改。"
+
+msgid "This model number is already reserved."
+msgstr "该型号已被占用，不能复用。"
+
+msgid "All four-digit numbers in this product family are reserved."
+msgstr "该品类的四位编号已全部分配，请扩展编号规则。"
+
+msgid "This model number is not reserved for this product."
+msgstr "该型号不属于当前商品。"

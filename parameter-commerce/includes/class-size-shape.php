@@ -342,7 +342,8 @@ final class Size_Shape {
 		// Change the relative leg height; the outline is explicitly schematic.
 		$top = round( 205 - min( 170, max( 30, 190 * (float) $dimensions['leg_cm'] / (float) $dimensions['foot_cm'] ) ), 2 );
 		// X70's photo shows a low opening and heel tab. Its catalog height has no confirmed endpoints.
-		$low_cut = in_array( $product->get_sku(), array( 'SS-X70', 'SS-001-X70' ), true ) && 'X70' === $product->get_meta( '_pc_selected_supplier_model' );
+		$legacy  = $product->get_meta( '_pc_legacy_sku' );
+		$low_cut = in_array( $legacy ? $legacy : $product->get_sku(), array( 'SS-X70', 'SS-001-X70' ), true ) && 'X70' === $product->get_meta( '_pc_selected_supplier_model' );
 		ob_start();
 		require dirname( __DIR__ ) . ( $low_cut ? '/templates/size-shape-low-cut.php' : '/templates/size-shape.php' );
 		return $weight . ob_get_clean();
