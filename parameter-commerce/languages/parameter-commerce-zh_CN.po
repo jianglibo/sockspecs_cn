@@ -2514,3 +2514,15 @@ msgstr "该品类的四位编号已全部分配，请扩展编号规则。"
 
 msgid "This model number is not reserved for this product."
 msgstr "该型号不属于当前商品。"
+
+msgid "Manufacturer model"
+msgstr "原厂型号"
+
+msgid "Manufacturer model: %s"
+msgstr "原厂型号：%s"
+
+msgid "Search products by name, SKU, manufacturer model, or ID"
+msgstr "按商品名称、SKU、原厂型号或ID搜索"
+
+msgid "Enter a manufacturer model of at most 100 bytes."
+msgstr "请输入原厂型号，长度不超过100字节。"

@@ -47,6 +47,7 @@ require_once __DIR__ . '/includes/class-yarn-specifications.php';
 require_once __DIR__ . '/includes/class-account-notices.php';
 require_once __DIR__ . '/includes/class-google-login.php';
 require_once __DIR__ . '/includes/class-size-shape.php';
+require_once __DIR__ . '/includes/class-shape-editor.php';
 
 require_once __DIR__ . '/includes/class-referral-store.php';
 require_once __DIR__ . '/includes/class-referrals.php';

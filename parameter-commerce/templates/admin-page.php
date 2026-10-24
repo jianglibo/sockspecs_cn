@@ -25,6 +25,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<form method="get" action="<?php echo esc_url( admin_url( 'admin.php' ) ); ?>">
 		<input type="hidden" name="page" value="pc-specs">
 		<?php Product_Picker::field( 'product_id', $product_filter, __( 'Filter by product', 'parameter-commerce' ) ); ?>
+		<p><label for="pc-original-model-filter"><?php esc_html_e( 'Manufacturer model', 'parameter-commerce' ); ?></label><br>
+		<input id="pc-original-model-filter" name="original_model" type="search" maxlength="100" value="<?php echo esc_attr( $original_model ); ?>"></p>
 		<p><label for="pc-metric-filter"><?php esc_html_e( 'Metric name', 'parameter-commerce' ); ?></label><br>
 		<select id="pc-metric-filter" name="metric_filter">
 			<option value=""><?php esc_html_e( 'All metrics', 'parameter-commerce' ); ?></option>
@@ -47,11 +49,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 			echo esc_url(
 				add_query_arg(
 					array(
-						'page'          => 'pc-specs',
-						'claim_id'      => $row['id'],
-						'product_id'    => $product_filter,
-						'metric_filter' => $metric_filter,
-						'paged'         => $page_number,
+						'page'           => 'pc-specs',
+						'claim_id'       => $row['id'],
+						'product_id'     => $product_filter,
+						'metric_filter'  => $metric_filter,
+						'original_model' => $original_model,
+						'paged'          => $page_number,
 					),
 					admin_url( 'admin.php' )
 				)
@@ -76,10 +79,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 		echo esc_url(
 			add_query_arg(
 				array(
-					'page'          => 'pc-specs',
-					'product_id'    => $product_filter,
-					'metric_filter' => $metric_filter,
-					'paged'         => $page_number - 1,
+					'page'           => 'pc-specs',
+					'product_id'     => $product_filter,
+					'metric_filter'  => $metric_filter,
+					'original_model' => $original_model,
+					'paged'          => $page_number - 1,
 				),
 				admin_url( 'admin.php' )
 			)
@@ -93,10 +97,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 		echo esc_url(
 			add_query_arg(
 				array(
-					'page'          => 'pc-specs',
-					'product_id'    => $product_filter,
-					'metric_filter' => $metric_filter,
-					'paged'         => $page_number + 1,
+					'page'           => 'pc-specs',
+					'product_id'     => $product_filter,
+					'metric_filter'  => $metric_filter,
+					'original_model' => $original_model,
+					'paged'          => $page_number + 1,
 				),
 				admin_url( 'admin.php' )
 			)

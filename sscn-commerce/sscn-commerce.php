@@ -20,6 +20,7 @@ require_once __DIR__ . '/includes/wear-feedback.php';
 require_once __DIR__ . '/includes/selection-cart.php';
 require_once __DIR__ . '/includes/selection-draft.php';
 require_once __DIR__ . '/includes/selection-ui.php';
+require_once __DIR__ . '/includes/color-substitution.php';
 
 const ATTEMPT_META = '_sscn_payment_attempt';
 

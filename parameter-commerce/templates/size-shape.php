@@ -22,7 +22,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<path class="pc-size-shape__detail" d="M110 <?php echo esc_attr( $top + 18 ); ?> H175 M111 209 Q145 207 148 252 M275 219 Q260 235 269 253"/>
 			<path class="pc-size-shape__rib" d="M121 <?php echo esc_attr( $top + 4 ); ?> v10 M133 <?php echo esc_attr( $top + 4 ); ?> v10 M145 <?php echo esc_attr( $top + 4 ); ?> v10 M157 <?php echo esc_attr( $top + 4 ); ?> v10 M169 <?php echo esc_attr( $top + 4 ); ?> v10"/>
 			<path class="pc-size-shape__guide" d="M98 <?php echo esc_attr( $top ); ?> H62 M98 205 H62 M104 262 V284 M304 262 V284"/>
+			<?php if ( $confirmed ) : ?>
 			<path class="pc-size-shape__arrow" d="M72 <?php echo esc_attr( $top + 3 ); ?> V202 M67 <?php echo esc_attr( $top + 9 ); ?> L72 <?php echo esc_attr( $top + 3 ); ?> L77 <?php echo esc_attr( $top + 9 ); ?> M67 196 L72 202 L77 196 M107 275 H301 M113 270 L107 275 L113 280 M295 270 L301 275 L295 280"/>
+			<?php else : ?>
+			<path class="pc-size-shape__arrow" d="M107 275 H301 M113 270 L107 275 L113 280 M295 270 L301 275 L295 280"/>
+			<?php endif; ?>
 			<circle class="pc-size-shape__badge" cx="39" cy="<?php echo esc_attr( ( $top + 205 ) / 2 ); ?>" r="15"/>
 			<text class="pc-size-shape__letter" x="39" y="<?php echo esc_attr( ( $top + 205 ) / 2 + 5 ); ?>" text-anchor="middle">A</text>
 			<circle class="pc-size-shape__badge" cx="204" cy="275" r="15"/>
@@ -30,10 +34,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</svg>
 		<?php if ( ! empty( $dimensions['sizes'] ) ) : ?>
 		<table class="pc-size-shape__sizes">
-			<thead><tr><th><?php esc_html_e( 'Size / options', 'parameter-commerce' ); ?></th><th>A<br><?php esc_html_e( 'Leg length', 'parameter-commerce' ); ?></th><th>B<br><?php esc_html_e( 'Foot length', 'parameter-commerce' ); ?></th></tr></thead>
+			<thead><tr><th><?php esc_html_e( 'Size / options', 'parameter-commerce' ); ?></th><th>A<br><?php esc_html_e( '袜筒／目录袜高', 'parameter-commerce' ); ?></th><th>B<br><?php esc_html_e( 'Foot length', 'parameter-commerce' ); ?></th><th><?php esc_html_e( '测量口径', 'parameter-commerce' ); ?></th></tr></thead>
 			<tbody>
 			<?php foreach ( $dimensions['sizes'] as $row ) : ?>
-				<tr><th scope="row"><?php echo esc_html( $row['size'] ); ?></th><td><?php echo esc_html( wc_format_localized_decimal( $row['leg_cm'] ) ); ?> cm</td><td><?php echo esc_html( wc_format_localized_decimal( $row['foot_cm'] ) ); ?> cm</td></tr>
+				<tr><th scope="row"><?php echo esc_html( $row['size'] ); ?></th><td><?php echo esc_html( wc_format_localized_decimal( $row['leg_cm'] ) ); ?> cm</td><td><?php echo esc_html( wc_format_localized_decimal( $row['foot_cm'] ) ); ?> cm</td><td><?php echo esc_html( $row['source'] ); ?></td></tr>
 			<?php endforeach; ?>
 			</tbody>
 		</table>

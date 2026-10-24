@@ -48,14 +48,14 @@ final class Pack_Builder {
 	}
 
 	/**
-	 * Explicit product opt-in, independent of purchasability.
+	 * Domestic variations use selection by default; eligibility is checked separately.
 	 *
 	 * @param int $id Parent ID.
 	 * @return bool
 	 */
 	public static function enabled( $id ) {
 		$product = wc_get_product( $id );
-		return $product && $product->is_type( 'variable' ) && 'yes' === $product->get_meta( '_pc_pack_builder' );
+		return $product && $product->is_type( 'variable' ) && ( class_exists( '\\SockSpecsCN\\Commerce\\SelectionCart' ) || 'yes' === $product->get_meta( '_pc_pack_builder' ) );
 	}
 
 	/**
@@ -110,6 +110,9 @@ final class Pack_Builder {
 		}
 		if ( ! self::enabled( $id ) ) {
 			throw new \RuntimeException( esc_html__( 'Build Your Pack is not enabled for this product.', 'parameter-commerce' ) );
+		}
+		if ( class_exists( '\\SockSpecsCN\\Commerce\\SelectionCart' ) && 'yes' === $product->get_meta( '_sscn_selection_disabled' ) ) {
+			throw new \RuntimeException( esc_html__( '此商品已暂停自由选袜。', 'parameter-commerce' ) );
 		}
 		if ( $preview && ! self::can_preview( $id ) ) {
 			throw new \RuntimeException( esc_html__( 'Only authorized store staff can preview this pack.', 'parameter-commerce' ) );
@@ -370,7 +373,7 @@ final class Pack_Builder {
 		$product = wc_get_product( $id );
 		$id      = $product && $product->is_type( 'variation' ) ? $product->get_parent_id() : $id;
 		if ( ! self::$adding && ! self::selection_adding() && self::enabled( $id ) ) {
-			wc_add_notice( __( 'Please use Build Your Pack on the product page.', 'parameter-commerce' ), 'error' );
+			wc_add_notice( __( '请通过自由选袜清单购买，合计至少4双。', 'parameter-commerce' ), 'error' );
 			return false;
 		}
 		return $passed;
@@ -388,9 +391,9 @@ final class Pack_Builder {
 	public static function guard_add( $data, $id ) {
 		if ( ! self::$adding && ! self::selection_adding() && ( self::enabled( $id ) || isset( $data['pc_pack'] ) ) ) {
 			if ( class_exists( '\Automattic\WooCommerce\StoreApi\Exceptions\RouteException' ) ) {
-				throw new \Automattic\WooCommerce\StoreApi\Exceptions\RouteException( 'pc_pack_required', esc_html__( 'Please use Build Your Pack on the product page.', 'parameter-commerce' ), 400 );
+				throw new \Automattic\WooCommerce\StoreApi\Exceptions\RouteException( 'pc_pack_required', esc_html__( '请通过自由选袜清单购买，合计至少4双。', 'parameter-commerce' ), 400 );
 			}
-			throw new \RuntimeException( esc_html__( 'Please use Build Your Pack on the product page.', 'parameter-commerce' ) );
+			throw new \RuntimeException( esc_html__( '请通过自由选袜清单购买，合计至少4双。', 'parameter-commerce' ) );
 		}
 		return $data;
 	}

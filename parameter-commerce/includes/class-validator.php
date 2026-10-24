@@ -221,7 +221,14 @@ final class Validator {
 				$errors['conditions_json'] = __( 'Yarn count requires count_basis: single_strand. Confirm the numbering system and strand basis; do not infer them from an ambiguous count.', 'parameter-commerce' );
 			}
 		}
-		$tested = 'performance' === $definition['category'] || in_array( $claim['source_type'], array( 'platform_measured', 'third_party_lab' ), true );
+		$simple_measurement = 'platform_measured' === $claim['source_type'] && in_array( $claim['metric_key'], array( 'leg_height_mm', 'foot_length_mm', 'pair_weight_g' ), true ) && 'manual_flat_v1' === $claim['method_code'];
+		if ( $simple_measurement ) {
+			$conditions = json_decode( $claim['conditions_json'], true );
+			if ( ! $claim['sample_count'] || ( 'leg_height_mm' === $claim['metric_key'] && 'heel_leg_boundary_to_cuff_excluding_heel_curve' !== ( $conditions['leg_endpoints'] ?? '' ) ) || ( 'foot_length_mm' === $claim['metric_key'] && 'rear_heel_to_toe_tip' !== ( $conditions['foot_endpoints'] ?? '' ) ) || 'dry_relaxed' !== ( $conditions['state'] ?? '' ) || '1' !== $claim['method_version'] || ( 'pair_weight_g' === $claim['metric_key'] && ( 'excluded' !== ( $conditions['packaging'] ?? '' ) || 'one_pair' !== ( $conditions['quantity'] ?? '' ) ) ) ) {
+				$errors['measurement'] = __( 'Record dry, relaxed sample measurements and the number of pairs measured; net weight excludes packaging.', 'parameter-commerce' );
+			}
+		}
+		$tested = ! $simple_measurement && ( 'performance' === $definition['category'] || in_array( $claim['source_type'], array( 'platform_measured', 'third_party_lab' ), true ) );
 		if ( $tested ) {
 			foreach ( array( 'method_code', 'method_version', 'sample_batch' ) as $field ) {
 				if ( '' === $claim[ $field ] ) {

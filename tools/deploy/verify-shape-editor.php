@@ -1,0 +1,12 @@
+<?php
+/** Read-only rollout guard for the unified editor, plus a private baseline option. */
+if(!defined('WP_CLI')||!WP_CLI||DB_NAME!=='sockspecs_cn'||!current_user_can('manage_options')||!in_array(home_url(),['https://sockspecs.cn','http://127.0.0.1:8089'],true))throw new RuntimeException('Domestic administrator only');
+$mode=$args[0]??'verify';if(!in_array($mode,['baseline','verify'],true))throw new RuntimeException('baseline/verify');
+$data=[];$products=wc_get_products(['limit'=>-1,'status'=>['publish','draft','private','pending'],'orderby'=>'ID','order'=>'ASC']);foreach($products as $p){foreach(array_merge([$p->get_id()],$p->get_children()) as $id){$v=wc_get_product($id);$d=$v->get_data();$d['meta_data']=array_map(static fn($m)=>$m->get_data(),$d['meta_data']);$data[$id]=$d;}if($p->get_meta('_pc_shape_dimensions')||$p->get_meta('_pc_shape_sizes'))throw new RuntimeException('Unmigrated legacy dimensions require review: '.$p->get_id());}
+global $wpdb;$claims=$wpdb->get_results("SELECT * FROM {$wpdb->prefix}pc_claims ORDER BY id",ARRAY_A);$settings=[];foreach(['woocommerce_coming_soon','woocommerce_store_pages_only','woocommerce_currency','blog_public','WPLANG'] as $k)$settings[$k]=get_option($k);
+$hash=hash('sha256',wp_json_encode([$data,$claims,$settings]));$key='sscn_shape_editor_rollout_20261024';
+if($mode==='baseline'){if(get_option($key))throw new RuntimeException('Baseline already exists');add_option($key,$hash,'',false);echo "Baseline stored; no legacy dimension values require migration.\n";return;}
+if(get_option($key)!==$hash)throw new RuntimeException('Product, claim or settings changed since baseline');
+require_once WC_ABSPATH.'includes/admin/wc-meta-box-functions.php';
+foreach($products as $p){$GLOBALS['product_object']=$p;ob_start();ParameterCommerce\Shape_Editor::settings();$html=ob_get_clean();if(!str_contains($html,'pc_shape_rows')||!str_contains($html,'每双净重')||str_contains($html,'name="_pc_shape_leg_cm"'))throw new RuntimeException('Editor missing: '.$p->get_id());$shape=ParameterCommerce\Size_Shape::dimensions($p);$render=ParameterCommerce\Size_Shape::render($p);echo wp_json_encode(['sku'=>$p->get_sku(),'groups'=>count(ParameterCommerce\Shape_Editor::groups($p)),'dimension_rows'=>count($shape['sizes']??[]),'rendered'=>strlen($render)>0],JSON_UNESCAPED_UNICODE)."\n";}
+echo "PASS all product/variation data, claims and visibility settings unchanged; unified editor renders on every product.\n";

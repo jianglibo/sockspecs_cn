@@ -2090,3 +2090,15 @@ msgstr ""
 #: templates/specifications.php:24
 msgid "Method & evidence"
 msgstr ""
+
+msgid "Manufacturer model"
+msgstr ""
+
+msgid "Manufacturer model: %s"
+msgstr ""
+
+msgid "Search products by name, SKU, manufacturer model, or ID"
+msgstr ""
+
+msgid "Enter a manufacturer model of at most 100 bytes."
+msgstr ""

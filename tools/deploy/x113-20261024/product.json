@@ -1,0 +1,102 @@
+{
+  "operation": "x113-20261024-v1",
+  "model": "X113",
+  "sku": "SS-S0012",
+  "name": "蜂窝提花日常中筒袜 — SS-S0012",
+  "short": "蜂窝提花与拼色设计，适合日常通勤和休闲穿着。",
+  "description": "<p>蜂窝与几何提花搭配拼色袜面，中筒设计提供白蓝、黑灰、红灰和棕色四种配色，适合日常通勤、散步和休闲搭配。</p><p>相册中的白蓝样品实拍展示了袜面、袜底和翻面细节，方便了解实际织物结构。</p>",
+  "colors": [
+    "白蓝",
+    "黑灰",
+    "红灰",
+    "棕色"
+  ],
+  "size": "EU 39–44",
+  "categories": [
+    "socks",
+    "everyday-socks"
+  ],
+  "source_sha256": "c34d3bb150f88c06598629723742eb807f563066ae2468a7c1e510c16aa33b6a",
+  "claims": [
+    {
+      "metric_key": "wool_pct",
+      "value": 6,
+      "unit": "%",
+      "note": "网页声明羊毛含量6%；50%–70%为混纺纱线占比，不是羊毛含量。其余纤维比例未提供。"
+    },
+    {
+      "metric_key": "wool_type",
+      "value": "merino",
+      "unit": "",
+      "note": "供应商称所用羊毛为美利奴羊毛，未提供品种鉴定。"
+    },
+    {
+      "metric_key": "needle_count",
+      "value": 200,
+      "unit": "count",
+      "note": "产品手册与网页一致。"
+    },
+    {
+      "metric_key": "knitting_method",
+      "value": "single-needle",
+      "unit": "",
+      "note": "网页声明单针织造。"
+    },
+    {
+      "metric_key": "sock_height_type",
+      "value": "crew",
+      "unit": "",
+      "note": "网页声明中筒。"
+    },
+    {
+      "metric_key": "toe_seam_type",
+      "value": "flat",
+      "unit": "",
+      "note": "两份资料均描述平整无骨袜头；具体手工或一体机缝头工艺待确认。"
+    },
+    {
+      "metric_key": "pair_weight_g",
+      "value": 46,
+      "unit": "g",
+      "note": "手册约46g，每双、不含包装；非本店称重。"
+    },
+    {
+      "metric_key": "catalog_height_mm",
+      "value": 100,
+      "unit": "mm",
+      "note": "手册袜筒10cm，测量起止点未确认，不作为脚跟上方筒高。"
+    },
+    {
+      "metric_key": "foot_length_mm",
+      "value": 180,
+      "unit": "mm",
+      "note": "手册袜底18cm，测量起止点未确认。"
+    }
+  ],
+  "images": [
+    {
+      "file": "ss-s0012-01.webp",
+      "sha256": "7b0b931bc34e8b148018502fa1c73f49a6712d0381547ae1c2fd65cd7273b66f",
+      "caption": "供应商展示图：配色与织物细节",
+      "alt": "SS-S0012 供应商展示图：配色与织物细节"
+    },
+    {
+      "file": "ss-s0012-02.webp",
+      "sha256": "b8323ac6a2770f102222def27d08418e2383b1175ce685dbc1ab1a498cfa833e",
+      "caption": "供应商展示图：袜面与穿着效果",
+      "alt": "SS-S0012 供应商展示图：袜面与穿着效果"
+    },
+    {
+      "file": "ss-s0012-sample-1.webp",
+      "sha256": "9d57cb3fa1d8ee3a82e22cb48b9c99d38a93c28ff618395822d10fca676f455c",
+      "caption": "白蓝样品实拍：袜面与翻面细节",
+      "alt": "SS-S0012 白蓝样品实拍：袜面与翻面细节"
+    },
+    {
+      "file": "ss-s0012-sample-2.webp",
+      "sha256": "c3844674f6b6ed12c2957b460ab25788b08aee6303b39bc70b93b9bde46a5838",
+      "caption": "白蓝样品实拍：袜底外侧与内侧对照",
+      "alt": "SS-S0012 白蓝样品实拍：袜底外侧与内侧对照"
+    }
+  ]
+}

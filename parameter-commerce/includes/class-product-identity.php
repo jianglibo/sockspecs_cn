@@ -19,7 +19,116 @@ final class Product_Identity {
 		add_action( 'woocommerce_save_product_variation', array( self::class, 'save_variation' ), 10, 2 );
 		add_action( 'woocommerce_before_product_object_save', array( self::class, 'protect' ) );
 		add_filter( 'woocommerce_duplicate_product_exclude_meta', array( self::class, 'duplicate_exclusions' ) );
+		add_filter( 'manage_product_posts_columns', array( self::class, 'columns' ), 30 );
+		add_action( 'manage_product_posts_custom_column', array( self::class, 'column' ), 30, 2 );
+		add_filter( 'request', array( self::class, 'product_search' ), 30 );
 	}
+	/**
+	 * Replace the brand column with sourcing information in the staff list.
+	 *
+	 * @param array $columns Native product columns.
+	 * @return array
+	 */
+	public static function columns( $columns ) {
+		if ( ! current_user_can( 'manage_woocommerce' ) ) {
+			return $columns;
+		}
+		$result = array();
+		foreach ( $columns as $key => $label ) {
+			if ( in_array( $key, array( 'taxonomy-product_brand', 'product_brand' ), true ) ) {
+				$result['pc_supplier'] = __( 'Supplier', 'parameter-commerce' );
+				continue;
+			}
+			$result[ $key ] = $label;
+			if ( 'sku' === $key ) {
+				$result['pc_original_model'] = __( 'Manufacturer model', 'parameter-commerce' );
+			}
+		}
+		$result['pc_original_model'] = __( 'Manufacturer model', 'parameter-commerce' );
+		$result['pc_supplier']       = __( 'Supplier', 'parameter-commerce' );
+		return $result;
+	}
+
+	/**
+	 * Render private source references without modifying the public brand taxonomy.
+	 *
+	 * @param string $column Column key.
+	 * @param int    $id Parent product ID.
+	 */
+	public static function column( $column, $id ) {
+		if ( ! current_user_can( 'manage_woocommerce' ) || ! current_user_can( 'edit_post', $id ) ) {
+			return;
+		}
+		if ( 'pc_original_model' === $column ) {
+			$value = get_post_meta( $id, '_pc_selected_supplier_model', true );
+			echo esc_html( $value ? $value : '—' );
+		} elseif ( 'pc_supplier' === $column ) {
+			$supplier = (int) get_post_meta( $id, '_pc_supplier_id', true );
+			if ( ! $supplier || 'pc_supplier' !== get_post_type( $supplier ) || ! current_user_can( 'edit_post', $supplier ) ) {
+				echo '—';
+				return;
+			}
+			$code  = get_post_meta( $supplier, '_pc_supplier_code', true );
+			$title = get_the_title( $supplier );
+			echo '<a href="' . esc_url( get_edit_post_link( $supplier, 'raw' ) ) . '">' . esc_html( ( $code ? $code . ' · ' : '' ) . $title ) . '</a>';
+		}
+	}
+
+	/**
+	 * Prepared parent-ID subquery matching private manufacturer references.
+	 * Includes child references so a combined-style product can be found by either model.
+	 *
+	 * @param string $term Literal partial model reference.
+	 * @return string
+	 */
+	public static function manufacturer_query( $term ) {
+		if ( ! current_user_can( 'manage_woocommerce' ) || ! is_string( $term ) || '' === trim( $term ) || strlen( $term ) > 100 ) {
+			return 'SELECT 0';
+		}
+		global $wpdb;
+		return $wpdb->prepare(
+			"SELECT DISTINCT CASE WHEN p.post_type = 'product_variation' THEN p.post_parent ELSE p.ID END FROM %i p INNER JOIN %i m ON m.post_id = p.ID WHERE p.post_type IN ('product', 'product_variation') AND p.post_status IN ('publish', 'private', 'draft', 'pending', 'future') AND m.meta_key = %s AND m.meta_value LIKE %s",
+			$wpdb->posts,
+			$wpdb->postmeta,
+			'_pc_selected_supplier_model',
+			'%' . $wpdb->esc_like( trim( $term ) ) . '%'
+		);
+	}
+
+	/**
+	 * Get matching parent IDs for staff search only.
+	 *
+	 * @param string $term Manufacturer model.
+	 * @param int    $limit Zero for native paginated list; bounded for picker.
+	 * @return array
+	 */
+	public static function manufacturer_ids( $term, $limit = 0 ) {
+		global $wpdb;
+		$sql = self::manufacturer_query( $term );
+		if ( $limit > 0 ) {
+			$sql .= $wpdb->prepare( ' LIMIT %d', $limit );
+		}
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.NotPrepared -- Prepared subquery above; staff-only current catalog lookup.
+		return array_map( 'absint', $wpdb->get_col( $sql ) );
+	}
+
+	/**
+	 * Extend WooCommerce's native admin search after it resolves names/SKUs/IDs.
+	 *
+	 * @param array $query_vars Native request arguments.
+	 * @return array
+	 */
+	public static function product_search( $query_vars ) {
+		global $pagenow, $typenow;
+		if ( ! is_admin() || 'edit.php' !== $pagenow || 'product' !== $typenow || ! current_user_can( 'manage_woocommerce' ) || empty( $query_vars['product_search'] ) || ! isset( $query_vars['post__in'] ) ) {
+			return $query_vars;
+		}
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only native product-list search.
+		$term                   = isset( $_GET['s'] ) && is_string( $_GET['s'] ) ? sanitize_text_field( wp_unslash( $_GET['s'] ) ) : ( $query_vars['product_search_term'] ?? '' );
+		$query_vars['post__in'] = array_values( array_unique( array_merge( $query_vars['post__in'], self::manufacturer_ids( $term ) ) ) );
+		return $query_vars;
+	}
+
 	/** Private editor section. */
 	public static function boxes() {
 		add_meta_box( 'pc-product-identity', __( 'Product model and sourcing', 'parameter-commerce' ), array( self::class, 'box' ), 'product', 'normal', 'high' );

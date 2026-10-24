@@ -126,45 +126,8 @@ final class Size_Shape {
 		if ( ! $product || ! $product->is_type( array( 'simple', 'variable' ) ) ) {
 			return array();
 		}
-		if ( $product->get_meta( '_pc_structured_specs' ) || self::has_cuff_height( $product ) ) {
-			$rows = self::structured_dimensions( $product );
-			return $rows ? array_merge( reset( $rows ), count( $rows ) > 1 ? array( 'sizes' => $rows ) : array() ) : array();
-		}
-		if ( $product->meta_exists( '_pc_shape_dimensions' ) ) {
-			$data = $product->get_meta( '_pc_shape_dimensions' );
-			if ( ! is_array( $data ) ) {
-				return array();
-			}
-			$leg  = self::centimeters( $data['leg_cm'] ?? '' );
-			$foot = self::centimeters( $data['foot_cm'] ?? '' );
-			if ( ! $leg || ! $foot || empty( $data['source'] ) || ! is_string( $data['source'] ) ) {
-				return array();
-			}
-			return array(
-				'leg_cm'  => $leg,
-				'foot_cm' => $foot,
-				'source'  => $data['source'],
-			);
-		}
-		$catalog = $product->get_meta( '_pc_catalog_workbook_source' );
-		$sizes   = self::size_dimensions( $product );
-		if ( $sizes ) {
-			return array_merge( reset( $sizes ), array( 'sizes' => $sizes ) );
-		}
-		if ( ! is_array( $catalog ) || ! is_array( $catalog['row'] ?? null ) ) {
-			return array();
-		}
-		$matches = array();
-		foreach ( $catalog['row'] as $cell => $text ) {
-			if ( preg_match( '/^C[1-9]\d*$/D', (string) $cell ) && is_string( $text ) && preg_match( '/^\s*袜筒\s*(\d+(?:\.\d+)?)\s*cm\s*[，,]\s*脚底\s*(\d+(?:\.\d+)?)\s*cm\s*$/uiD', $text, $parts ) ) {
-				$matches[] = array(
-					'leg_cm'  => self::centimeters( $parts[1] ),
-					'foot_cm' => self::centimeters( $parts[2] ),
-					'source'  => __( 'Supplier catalog', 'parameter-commerce' ),
-				);
-			}
-		}
-		return 1 === count( $matches ) && $matches[0]['leg_cm'] && $matches[0]['foot_cm'] ? $matches[0] : array();
+		$rows = self::structured_dimensions( $product );
+		return $rows ? array_merge( reset( $rows ), array( 'sizes' => $rows ) ) : array();
 	}
 
 	/**
@@ -174,67 +137,95 @@ final class Size_Shape {
 	 * @return array
 	 */
 	private static function structured_dimensions( $product ) {
-		$rows = array();
-		foreach ( self::selected_children( $product ) as $id ) {
-			try {
-				$spec = current_user_can( 'manage_woocommerce' ) && current_user_can( 'edit_post', $product->get_id() ) ? Repository::specifications( $product->get_id(), $id ) : Repository::public_specifications( $product->get_id(), $id );
-			} catch ( Failure $error ) {
-				continue; }
-			$m = $spec['groups']['measurement']['metrics'];
-			if ( null === $m['foot_length_mm']['value'] || null === $m['catalog_height_mm']['value'] ) {
-				if ( self::has_cuff_height( $product ) ) {
-					return array();
-				}
-				continue; }
-			$child   = wc_get_product( $id );
-			$options = self::option_attributes( $child );
-			$key     = wp_json_encode( $options );
-			$size    = wc_get_formatted_variation( $options, true, false );
-			$row     = array(
-				'size'    => $size,
-				'leg_cm'  => self::centimeters( (string) ( (float) $m['catalog_height_mm']['value'] / 10 ) ),
-				'foot_cm' => self::centimeters( (string) ( (float) $m['foot_length_mm']['value'] / 10 ) ),
-				'source'  => __( 'Supplier catalog', 'parameter-commerce' ),
-			);
-			if ( isset( $rows[ $key ] ) && $rows[ $key ] !== $row ) {
-				return array(); }
-			$rows[ $key ] = $row;
+		$rows     = array();
+		$ids      = $product->is_type( 'variable' ) ? self::selected_children( $product ) : array( 0 );
+		$expected = array();
+		foreach ( $ids as $id ) {
+			$child             = $id ? wc_get_product( $id ) : $product;
+			$options           = $id ? self::option_attributes( $child ) : array();
+			$size              = $options ? wp_strip_all_tags( wc_get_formatted_variation( $options, true, false ) ) : __( '型号参考（尺码覆盖未确认）', 'parameter-commerce' );
+			$expected[ $size ] = ( $expected[ $size ] ?? 0 ) + 1;
 		}
+		foreach ( $ids as $id ) {
+			$spec = self::spec( $product, $id );
+			if ( ! $spec ) {
+				continue;
+			}
+			$m   = $spec['groups']['measurement']['metrics'];
+			$leg = null !== $m['leg_height_mm']['value'] ? $m['leg_height_mm'] : $m['catalog_height_mm'];
+			if ( null === $m['foot_length_mm']['value'] || null === $leg['value'] ) {
+				continue;
+			}
+			$child      = $id ? wc_get_product( $id ) : $product;
+			$options    = $id ? self::option_attributes( $child ) : array();
+			$conditions = json_decode( $leg['record']['conditions_json'] ?? '{}', true );
+			$confirmed  = 'heel_leg_boundary_to_cuff_excluding_heel_curve' === ( $conditions['leg_endpoints'] ?? '' );
+			$size       = $options ? wp_strip_all_tags( wc_get_formatted_variation( $options, true, false ) ) : __( '型号参考（尺码覆盖未确认）', 'parameter-commerce' );
+			$row        = array(
+				'size'      => $size,
+				'leg_cm'    => self::centimeters( (string) ( (float) $leg['value'] / 10 ) ),
+				'foot_cm'   => self::centimeters( (string) ( (float) $m['foot_length_mm']['value'] / 10 ) ),
+				'confirmed' => $confirmed,
+				'source'    => $confirmed ? __( '袜筒从后跟分界线至袜口，不含脚跟弧度。', 'parameter-commerce' ) : __( '目录尺寸，测量起止点尚未确认。', 'parameter-commerce' ),
+			);
+			if ( ! $row['leg_cm'] || ! $row['foot_cm'] ) {
+				continue;
+			}
+			$key = md5( wp_json_encode( $row ) );
+			if ( ! isset( $rows[ $key ] ) ) {
+				$rows[ $key ] = $row;
+			}
+			$rows[ $key ]['colors'][] = $id ? ( $child->get_attribute( 'color' ) ? $child->get_attribute( 'color' ) : $child->get_attribute( 'pa_color' ) ) : '';
+		}
+		// Product reference is explicit, never copied to individual SKU measurements.
+		if ( ! $rows && $product->is_type( 'variable' ) && ! self::has_cuff_height( $product ) ) {
+			$spec = self::spec( $product, 0 );
+			$m    = $spec['groups']['measurement']['metrics'] ?? array();
+			$leg  = $m['leg_height_mm']['value'] ?? $m['catalog_height_mm']['value'] ?? null;
+			$foot = $m['foot_length_mm']['value'] ?? null;
+			if ( $leg && $foot ) {
+				$rows[] = array(
+					'size'      => __( '型号参考（尺码覆盖未确认）', 'parameter-commerce' ),
+					'leg_cm'    => self::centimeters( (string) ( (float) $leg / 10 ) ),
+					'foot_cm'   => self::centimeters( (string) ( (float) $foot / 10 ) ),
+					'confirmed' => false,
+					'source'    => __( '型号参考，测量起止点与尺码覆盖请查看参数记录。', 'parameter-commerce' ),
+				);
+			}
+		}
+		$size_counts = array_count_values( array_column( $rows, 'size' ) );
+		foreach ( $rows as &$row ) {
+			if ( ! empty( $row['colors'] ) && ( $size_counts[ $row['size'] ] > 1 || count( $row['colors'] ) < ( $expected[ $row['size'] ] ?? 0 ) ) ) {
+				$row['size'] .= ' (' . implode( ', ', array_unique( $row['colors'] ) ) . ')';
+			}
+		}
+		unset( $row );
 		return array_values( $rows );
 	}
 
 	/**
-	 * Explicit catalog dimensions for native size labels; never infer shoe fit.
+	 * Shared approved projection for the viewer.
 	 *
-	 * @param \WC_Product $product Parent product.
+	 * @param \WC_Product $product Parent.
+	 * @param int         $id Scope.
+	 * @return array
+	 */
+	private static function spec( $product, $id ) {
+		try {
+			return current_user_can( 'manage_woocommerce' ) && current_user_can( 'edit_post', $product->get_id() ) ? Repository::specifications( $product->get_id(), $id ) : Repository::public_specifications( $product->get_id(), $id );
+		} catch ( Failure $error ) {
+			return array();
+		}
+	}
+
+	/**
+	 * Dimensions share the same structured source as product tables.
+	 *
+	 * @param \WC_Product $product Product.
 	 * @return array
 	 */
 	public static function size_dimensions( $product ) {
-		if ( $product->get_meta( '_pc_structured_specs' ) || self::has_cuff_height( $product ) ) {
-			return self::structured_dimensions( $product );
-		}
-		$rows = $product->get_meta( '_pc_shape_sizes' );
-		if ( ! is_array( $rows ) || count( $rows ) > 12 ) {
-			return array();
-		}
-		$valid = array();
-		foreach ( $rows as $row ) {
-			if ( ! is_array( $row ) || ! is_string( $row['size'] ?? null ) || ! preg_match( '/^[A-Za-z0-9 -]{1,20}$/D', $row['size'] ) || ! is_string( $row['source'] ?? null ) || ! $row['source'] || strlen( $row['source'] ) > 191 ) {
-				return array();
-			}
-			$leg  = self::centimeters( $row['leg_cm'] ?? '' );
-			$foot = self::centimeters( $row['foot_cm'] ?? '' );
-			if ( ! $leg || ! $foot || isset( $valid[ $row['size'] ] ) ) {
-				return array();
-			}
-			$valid[ $row['size'] ] = array(
-				'size'    => $row['size'],
-				'leg_cm'  => $leg,
-				'foot_cm' => $foot,
-				'source'  => $row['source'],
-			);
-		}
-		return array_values( $valid );
+		return $product ? self::structured_dimensions( $product ) : array();
 	}
 
 	/**
@@ -279,24 +270,22 @@ final class Size_Shape {
 	 * @return string Escaped summary.
 	 */
 	public static function weight_summary( $product ) {
-		if ( ! self::visible( $product ) || ( ! $product->get_meta( '_pc_structured_specs' ) && ! self::has_cuff_height( $product ) ) ) {
+		if ( ! self::visible( $product ) ) {
 			return '';
 		}
-		$rows    = array();
-		$missing = array();
-		foreach ( self::selected_children( $product ) as $id ) {
+		$rows = array();
+		foreach ( $product->is_type( 'variable' ) ? self::selected_children( $product ) : array( 0 ) as $id ) {
 			try {
 				$spec = current_user_can( 'manage_woocommerce' ) && current_user_can( 'edit_post', $product->get_id() ) ? Repository::specifications( $product->get_id(), $id ) : Repository::public_specifications( $product->get_id(), $id );
 			} catch ( Failure $error ) {
 				continue;
 			}
-			$child      = wc_get_product( $id );
+			$child      = $id ? wc_get_product( $id ) : $product;
 			$metric     = $spec['groups']['measurement']['metrics']['pair_weight_g'];
 			$conditions = json_decode( $metric['record']['conditions_json'] ?? '{}', true );
-			$size       = wc_get_formatted_variation( self::option_attributes( $child ), true, false );
-			$color      = $child->get_attribute( 'color' );
-			if ( null === $metric['value'] || (float) $metric['value'] <= 0 || 'g' !== $metric['unit'] || 'excluded' !== ( $conditions['packaging'] ?? '' ) || 'one pair (operator confirmed)' !== ( $conditions['quantity'] ?? '' ) ) {
-				$missing[] = $color . ' / ' . $size;
+			$size       = $id ? wp_strip_all_tags( wc_get_formatted_variation( self::option_attributes( $child ), true, false ) ) : __( '型号参考', 'parameter-commerce' );
+			$color      = $child->get_attribute( 'color' ) ? $child->get_attribute( 'color' ) : $child->get_attribute( 'pa_color' );
+			if ( null === $metric['value'] || (float) $metric['value'] <= 0 || 'g' !== $metric['unit'] || 'excluded' !== ( $conditions['packaging'] ?? '' ) || ! in_array( $conditions['quantity'] ?? '', array( 'one pair (operator confirmed)', 'one_pair', 'one pair' ), true ) ) {
 				continue;
 			}
 			$key                      = $size . ':' . $metric['value'];
@@ -304,13 +293,26 @@ final class Size_Shape {
 			$rows[ $key ]['weight']   = $metric['value'];
 			$rows[ $key ]['colors'][] = $color;
 		}
+		if ( ! $rows && $product->is_type( 'variable' ) ) {
+			$spec       = self::spec( $product, 0 );
+			$metric     = $spec['groups']['measurement']['metrics']['pair_weight_g'] ?? array();
+			$conditions = json_decode( $metric['record']['conditions_json'] ?? '{}', true );
+			if ( ! empty( $metric['value'] ) && 'excluded' === ( $conditions['packaging'] ?? '' ) && in_array( $conditions['quantity'] ?? '', array( 'one pair (operator confirmed)', 'one_pair', 'one pair' ), true ) ) {
+				$rows[] = array(
+					'size'   => __( '型号参考（尺码覆盖未确认）', 'parameter-commerce' ),
+					'weight' => $metric['value'],
+					'colors' => array(),
+				);
+			}
+		}
 		if ( ! $rows ) {
 			return '';
 		}
 		$html = '<section class="pc-pair-weight"><h2>' . esc_html__( 'Weight per pair', 'parameter-commerce' ) . '</h2><ul>';
 		foreach ( $rows as $row ) {
-			$html .= '<li><strong>' . esc_html( wc_format_localized_decimal( wc_format_decimal( $row['weight'], 2, true ) ) ) . ' g</strong> — ' . esc_html( $row['size'] );
-			if ( $missing || count( array_filter( $rows, static fn( $r ) => $r['size'] === $row['size'] ) ) > 1 ) {
+			$html .= '<li><strong>' . esc_html__( '约 ', 'parameter-commerce' ) . esc_html( wc_format_localized_decimal( wc_format_decimal( $row['weight'], 2, true ) ) ) . ' g</strong> — ' . esc_html( $row['size'] );
+			// Only actual weight differences need color labels; missing measurements stay in evidence.
+			if ( count( array_filter( $rows, static fn( $r ) => $r['size'] === $row['size'] ) ) > 1 ) {
 				$html .= ' (' . esc_html( implode( ', ', $row['colors'] ) ) . ')';
 			}
 			$html .= '</li>';
@@ -340,12 +342,13 @@ final class Size_Shape {
 		) : self::sizing( $product );
 		$id     = wp_unique_id( 'pc-size-shape-' );
 		// Change the relative leg height; the outline is explicitly schematic.
-		$top = round( 205 - min( 170, max( 30, 190 * (float) $dimensions['leg_cm'] / (float) $dimensions['foot_cm'] ) ), 2 );
+		$confirmed = ! empty( $dimensions['confirmed'] );
+		$top       = $confirmed ? round( 205 - min( 170, max( 30, 190 * (float) $dimensions['leg_cm'] / (float) $dimensions['foot_cm'] ) ), 2 ) : 85;
 		// X70's photo shows a low opening and heel tab. Its catalog height has no confirmed endpoints.
 		$legacy  = $product->get_meta( '_pc_legacy_sku' );
 		$low_cut = in_array( $legacy ? $legacy : $product->get_sku(), array( 'SS-X70', 'SS-001-X70' ), true ) && 'X70' === $product->get_meta( '_pc_selected_supplier_model' );
 		ob_start();
-		require dirname( __DIR__ ) . ( $low_cut ? '/templates/size-shape-low-cut.php' : '/templates/size-shape.php' );
+		require dirname( __DIR__ ) . ( $low_cut && ! $confirmed ? '/templates/size-shape-low-cut.php' : '/templates/size-shape.php' );
 		return $weight . ob_get_clean();
 	}
 
@@ -385,108 +388,18 @@ final class Size_Shape {
 		return $html . $panel;
 	}
 
-	/** Fields in Product data > General; native size attributes remain unchanged. @return void */
+	/** Native unified measurement editor. @return void */
 	public static function settings() {
-		global $product_object;
-		if ( $product_object && ( $product_object->get_meta( '_pc_structured_specs' ) || self::has_cuff_height( $product_object ) ) ) {
-			echo '<p>' . esc_html__( 'Size & Shape uses the approved dimensions in WooCommerce → Parameter Specs.', 'parameter-commerce' ) . '</p>';
-			return;
-		}
-		$sizes = $product_object ? self::size_dimensions( $product_object ) : array();
-		if ( $sizes && ! $product_object->meta_exists( '_pc_shape_dimensions' ) ) {
-			echo '<div class="options_group"><p><strong>' . esc_html__( 'Size & Shape', 'parameter-commerce' ) . '</strong></p>';
-			foreach ( $sizes as $index => $row ) {
-				foreach ( array(
-					'leg_cm'  => __( 'Leg length (cm)', 'parameter-commerce' ),
-					'foot_cm' => __( 'Foot length (cm)', 'parameter-commerce' ),
-				) as $key => $label ) {
-					woocommerce_wp_text_input(
-						array(
-							'id'    => '_pc_shape_size_' . $index . '_' . $key,
-							'label' => $row['size'] . ' — ' . $label,
-							'value' => $row[ $key ],
-						)
-					);
-				}
-			}
-			echo '</div>';
-			return;
-		}
-		$data = self::dimensions( $product_object );
-		echo '<div class="options_group show_if_simple show_if_variable"><p><strong>' . esc_html__( 'Size & Shape', 'parameter-commerce' ) . '</strong></p>';
-		foreach ( array(
-			'leg_cm'  => __( 'Leg length (cm)', 'parameter-commerce' ),
-			'foot_cm' => __( 'Foot length (cm)', 'parameter-commerce' ),
-			'source'  => __( 'Dimension source', 'parameter-commerce' ),
-		) as $key => $label ) {
-			woocommerce_wp_text_input(
-				array(
-					'id'          => '_pc_shape_' . $key,
-					'label'       => $label,
-					'value'       => $data[ $key ] ?? '',
-					'description' => 'source' === $key ? __( 'Shown to shoppers. Use a public source label, not a private URL. These are model dimensions; manage shoe sizes under Attributes.', 'parameter-commerce' ) : '',
-				)
-			);
-		}
-		echo '<p>' . esc_html__( 'Enter both dimensions and their source to show the guide. Clear both dimensions to hide it.', 'parameter-commerce' ) . '</p></div>';
+		Shape_Editor::settings();
 	}
 
 	/**
-	 * Save only authorized, nonce-checked native product edits, atomically per field group.
+	 * Save through the shared claim repository.
 	 *
-	 * @param \WC_Product $product Product being saved.
+	 * @param \WC_Product $product Product.
 	 * @return void
 	 */
 	public static function save_settings( $product ) {
-		if ( $product->get_meta( '_pc_structured_specs' ) || self::has_cuff_height( $product ) ) {
-			return; }
-		if ( ! current_user_can( 'edit_post', $product->get_id() ) || ! isset( $_POST['woocommerce_meta_nonce'] ) || ! is_string( $_POST['woocommerce_meta_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['woocommerce_meta_nonce'] ) ), 'woocommerce_save_data' ) ) {
-			return;
-		}
-		$sizes = self::size_dimensions( $product );
-		if ( $sizes && ! $product->meta_exists( '_pc_shape_dimensions' ) ) {
-			foreach ( $sizes as $index => &$row ) {
-				foreach ( array( 'leg_cm', 'foot_cm' ) as $key ) {
-					$field = '_pc_shape_size_' . $index . '_' . $key;
-					if ( ! isset( $_POST[ $field ] ) || ! is_string( $_POST[ $field ] ) ) {
-						return;
-					}
-					$value = self::centimeters( sanitize_text_field( wp_unslash( $_POST[ $field ] ) ) );
-					if ( ! $value ) {
-						\WC_Admin_Meta_Boxes::add_error( __( 'Size & Shape was not changed. Enter valid lengths for every size.', 'parameter-commerce' ) );
-						return;
-					}
-					$row[ $key ] = $value;
-				}
-			}
-			unset( $row );
-			$product->update_meta_data( '_pc_shape_sizes', $sizes );
-			return;
-		}
-		$data = array();
-		foreach ( array( 'leg_cm', 'foot_cm', 'source' ) as $key ) {
-			if ( ! isset( $_POST[ '_pc_shape_' . $key ] ) || ! is_string( $_POST[ '_pc_shape_' . $key ] ) ) {
-				return;
-			}
-			$data[ $key ] = sanitize_text_field( wp_unslash( $_POST[ '_pc_shape_' . $key ] ) );
-		}
-		if ( '' === $data['leg_cm'] && '' === $data['foot_cm'] ) {
-			$product->update_meta_data( '_pc_shape_dimensions', array() );
-			return;
-		}
-		$leg  = self::centimeters( $data['leg_cm'] );
-		$foot = self::centimeters( $data['foot_cm'] );
-		if ( ! $leg || ! $foot || '' === $data['source'] || strlen( $data['source'] ) > 191 ) {
-			\WC_Admin_Meta_Boxes::add_error( __( 'Size & Shape was not changed. Enter both lengths between 0 and 100 cm (up to two decimal places) and a short public source label.', 'parameter-commerce' ) );
-			return;
-		}
-		$product->update_meta_data(
-			'_pc_shape_dimensions',
-			array(
-				'leg_cm'  => $leg,
-				'foot_cm' => $foot,
-				'source'  => $data['source'],
-			)
-		);
+		Shape_Editor::save( $product );
 	}
 }

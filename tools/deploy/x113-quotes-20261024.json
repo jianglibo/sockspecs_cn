@@ -1,0 +1,33 @@
+{
+  "site": "domestic",
+  "source": "用户提供的1688报价，2026-10-24",
+  "quotes": [
+    {
+      "model": "X113",
+      "public_model": "SS-S0012",
+      "currency": "CNY",
+      "unit": "pair",
+      "tiers": [
+        {
+          "min_quantity": 1,
+          "max_quantity": 4,
+          "unit_price": "11.74",
+          "condition": "页面标注60天老客价，资格以成交时为准"
+        },
+        {
+          "min_quantity": 5,
+          "max_quantity": 299,
+          "unit_price": "10.12"
+        },
+        {
+          "min_quantity": 300,
+          "max_quantity": null,
+          "unit_price": "9.55"
+        }
+      ],
+      "tax_shipping": "未确认",
+      "mixed_colors_sizes_aggregation": "未确认"
+    }
+  ],
+  "display_note": "2026-10-24 X113（SS-S0012）采购报价，人民币/双：1–4双 ¥11.74（页面标注60天老客价）；5–299双 ¥10.12；≥300双 ¥9.55。来源为用户提供的1688报价。老客资格、含税/运费及跨颜色尺码凑量规则以实际成交为准。仅记录采购资料，商品零售价和库存留空，保持草稿。"
+}

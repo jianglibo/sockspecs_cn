@@ -2,6 +2,18 @@
 /** Domestic unified selection page and small product-page entry point. */
 namespace SockSpecsCN\Commerce;
 defined('ABSPATH') || exit;
+// Remove obsolete tier controls and entry points after both plugins have registered.
+add_action('plugins_loaded',static function(): void {
+    $builder=\ParameterCommerce\Pack_Builder::class; $pricing=\ParameterCommerce\Pack_Pricing::class;
+    remove_action('woocommerce_product_options_inventory_product_data',[$pricing,'settings']);
+    remove_action('woocommerce_admin_process_product_object',[$pricing,'save']);
+    remove_action('woocommerce_product_options_inventory_product_data',[$builder,'settings']);
+    remove_action('woocommerce_admin_process_product_object',[$builder,'save_settings']);
+    remove_action('woocommerce_variable_add_to_cart',[$builder,'form'],1);
+    remove_action('template_redirect',[$builder,'submit'],15);
+    remove_action('wp_enqueue_scripts',[$builder,'assets']);
+    remove_filter('woocommerce_get_price_html',[$pricing,'price_html'],20);
+},30);
 function selection_url(): string {
     $page=get_page_by_path('choose-socks');
     return $page ? get_permalink($page) : '';
@@ -75,9 +87,10 @@ add_filter('woocommerce_get_price_html',static function($html,$p) {
     if (!selection_url() || !\ParameterCommerce\Pack_Builder::enabled($p->is_type('variation')?$p->get_parent_id():$p->get_id())) { return $html; }
     if ($p->is_type('variable')) {
         $min=$p->get_variation_price('min',true);$max=$p->get_variation_price('max',true);
+        if ($min==='') { return $html; }
         return ($min===$max?wc_price($min):wc_format_price_range($min,$max)).' / 双';
     }
-    return wc_price(wc_get_price_to_display($p)).' / 双';
+    return $p->get_price()==='' ? $html : wc_price(wc_get_price_to_display($p)).' / 双';
 },30,2);
 add_filter('woocommerce_get_item_data',static function(array $data,array $line): array {
     if (($line['pc_pack']['kind'] ?? '')==='selection-v1' && selection_url()) {
@@ -86,7 +99,9 @@ add_filter('woocommerce_get_item_data',static function(array $data,array $line):
     return $data;
 },20,2);
 add_action('woocommerce_product_options_inventory_product_data',static function(): void {
-    woocommerce_wp_checkbox(['id'=>'_sscn_selection_disabled','label'=>'暂停自由选袜','description'=>'暂停此商品加入跨商品选袜清单；原有单款套装不受影响。']);
+    echo '<div class="options_group show_if_variable"><p>每双单价和库存数量在各个变体中填写。商品默认支持跨款式、颜色、尺码和筒高自由选袜，全单至少4双，按单价累加。</p>';
+    woocommerce_wp_checkbox(['id'=>'_sscn_selection_disabled','label'=>'暂停自由选袜','description'=>'勾选后，此商品不能加入选袜清单。']);
+    echo '</div>';
 });
 add_action('woocommerce_admin_process_product_object',static function($product): void {
     if (!current_user_can('edit_post',$product->get_id()) || !isset($_POST['woocommerce_meta_nonce']) || !is_string($_POST['woocommerce_meta_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['woocommerce_meta_nonce'])),'woocommerce_save_data')) { return; }

@@ -13,10 +13,25 @@ try{
  foreach(['39.00','59.00'] as $price){
   $p=new WC_Product_Variable();$p->set_name('Disposable selection '.$price);$p->set_status('publish');$p->set_tax_status('none');
   $a=new WC_Product_Attribute();$a->set_name('color');$a->set_options(['red','blue']);$a->set_variation(true);$p->set_attributes([$a]);
-  $p->update_meta_data('_pc_pack_builder','yes');$p->update_meta_data('_pc_pack_prices',['currency'=>'CNY',4=>$price,6=>'77.00',12=>'144.00']);$p->save();$ids[]=$p->get_id();$parents[]=$p->get_id();
+  $p->update_meta_data('_pc_pack_builder','no');$p->update_meta_data('_pc_pack_prices',['currency'=>'obsolete',4=>'invalid']);$p->save();$ids[]=$p->get_id();$parents[]=$p->get_id();
   foreach(['red','blue'] as $color){$v=new WC_Product_Variation();$v->set_parent_id($p->get_id());$v->set_status('publish');$v->set_attributes(['color'=>$color]);$v->set_regular_price($price==='39.00'?'9.75':'14.75');$v->set_tax_status('none');$v->set_manage_stock(true);$v->set_stock_quantity(100);$v->save();$ids[]=$v->get_id();$vs[]=$v->get_id();}
   WC_Product_Variable::sync($p->get_id());
  }
+ // Default eligibility no longer depends on the retired opt-in or tier configuration.
+ sel_check(B::enabled($parents[0]) && count(S::options($parents[0])['items'])===2,'Defaults on despite legacy off and invalid tier prices');
+ $p=wc_get_product($parents[1]);$p->delete_meta_data('_pc_pack_builder');$p->save();sel_check(count(S::options($parents[1])['items'])===2,'New products without legacy flag qualify');
+ $p=wc_get_product($parents[0]);$p->update_meta_data('_sscn_selection_disabled','yes');$p->save();
+ sel_reject(fn()=>S::quote(4,[$vs[0]=>4],true),'Paused product rejected by quote');
+ sel_reject(fn()=>B::groups($parents[0]),'Paused product rejected by shared stock gate');
+ sel_reject(fn()=>B::guard_add([],$parents[0]),'Paused product cannot bypass via native add');
+ $p->update_meta_data('_sscn_selection_disabled','no');$p->save();
+ $v=wc_get_product($vs[0]);$v->set_manage_stock(false);$v->save();sel_reject(fn()=>S::options($parents[0]),'Default does not bypass variant stock tracking');$v->set_manage_stock(true);$v->set_stock_quantity(100);$v->set_stock_status('instock');$v->save();
+ $v->set_regular_price('');$v->save();sel_reject(fn()=>S::quote(4,[$vs[0]=>4],true),'Unpriced variation cannot be bought');$v->set_regular_price('9.75');$v->save();
+ $p->update_meta_data('_sscn_catalog_preview','yes');$p->save();sel_reject(fn()=>S::quote(4,[$vs[0]=>4],true),'Preview-only product stays unpurchasable');$p->update_meta_data('_sscn_catalog_preview','no');$p->save();
+ require_once WC_ABSPATH.'includes/admin/wc-meta-box-functions.php';
+ $GLOBALS['product_object']=$p;ob_start();do_action('woocommerce_product_options_inventory_product_data');$inventory=ob_get_clean();
+ sel_check(str_contains($inventory,'暂停自由选袜')&&!str_contains($inventory,'_pc_pack_price_')&&!str_contains($inventory,'name="_pc_pack_builder"'),'Only pause control remains in inventory editor');
+ sel_check(!has_action('template_redirect',[B::class,'submit']),'Legacy tier submit endpoint unregistered');
  foreach([4,5,7,13,25] as $qty){
   WC()->cart->empty_cart();$items=[$vs[0]=>1,$vs[2]=>$qty-1];$q=S::quote(4,$items,true);$want=975+1475*($qty-1);
   sel_check($q['size']===$qty&&$q['total']===$want,'Arbitrary quantity '.$qty.' uses sum of unit prices');

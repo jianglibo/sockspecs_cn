@@ -71,17 +71,27 @@ final class Repository {
 	 * @param int    $product_id Product filter, zero for all.
 	 * @param int    $page Page number.
 	 * @param string $metric_key Metric key, blank for all.
+	 * @param string $original_model Manufacturer model, blank for all.
 	 * @return array
 	 * @throws Failure When the filter is not a registered metric.
 	 */
-	public static function listing( $product_id = 0, $page = 1, $metric_key = '' ) {
+	public static function listing( $product_id = 0, $page = 1, $metric_key = '', $original_model = '' ) {
 		self::authorize();
 		if ( ! is_string( $metric_key ) || ( '' !== $metric_key && ! isset( Metrics::all()[ $metric_key ] ) ) ) {
 			throw new Failure( array( 'metric_filter' => __( 'Choose a registered sock metric.', 'parameter-commerce' ) ) );
 		}
 		global $wpdb;
+		if ( ! is_string( $original_model ) || strlen( $original_model ) > 100 ) {
+			throw new Failure( array( 'original_model' => __( 'Enter a manufacturer model of at most 100 bytes.', 'parameter-commerce' ) ) );
+		}
 		$offset = ( max( 1, min( 100000, (int) $page ) ) - 1 ) * 20;
-		return $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM %i WHERE (%d = 0 OR wc_product_id = %d) AND (%s = %s OR metric_key = %s) ORDER BY id DESC LIMIT 21 OFFSET %d', $wpdb->prefix . 'pc_claims', $product_id, $product_id, $metric_key, '', $metric_key, $offset ), ARRAY_A );
+		$sql    = $wpdb->prepare( 'SELECT * FROM %i WHERE (%d = 0 OR wc_product_id = %d) AND (%s = %s OR metric_key = %s)', $wpdb->prefix . 'pc_claims', $product_id, $product_id, $metric_key, '', $metric_key );
+		if ( '' !== trim( $original_model ) ) {
+			$sql .= ' AND wc_product_id IN (' . Product_Identity::manufacturer_query( $original_model ) . ')';
+		}
+		$sql .= $wpdb->prepare( ' ORDER BY id DESC LIMIT 21 OFFSET %d', $offset );
+		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- Both clauses and the private model subquery are prepared above.
+		return $wpdb->get_results( $sql, ARRAY_A );
 	}
 
 	/**
@@ -714,6 +724,53 @@ final class Repository {
 		);
 	}
 
+
+	/**
+	 * Apply a multi-variation measurement edit in one audited transaction.
+	 *
+	 * @param int      $product Parent ID.
+	 * @param array    $variations Explicit scope IDs, including zero for parent.
+	 * @param callable $callback Repository operations only.
+	 * @return mixed
+	 * @throws \Throwable On any conflict or invalid record, all edits roll back.
+	 */
+	public static function atomic_scopes( $product, array $variations, callable $callback ) {
+		self::authorize( true );
+		if ( null !== self::$transaction_scope ) {
+			self::conflict();
+		}
+		global $wpdb;
+		$locks = array();
+		foreach ( array_unique( array_map( 'intval', $variations ) ) as $variation ) {
+			$locks[] = 'pc-write-' . md5( DB_NAME . $wpdb->prefix . ':' . $product . ':' . $variation );
+		}
+		sort( $locks );
+		$held = array();
+		try {
+			foreach ( $locks as $lock ) {
+				if ( '1' !== (string) $wpdb->get_var( $wpdb->prepare( 'SELECT GET_LOCK(%s, 5)', $lock ) ) ) {
+					self::conflict();
+				}
+				$held[] = $lock;
+			}
+			self::written( $wpdb->query( 'START TRANSACTION' ), false );
+			self::$transaction_scope = $locks;
+			$result                  = $callback();
+			self::written( $wpdb->query( 'COMMIT' ), false );
+			return $result;
+		} catch ( \Throwable $error ) {
+			if ( null !== self::$transaction_scope ) {
+				$wpdb->query( 'ROLLBACK' );
+			}
+			throw $error;
+		} finally {
+			self::$transaction_scope = null;
+			foreach ( array_reverse( $held ) as $lock ) {
+				$wpdb->get_var( $wpdb->prepare( 'SELECT RELEASE_LOCK(%s)', $lock ) );
+			}
+		}
+	}
+
 	/**
 	 * Serialize each SKU scope, including the first publication with no prior row.
 	 *
@@ -727,7 +784,7 @@ final class Repository {
 		global $wpdb;
 		$lock = 'pc-write-' . md5( DB_NAME . $wpdb->prefix . ':' . $product . ':' . $variation );
 		if ( null !== self::$transaction_scope ) {
-			if ( self::$transaction_scope !== $lock ) {
+			if ( ! in_array( $lock, (array) self::$transaction_scope, true ) ) {
 				self::conflict();
 			}
 			return $callback();

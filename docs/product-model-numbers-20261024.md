@@ -92,3 +92,9 @@ code rollback; keep permanent reservations to avoid allocating codes elsewhere.
 | X72 | SS-S0009 |
 | X65 | SS-S0010 |
 | J02-J03 | SS-S0011 |
+
+## Subsequent URL update
+
+The operator subsequently approved replacing old slugs with lowercase public model
+codes. See [URL migration](product-model-urls-20261024.md). The earlier slug
+invariant and old-URL checks above describe the numbering migration at that time.

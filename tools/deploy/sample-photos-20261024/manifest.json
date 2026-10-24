@@ -1,0 +1,52 @@
+[
+  {
+    "sku": "SS-S0007",
+    "original_model": "X31",
+    "file": "ss-s0007-sample.webp",
+    "sha256": "00cbf2ac803455019a1ca1144d0af3b7cfbc878dc468971c3b96d8dba9550002",
+    "original_file": "IMG20261024133426.jpg",
+    "original_sha256": "c3e63143e4da2c431bea1a506a7430f3af5b2976e7b10ea905e082e6e3efb85e",
+    "caption": "黑色样品，外侧与翻面织物细节",
+    "alt": "SS-S0007 黑色样品，外侧与翻面织物细节"
+  },
+  {
+    "sku": "SS-S0008",
+    "original_model": "X59",
+    "file": "ss-s0008-sample.webp",
+    "sha256": "81893eb9713f5f8b14d2fba0df2538de5126d1fd7d25c9b603bc5cc36a077e87",
+    "original_file": "IMG20261024133523.jpg",
+    "original_sha256": "53f356fcaf930d2abb39ca6d7968b190c26885a8c748ac772e64ba9e9090640c",
+    "caption": "白灰蓝配色样品，外侧与翻面袜底细节",
+    "alt": "SS-S0008 白灰蓝配色样品，外侧与翻面袜底细节"
+  },
+  {
+    "sku": "SS-S0011",
+    "original_model": "J02-J03",
+    "file": "ss-s0011-sample.webp",
+    "sha256": "82991a197752486e6a2483e61e3c4dbf50f2f8e6424aaf32e65b5d0ff25b58aa",
+    "original_file": "IMG20261024133617.jpg",
+    "original_sha256": "1bb8f1f14d99e6bf8b96d0682230c67103d33a5c5bcd51c7f58abad994f7ec80",
+    "caption": "款式 A 黑色样品，外侧与翻面织物细节",
+    "alt": "SS-S0011 款式 A 黑色样品，外侧与翻面织物细节"
+  },
+  {
+    "sku": "SS-S0002",
+    "original_model": "X112",
+    "file": "ss-s0002-sample.webp",
+    "sha256": "34ff2d0b4c77d70c9b34b7722ab89d179871f8587d66b8bee27f34be450bd120",
+    "original_file": "IMG20261024133728.jpg",
+    "original_sha256": "073939c26e917797fad43a3ae881d55f6ed18688f56da352c14c897ca8daee4b",
+    "caption": "白灰配色样品，外侧与翻面袜底细节",
+    "alt": "SS-S0002 白灰配色样品，外侧与翻面袜底细节"
+  },
+  {
+    "sku": "SS-S0001",
+    "original_model": "X109",
+    "file": "ss-s0001-sample.webp",
+    "sha256": "8fd28e266b152a45bcc8c004e608284ebe9793d507546324ad8e526eb236ceaf",
+    "original_file": "IMG20261024142449.jpg",
+    "original_sha256": "2d7699def557c7d0318d23876a576bec80c1d150b0fde4e2466970240356047b",
+    "caption": "紫色样品，外侧与翻面袜底细节",
+    "alt": "SS-S0001 紫色样品，外侧与翻面袜底细节"
+  }
+]

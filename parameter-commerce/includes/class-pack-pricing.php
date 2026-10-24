@@ -29,6 +29,10 @@ final class Pack_Pricing {
 	 * @throws \RuntimeException Invalid or stale currency configuration.
 	 */
 	public static function prices( $product ) {
+		// Domestic selection always uses native per-pair prices; old metadata is archival.
+		if ( class_exists( '\\SockSpecsCN\\Commerce\\SelectionCart' ) ) {
+			return array();
+		}
 		$config = $product->get_meta( '_pc_pack_prices' );
 		if ( ! $config ) {
 			return array();

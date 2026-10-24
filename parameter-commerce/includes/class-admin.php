@@ -128,6 +128,7 @@ final class Admin {
 			$id             = isset( $_GET['claim_id'] ) && is_scalar( $_GET['claim_id'] ) ? absint( $_GET['claim_id'] ) : 0;
 			$product_filter = isset( $_GET['product_id'] ) && is_scalar( $_GET['product_id'] ) ? absint( $_GET['product_id'] ) : 0;
 			$metric_filter  = isset( $_GET['metric_filter'] ) && is_string( $_GET['metric_filter'] ) ? sanitize_key( wp_unslash( $_GET['metric_filter'] ) ) : '';
+			$original_model = isset( $_GET['original_model'] ) && is_string( $_GET['original_model'] ) ? sanitize_text_field( wp_unslash( $_GET['original_model'] ) ) : '';
 			$page_number    = isset( $_GET['paged'] ) && is_scalar( $_GET['paged'] ) ? max( 1, absint( $_GET['paged'] ) ) : 1;
 			$audit_page     = isset( $_GET['audit_page'] ) && is_scalar( $_GET['audit_page'] ) ? max( 1, absint( $_GET['audit_page'] ) ) : 1;
 			// phpcs:enable WordPress.Security.NonceVerification.Recommended
@@ -155,7 +156,7 @@ final class Admin {
 				// Persist the submitted revision on an error: never silently upgrade a stale form.
 			}
 			$definitions = Metrics::all();
-			$rows        = Repository::listing( $product_filter, $page_number, $metric_filter );
+			$rows        = Repository::listing( $product_filter, $page_number, $metric_filter, $original_model );
 			$history     = $id ? Repository::history( $id, $audit_page ) : array();
 			$preview     = $claim ? Repository::preview( $claim ) : array();
 			require dirname( __DIR__ ) . '/templates/admin-page.php';

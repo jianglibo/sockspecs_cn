@@ -1,0 +1,31 @@
+{
+  "workbook": "名郡产品手册.xlsx",
+  "sheet": "滑雪袜（羊毛袜",
+  "row": 43,
+  "cells": {
+    "model": "x113",
+    "dimensions": "袜筒10cm 袜底18cm",
+    "colors": "白蓝 红灰 黑灰 棕色",
+    "knitting": "200针，自由进线",
+    "materials": "涤纶棉粘纤锦纶氨纶羊毛",
+    "weight": "约46g",
+    "construction": "蜂窝袜口提花，加厚毛巾袜底，足弓加压束缚设计，网眼透气结构，无骨缝合袜头、一体机针织接口"
+  },
+  "web_listing_received": "2026-10-24",
+  "web_listing": {
+    "composition": "美利奴羊毛纱线50%-70%（羊毛含量6%）",
+    "main_fibre_percent": 6,
+    "size": "均码【39-44】",
+    "knitting": "200N，单针",
+    "toe": "手工无骨缝头",
+    "thickness": "薄",
+    "colors": [
+      "白蓝",
+      "黑灰",
+      "红灰",
+      "棕色"
+    ]
+  },
+  "operator": "X113 sample received; operator considers it suitable for everyday wear; catalog weights confirmed as one pair without packaging.",
+  "review": "No full fibre percentage breakdown; yarn proportion is not wool proportion. No laboratory report. Catalog and listing disagree on exact toe-closing process. Thickness, terry distribution and performance remain unconfirmed."
+}

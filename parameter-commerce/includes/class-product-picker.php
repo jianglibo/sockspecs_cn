@@ -42,7 +42,7 @@ final class Product_Picker {
 			array(
 				'url'           => admin_url( 'admin-ajax.php' ),
 				'nonce'         => wp_create_nonce( 'pc_products' ),
-				'product'       => __( 'Search products by name, SKU, or ID', 'parameter-commerce' ),
+				'product'       => __( 'Search products by name, SKU, manufacturer model, or ID', 'parameter-commerce' ),
 				'scope'         => __( 'Whole product (no variation)', 'parameter-commerce' ),
 				'empty'         => __( 'No matching products or variations.', 'parameter-commerce' ),
 				'error'         => __( 'Could not load choices. Try again.', 'parameter-commerce' ),
@@ -113,7 +113,7 @@ final class Product_Picker {
 				wp_send_json_error( array(), 503 );
 			}
 			// WooCommerce's admin search supports names, SKUs and numeric IDs.
-			$ids      = $store->search_products( $term, '', false, true, 21 );
+			$ids      = array_values( array_unique( array_merge( Product_Identity::manufacturer_ids( $term, 21 ), $store->search_products( $term, '', false, true, 21 ) ) ) );
 			$products = array_filter( array_map( 'wc_get_product', array_slice( $ids, 0, 22 ) ) );
 			$products = array_values( array_filter( $products, array( self::class, 'selectable' ) ) );
 			$full     = count( $products ) > 20;
@@ -162,6 +162,10 @@ final class Product_Picker {
 		$label .= ' (#' . $product->get_id() . ')';
 		if ( $product->get_sku() ) {
 			$label .= ' — ' . $product->get_sku();
+		}
+		if ( current_user_can( 'manage_woocommerce' ) && $product->get_meta( '_pc_selected_supplier_model' ) ) {
+			/* translators: %s: private manufacturer model. */
+			$label .= ' — ' . sprintf( __( 'Manufacturer model: %s', 'parameter-commerce' ), $product->get_meta( '_pc_selected_supplier_model' ) );
 		}
 		return html_entity_decode( wp_strip_all_tags( $label ), ENT_QUOTES, get_bloginfo( 'charset' ) );
 	}
