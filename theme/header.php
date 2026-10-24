@@ -17,7 +17,7 @@ defined( 'ABSPATH' ) || exit;
 <?php endif; ?>
 <header class="site-header"><div class="wrap header-inner">
 <div class="site-identity">
-<a class="brand" href="<?php echo esc_url( home_url( '/' ) ); ?>">索克派 <span class="brand-english">SockSpecs</span><small>看懂一双袜子</small></a>
+<a class="brand" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img class="brand-logo" src="<?php echo esc_url( get_theme_file_uri( 'assets/sockspecs-bilingual-logo.webp' ) ); ?>" width="720" height="239" alt="索克派 SockSpecs" fetchpriority="high"></a>
 </div>
 <nav aria-label="主导航"><?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'fallback_cb' => false, 'depth' => 1 ) ); ?></nav>
 </div></header>

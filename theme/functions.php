@@ -14,7 +14,7 @@ add_action( 'after_setup_theme', static function () {
 	register_nav_menu( 'primary', '主导航' );
 } );
 add_action( 'wp_enqueue_scripts', static function () {
-	wp_enqueue_style( 'sockspecs-cn', get_stylesheet_uri(), array(), '0.1.8' );
+	wp_enqueue_style( 'sockspecs-cn', get_stylesheet_uri(), array(), '0.1.9' );
 } );
 
 add_action( 'woocommerce_before_main_content', static function () { echo '<main id="main" class="wrap">'; }, 10 );
