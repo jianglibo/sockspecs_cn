@@ -1,0 +1,11 @@
+{
+  "name": "SockSpecs CN PHP 8.3",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "args": {
+      "DEV_UID": "${localEnv:UID:1000}",
+      "DEV_GID": "${localEnv:GID:1000}"
+    }
+  },
+  "postCreateCommand": "composer install --no-interaction --prefer-dist"
+}

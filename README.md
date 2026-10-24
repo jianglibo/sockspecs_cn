@@ -47,6 +47,22 @@ or synchronization with the international store.
 
 ## Validation without a running store
 
+Open the repository in the **PHP 8.3 Dev Container** (VS Code: “Reopen in
+Container”) to get the same PHP baseline as CI and Composer dependencies. The
+container installs the locked development dependencies on creation. Run checks
+there with:
+
+```bash
+composer check
+node tests/pack-builder-js.js
+bash -n tools/*.sh
+```
+
+This container is for PHP development and checks; the local WordPress preview
+still uses the host Docker installation and the separate setup below.
+
+On a host that already has PHP 8.3 and Composer 2, the equivalent commands are:
+
 ```bash
 composer install --no-interaction --prefer-dist
 composer check
